@@ -1,0 +1,80 @@
+.font_input{
+    margin-left:30rpx;
+    font-family: "SHSCN_Medium";
+    font-size: 32rpx;
+    color: #333333;
+}
+.font_search{
+    font-family: "SHSCN_Medium";
+    font-size: 32rpx;
+    color: #333333;
+    margin-right: 30rpx;
+    margin-left: auto;
+}
+.P1{
+    height: 200rpx;
+    width: 750rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30rpx;
+    background-color: #FFFFFF;
+    flex-wrap: wrap;
+}
+
+.P2{
+    height: 100rpx;
+    width: 750rpx;
+    padding: 20rpx 75rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+}
+
+.P2_show{
+    width: 400rpx;
+    text-align: center;
+    height: auto;
+}
+.P2_operation{
+    display: flex;
+    Justify-content:center;
+    align-items:center;
+    width: 200rpx;
+    height: 60rpx;
+    opacity:1.0;
+    background-color:#327FF6;
+    border-radius: 45rpx;
+    font-family: "SHSCN_Regular";
+    font-size: 26rpx;
+    color: #ffffff;
+}
+
+/* 详情 */
+.P4{
+    width: 750rpx;
+    min-height: 180rpx;
+    background-color: #FFFFFF;
+    opacity: 1.0;
+    margin-top: 20rpx;
+    padding: 10rpx 30rpx;
+}
+.P5{
+    padding-top: 46rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.font_info{
+    font-family: "SHSCN_Regular";
+    font-size: 30rpx;
+    color: #2B2B2B;
+    line-height: 50rpx;
+}
+.P6{
+    display: flex;
+    align-items: center;
+    padding: 50rpx;
+    width: 590;
+}

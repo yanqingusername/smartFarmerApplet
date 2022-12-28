@@ -1,0 +1,127 @@
+<wxs src="../../comm.wxs" module="fn" />
+<view class="page">
+    
+    <!-- 异常报警 -->
+    <block wx:if="{{fn.list1_inexistence_list2(['1','2','3','4','5','6','30'],applet_permissions_list)}}">
+        <view style="margin:50rpx 30rpx 20rpx 30rpx" class="font_title">异常报警</view>
+        <view class="P1">
+            <block wx:if="{{fn.exist_list('1', applet_permissions_list)}}">
+                <view class="P2" style="background-color:#81c5e5;" bindtap="enter_alarm_pig">
+                    <text class="font_error_info_num">{{alarmNum.pigAlarmNum}}</text>
+                    <view class="p3">
+                        <image class="error_img" src="/image/icon/alarm_pig.png" mode="widthFix"></image>
+                        <view class="font_error_info">猪只</view>
+                    </view>
+                    <view class="error_view font_error_num" wx:if="{{alarmNum.pigAlarmNum>0 && alarmNum.pigAlarmNum<100}}">{{alarmNum.pigAlarmNum}}</view>
+                    <view class="error_view font_error_num" wx:if="{{alarmNum.pigAlarmNum>99}}">99+</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('2', applet_permissions_list)}}">
+                <view class="P2" style="background-color:#E5D381;" bindtap="enter_alarm_personnel">
+                    <text class="font_error_info_num">{{alarmNum.personalAlarmNum}}</text>
+                    <view class="p3">
+                        <image class="error_img" src="/image/icon/alarm_personnel.png" mode="widthFix"></image>
+                        <view class="font_error_info">人员</view>
+                    </view>
+                    <view class="error_view font_error_num" wx:if="{{alarmNum.personalAlarmNum>0 && alarmNum.personalAlarmNum<100}}">{{alarmNum.personalAlarmNum}}</view>
+                    <view class="error_view font_error_num" wx:if="{{alarmNum.personalAlarmNum>99}}">99+</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('3', applet_permissions_list)}}">
+                <view class="P2" style="background-color:#E581CA;" bindtap="enter_alarm_car">
+                    <text class="font_error_info_num">{{alarmNum.carAlarmNum}}</text>
+                    <view class="p3">
+                        <image class="error_img" src="/image/icon/alarm_car.png" mode="widthFix"></image>
+                        <view class="font_error_info">车辆</view>
+                    </view>
+                    <view class="error_view font_error_num" wx:if="{{alarmNum.carAlarmNum>0 && alarmNum.carAlarmNum<100}}">{{alarmNum.carAlarmNum}}</view>
+                    <view class="error_view font_error_num" wx:if="{{alarmNum.carAlarmNum>99}}">99+</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('4', applet_permissions_list)}}">
+                <view class="P2" style="background-color:#B081E5;" bindtap="enter_alarm_illegal">
+                    <text class="font_error_info_num">{{alarmNum.illegalAlarmNum}}</text>
+                    <view class="p3">
+                        <image class="error_img" src="/image/icon/alarm_illegal.png" mode="widthFix"></image>
+                        <view class="font_error_info">异物</view>
+                    </view>
+                    <view class="error_view font_error_num" wx:if="{{alarmNum.illegalAlarmNum>0 && alarmNum.illegalAlarmNum<100}}">{{alarmNum.illegalAlarmNum}}</view>
+                    <view class="error_view font_error_num" wx:if="{{alarmNum.illegalAlarmNum>99}}">99+</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('5', applet_permissions_list)}}">
+                <view class="P2" style="background-color:#1296db;" bindtap="enter_alarm_goods">
+                    <text class="font_error_info_num">{{alarmNum.goodsAlarmNum}}</text>
+                    <view class="p3">
+                        <image class="error_img" src="/image/icon/alarm_goods.png" mode="widthFix"></image>
+                        <view class="font_error_info">物品</view>
+                    </view>
+                    <view class="error_view font_error_num" wx:if="{{alarmNum.goodsAlarmNum>0 && alarmNum.goodsAlarmNum<100}}">{{alarmNum.goodsAlarmNum}}</view>
+                    <view class="error_view font_error_num" wx:if="{{alarmNum.goodsAlarmNum>99}}">99+</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('6', applet_permissions_list)}}">
+                <view class="P2" style="background-color:#CD950C;" bindtap="enter_alarm_equipment">
+                    <text class="font_error_info_num">{{alarmNum.equipmentAlarmNum}}</text>
+                    <view class="p3">
+                        <image class="error_img" src="/image/icon/alarm_equipment.png" mode="widthFix"></image>
+                        <view class="font_error_info">设备</view>
+                    </view>
+                    <view class="error_view font_error_num" wx:if="{{alarmNum.equipmentAlarmNum>0 && alarmNum.equipmentAlarmNum<100}}">{{alarmNum.equipmentAlarmNum}}</view>
+                    <view class="error_view font_error_num" wx:if="{{alarmNum.equipmentAlarmNum>99}}">99+</view>
+                </view>
+            </block>
+            <!-- 权限暂用设备的 -->
+            <block wx:if="{{fn.exist_list('30', applet_permissions_list)}}">
+                <view class="P2" style="background-color:#1296db;" bindtap="enter_alarm_access">
+                    <text class="font_error_info_num">{{alarmNum.accessAlarmNum}}</text>
+                    <view class="p3">
+                        <image class="error_img" src="/image/icon/alarm_access.png" mode="widthFix"></image>
+                        <view class="font_error_info">门禁</view>
+                    </view>
+                    <view class="error_view font_error_num" wx:if="{{alarmNum.accessAlarmNum>0 && alarmNum.accessAlarmNum<100}}">{{alarmNum.accessAlarmNum}}</view>
+                    <view class="error_view font_error_num" wx:if="{{alarmNum.accessAlarmNum>99}}">99+</view>
+                </view>
+            </block>
+        </view>
+    </block>
+    
+    <!-- 猪场存栏 --> 
+    <block wx:if="{{fn.exist_list('7', applet_permissions_list)}}">
+        <!--  隐藏原生组件-->
+        <view style="{{modalName?'margin-top:10000vh;margin-bottom:10000vh':''}}"> 
+            <view style="margin:20rpx 30rpx 20rpx 30rpx;display:flex;">
+                <view class="font_title">猪场存栏</view>
+            </view>
+            <view class="P4">
+                <ec-canvas id="pig-pie" canvas-id="pig-pie" ec="{{ec_pig}}" ></ec-canvas>
+            </view>
+        </view>
+    </block>
+
+    <!-- 疫苗接种 -->
+    <block wx:if="{{fn.exist_list('8', applet_permissions_list)}}">
+        <view style="margin:40rpx 30rpx 20rpx 30rpx" class="font_title">疫苗接种</view>
+        <view bindtap="enter_vaccine">
+            <image class="vaccine_img" src="https://www.prohealth-wch.com:8443/data/pigProject/vaccine.png"></image>
+        </view>
+    </block>
+    
+    <!-- 病原检测 -->
+    <block wx:if="{{fn.exist_list('9', applet_permissions_list)}}">
+        <view style="margin:40rpx 30rpx 20rpx 30rpx" class="font_title">病原检测</view>
+        <view bindtap="enter_pathogen">
+            <image class="pathogen_img" src="https://www.prohealth-wch.com:8443/data/pigProject/pathogen.png"></image>
+        </view>
+    </block>
+
+    <!-- 无以上权限说明，此页面功能为空 -->
+    <block wx:if="{{fn.list1_inexistence_list2(['1','2','3','4','5','6','7','8','9','30'], applet_permissions_list)}}">
+        <!-- 底部留白 -->
+        <view style="height:100rpx;"></view>
+    </block>
+
+    <block wx:else>
+        <image src="/image/icon/no_info.png" style="width:750rpx;height:auto" mode="widthFix"></image>
+    </block>
+</view>

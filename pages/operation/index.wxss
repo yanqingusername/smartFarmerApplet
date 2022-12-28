@@ -1,0 +1,45 @@
+page{
+    background-color: #F2F2F2;
+}
+.font_title{
+    font-family: "SHSCN_Medium";
+    font-size: 36rpx;
+    line-height: 60rpx;
+    color: #333333;
+    margin:20rpx 30rpx 20rpx 30rpx
+}
+.P1{
+    width: 750rpx;
+    padding-left: 50rpx;
+    display:flex;
+    flex-wrap:wrap;
+    align-items: center;
+    /*margin-bottom: 30rpx;*/
+}
+.P2{
+    width: 175rpx;
+    height: 150rpx;
+    display: flex;
+    flex-wrap:wrap;
+    Justify-content:center;
+    margin:0 0 40rpx 0;
+}
+.icon1{
+    width: 80rpx;
+    height: auto;
+    margin: 0 35rpx;
+    height: auto;
+}
+.font_info{
+    width: 100%;
+    font-family: "SHSCN_Regular";
+    font-size: 26rpx;
+    color: #333333;
+    text-align: center;
+}
+.single_line{
+    line-height: 70rpx;
+}
+.two_line{
+    line-height: 35rpx;
+}

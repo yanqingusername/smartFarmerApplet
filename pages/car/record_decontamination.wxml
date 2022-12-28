@@ -1,0 +1,32 @@
+<view class="page">
+    <view class="P1" style="position:fixed;z-index: 1024;top:0;">
+        <view class="P2">
+            <view class="P2_show">{{carArr[carIndex].name}}</view>
+            <picker bindchange="carChange" range-key="name" value="{{carValue}}" range="{{carArr}}">
+                <view class="P2_operation" ><text class="cuIcon-deliver lg" style="margin-right:10rpx"></text>车辆</view>                    
+            </picker>
+        </view>
+    </view>
+    <view class="">
+        <view style="margin-top:120rpx">
+            <block wx:for="{{data_list}}">
+                <view class="P4">
+                    <view style="margin-top:40rpx;padding-bottom:20rpx">
+                        <view class="font_car_info">云端ID：{{item.camera_cloud_id}}</view>
+                        <view class="font_car_info">时间：{{item.create_time}}</view>
+                    </view>
+                </view>
+            </block>
+            <block wx:if="{{data_list.length==0}}">
+                <image src="/image/icon/no_info.png" style="width:750rpx;height:auto" mode="widthFix"></image>
+            </block>
+            <block wx:if="{{isEnd}}">
+                <view class="cu-load over"></view>
+            </block>
+            <block wx:else>
+                <view class="cu-load {{loading?'loading':''}}"></view>
+            </block>
+            <view style="height:100rpx;width:0rpx"></view>
+        </view>
+    </view>
+</view>

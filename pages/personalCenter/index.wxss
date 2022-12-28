@@ -1,0 +1,71 @@
+/* 个人信息卡片 */
+.P1{
+    margin:40rpx 30rpx 0 30rpx;
+}
+.P2{
+    width: 690rpx;
+    height: 300rpx;
+    position:relative;
+    border-radius: 23rpx;
+    box-shadow: 0 11rpx 21rpx 0 rgba(48, 124, 245, 0.33);
+    opacity:1.0;
+}
+.user_card_info{
+    z-index: 2;
+    position:absolute;
+}
+.name_font{
+    font-size: 32rpx;
+    font-family: "SHSCN_Regular";
+    color: #FFFFFF;
+}
+.phone_font{
+    font-size: 24rpx;
+    font-family: "SHSCN_Regular";
+    color: #FFFFFF;
+}
+.worker_font{
+    font-size: 30rpx;
+    font-family: "SHSCN_Regular";
+    color: #FEFEFE;
+}
+.img_next{
+    width: 13rpx;
+    height: auto;
+}
+.worker_head{
+    /* width: 64rpx;
+    height: 64rpx; */
+    width: 100rpx;
+    height: 100rpx;
+    align-self: center;
+}
+/* 个人中心操作 */
+.P3{
+    margin:70rpx 0 0 30rpx;
+}
+.P4{
+    width: 720rpx;
+    height: 88rpx;
+    border-bottom: 1rpx solid #F2F2F2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.operation_next{
+    width: 16rpx;
+    height: 29rpx;
+    margin-left: auto;
+    margin-right: 36rpx;
+}
+.operation_type{
+    width: 40rpx;
+    height: 40rpx;
+}
+.operation_info{
+    font-size: 30rpx;
+    color: #666666;
+    margin-left: 30rpx;
+    font-family: "SHSCN_Regular";
+}

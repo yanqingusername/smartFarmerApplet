@@ -1,0 +1,60 @@
+<wxs src="../../comm.wxs" module="fn" />
+<view class="page">
+    <!-- 猪栏管理 -->
+    <view style="margin:40rpx 30rpx 20rpx 30rpx" class="font_title">猪栏管理</view>
+    <picker bindchange="piggeryChange" value="{{piggery_index}}" range="{{piggery_list}}" range-key="piggery_name" style="margin-bottom: 20rpx;">
+		<button class="bt_class_1 bt_class_2 font_btn">{{piggery_list[piggery_index].piggery_name}}</button>
+	</picker>
+    <picker bindchange="styChange" value="{{sty_index}}" range="{{sty_list}}" range-key="sty_name">
+		<button class="bt_class_1 bt_class_2 font_btn">{{piggery_index==0?'请先选择猪舍':sty_list[sty_index].sty_name}}</button>
+	</picker>
+    <view class="P1">
+        <view class="P2">
+            <button bindtap="rename_sty" class="cu-btn line-blue lg">改名</button>
+        </view>
+        <view class="P2">
+            <button bindtap="del_sty" class="cu-btn line-blue lg">删除</button>
+        </view>
+        <view class="P2">
+            <button bindtap="add_sty"class="cu-btn line-blue lg">添加</button>
+        </view>
+    </view>
+</view>
+
+<!-- 猪栏重命名 -->
+<view class="cu-modal {{modalName=='DialogRenameSty'?'show':''}}">
+    <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+            <view class="content">修改名称</view>
+            <view class="action" bindtap="hideModal">
+                <text class="cuIcon-close text-red"></text>
+            </view>
+        </view>
+        <view class="padding-xl" wx:if="{{modalName=='DialogRenameSty'}}" auto-height bindtap="transPos" style="background-color:#FFFFFF">
+            <textarea focus="{{modalName=='DialogRenameSty'}}" value="{{DialogInput}}" fixed cursor-spacing="100" style="height: 3.3em" bindinput="DialogInput"/>
+        </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub text-green solid-left" bindtap="hideModal">取消</view>
+      <view class="action margin-0 flex-sub  solid-left" bindtap="submit_rename_sty">确定</view>
+    </view>
+  </view>
+</view>
+<!-- 猪栏添加 -->
+<view class="cu-modal {{modalName=='DialogAddSty'?'show':''}}">
+    <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+            <view class="content">添加猪栏</view>
+            <view class="action" bindtap="hideModal">
+                <text class="cuIcon-close text-red"></text>
+            </view>
+        </view>
+        <view class="padding-xl" wx:if="{{modalName=='DialogAddSty'}}" auto-height bindtap="transPos" style="background-color:#FFFFFF">
+            <textarea focus="{{modalName=='DialogAddSty'}}" value="{{DialogInput}}"  fixed cursor-spacing="100" style="height: 3.3em" bindinput="DialogInput"/>
+        </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub text-green solid-left" bindtap="hideModal">取消</view>
+      <view class="action margin-0 flex-sub  solid-left" bindtap="submit_add_sty">确定</view>
+    </view>
+  </view>
+</view>
+

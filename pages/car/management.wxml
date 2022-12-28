@@ -1,0 +1,66 @@
+<view class="page">
+    <view class="P0" style="position:fixed;z-index:1024;top:0;">
+        <view class="my_select" bindtap="selectFunc" data-type="0">
+            <view class="select_title">车辆</view>
+            <view class="{{selectedType=='0'?'select_line':''}}"></view>
+        </view>
+        <view class="my_select" bindtap="selectFunc" data-type="1">
+            <view class="select_title">新增</view>
+            <view class="{{selectedType=='1'?'select_line':''}}"></view>
+        </view>
+    </view>
+    
+    <view style="margin-top:100rpx;">
+        <!-- 车辆 -->
+        <block wx:if="{{selectedType=='0'}}">
+            <view class="P11">
+                <view wx:if="{{!carList}}" class="loading cu-load"></view>
+                <block wx:for="{{carList}}">
+                    <view class="P12">
+                        <image src="/image/icon/car.png" mode="widthFix" style="width:100rpx;height:auto"></image>
+                        <view class="P14" bindtap="enter_details" data-id="{{item.id}}" data-type="0">
+                            <view class="font_personnel_info">车牌：{{item.car_num}} </view>
+                            <view class="font_personnel_info">类型：{{item.type_name}} </view>
+                        </view>
+                    </view>
+                </block>
+                <block wx:if="{{carList.length==0}}">
+                    <image src="/image/icon/no_info.png" mode="widthFix" style="width:750rpx;height:auto"></image>
+                </block>
+            </view>
+        </block>
+
+        <!-- 新增 -->
+        <block wx:if="{{selectedType=='1'}}">
+            <form bindsubmit="submitAdd">
+                <view class="P1">
+                    <view class="P2">
+                        <view class="P3">
+                            <view class='font_input_type'>车辆类型:</view>
+                            <picker class='my_picker' bindchange="typeChange" range-key="name" value="{{typeArr[typeIndex].value}}" range="{{typeArr}}">
+                                <view class="picker">
+                                    {{typeArr[typeIndex].name}}
+                                </view>
+                            </picker>
+                        </view>
+                    </view>
+                    <view class="P2">
+                        <view class="P3">
+                            <view class='font_input_type'>车牌:</view>
+                            <input class='font_input' placeholder='输入车牌' name="car_num" type="text" value="{{car_num}}"></input>
+                        </view>
+                    </view>
+                    <view class="P2">
+                        <view class="P3">
+                            <view class='font_input_type'>用途:</view>
+                            <input class='font_input' placeholder='输入用途' name="purpose" type="text" value="{{purpose}}"></input>
+                        </view>
+                    </view>
+                </view>
+                <view style="margin-top:30rpx;margin-bottom:30rpx;">
+                    <button class='bt_submit font_submit' form-type="submit">提交</button>
+                </view>
+            </form>
+        </block>
+    </view>
+</view>

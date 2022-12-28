@@ -1,0 +1,64 @@
+<view class="page">
+    <form bindsubmit="submit">
+        <view class="P1">
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>姓名:</view>
+                    <input class='font_input' placeholder='输入姓名' name="name" type="text" value="{{personnelInfo.name}}"></input>
+                </view>
+            </view>
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>工号:</view>
+                    <input class='font_input' placeholder='输入工号' name="job_number" type="number" value="{{personnelInfo.job_number}}"></input>
+                </view>
+            </view>
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>手机号:</view>
+                    <input class='font_input' placeholder='输入手机号'  maxlength="11" name="phone" type="number" value="{{personnelInfo.phone}}"></input>
+                </view>
+            </view>
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>职务:</view>
+                    <picker class='my_picker' bindchange="roleChange" range-key="name" value="{{roleArr[roleIndex].value}}" range="{{roleArr}}">
+                        <view class="picker">
+                            {{roleArr[roleIndex].name}}
+                        </view>
+                    </picker>
+                </view>
+            </view>
+
+            <!-- 访客，需要设置来访时间和离开时间 -->
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>来访时间:</view>
+                    <view class="font_input" bindtap="start_time_show">{{startTime}}</view>
+                </view>
+            </view>
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>离开时间:</view>
+                    <view class="font_input" bindtap="end_time_show">{{endTime}}</view>
+                </view>
+            </view>
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>来访事由:</view>
+                    <input class='font_input' placeholder='输入来访事由'  name="reason" type="text" value="{{personnelInfo.reason}}"></input>
+                </view>
+            </view>
+        </view>
+        <view class="P4">
+            <view class="P4_1">
+                <button class='bt_operation font_operation' form-type="submit">提交</button>
+            </view>
+        </view>
+    </form>
+</view>
+
+<!-- 来访时间 -->
+<timePicker pickerShow="{{startIsPickerShow}}" id="picker" wx:if="{{startIsPickerRender}}" bind:hidePicker="start_time_hide" bind:setPickerTime="set_start_time" config="{{pickerConfig}}"></timePicker>
+<!-- 离开时间 -->
+<timePicker pickerShow="{{endIsPickerShow}}" id="picker" wx:if="{{endIsPickerRender}}" bind:hidePicker="end_time_hide" bind:setPickerTime="set_end_time" config="{{pickerConfig}}"></timePicker>

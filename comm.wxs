@@ -1,0 +1,346 @@
+// list1 是否有元素存在 list2
+function list1_inexistence_list2(list1, list2){
+    if(typeof(list1) == "undefined" || typeof(list2) == "undefined"){ // 因页面初步加载会没有数据
+        return false
+    }else{
+        var flag = false;
+        for(var i = 0; i < list1.length; i++){
+            var item = list1[i];
+            if(list2.indexOf(item) > -1){
+                flag = true;
+                break;
+            }
+        }
+        return flag;
+    }
+}
+
+// 元素存在在数组中
+function exist_list(item, list){
+    if(typeof(list) == "undefined"){ // 因页面初步加载会没有数据
+        return false
+    }else{
+        if(list.indexOf(item) > -1){
+            return true
+        }else{
+            return false
+        }
+    }
+}
+
+// 序号格式化
+function index_text(index){
+    index += 1;
+    var l = index.toString().length, text;
+    if(l==1){
+        text = '---' + index 
+    }else if(l==2){
+        text = '--' + index
+    }else if(l==3){
+        text = '-' + index
+    }else{
+        text = index
+    }    
+    return text
+}
+
+// 耳环状态对应的颜色
+function label_id_status_color(status){
+    if(status == 0){
+        return 'color:#48AC43'
+    }else if (status ==101 || status == 102 || status == 103 || status == 104 || status == 105 || status == 106 ){
+        return 'color:#C8004C'
+    }else if (status == 2){
+        return 'color:#666666'
+    } else if (status == 3){
+        return 'color:#327FF6'
+    }
+}
+
+// 耳环状态对应的文字描述
+function label_id_status_view(status){
+    //健康状态（0正常，101温度过高，102温度过低，103活跃度过高，104活跃度过低，105掉落，106死亡，2离线）
+    if(status ==  0){
+        return '正常'
+    }else if(status == 101){
+        return '温度过高'
+    }else if(status == 102){
+        return '温度过低'
+    }else if(status == 103){
+        return '活跃度过高'
+    }else if(status == 104){
+        return '活跃度过低'
+    }else if(status == 105){
+        return '掉落'
+    }else if(status == 106){
+        return '死亡'
+    }else if(status == 2){
+        return '离线'
+    }else{
+        return '未知'
+    }
+}
+
+function warning_color(status){
+    if (status ==101 || status == 102 || status == 105 || status == 106){
+        return 'color:#FF0000'
+    }else if (status == 103 || status == 104){
+        return 'color:#FFA337'
+    }else if (status == 2){
+        return 'color:#F4CB00'
+    } 
+}
+
+function warning_img(status){
+    if (status ==101 || status == 102 || status == 105 || status == 106){
+        return 'warning3'
+    }else if (status == 103 || status == 104){
+        return 'warning2'
+    }else if (status == 2){
+        return 'warning1'
+    }else{
+        //添加默认值
+        return 'warning1'
+    }
+}
+
+
+// 问题反馈的类型
+function remarks_type(type){
+    //问题反馈类型，0普通反馈 1报警猪反馈 2非正常猪进行健康出栏 3正常猪进行无害化处理
+    if(type == '0'){
+        return '问题反馈'
+    }else if(type == '1'){
+        return '报警猪反馈'
+    }else if(type == '2'){
+        return '非正常猪进行健康出栏'
+    }else if(type == '3'){
+        return '正常猪进行无害化处理'
+    }
+}
+
+function monitoring_way(type){
+    if(type == 'camera'){
+        return '摄像头'
+    }else if(type == 'door' ){
+        return '门禁'
+    }else{
+        return '未知'
+    }
+}
+
+
+
+function carState_info(status){
+    if(status == 0){
+        return '监测进行中...'
+    }else if(status == 1 ){
+        return '监测合格'
+    }else{
+        return '未知'
+    }
+}
+function carState_img(status){
+    if(status == 0){
+        return '/image/icon/car_detection.png'
+    }else if(status == 1 ){
+        return '/image/icon/car_qualified.png'
+    }else{
+        return ''
+    }
+}
+
+function styType_img(status,num){
+    if(num > 0){
+        /*if(status == '1'){
+            return '/image/icon/sty_warning.png' // 异常猪栏
+        }else{
+            return '/image/icon/sty_normal.png' // 正常猪栏
+        }*/
+        return '/image/icon/sty_normal.png' // 正常猪栏
+    }else{
+        return '/image/icon/sty_empty.png' // 空猪栏
+    }
+}
+function piggeryType_img(status,num){
+    if(num > 0){
+        if(status == '1'){
+            return '/image/icon/piggery_red.png' // 异常猪舍
+        }else{
+            return '/image/icon/piggery_green.png' // 正常猪舍
+        }
+    }else{
+        return '/image/icon/piggery_blue.png' // 空猪舍
+    }
+}
+
+
+
+
+
+// 特殊界面展示，现不需要
+function label_id_status_text(status){
+    
+    if(status ==  0){
+        return '正常'
+    }else if(status == 101){
+        return '温度\n过高'
+    }else if(status == 102){
+        return '温度\n过低'
+    }else if(status == 103){
+        return '活跃度\n过高'
+    }else if(status == 104){
+        return '活跃度\n过低'
+    }else if(status == 2){
+        return '离线'
+    }else if(status == 3){
+        return '死亡'
+    }else{
+        return '未知'
+    }
+}
+
+
+
+
+function such_type(status){
+    if(status == 2){
+        return '健康出栏'
+    }else if (status == 3){
+        return '无害化处理'
+    }else{
+        return '未知'
+    }
+}
+function worker_info(roleId){
+    // 角色信息 还需更改app.js中信息
+    // 1 管理层 2饲养员 3 司机 4消毒员 5病死猪处理员 6技术员 11 内部人员 21农机补贴权限
+    if(roleId == 1){
+        return '管理层'
+    }else if (roleId == 2){
+        return '饲养员'
+    } else if (roleId == 3){
+        return '司机'
+    } else if (roleId == 4){
+        return '消毒员'
+    } else if (roleId == 5){
+        return '处理员'
+    } else if (roleId == 6){
+        return '技术员'
+    } else if (roleId == 11){
+        return '开发者'
+    } else if (roleId == 21){
+        return '农机处'
+    }
+}
+
+function monitor_lst(application){
+    // type == -1 返回全部类型
+    if(application == '1'){
+        return 'arrow-blue'
+    }else if (application == '2'){
+        return 'arrow-red'
+    }else if (application == '3'){
+        return 'circle'
+    }else if (application == '-1'){
+        return [
+            {'application':'1','desc':'人脸识别+车牌识别','png':'arrow-blue'},
+            {'application':'2','desc':'异物入侵','png':'arrow-red'},
+            {'application':'3','desc':'360度监控','png':'circle'}]
+    }
+}
+
+function equipment_type(type){
+    if(type == '1'){
+        return '探测器'
+    }else if(type == '2'){
+        return '摄像头'
+    }else{
+        return '未知设备类型'
+    }
+}
+
+function str_to_arr(str, interval){
+    // console.log(str)
+    // console.log(interval)
+    return str.split(interval)
+}
+
+function car_type(type){
+    if(type == '1'){
+        return '场外车辆'
+    }else if(type == '2'){
+        return '内部车辆'
+    }
+}
+function approval_all_status(status){
+    //0 待审批 1审批完成 2 撤回
+    if(status == '0'){
+        return '待审批'
+    }else if(status == '1'){
+        return '审批完成'
+    }
+}
+function approval_status(status){
+    //（审核结果 0暂无 1同意 2拒绝 3撤销）
+    if(status == '0'){
+        return '待审批'
+    }else if(status == '1'){
+        return '同意'
+    }else if(status == '2'){
+        return '拒绝'
+    }else if(status == '3'){
+        return '撤销'
+    }
+}
+function approval_status_color(status){
+    //（审核结果 0暂无 1同意 2拒绝 3撤销）
+    if(status == '0'){
+        return 'text-gray'
+    }else if(status == '1'){
+        return 'text-green'
+    }else if(status == '2'){
+        return 'text-red'
+    }else if(status == '3'){
+        return 'text-gray'
+    }
+}
+
+
+function alarm_status(status){
+    //处理状态  0未处理 1待处理 2 已处理
+    if(status == '0'){
+        return '未处理'
+    }else if(status == '1'){
+        return '待处理'
+    }else if(status == '2'){
+        return '已处理'
+    }
+}
+
+module.exports = {
+    carState_info: carState_info,
+    carState_img:carState_img,
+    styType_img:styType_img,
+    exist_list:exist_list,
+    index_text:index_text,
+    label_id_status_text:label_id_status_text,
+    label_id_status_color:label_id_status_color,
+    worker_info:worker_info,
+    such_type:such_type,
+    label_id_status_view:label_id_status_view,
+    warning_img:warning_img,
+    warning_color:warning_color,
+    monitor_lst:monitor_lst,
+    equipment_type:equipment_type,
+    str_to_arr:str_to_arr,
+    car_type:car_type,
+    approval_all_status:approval_all_status,
+    approval_status:approval_status,
+    approval_status_color:approval_status_color,
+    remarks_type:remarks_type,
+    alarm_status:alarm_status,
+    list1_inexistence_list2:list1_inexistence_list2,
+    piggeryType_img:piggeryType_img,
+    monitoring_way:monitoring_way
+};

@@ -1,0 +1,11 @@
+<wxs src="../../comm.wxs" module="fn" />
+<import src="../../templates/camera.wxml" />
+<view>
+    <web-view src="{{sty_url}}" class="P1"/>
+    <!--  <view>
+   <text>嵌入模板start</text>
+   <template is="camera"></template>
+   <text>嵌入模板end</text>
+ </view> -->
+
+</view>

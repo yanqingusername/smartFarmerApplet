@@ -1,0 +1,46 @@
+<wxs src="../../comm.wxs" module="fn" />
+<view class="page">
+    <!-- 搜索耳环 -->
+    <view class="cu-bar search fixed P01" style="top:0;">
+        <view class="P02">
+            <image class="icon_search" src="/image/icon/search.png" mode="widthFix"></image>
+            <input class="font_search" style="width:520rpx;" type="number" placeholder='耳环编号' maxlength="8"
+                value="{{search_label_id}}" bindinput="searchInput" bindfocus="inputFocus"></input>
+        </view>
+        <text class="font_search" style="margin-right:40rpx;margin-left:auto;" bindtap="search">搜索</text>
+    </view>
+    <!-- 猪栏显示 -->
+    <view style="margin:128rpx 30rpx 20rpx 30rpx" class="font_title"><input value="{{pig_house_name}}"
+            disabled="{{isDisabled}}" bindtap="doubleClick" bindblur="saveData" focus="{{focus}}" maxlength="10" />
+    </view>
+    <view class="P1">
+        <block wx:if="{{loading}}">
+            <view style="width:100%" class="loading cu-load"></view>
+        </block>
+        <block wx:else>
+            <block wx:for="{{sty_list}}" wx:for-index="bindex" wx:for-item='item'>
+                <view class="P2" style="margin:auto;">
+                    <view class="P3" bindtap="enter_sty" data-sty_number="{{item.sty_number}}">
+                        <image class="icon_sty" src="{{fn.styType_img(item.status,item.pig_num)}}"></image>
+                        <view style="text-align:center;width: 160rpx;">
+                            <block wx:if="{{item.pig_num==1}}">
+                                <text class="font_pig_num" style="font-size:28rpx">{{item.label_id}}</text>
+                            </block>
+                            <block wx:else>
+                                <text class="font_pig_num">{{item.pig_num}}</text>
+                                <text class="font_unit">头</text>
+                            </block>
+                        </view>
+                    </view>
+                    <view class="font_sty_name"><input value="{{item.sty_name}}" disabled="{{isDisabled2[bindex]}}"
+                            bindtap="doubleClick2" bindblur="saveData2" focus="{{focus2[bindex]}}"
+                            data-id="{{item.sty_number}}" data-bindex="{{bindex}}" maxlength="10"
+                            style="width:250rpx" /></view>
+                </view>
+            </block>
+            <block wx:if="{{sty_list.length==0}}">
+                <image src="/image/icon/no_info.png" style="width:640rpx;heigth:auto;" mode="widthFix"></image>
+            </block>
+        </block>
+    </view>
+</view>

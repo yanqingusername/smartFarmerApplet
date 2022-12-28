@@ -1,0 +1,17 @@
+<view class="cu-modal show">
+	<view class="cu-dialog" catchtap>
+		<radio-group class="block" bindchange="radioChange">
+			<view class="cu-list menu text-left">
+				<label class="flex justify-between align-center flex-sub">
+					<view class="flex-sub" style="text-align:center;margin:40rpx 0;">请选择猪场</view>
+				</label>
+				<view class="cu-item" wx:for="{{userInfo}}" wx:key>
+					<label class="flex justify-between align-center flex-sub">
+						<view class="flex-sub">{{item.farm_name}}</view>
+						<radio class="round" value="{{index}}"></radio>
+					</label>
+				</view>
+			</view>
+		</radio-group>
+	</view>
+</view>

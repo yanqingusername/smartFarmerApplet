@@ -1,0 +1,155 @@
+<wxs src="../../comm.wxs" module="fn" />
+<scroll-view scroll-y class="scrollPage page">
+    <!-- 人员管理 -->
+    <block wx:if="{{fn.list1_inexistence_list2(['10','11'], applet_permissions_list)}}">
+        <view class="font_title">人员管理</view>
+        <view class="P1">
+            <block wx:if="{{fn.exist_list('10', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_personnel_permissions">
+                    <image class="icon1" src="/image/icon/operation_personnel_permissions.png" mode="widthFix"></image>
+                    <view class="font_info single_line">人员权限设置</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('11', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_personnel_records">
+                    <image class="icon1" src="/image/icon/operation_personnel_records.png" mode="widthFix"></image>
+                    <view class="font_info single_line">人员记录</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('31', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_admission_application">
+                    <image class="icon1" src="/image/icon/operation_personnel_records.png" mode="widthFix"></image>
+                    <view class="font_info single_line">入场申请</view>
+                </view>
+            </block>
+        </view>
+    </block>
+
+    <!-- 车辆管理 -->
+    <block wx:if="{{fn.list1_inexistence_list2(['12','13','14','24'], applet_permissions_list)}}">
+        <view class="font_title">车辆管理</view>
+        <view class="P1">
+            <block wx:if="{{fn.exist_list('12', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_car_permissions">
+                    <image class="icon1" src="/image/icon/operation_car_permissions.png" mode="widthFix"></image>
+                    <view class="font_info single_line">车辆权限设置</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('13', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_car_records">
+                    <image class="icon1" src="/image/icon/operation_car_records.png" mode="widthFix"></image>
+                    <view class="font_info single_line">车辆记录</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('24', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_driver_register">
+                    <image class="icon1" src="/image/icon/operation_driver_register.png" mode="widthFix"></image>
+                    <view class="font_info single_line">洗消代驾登记</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('14', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_driver_records">
+                    <image class="icon1" src="/image/icon/operation_driver_records.png" mode="widthFix"></image>
+                    <view class="font_info single_two">洗消代驾</view>
+                    <view class="font_info single_two">司机记录</view>
+                </view>
+            </block>
+        </view>
+    </block>
+
+    <!-- 物品管理 -->
+    <block wx:if="{{fn.list1_inexistence_list2(['15','16'], applet_permissions_list)}}">
+        <view class="font_title">物品管理</view>
+        <view class="P1">
+            <block wx:if="{{fn.exist_list('15', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_goods_register">
+                    <image class="icon1" src="/image/icon/operation_goods_register.png" mode="widthFix"></image>
+                    <view class="font_info single_line">物品登记</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('16', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_goods_records">
+                    <image class="icon1" src="/image/icon/operation_goods_records.png" mode="widthFix"></image>
+                    <view class="font_info single_line">物品记录</view>
+                </view>
+            </block>
+        </view>
+    </block>
+
+    <block wx:if="{{fn.list1_inexistence_list2(['8','9','17','18','19','20','21','22','23','25'],applet_permissions_list)}}">
+        <view class="font_title">猪只管理</view>
+        <view class="P1">
+            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_operation_pig_show">
+                    <image class="icon1" src="/image/icon/operation_pig_show.png" mode="widthFix"></image>
+                    <view class="font_info single_line">猪只查看</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('18', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_operation_pig_lairage">
+                    <image class="icon1" src="/image/icon/operation_pig_lairage.png" mode="widthFix"></image>
+                    <view class="font_info single_line">入栏</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('19', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_operation_pig_jump">
+                    <image class="icon1" src="/image/icon/operation_pig_jump.png" mode="widthFix"></image>
+                    <view class="font_info single_line">转栏</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('20', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_operation_pig_such">
+                    <image class="icon1" src="/image/icon/operation_pig_such.png" mode="widthFix"></image>
+                    <view class="font_info single_line">出栏</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('21', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_operation_pig_log">
+                    <image class="icon1" src="/image/icon/operation_pig_log.png" mode="widthFix"></image>
+                    <view class="font_info single_line">操作记录</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('22', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_operation_pig_remarks">
+                    <image class="icon1" src="/image/icon/operation_pig_remarks.png" mode="widthFix"></image>
+                    <view class="font_info single_line">反馈记录</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('23', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_operation_piggery_sty">
+                    <image class="icon1" src="/image/icon/operation_piggery_sty.png" mode="widthFix"></image>
+                    <view class="font_info single_line">猪舍猪栏管理</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('8', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_operation_vaccine">
+                    <image class="icon1" src="/image/icon/operation_vaccine.png" mode="widthFix"></image>
+                    <view class="font_info single_line">疫苗</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('9', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_operation_pathogen">
+                    <image class="icon1" src="/image/icon/operation_pathogen.png" mode="widthFix"></image>
+                    <view class="font_info single_line">病原检测</view>
+                </view>
+            </block>
+            <block wx:if="{{fn.exist_list('25', applet_permissions_list)}}">
+                <view class="P2" bindtap="enter_bluetooth">
+                    <image class="icon1" src="/image/icon/bluetooth.png" mode="widthFix"></image>
+                    <view class="font_info single_line">蓝牙连接</view>
+                </view>
+            </block>
+        </view>
+    </block>
+
+    <!-- 无以上权限说明，此页面功能为空 -->
+    <block wx:if="{{fn.list1_inexistence_list2(['8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25'],applet_permissions_list)}}">
+        <!-- 底部留白 -->
+        <view style="height:100rpx;"></view>
+    </block>
+    <block wx:else>
+        <image src="/image/icon/no_info.png" style="width:750rpx;height:auto" mode="widthFix"></image>
+    </block>
+</scroll-view>
+
+

@@ -1,0 +1,52 @@
+page{
+    background-color: #F2F2F2;
+}
+.P1{
+    width: 750rpx;
+    height: auto;
+    background-color: #FFFFFF;
+}
+.P2{
+    width: 690rpx;
+    height: 65rpx;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 0 30rpx;
+    border-bottom: 1px solid #F2F2F2;
+}
+.bt_send{
+    font-size: 32rpx;
+    color: #040404;
+    font-family: 'SHSCN_Medium';
+    margin-left: auto;
+    margin-right: 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+}
+.P3{
+    margin-top: 20rpx;
+    width: 750rpx;
+    height: 156rpx;
+    background-color: #FFFFFF;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.P4{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.operation{
+    width: 90rpx;
+    height: 90rpx;
+    align-self: center;
+}
+.font_text{
+    font-family: 'SHSCN_Regular';
+    font-size: 28rpx;
+    color: #333333;
+}

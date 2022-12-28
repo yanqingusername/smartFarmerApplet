@@ -1,0 +1,5 @@
+.camerastyle{
+  width: 200rpx;
+  height: 300rpx;
+  background-color:greenyellow
+}

@@ -1,0 +1,55 @@
+<view class="page">
+    <view class="P1" style="position:fixed;z-index: 1024;top:0;">
+        <view class="P2">
+            <view class="P2_show">{{carArr[carIndex].name}}</view>
+            <picker bindchange="carChange" range-key="name" value="{{carValue}}" range="{{carArr}}">
+                <view class="P2_operation" ><text class="cuIcon-deliver lg" style="margin-right:10rpx"></text>车辆</view>                    
+            </picker>
+        </view>
+        <view class="P2" >
+            <view class="P2_show">{{date==""?"全部日期":date}}</view>
+            <picker mode="date" value="{{date}}" end="{{date}}" bindchange="DateChange">
+                <view class="P2_operation"><text class="cuIcon-time lg" style="margin-right:10rpx"></text>设置日期</view>
+            </picker>
+        </view>
+    </view>
+    <view class="">
+        <view style="margin-top:220rpx">
+            <block wx:for="{{data_list}}">
+                <view class="P4">
+                    <view style="margin-top:40rpx;padding-bottom:20rpx">
+                        <view class="font_car_info">区域：{{item.location_descr}}</view>
+                        <view class="font_car_info">时间：{{item.create_time}}</view>
+                        <view class="P6">
+                            <button class="cu-btn bg-blue shadow P3" bindtap="showImage" data-url="{{item.pic}}">图片</button>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <block wx:if="{{data_list.length==0}}">
+                <image src="/image/icon/no_info.png" style="width:750rpx;height:auto" mode="widthFix"></image>
+            </block>
+            <block wx:if="{{isEnd}}">
+                <view class="cu-load over"></view>
+            </block>
+            <block wx:else>
+                <view class="cu-load {{loading?'loading':''}}"></view>
+            </block>
+            <view style="height:100rpx;width:0rpx"></view>
+        </view>
+    </view>
+</view>
+
+<!-- 图片 -->
+<view class="cu-modal {{modalName=='Image'?'show':''}}">
+  	<view class="cu-dialog">
+    	<swiper wx:if="{{swiperRestart}}" class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+      		<swiper-item wx:for="{{swiperList}}" wx:key>
+        		<image src="{{item.url}}" mode="aspectFill"></image>
+      		</swiper-item>
+    	</swiper>
+    	<view class="cu-bar bg-white">
+      		<view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">我知道了</view>
+    	</view>
+  	</view>
+</view>

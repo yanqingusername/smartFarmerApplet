@@ -1,0 +1,134 @@
+<wxs src="../../comm.wxs" module="fn" />
+<view>
+    <view class="font_title" style="margin: 50rpx auto 20rpx 30rpx">猪只报警详情</view>
+    <view class="P1">
+        <view class="P2">
+            <view class="P3">
+                <view style="margin-left:0;">
+                    <view class="font_label_id">耳环编号: {{alarmInfo.label_id}}</view>
+                    <view class="font_label_id">处理状态: {{fn.alarm_status(alarmInfo.status)}}</view>
+                    <view class="font_label_id" style="{{fn.warning_color(alarmInfo.error_info)}}">
+                        {{fn.label_id_status_view(alarmInfo.error_info)}}</view>
+                    <view class="font_label_info" style="margin-top:20rpx">
+                        <image src="/image/icon/time.png" style="width:20rpx;height:auto;margin-right:10rpx"
+                            mode="widthFix"></image>
+                        <text>发生时间: {{alarmInfo.time}}</text>
+                    </view>
+                    <view class="font_label_info">
+                        <image src="/image/icon/position.png" style="width:20rpx;height:auto;margin-right:10rpx"
+                            mode="widthFix"></image>
+                        <text>位置:{{pigInfo.layout_name}}</text>
+                    </view>
+                </view>
+                <view style="margin-left:auto;margin-right:30rpx">
+                    <image src="/image/icon/{{fn.warning_img(alarmInfo.error_info)}}.png"
+                        style="width:80rpx;height:auto" mode="widthFix"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="font_title" style="margin: 50rpx auto 20rpx 30rpx">猪只现状</view>
+    <view class="P4">
+        <block wx:if="{{pigInfo.operation=='1'}}">
+            <view class="font_label_id">状态: {{fn.label_id_status_view(pigInfo.status)}}</view>
+            <view class="font_label_id">位置: {{pigInfo.layout_name}}</view>
+            <view class="font_label_id">入栏时间: {{pigInfo.checkInTime}}</view>
+        </block>
+        <block wx:else>
+            <view class="font_label_id">状态: {{fn.such_type(pigInfo.operation)}}</view>
+            <view class="font_label_id">出栏时间: {{pigInfo.checkOutTime}}</view>
+        </block>
+    </view>
+    <view class="font_title" style="margin: 50rpx auto 20rpx 30rpx">猪只处理记录</view>
+    <view class="P5">
+        <block wx:if="{{operationList.length=='0'}}">
+            <view class="font_label_id">暂无处理记录</view>
+        </block>
+        <block wx:else>
+            <block wx:for="{{operationList}}">
+                <view class="font_label_id">{{item.createTime}}:{{item.problem_back}}</view>
+            </block>
+        </block>
+    </view>
+    <block wx:if="{{alarmInfo.status=='0'}}">
+        <view class="P6">
+            <view class="P7">
+                <button class="bt_class_1 bt_class_2 font_btn" style="width:100%" bindtap="send_feedback">猪只处理</button>
+            </view>
+        </view>
+    </block>
+</view>
+<!-- 问题反馈 -->
+<view class="cu-modal {{modalName=='DialogAddFeedback'?'show':''}}">
+    <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+            <view class="content">问题反馈</view>
+        </view>
+        <view class="padding-xl" wx:if="{{modalName=='DialogAddFeedback'}}" auto-height
+            style="background-color:#FFFFFF">
+            <textarea focus="{{modalName=='DialogAddFeedback'}}" value="{{DialogInput}}" fixed cursor-spacing="100"
+                style="height: 3.3em" bindinput="DialogInput" />
+        </view>
+        <view class="cu-bar bg-white justify-end">
+            <view class="content">处理方式</view>
+        </view>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      当前选择：{{array[index]}}
+    </view>
+    </picker>
+    <view hidden="{{index==1?false:true}}">转至：{{piggery_name}}-{{sty_name}}</view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub text-green solid-left" bindtap="hideModal">取消</view>
+      <view class="action margin-0 flex-sub  solid-left" bindtap="submit_feedback">确定</view>
+    </view>
+  </view>
+</view>
+<!-- 猪舍猪栏选择 -->
+<view class="cu-modal {{modalName2=='piggeryStyModal'?'show':''}}" bindtap="hideModal2">
+    <view class="cu-dialog" catchtap>
+        <view class="cu-bar bg-white justify-end">
+            <view class="content">{{select_piggery == ''?'选择猪舍':'选择猪栏'}}</view>
+            <view class="action" bindtap="hideModal2">
+                <text class="cuIcon-close text-red"></text>
+            </view>
+        </view>
+        <!-- 选择猪舍 -->
+        <block wx:if="{{select_piggery == ''}}">
+            <scroll-view scroll-y style="height:750rpx">
+                <view class="cu-list menu text-left">
+                    <block wx:for="{{piggery_lst}}" wx:key>
+                        <view class="cu-item" bindtap="selectSty" data-piggery_number="{{item.piggery_number}}" data-piggery_name="{{item.piggery_name}}">
+                            <label class="flex justify-between align-center flex-sub">
+                                <view class="flex-sub">{{item.piggery_name}}</view>
+                                <text class="cuIcon-right lg text-gray"></text>
+                            </label>
+                        </view>
+                    </block>
+                </view>
+            </scroll-view>
+        </block>
+        <!-- 选择猪栏 -->
+        <block wx:if="{{select_piggery != ''}}">
+            <scroll-view scroll-y style="height:750rpx">
+                <view class="cu-list menu text-left">
+                    <block wx:for="{{sty_lst}}" wx:key>
+                        <view class="cu-item" bindtap="finishStySelect" data-sty_number="{{item.sty_number}}" data-sty_name="{{item.sty_name}}">
+                            <label class="flex justify-between align-center flex-sub">
+                                <view class="flex-sub">{{item.sty_name}}</view>
+                                <text class="cuIcon-right lg text-gray"></text>
+                            </label>
+                        </view>
+                    </block>
+                    <block wx:if="{{sty_lst.length==0}}" wx:key>
+                        <image src="/image/icon/no_info.png" style="width:100%;height:auto" mode="widthFix"></image>
+                    </block>
+                </view>
+            </scroll-view>
+        </block>
+        <view class="cu-bar bg-white">
+            <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal2">取消</view>
+            <view wx:if="{{select_piggery != ''}}" class="action margin-0 flex-sub  solid-left" bindtap="againSelectPiggery">重选猪舍</view>
+        </view>
+    </view>
+</view>

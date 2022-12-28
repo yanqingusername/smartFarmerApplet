@@ -1,0 +1,51 @@
+<view class="page">
+    <block wx:for="{{alarm_info}}">
+        <view class="P1">
+            <view class="font_illegal_info">报警类型：{{item.alarm_desc}}</view>
+            <view class="font_illegal_info">员工：{{item.work_name}}</view>
+            <view class="font_illegal_info">区域：{{item.location_descr}}</view>
+            <view class="font_illegal_info">报警时间：{{item.alarm_time}}</view>
+            <view class="font_illegal_info">处理时间：{{item.processing_time}}</view>
+            <view class="font_illegal_info">处理员工：{{item.conductor}}</view>
+            <view class="font_illegal_info">处理记录：{{item.problem_back}}</view> 
+            <!-- <view class="P2">
+                <button class="cu-btn bg-blue shadow P3" bindtap="openImage" data-index="{{index}}">图片</button>
+            </view>          -->
+        </view>
+    </block>
+    <block wx:if="{{alarm_info.length==0}}">
+        <image src="/image/icon/no_info.png" style="width:750rpx;height:auto" mode="widthFix"></image>
+    </block>
+    <block wx:if="{{isEnd}}">
+        <view class="cu-load over"></view>
+    </block>
+    <block wx:else>
+        <view class="cu-load {{loading?'loading':''}}"></view>
+    </block>
+    <view style="height:100rpx;width:0rpx"></view>
+</view>
+
+
+<!-- 图片 -->
+<view class="cu-modal {{modalName=='Image'?'show':''}}">
+  	<view class="cu-dialog">
+    	<swiper wx:if="{{swiperRestart}}" class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+      		<swiper-item wx:for="{{swiperList}}" wx:key>
+        		<image src="{{item.url}}" mode="aspectFill"></image>
+      		</swiper-item>
+    	</swiper>
+    	<view class="cu-bar bg-white">
+      		<view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">我知道了</view>
+    	</view>
+  	</view>
+</view>
+
+<!-- 加载等待框 -->
+<view style='width:100vw;height:100vh;position:fixed;top:0;z-index: 2048;' wx:if="{{LoadingModal}}">
+	<view class='cu-load load-modal' >
+  		<text class="cuIcon-close text-red" style="margin: 0 0 auto auto;" bindtap="hideLoadingModal"></text>
+  		<view class='gray-text' style="margin-bottom: 30%;height: 40%;display: flex;align-items: center;justify-content: center;">
+    		{{LoadingModalMsg}}
+  		</view>
+	</view>
+</view>

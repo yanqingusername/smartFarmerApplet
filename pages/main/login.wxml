@@ -1,0 +1,25 @@
+<view class="page">
+    <image src="https://www.prohealth-wch.com:8443/data/pigProject/login.png" style="width:750rpx;height:450rpx"></image>
+    <view>
+        <form bindsubmit="login">
+            <view class="P1">
+                <view class="P2" style="height:187rpx;">
+                    <view class="P3">
+                        <image class='icon1' src='/image/icon/phone.png' mode="widthFix"></image>
+                        <input class='font_input' placeholder='输入手机号'  maxlength="11" name="phone" type="text" bindinput="phoneInput" value="{{phone}}"></input> 
+                    </view>
+                </view>
+                <view class="P2" style="height:129rpx;">
+                    <view class="P3">
+                        <image class='icon1' src='/image/icon/phone_code.png' mode="widthFix"></image>
+                        <input class='font_input' placeholder='输入验证码' type="number" name="code" value="{{code}}"></input>
+                        <view class="bt_code font_code" bindtap="getCode" disabled="{{codeBtState}}" style="{{codeBtState?'background-color:#CCCCCC':'background-color:#327FF6'}}">{{codeBtText}}</view>
+                    </view>
+                </view>
+            </view>
+            <view style="margin-top:159rpx;">
+                <button class='bt_login font_login' open-type="getUserInfo" form-type="submit">登录</button>
+            </view>
+        </form>
+    </view>
+</view>

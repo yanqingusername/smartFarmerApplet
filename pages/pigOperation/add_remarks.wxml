@@ -1,0 +1,21 @@
+<view class="page">
+    <view class="P1">
+        <view class="P2">
+            <view class="bt_send" bindtap="send">发送</view>
+        </view>
+        <view class="cu-form-group">
+		    <textarea auto-focus class="font_text" value="{{textareaAValue}}" maxlength="-1" bindinput="textareaAInput" placeholder="请填写内容"></textarea>
+	    </view>
+    </view>
+    <view class="P3">
+        <view class="P4">
+            <image bindtap="use_voice" class="operation" src="/image/icon/voice.png" style="margin-right:130rpx"></image>
+        </view>
+        <view class="P4">
+            <image bindtap="use_photo" class="operation" src="/image/icon/photo.png" style="margin-right:130rpx"></image>
+        </view>
+        <view class="P4">
+            <image bindtap="use_video" class="operation" src="/image/icon/video.png" ></image>
+        </view>
+    </view>
+</view>

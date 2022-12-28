@@ -1,0 +1,222 @@
+page{
+    background-color: #F2F2F2;
+}
+.font_title{
+    font-family: "SHSCN_Medium";
+    font-size: 32rpx;
+    color: #333333;
+}
+/* 异常警报 */
+.P1{
+    margin: 0 5rpx 0 40rpx;
+    display:flex;
+    flex-wrap:wrap;
+}
+.P2{
+    width: 200rpx;
+    height: 180rpx;
+    border-radius: 10rpx;
+    display: flex;
+    Justify-content:center;
+    align-items:center;
+    box-shadow: 0 4rpx 24rpx 0 rgba(221, 221, 221, 0.74);
+    margin:0 35rpx 30rpx 0;
+    position: relative;
+}
+.error_view{
+    z-index: 2;
+    position:absolute;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    width: 50rpx;
+    height: 50rpx;
+    border-radius: 50%;
+    background-color:#FF0000;
+    left:85%;
+    top:-5%;
+}
+.font_error_num{
+    font-family: "SHSCN_Regular";
+    font-size: 28rpx;
+    color: #FFFFFF;
+}
+.font_error_info{
+    font-family: "SHSCN_Regular";
+    font-size: 24rpx;
+    color: #FFFFFF;
+    margin-top:12rpx;
+}
+.font_error_info_num{
+    font-family: "SHSCN_Regular";
+    font-size: 60rpx;
+    color: #FFFFFF;
+}
+.p3{
+    margin-left: 20rpx;
+    text-align: center;
+}
+.error_img{
+    width: 40rpx;
+    height:auto;
+}
+
+/* 猪场存栏 */
+.P4{
+    width: 690rpx;
+    height: 360rpx;
+    margin:0 30rpx 0 30rpx;
+    background-color: #FFFFFF;
+    border-radius: 10rpx;
+    opacity:1.0;
+    box-shadow: 0 4rpx 24rpx 0 rgba(221, 221, 221, 0.74);
+}
+/* 环境监测 */
+.P5{
+    width: 690rpx;
+    height: 454rpx;
+    margin:0 30rpx 0 30rpx;
+    background-color: #FFFFFF;
+    border-radius: 10rpx;
+    opacity:1.0;
+    box-shadow: 0 4rpx 24rpx 0 rgba(221, 221, 221, 0.74);
+}
+/* 今日车辆 */
+.P6{
+    margin:20rpx 30rpx 0 30rpx;
+}
+.P7{
+    width: 690rpx;
+    height: 180rpx;
+    border-radius: 10rpx;
+    opacity:1.0;
+    box-shadow: 0 4rpx 24rpx 0 rgba(221, 221, 221, 0.74);
+}
+.car_num_img{
+    width: 30rpx;
+    margin-left:30rpx;
+}
+.font_car_num{
+    font-family: "SHSCN_Regular";
+    font-size: 28rpx;
+    color: #333333;
+}
+.font_car_time{
+    font-family: "SHSCN_Light";
+    font-size: 20rpx;
+    color: #999999;
+    line-height: 30rpx;
+}
+.car_state_img{
+    width: 30rpx;
+}
+.font_car_state{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+}
+/* 异物检测 */
+.P8{
+    width: 690rpx;
+    height: 180rpx;
+    margin:20rpx 30rpx 0 30rpx;
+    box-shadow: 0px 5px 8px 0px rgba(255, 58, 58, 0.21);
+    border-radius: 10rpx;
+    opacity:1.0;
+    background-color: #FFFFFF;
+    border: #FF7690 1px solid;
+    display: flex;
+}
+.warning_img{
+    width: 90rpx;
+    align-self: center;
+    margin-right: 50rpx;
+    margin-left: auto;
+}
+.font_foreign_title{
+    font-family: "SHSCN_Regular";
+    font-size: 28rpx;
+    color: #FF3A3A;
+}
+
+.font_foreign_info{
+    font-family: "SHSCN_Light";
+    font-size: 20rpx;
+    color: #999999;
+    line-height: 30rpx;
+}
+/* 疫苗接种 */
+.vaccine_img{
+    width: 690rpx;
+    height: 180rpx;
+    margin:0 30rpx 0 30rpx;
+    box-shadow: 0 4rpx 24rpx 0 rgba(221, 221, 221, 0.74);
+    border-radius: 10rpx;
+    opacity:1.0;
+    background-color: #FFFFFF;
+}
+/* 病原检测 */
+.pathogen_img{
+    width: 690rpx;
+    height: 180rpx;
+    margin:0 30rpx 0 30rpx;
+    box-shadow: 0 4rpx 24rpx 0 rgba(221, 221, 221, 0.74);
+    border-radius: 10rpx;
+    opacity:1.0;
+    background-color: #FFFFFF;
+}
+
+.P_map{
+    width: 690rpx;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 30rpx 0 30rpx;
+}
+.map_pic{
+    width: 690rpx;
+    height: auto;
+    position:relative;
+}
+
+.P_camera{
+    z-index: 2;
+    position:absolute;
+    width: 70rpx;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.camera{
+    width:50rpx;
+    height: auto;
+}
+.camera_num{
+    width: 20rpx;
+    height: auto;
+    font-family: "SHSCN_Light";
+    font-size: 30rpx;
+    color: #333333;
+    line-height: 20rpx;
+}
+.camera_legend{
+    width:150rpx;
+    z-index: 2;
+    position:absolute;
+}
+
+.camera_btn{
+    width: 150rpx;
+    height: 60rpx;
+    margin-bottom: 30rpx;
+    background-color: #58A4FD;
+    opacity:1.0;
+    border-radius: 10rpx;
+    display: flex;
+    Justify-content:center;
+    align-items:center;
+    text-align: center;
+    font-family: "SHSCN_Regular";
+    font-size: 30rpx;
+    color: #FFFFFF;
+}

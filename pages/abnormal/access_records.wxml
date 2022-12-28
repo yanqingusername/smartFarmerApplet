@@ -1,0 +1,24 @@
+<view class="page">
+    <block wx:for="{{alarm_info}}">
+        <view class="P1">
+            <view class="font_illegal_info">操作类型：{{item.type_desc}}</view>
+            <view class="font_illegal_info">报警时间：{{item.alarm_time}}</view>
+            <view class="font_illegal_info">区域：{{item.location_descr}}</view>
+            <view class="font_illegal_info">人员：{{item.real_name}}</view>
+            <view class="font_illegal_info">卡号：{{item.card_no}}</view>
+            <view class="P2">
+                <button class="cu-btn bg-blue shadow P3" bindtap="openImage" data-index="{{index}}" data-img="{{item.img}}" hidden="{{item.img==''?true:false}}">图片</button>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{alarm_info.length==0}}">
+        <image src="/image/icon/no_info.png" style="width:750rpx;height:auto" mode="widthFix"></image>
+    </block>
+    <block wx:if="{{isEnd}}">
+        <view class="cu-load over"></view>
+    </block>
+    <block wx:else>
+        <view class="cu-load {{loading?'loading':''}}"></view>
+    </block>
+    <view style="height:100rpx;width:0rpx"></view>
+</view>

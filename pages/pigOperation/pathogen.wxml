@@ -1,0 +1,87 @@
+<view class="page">
+    <view class="P1">
+        <view style="position:fixed;z-index: 1024;top:0;background-color: #FFFFFF;">
+            <view class="item" style="padding-top:36rpx;padding-bottom:40rpx;">
+                <image src="/image/icon/pathogen_icon.png" style="width:40rpx;height:auto" mode="widthFix"></image>
+                <text class="font_title" style="margin-left:20rpx;margin-right:auto">病原检测</text>
+                <button class="bt_remark font_remark" style="margin-left:auto;margin-right:0" bindtap="showModal"
+                    data-target="pathogenModel">上传数据</button>
+            </view>
+            <view class="item">
+                <view class="btn_item bt_tr_title_green font_tr_title item_label">耳环号</view>
+                <view class="btn_item bt_tr_title_green font_tr_title item_time">采样时间</view>
+                <view class="btn_item bt_tr_title_green font_tr_title item_name">检测项目</view>
+                <view class="btn_item bt_tr_title_green font_tr_title item_status">结果</view>
+            </view>
+        </view>
+
+        <view style="margin-top:250rpx">
+            <block wx:if="{{loading}}">
+                <view style="width:100%" class="loading cu-load"></view>
+            </block>
+            <block wx:for="{{test_list}}">
+                <view class="item" data-url="{{item.report_url}}" bindtap="previewTestImage">
+                    <view class="btn_item font_td_info item_label">{{item.relation_num}}</view>
+                    <view class="btn_item font_td_info item_time">{{item.test_time}}</view>
+                    <view class="btn_item font_td_info item_name">{{item.test_name}}</view>
+                    <view
+                        class="btn_item font_td_info item_status {{item.state=='阳性'?'bt_tr_status_red':'bt_tr_status_green'}}">
+                        {{item.test_result}}</view>
+                </view>
+            </block>
+            <block wx:if="{{test_list.length==0}}">
+                <image src="/image/icon/no_info.png" style="width:750rpx;height:auto" mode="widthFix"></image>
+            </block>
+            <block wx:if="{{isEnd}}">
+                <view class="cu-load over"></view>
+            </block>
+            <block wx:else>
+                <view class="cu-load {{loading?'loading':''}}"></view>
+            </block>
+
+            <view style="height:100rpx;width:0rpx"></view>
+        </view>
+    </view>
+</view>
+<view class="cu-modal {{modalName=='pathogenModel'?'show':''}}" bindtap="hideModal">
+    <view class="cu-dialog" catchtap>
+        <!-- <view class="cu-bar bg-white justify-end">
+            <view class="content">{{select_piggery == ''?'选择猪舍':'选择猪栏'}}</view>
+            <view class="action" bindtap="hideModal">
+                <text class="cuIcon-close text-red"></text>
+            </view>
+        </view> -->
+        <view class="P2">
+            <text class="font_title">耳环编号：</text>
+            <input value="{{label_id}}" bindinput="set_label_id" style="font-size: 28rpx;" maxlength="8"/>
+        </view>
+        <view class="P2">
+            <text class="font_title">检测时间：</text>
+            <picker mode="date" value="{{test_date}}" bindchange="bindDateChange">
+                <input value="{{test_date}}" style="font-size: 28rpx;" disabled="true" />
+            </picker>
+        </view>
+        <view class="P2">
+            <text class="font_title">检测项目：</text>
+            <input value="{{test_name}}" bindinput="set_test_name" style="font-size: 28rpx;"/>
+        </view>
+        <view class="P2">
+            <text class="font_title">检测结果：</text>
+            <input value="{{test_result}}" bindinput="set_test_result" style="font-size: 28rpx;"/>
+        </view>
+        <view class="P2">
+            <text class="font_title">检测证明：</text>
+            <input class="weui-uploader__input js_file" type="file" accept="image/jpg,image/jpeg,image/png,image/gif"
+                multiple="" bindtap='upimg' name="images" value="点击上传" disabled="true" style="font-size: 28rpx;"/>
+        </view>
+        <block wx:if="{{img.length>0}}">
+            <image bindtap="previewImg" data-src="{{img}}" src="{{img}}" mode="aspectFill">预览文件
+            </image>
+        </block>
+        <view class="cu-bar bg-white">
+            <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">取消</view>
+            <view wx:if="{{select_piggery != ''}}" class="action margin-0 flex-sub  solid-left" bindtap="uploadData" style="font-size: 28rpx;">
+                上传数据</view>
+        </view>
+    </view>
+</view>

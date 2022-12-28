@@ -1,0 +1,98 @@
+.P1{
+    width: 750rpx;
+    height: 100rpx;
+    border-bottom: 1px solid #ECECEC;
+    align-items: center;
+    display: flex;
+}
+.font_name{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #333333;
+    padding-left:34rpx;
+    max-width: 600rpx;
+}
+.font_rename{
+    font-family: "SHSCN_Regular";
+    font-size: 24rpx;
+    color: #666666;
+    margin-left:20rpx;
+}
+/* 耳环标题 */
+.P2{
+    width: 750rpx;
+    height: 80rpx;
+    border-bottom: 1px solid #ECECEC;
+    align-items: center;
+    display: flex;
+}
+.font_title{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #333333;
+}
+/* 耳环列表 */
+.label_item{
+    width: 750rx;
+    /* margin: 0 50rpx;
+    min-height: 50rpx; */
+    margin: 0 25rpx;
+    min-height: 80rpx; 
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ECECEC;
+}
+.detail_item{
+    /* width: 620rpx; */
+    width: 690rpx;
+    display: flex;
+    align-items: center;
+}
+.font_label{
+    font-family: "SHSCN_Regular";
+    /* font-size: 28rpx; */
+    font-size: 32rpx;
+    /* line-height: 50rpx; */
+    line-height: 40rpx;
+    text-align: center;
+}
+.P21{
+    margin-left:20rpx;
+    text-align:center;
+}
+/* 操作 */
+.P3{
+    width: 750rpx;
+    height: 100rpx;
+    padding: 30rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.P4{
+    width: 230rpx;
+    text-align: center;
+}
+.bt_class_1{
+    width: 220rpx;
+    height: 88rpx;
+}
+.bt_class_2{
+    background-color: #58A4FD;
+    opacity:1.0;
+    border-radius: 10rpx;
+    display: flex;
+    Justify-content:center;
+    align-items:center;
+    text-align: center;
+}
+.font_btn{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #FFFFFF;
+}
+.monitor{
+    margin-left: auto;
+    height: 80rpx;
+    width: 80rpx;
+}

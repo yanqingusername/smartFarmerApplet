@@ -1,0 +1,220 @@
+page{
+    background-color: #F2F2F2;
+}
+.P1{
+    margin: 30rpx 30rpx 0 30rpx;
+    width: 690rpx;
+    background-color: #FFFFFF;
+    border-radius: 10rpx;
+    padding: 30rpx 0;
+}
+.font_illegal_info{
+    font-family: "SHSCN_Regular";
+    font-size: 28rpx;
+    color: #333333;
+    line-height: 50rpx;
+    padding-left: 20rpx;
+}
+.P3{
+    margin-right: 50rpx;
+}
+.P0{
+    position:fixed;
+    z-index: 1024;
+    top:10rpx;
+    right: 10rpx;
+    width: 200rpx;
+    height: 80rpx;
+    background-color:#A9A9A9;
+    border-radius: 10rpx;
+}
+.P0_1{
+    width: 200rpx;
+    text-align: center;
+}
+.P0_font{
+    font-family: "SHSCN_Regular";
+    font-size: 28rpx;
+    color: #FFFFFF;
+    line-height: 80rpx;
+}
+
+page{
+    background-color: #F2F2F2;
+}
+.font_title{
+    font-family: "SHSCN_Medium";
+    font-size: 32rpx;
+    color: #333333;
+}
+/* 异常总览 */
+.P1{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 20rpx;
+    background-color: #FFFFFF;
+    width: 750rpx;
+    height: 180rpx;
+    box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 1) inset;
+}
+.P2{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.font_reg{
+    font-family: "SHSCN_Regular";
+}
+.P3{
+    width: 550rpx;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+.P4{
+    width: 550rpx;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.P5{
+    width: 550rpx;
+    display: flex;
+    align-content: center;
+    /* margin-top: 43rpx;
+    margin-bottom: 35rpx; */
+}
+.P6{
+    width: 200rpx;
+    box-shadow: 0 0 2rpx 0 rgba(236, 236, 236, 0) inset;
+}
+/* 异常列表详情 */
+.P7{
+    margin: 70rpx 30rpx 0 30rpx;
+    width: 690rpx;
+}
+.font_piggery{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #333333;
+}
+.P8{
+    margin-top: 20rpx;
+    width: 690rpx;
+    height: 615rpx;
+    background-color: #FFFFFF;
+    opacity: 1.0;
+    border: 1px solid #CCCCCC;
+    border-radius: 10rpx;
+}
+.P9{
+    width: 656rpx;
+    margin:20rpx 17rpx 30rpx 17rpx;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.font_label_id{
+    font-family: "SHSCN_Regular";
+    font-size: 28rpx;
+    color: #333333;
+    line-height: 40rpx;
+}
+.font_label_info{
+    font-family: "SHSCN_Light";
+    font-size: 20rpx;
+    color: #999999;
+    line-height: 34rpx;
+}
+/* 猪舍预警记录 */
+.P10{
+    background-color: #FFFFFF;
+    width: 750rpx;
+    height: auto;
+}
+.P11{
+    width: 750rpx;
+    background-color: #FFFFFF;
+    padding: 30rpx 81rpx 0 55rpx;
+    display: flex;
+    align-content: center;
+}
+.P12{
+    width: 130rpx;
+    height: 158rpx;
+    margin-right: 26rpx;
+    text-align: center;
+}
+.bt_piggery_green{
+    background-color: #5FD193;
+    opacity: 1.0;
+    border-radius: 5rpx;
+    width: 130rpx;
+    height: 36rpx;
+    font-family: "SHSCN_Regular";
+    font-size: 24rpx;
+    color: #333333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bt_piggery_red{
+    background-color: #FF0000;
+    opacity: 1.0;
+    border-radius: 5rpx;
+    width: 130rpx;
+    height: 36rpx;
+    font-family: "SHSCN_Regular";
+    font-size: 24rpx;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* 栏内信息 */
+.P13{
+    background-color: #F2F2F2;
+    /* min-height: 336rpx; */
+    padding-bottom: 40rpx;
+}
+.selected{
+    margin-top: 23rpx;
+    margin-left: 50rpx;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 15rpx 15rpx;
+    border-color: transparent transparent #F2F2F2;  
+}
+.P14{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 750rpx;
+    padding: 0 6rpx 0 54rpx;
+}
+.P15{
+    width: 90rpx;
+    margin: 40rpx 48rpx 0 0;
+    height: auto;
+}
+.font_sty_name{
+    margin-top: 20rpx;
+    font-family: "SHSCN_Regular";
+    font-size: 24rpx;
+    color: #333333;
+}
+.bt_history{
+    width: 690rpx;
+    height: 88rpx;
+    margin: 34rpx 30rpx 0 30rpx;
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #25A1FD;
+    border-radius: 10rpx;
+}

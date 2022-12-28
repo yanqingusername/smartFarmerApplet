@@ -1,0 +1,59 @@
+<wxs src="../../comm.wxs" module="fn" />
+<view class="page">
+    <view class="P1 font_title">请先选择转出猪栏，并勾选转出猪所对应的耳环，再选择转入猪栏。</view>
+    <button class="bt_submit bt_public font_btn" bindtap="select_piggery" style="margin-bottom: 0;" data-type="0">{{such_piggery_sty.length=='0'?'选择转出猪栏':'修改转出猪栏'}}</button>
+    <view class="P3">
+        <view class="font_sty">{{such_piggery_sty.length=='0'?'转出猪舍：--未选择--；转出猪栏：--未选择--':'转出猪舍：'+such_piggery_sty[0].name+'；转出猪栏：'+such_piggery_sty[1].name}}</view>
+    </view>
+    <!-- 耳环id列表 -->
+    <view class="P2">
+        <text class="font_title" style="width:40rpx;margin-left:25rpx"></text>
+        <text class="font_title P21" style="width:140rpx">耳环编号</text>
+        <text class="font_title P21" style="width:300rpx">入栏时间</text>
+        <text class="font_title P21" style="width:160rpx;">状态</text>
+    </view>
+    <scroll-view style="height: 700rpx;" scroll-y="true">
+        <block wx:for="{{label_list}}">
+            <view class="label_item" style="{{fn.label_id_status_color(item.status)}};">
+                <view bindtap="img_checked"  data-id="{{item.label_id}}">
+                    <image wx:if="{{item.checked}}" src="/image/icon/check_true.png" style="width:40rpx;height:40rpx;"></image>
+                    <image wx:else src="/image/icon/check_false.png" style="width:40rpx;height:40rpx;"></image>
+                </view>
+                <view class="detail_item">
+                    <view class="font_label P21" style="width:140rpx">{{item.label_id}}</view>
+                    <view class="font_label P21" style="width:300rpx">{{item.check_in_time}}</view>
+                    <view class="font_label P21" style="width:160rpx;">{{fn.label_id_status_view(item.status)}}</view>
+                </view>
+            </view>  
+        </block>
+        <block wx:if="{{label_list.length=='0'}}">
+            <image src="/image/icon/no_info.png" style="width:100%;height:auto" mode="widthFix"></image>
+        </block>
+    </scroll-view>
+    <view class="P3">
+        <view class="font_sty">{{enter_piggery_sty.length=='0'?'转入猪舍：--未选择--；转入猪栏：--未选择--':'转入猪舍：'+enter_piggery_sty[0].name+'；转入猪栏：'+enter_piggery_sty[1].name}}</view>
+    </view>
+    <button class="bt_submit bt_public font_btn" bindtap="select_piggery" style="margin-bottom: 50rpx;" data-type="1">{{enter_piggery_sty.length=='0'?'选择转入猪栏':'修改转入猪栏'}}</button>
+    
+    <button class="bt_submit bt_public font_btn" bindtap="submit_jump">确认转栏</button>
+</view>
+
+<selectPiggeryAndSty show="{{select_piggery_show}}" bind:selectData='selectPiggeryStyData'></selectPiggeryAndSty>
+
+<!-- 警告提示 -->
+<view class="cu-modal {{modalName=='noticesModal'?'show':''}}" bindtap="hideModal">
+    <view class="cu-dialog" catchtap>
+        <view class="cu-bar bg-white justify-end">
+            <view class="content">注意事项</view>
+            <view class="action" bindtap="hideModal">
+                <text class="cuIcon-close text-red"></text>
+            </view>
+        </view>
+        <view class="padding-xl" style="text-align:left;padding:30rpx">
+            <view>转栏操作，只能同时对正常猪进行批量操作，或者对非正常猪进行批量操作，严禁同时进行批量操作。</view>
+        </view>
+        <view class="cu-bar bg-white">
+            <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">我知道了</view>
+        </view>
+    </view>
+</view>

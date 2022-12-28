@@ -1,0 +1,49 @@
+.P0{
+    margin: 50rpx 30rpx 20rpx 30rpx;
+    width: 690rpx;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.font_title{
+    font-family: "SHSCN_Medium";
+    font-size: 32rpx;
+    color: #333333;
+}
+.P1{
+    margin: 70rpx 30rpx 0 30rpx;
+    width: 690rpx; 
+}
+.font_piggery{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #333333;
+}
+.P2{
+    margin-top: 20rpx;
+    width: 690rpx;
+    /* height: 615rpx; */
+    height: 230rpx;
+    background-color: #FFFFFF;
+    opacity: 1.0;
+    border: 1px solid #CCCCCC;
+    border-radius: 10rpx;
+}
+.P3{
+    width: 656rpx;
+    margin:20rpx 17rpx 30rpx 17rpx;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.font_label_id{
+    font-family: "SHSCN_Regular";
+    font-size: 30rpx;
+    color: #333333;
+}
+.font_label_info{
+    font-family: "SHSCN_Light";
+    font-size: 28rpx;
+    color: #999999;
+    line-height: 34rpx;
+}

@@ -1,0 +1,49 @@
+<block wx:if="{{show}}">
+	<view class="cu-modal show}}" bindtap="hideModal">
+		<view class="cu-dialog" catchtap>
+			<view class="cu-bar bg-white justify-end">
+				<view class="content">{{select_piggery == ''?'选择猪舍':'选择猪栏'}}</view>
+				<view class="action" bindtap="hideModal">
+					<text class="cuIcon-close text-red"></text>
+				</view>
+			</view>
+			<!-- 选择猪舍 -->
+			<block wx:if="{{select_piggery == ''}}">
+				<scroll-view scroll-y style="height:750rpx">
+					<view class="cu-list menu text-left">
+						<block wx:for="{{piggery_lst}}" wx:key>
+							<view class="cu-item" bindtap="selectSty" data-piggery_number="{{item.piggery_number}}" data-piggery_name="{{item.piggery_name}}">
+								<label class="flex justify-between align-center flex-sub">
+									<view class="flex-sub">{{item.piggery_name}}</view>
+									<text class="cuIcon-right lg text-gray"></text>
+								</label>
+							</view>
+						</block>
+					</view>
+				</scroll-view>
+			</block>
+			<!-- 选择猪栏 -->
+			<block wx:if="{{select_piggery != ''}}">
+				<scroll-view scroll-y style="height:750rpx">
+					<view class="cu-list menu text-left">
+						<block wx:for="{{sty_lst}}" wx:key>
+							<view class="cu-item" bindtap="finishStySelect" data-sty_number="{{item.sty_number}}" data-sty_name="{{item.sty_name}}">
+								<label class="flex justify-between align-center flex-sub">
+									<view class="flex-sub">{{item.sty_name}}</view>
+									<text class="cuIcon-right lg text-gray"></text>
+								</label>
+							</view>
+						</block>
+						<block wx:if="{{sty_lst.length==0}}" wx:key>
+							<image src="/image/icon/no_info.png" style="width:100%;height:auto" mode="widthFix"></image>
+						</block>
+					</view>
+				</scroll-view>
+			</block>
+			<view class="cu-bar bg-white">
+				<view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">取消</view>
+				<view wx:if="{{select_piggery != ''}}" class="action margin-0 flex-sub  solid-left" bindtap="againSelectPiggery">重选猪舍</view>
+			</view>
+		</view>
+	</view>
+</block>

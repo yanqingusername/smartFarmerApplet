@@ -1,0 +1,88 @@
+page{
+    background-color: #FFFFFF;
+}
+.head1{
+    margin: 20rpx 300rpx 20rpx 300rpx;
+    width: 150rpx;
+    height: 150rpx;
+    display: flex;
+    align-items: center;
+}
+.head_img{
+    width:150rpx;
+    height: 150rpx;
+    border-radius:50%;
+    overflow: hidden;
+}
+.P1{
+    width:604rpx;
+    margin-right:73rpx;
+    margin-left:73rpx;
+}
+.P2{
+    position:relative;
+    box-shadow: 0 1px 0 0 rgba(242,242,242,1);
+    height:100rpx;
+}
+.P22{
+    position:relative;
+    box-shadow: 0 1px 0 0 rgba(242,242,242,1);
+    min-height:100rpx;
+    height:auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.P3{
+    display:flex;
+    flex-direction:row;
+    position:absolute;
+    bottom:10rpx;
+}
+.font_input_type{
+    font-family: "SHSCN_Regular";
+    align-self: center;
+    font-size: 32rpx;
+    color: #999999;
+    width: 200rpx;
+    margin-right: 40rpx;
+    text-align-last: justify;
+}
+.font_input {
+    font-family: "SHSCN_Regular";
+    align-self: center;
+    font-size: 32rpx;
+    color: #999999;
+    width: 400rpx;
+}
+
+.P4{
+    margin:30rpx;
+}
+.P4_1{
+    margin-bottom: 20rpx;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}
+.bt_operation{
+    display: flex;
+    Justify-content:center;
+    align-items:center;
+    width: 210rpx;
+    height: 90rpx;
+    opacity:1.0;
+    background-color:#327FF6;
+    border-radius: 45rpx;
+}
+.font_operation{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #ffffff;
+}
+.my_picker{
+    font-family: "SHSCN_Regular";
+    align-self: center;
+    font-size: 32rpx;
+    color: #999999;
+    width: 400rpx;
+}

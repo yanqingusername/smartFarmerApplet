@@ -1,0 +1,97 @@
+.font_title{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #333333;
+}
+/* 猪只报警详情 */
+.P1{
+    margin: 30rpx 30rpx 0 30rpx;
+    width: 690rpx; 
+}
+.font_piggery{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #333333;
+}
+.P2{
+    margin-top: 20rpx;
+    width: 690rpx;
+    /* height: 615rpx; */
+    height: auto;
+    background-color: #FFFFFF;
+    opacity: 1.0;
+    border: 1px solid #CCCCCC;
+    border-radius: 10rpx;
+}
+.P3{
+    width: 656rpx;
+    margin:20rpx 17rpx 30rpx 17rpx;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.font_label_id{
+    font-family: "SHSCN_Regular";
+    font-size: 30rpx;
+    color: #333333;
+    line-height: 40rpx;
+}
+.font_label_info{
+    font-family: "SHSCN_Light";
+    font-size: 28rpx;
+    color: #999999;
+    line-height: 34rpx;
+}
+/* 猪只现状 */
+.P4{
+    margin: 30rpx 30rpx 0 30rpx;
+    width: 690rpx;
+    height: auto;
+    background-color: #FFFFFF;
+    opacity: 1.0;
+    border: 1px solid #CCCCCC;
+    border-radius: 10rpx;
+    padding:20rpx 17rpx 30rpx 17rpx;
+}
+/* 猪只处理记录 */
+.P5{
+    margin: 30rpx 30rpx 0 30rpx;
+    width: 690rpx;
+    min-height: auto;
+    background-color: #FFFFFF;
+    opacity: 1.0;
+    border: 1px solid #CCCCCC;
+    border-radius: 10rpx;
+    padding:20rpx 17rpx 30rpx 17rpx;
+}
+/* 处理 */
+.P6{
+    width: 750rpx;
+    height: 100rpx;
+    padding: 30rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.P7{
+    width: 690rpx;
+    text-align: center;
+}
+.bt_class_1{
+    width: 220rpx;
+    height: 88rpx;
+}
+.bt_class_2{
+    background-color: #58A4FD;
+    opacity:1.0;
+    border-radius: 10rpx;
+    display: flex;
+    Justify-content:center;
+    align-items:center;
+    text-align: center;
+}
+.font_btn{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #FFFFFF;
+}

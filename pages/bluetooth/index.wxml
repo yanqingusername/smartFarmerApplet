@@ -1,0 +1,12 @@
+<view class="page">
+	<view class="P2">蓝牙设备列表</view>
+	<view class="P3">*如果无所需设备请耐心等待</view>
+	<scroll-view style="height: 700rpx;" scroll-y="true">
+        <block wx:for="{{devices_list}}">
+			<view class="P1">
+				<view class="P11">{{item.name}}</view>
+				<button class="bt_confirm font_code bt_public" bindtap="bluetoothConnection" data-id="{{item.deviceId}}" data-name="{{item.name}}">连接</button>
+			</view>
+        </block>
+    </scroll-view>
+</view>

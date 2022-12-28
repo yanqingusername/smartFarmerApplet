@@ -1,0 +1,39 @@
+<wxs src="../../comm.wxs" module="fn" />
+<view class="page">
+    <view class="P0">
+        <view class="font_title" style="margin-left:0;margin-right:auto">当前猪舍：{{piggery_name}}</view>
+    </view>
+    <block wx:for="{{pig_alarm}}">
+        <view class="P1">
+            <view class="P2" bindtap="deal_pig" data-label_id="{{item.label_id}}" data-id="{{item.id}}">
+                <view class="P3">
+                    <view style="margin-left:0;">
+                        <view class="font_label_id">耳环编号: {{item.label_id}}</view>
+                        <view class="font_label_id" style="{{fn.warning_color(item.error_info)}}">{{fn.label_id_status_view(item.error_info)}}<text class="font_label_info">{{item.recovery?'('+item.recovery_time+',自动恢复)':''}}</text></view>
+                        <view class="font_label_info" style="margin-top:20rpx">
+                            <image src="/image/icon/time.png" style="width:20rpx;height:auto;margin-right:10rpx" mode="widthFix"></image>
+                            <text>发生时间: {{item.time}}</text>
+                        </view>
+                        <view class="font_label_info">
+                            <image src="/image/icon/position.png" style="width:20rpx;height:auto;margin-right:10rpx" mode="widthFix"></image>
+                            <text>猪栏:{{item.sty_name}}</text>
+                        </view>
+                    </view>
+                    <view style="margin-left:auto;margin-right:30rpx">
+                        <image src="/image/icon/{{fn.warning_img(item.error_info)}}.png" style="width:80rpx;height:auto" mode="widthFix"></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{pig_alarm.length==0}}">
+        <image src="/image/icon/no_info.png" style="width:750rpx;height:auto" mode="widthFix"></image>
+    </block>
+    <block wx:if="{{isEnd}}">
+        <view class="cu-load over"></view>
+    </block>
+    <block wx:else>
+        <view class="cu-load {{loading?'loading':''}}"></view>
+    </block>
+    <view style="height:100rpx;width:0rpx"></view>
+</view>

@@ -1,0 +1,49 @@
+.P1{
+    width: 750rx;
+    margin: 0 25rpx;
+    min-height: 150rpx; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #ECECEC;
+}
+.P11{
+    width: 600rpx;
+    text-align: left;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+}
+.bt_confirm{
+    width: 150rpx;
+    height: 88rpx;
+    margin-left: 20rpx;
+}
+.bt_public{
+    background-color: #58A4FD;
+    opacity:1.0;
+    border-radius: 10rpx;
+    display: flex;
+    Justify-content:center;
+    align-items:center;
+    text-align: center;
+}
+.font_code{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #FFFFFF;
+}
+
+.P2{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #333333;
+    width: 750rpx;
+    padding: 50rpx 20rpx 10rpx 20rpx;
+}
+.P3{
+    font-family: "SHSCN_Regular";
+    font-size: 26rpx;
+    color:red;
+    width: 750rpx;
+    padding-left: 20rpx;
+}

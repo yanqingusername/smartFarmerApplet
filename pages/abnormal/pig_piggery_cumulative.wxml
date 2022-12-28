@@ -1,0 +1,38 @@
+<view class="page">
+    <view class="P0">
+        <view class="font_title" style="margin-left:0;margin-right:auto">报警统计</view>
+        <view class="font_title" style="margin-left:auto;margin-right:0" bindtap="go_history"><button class="bt_remark font_remark" style="margin-top:9.5px">处理记录</button></view>
+    </view>
+
+    <view class="P1">
+        <view class="P2">
+            <view class="P3">
+                <image src="/image/icon/house.png" style="width:30rpx;height:30rpx"></image>
+                <view class="font_title_1">{{piggery_name}}</view>
+            </view>
+            <view class="font_time">{{now}}</view>
+        </view>
+        <view class="P4">
+            <view class="P5" style="border-right: 1px solid #ECECEC;">
+                <text class="font_desc">今日总数</text><text class="font_num" style="color:#6EA6FC">{{processing_statistics.all}}</text>
+            </view>
+            <view class="P5">
+                <text class="font_desc">未处理</text><text  class="font_num" style="color:#FF0000">{{processing_statistics.unfinished}}</text>
+            </view>
+        </view>
+        <view class="P6">
+            <image src="/image/icon/echart_line.png" style="width:30rpx;height:30rpx"></image>
+            <view class="font_title_1">猪只异常报警统计及趋势</view>
+            <view class="font_annotation" wx:if="{{date_type=='2'}}">取每月平均值</view>
+        </view>
+        <!-- 曲线图 -->
+        <view class="P7">
+            <ec-canvas id="mychart-line" canvas-id="mychart-line" ec="{{ ec_pig }}"></ec-canvas>
+        </view>
+        <view class="P8">
+            <view class="select_btn {{date_type=='0'?'select_default':''}}" style="margin-right:148rpx" bindtap="select_time_type" data-type="0">周</view>
+            <view class="select_btn {{date_type=='1'?'select_default':''}}" style="margin-right:148rpx" bindtap="select_time_type" data-type="1">月</view>
+            <view class="select_btn {{date_type=='2'?'select_default':''}}" bindtap="select_time_type" data-type="2">半年</view>
+        </view>
+    </view>
+</view>

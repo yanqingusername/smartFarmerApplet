@@ -1,0 +1,27 @@
+<view class="page">
+    <form bindsubmit="submit">
+        <view class="P1">
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>车牌:</view>
+                    <picker class='my_picker' bindchange="carChange" range-key="name" value="{{carArr[carIndex].value}}" range="{{carArr}}">
+                        <view class="picker">
+                            {{carArr[carIndex].name}}
+                        </view>
+                    </picker>
+                </view>
+            </view>
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>云端的ID号:</view>
+                    <input class='font_input' placeholder='输入云端的ID号' name="cloud_id" type="text" value="{{cloud_id}}"></input>
+                </view>
+            </view>
+        </view>
+        <view class="P4">
+            <view class="P4_1">
+                <button class='bt_operation font_operation' form-type="submit">提交</button>
+            </view>
+        </view>
+    </form>
+</view>

@@ -1,0 +1,42 @@
+<view class="page">
+    <view class="P1" style="position:fixed;z-index: 1024;top:0;">
+        <view class="P2">
+            <text class="cuIcon-search"></text>
+            <input class="font_input"  type="number" placeholder="搜索物品ID" value="{{search_info}}" bindinput="searchInput"></input>
+            <view class="font_search" bindtap="search">搜索</view>
+        </view>
+    </view>
+    <view class="">
+        <view style="margin-top:110rpx">
+            <block wx:for="{{data_list}}">
+                <view class="P4">
+                    <view style="margin-top:40rpx;padding-bottom:20rpx">
+                        <view class="font_info">物品ID：{{item.material_id}}</view>
+                        <view class="font_info">物品内容：{{item.material_content}}</view>
+                        <!-- 暂无熏蒸记录 -->
+                        <view class="font_info">熏蒸记录：无</view>
+                        <!-- 病毒检测记录 -->
+                        <block wx:if="{{item.sample_id==''}}">
+                            <view class="font_info">病毒检测记录：无</view>
+                        </block>
+                        <block wx:else>
+                            <view class="font_info">样本号：{{item.sample_id}}</view>
+                            <view class="font_info">取样时间：{{item.sampling_time}}</view>
+                            <view class="font_info">检测结果：{{item.test_result==''?'未出':item.test_result}}</view>
+                        </block>
+                    </view>
+                </view>
+            </block>
+            <block wx:if="{{data_list.length==0}}">
+                <image src="/image/icon/no_info.png" style="width:750rpx;height:auto" mode="widthFix"></image>
+            </block>
+            <block wx:if="{{isEnd}}">
+                <view class="cu-load over"></view>
+            </block>
+            <block wx:else>
+                <view class="cu-load {{loading?'loading':''}}"></view>
+            </block>
+            <view style="height:100rpx;width:0rpx"></view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,43 @@
+<wxs src="../../comm.wxs" module="fn" />
+<view class="page">
+    <view class="P1" style="position:fixed;z-index: 1024;top:0;">
+        <view class="P2">
+            <text class="cuIcon-search"></text>
+            <input class="font_input"  type="number" maxlength="8" placeholder="搜索耳环编号" value="{{search_label_id}}" bindinput="searchInput" bindfocus="inputFocus"></input>
+            <view class="font_search" bindtap="search">搜索</view>
+        </view>
+    </view>
+    <view class="">
+        <view style="margin-top:110rpx">
+            <block wx:for="{{remarks_list}}">
+                <view class="P4">
+                    <view class="P5">
+                        <view class="cu-avatar round worker_head" style="background-image:url({{item.head_url==''?'/image/icon/no_head.png':item.head_url}});"></view>
+                        <view class="P6">
+                            <view class="font_name">{{item.user_name}}</view>
+                            <view class="P7">
+                                <view class="font_name">{{item.time}}</view>
+                                <view class="font_name" style="margin-left:auto;margin-right:0;text-align:right">编号.{{item.id}}</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view style="margin-top:40rpx;padding-bottom:20rpx">
+                        <view class="font_info">耳环编号：{{item.label_id}}</view>
+                        <view class="font_info">位置信息：{{item.piggery_name}}-{{item.sty_name}}</view>
+                        <view class="font_info">{{fn.remarks_type(item.type)}}：{{item.content}}</view>
+                    </view>
+                </view>
+            </block>
+            <block wx:if="{{pig_operation_list.length==0}}">
+                <image src="/image/icon/no_info.png" style="width:750rpx;height:auto" mode="widthFix"></image>
+            </block>
+            <block wx:if="{{isEnd}}">
+                <view class="cu-load over"></view>
+            </block>
+            <block wx:else>
+                <view class="cu-load {{loading?'loading':''}}"></view>
+            </block>
+            <view style="height:100rpx;width:0rpx"></view>
+        </view>
+    </view>
+</view>

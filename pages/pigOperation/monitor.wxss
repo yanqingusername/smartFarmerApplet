@@ -1,0 +1,6 @@
+
+@import "../../templates/camera.wxss";
+.P1{
+    width: 750rpx;
+    height: 750rpx;
+}

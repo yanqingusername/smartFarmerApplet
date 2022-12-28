@@ -1,0 +1,43 @@
+page{
+    background-color: #F2F2F2;
+}
+.font_title{
+    font-family: "SHSCN_Medium";
+    font-size: 36rpx;
+    color: #333333;
+}
+.bt_class_1{
+    margin: 0 30rpx 0 30rpx;
+    width: 690rpx;
+    height: 88rpx;
+}
+.bt_class_2{
+    background-color: #58A4FD;
+    opacity:1.0;
+    border-radius: 10rpx;
+    display: flex;
+    Justify-content:center;
+    align-items:center;
+    text-align: center;
+}
+.font_btn{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #FFFFFF;
+}
+.P1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30rpx;
+    width: 690rpx;
+    height: 100rpx;
+}
+.bt_class_3{
+    height: 100rpx;
+    width: 100rpx;
+}
+.P2{
+    width:230rpx;
+    text-align:center;
+}

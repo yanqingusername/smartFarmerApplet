@@ -1,0 +1,7 @@
+<template name="camera" class="camerastyle">
+  <view style="width:200rpx;height:300rpx;background-color:greenyellow">
+    <web-view
+      src="https://open.ys7.com/ezopen/h5/iframe?url=ezopen://open.ys7.com/G58845183/1.live&autoplay=1&accessToken=at.1aevy2596oc8x4ig8l1s71pdbdujy54a-58g5kxwlxn-1ikfomf-wxamribee&templete=0" />
+    <view style="background-color:red">xxxxxxxx</view>
+  </view>
+</template>

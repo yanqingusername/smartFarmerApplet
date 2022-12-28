@@ -1,0 +1,31 @@
+@import "colorui/main.wxss";
+@import "colorui/icon.wxss";
+
+/* 字体 下载地址 https://en.m.fontke.com/font/ */
+@font-face {
+	font-family: 'SHSCN_Regular';
+  	src: url('https://www.prohealth-wch.com:8443/data/font/SourceHanSansCNRegular.ttf');
+}
+@font-face {
+  	font-family: 'SHSCN_Medium';
+  	src: url('https://www.prohealth-wch.com:8443/data/font/SourceHanSansCNMedium.ttf');
+}
+@font-face {
+  	font-family: 'SHSCN_Light';
+  	src: url('https://www.prohealth-wch.com:8443/data/font/SourceHanSansCNLight.ttf');
+}
+
+/* 阴影将ps数值转换成css数值 
+将#--> rgb  https://www.fontke.com/tool/rgb/dddddd/
+开始转换 https://psd2css.mezw.com/
+eg: 阴影： 颜色 距离 大小 角度 不透明度  **注意设计师提供的 距离和大小可能顺序颠倒
+*/
+/* http://www.nicetool.net/app/css_triangle_generator.html 三角形 */
+
+
+page{
+    background-color: #F2F2F2;
+    font-size: 16px;
+	font-family: "SHSCN_Regular";
+	color: #333333;
+}

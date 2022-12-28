@@ -1,0 +1,30 @@
+<wxs src="../../comm.wxs" module="fn" />
+<view class="page">
+    <block wx:for="{{pig_alarm}}">
+        <view class="P1">
+            <view class="P2" data-label_id="{{item.pnum}}" data-id="{{item.pnum}}">
+                <view class="P3">
+                    <view style="width:90%">
+                        <view class="font_label_id">设备编号: {{item.pnum}}</view>
+                        <view class="font_label_id">员工姓名: {{item.real_name}}</view>
+                        <view class="font_label_id">状态: {{item.status=='1'?'正常':'违规'}}</view>
+                        <view class="font_label_info" style="margin-top:20rpx">
+                            <image src="/image/icon/time.png" style="width:20rpx;height:auto;margin-right:10rpx" mode="widthFix"></image>
+                            <text>发生时间: {{item.create_time}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{pig_alarm.length==0}}">
+        <image src="/image/icon/no_info.png" style="width:750rpx;height:auto" mode="widthFix"></image>
+    </block>
+    <block wx:if="{{isEnd}}">
+        <view class="cu-load over"></view>
+    </block>
+    <block wx:else>
+        <view class="cu-load {{loading?'loading':''}}"></view>
+    </block>
+    <view style="height:100rpx;width:0rpx"></view>
+</view>

@@ -1,0 +1,26 @@
+<view class="page">
+    <form bindsubmit="submit">
+        <view class="P1">
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>样本号:</view>
+                    <input class='font_input' placeholder='输入样本号' name="sample_id" type="text" value="{{sample_id}}"></input>
+                </view>
+            </view>
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>采样时间:</view>
+                    <view class="font_input" bindtap="sampling_time_show">{{sampling_time}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="P4">
+            <view class="P4_1">
+                <button class='bt_operation font_operation' form-type="submit">提交</button>
+            </view>
+        </view>
+    </form>
+</view>
+
+<!-- 采样时间 -->
+<timePicker pickerShow="{{pickerShow}}" id="picker" wx:if="{{pickerRender}}" bind:hidePicker="time_hide" bind:setPickerTime="set_sampling_time" config="{{pickerConfig}}"></timePicker>

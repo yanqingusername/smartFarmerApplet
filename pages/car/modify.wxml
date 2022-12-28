@@ -1,0 +1,33 @@
+<view class="page">
+    <form bindsubmit="submitModify">
+        <view class="P1">
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>车辆类型:</view>
+                    <picker class='my_picker' bindchange="typeChange" range-key="name" value="{{typeArr[typeIndex].value}}" range="{{typeArr}}">
+                        <view class="picker">
+                            {{typeArr[typeIndex].name}}
+                        </view>
+                    </picker>
+                </view>
+            </view>
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>车牌:</view>
+                    <input class='font_input' placeholder='输入车牌' name="car_num" type="text" value="{{carInfo.car_num}}"></input>
+                </view>
+            </view>
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>用途:</view>
+                    <input class='font_input' placeholder='输入用途' name="purpose" type="text" value="{{carInfo.purpose}}"></input>
+                </view>
+            </view>
+        </view>
+        <view class="P4">
+            <view class="P4_1">
+                <button class='bt_operation font_operation' form-type="submit">提交</button>
+            </view>
+        </view>
+    </form>
+</view>

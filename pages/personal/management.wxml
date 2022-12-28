@@ -1,0 +1,152 @@
+<wxs src="../../comm.wxs" module="fn" />
+<view class="page">
+    <view class="P0" style="position:fixed;z-index:1024;top:0;">
+        <view class="my_select" bindtap="selectFunc" data-type="0">
+            <view class="select_title">员工</view>
+            <view class="{{selectedType=='0'?'select_line':''}}"></view>
+        </view>
+        <view class="my_select" bindtap="selectFunc" data-type="1">
+            <view class="select_title">访客</view>
+            <view class="{{selectedType=='1'?'select_line':''}}"></view>
+        </view>
+        <view class="my_select" bindtap="selectFunc" data-type="2">
+            <view class="select_title">新增</view>
+            <view class="{{selectedType=='2'?'select_line':''}}"></view>
+        </view>
+    </view>
+    
+    <view style="margin-top:100rpx;">
+        <!-- 员工 -->
+        <block wx:if="{{selectedType=='0'}}">
+            <view class="P11">
+                <view wx:if="{{!employeesList}}" class="loading cu-load"></view>
+                <block wx:for="{{employeesList}}">
+                    <view class="P12">
+                        <view class="cu-avatar xl round P13" style="background-image:url({{item.head_url==''?'/image/icon/no_head.png':item.head_url}});"></view>
+                        <view class="P14" bindtap="enter_details" data-id="{{item.id}}" data-type="0">
+                            <view class="font_personnel_info">姓名：{{item.real_name}} </view>
+                            <view class="font_personnel_info">职务：{{item.job_title}} </view>
+                            <view class="font_personnel_info">工号：{{item.job_number}} </view>
+                        </view>
+                        <view class="P15">
+                            <image bindtap="call_phone" data-phone="{{item.phone}}" class="call_phone" src="/image/icon/call_phone.png" mode="widthFix"></image>
+                        </view>
+                    </view>
+                </block>
+                <block wx:if="{{employeesList.length==0}}">
+                    <image src="/image/icon/no_info.png" mode="widthFix" style="width:750rpx;height:auto"></image>
+                </block>
+            </view>
+        </block>
+
+        <!-- 访客 -->
+        <block wx:if="{{selectedType=='1'}}">
+            <view class="P11">
+                <view wx:if="{{!visitorList}}" class="loading cu-load"></view>
+                <block wx:for="{{visitorList}}">
+                    <view class="P12">
+                        <view class="cu-avatar xl round P13" style="background-image:url({{item.head_url==''?'/image/icon/no_head.png':item.head_url}});"></view>
+                        <view class="P14" bindtap="enter_details" data-id="{{item.id}}" data-type="1">
+                            <view class="font_personnel_info">访客姓名：{{item.name}} </view>
+                            <view class="font_personnel_info">临时工号：{{item.job_number}} </view>
+                            <view class="font_personnel_info">来访时间：{{item.admission_time}} </view>
+                        </view>
+                        <view class="P15">
+                            <image bindtap="call_phone" data-phone="{{item.phone}}" class="call_phone" src="/image/icon/call_phone.png" mode="widthFix"></image>
+                        </view>
+                    </view>
+                </block>
+                <block wx:if="{{visitorList.length==0}}">
+                    <image src="/image/icon/no_info.png" mode="widthFix" style="width:750rpx;height:auto"></image>
+                </block>
+            </view>
+        </block>
+
+        <!-- 新增 -->
+        <block wx:if="{{selectedType=='2'}}">
+            <form bindsubmit="submitAdd">
+                <view class="P1">
+                    <view class="P2">
+                        <view class="P3">
+                            <view class='font_input_type'>类别:</view>
+                            <picker class='my_picker' bindchange="categoryChange" range-key="name" value="{{categoryArr[categoryIndex].value}}" range="{{categoryArr}}">
+                                <view class="picker">
+                                    {{categoryArr[categoryIndex].name}}
+                                </view>
+                            </picker>
+                        </view>
+                    </view>
+                    <view class="P2">
+                        <view class="P3">
+                            <view class='font_input_type'>姓名:</view>
+                            <input class='font_input' placeholder='输入姓名' name="name" type="text" value="{{name}}"></input>
+                        </view>
+                    </view>
+                    <view class="P2">
+                        <view class="P3">
+                            <view class='font_input_type'>工号:</view>
+                            <input class='font_input' placeholder='输入工号' maxlength="8" name="job_number" type="number" value="{{job_number}}"></input>
+                        </view>
+                    </view>
+                    <view class="P2">
+                        <view class="P3">
+                            <view class='font_input_type'>手机号:</view>
+                            <input class='font_input' placeholder='输入手机号'  maxlength="11" name="phone" type="number" value="{{phone}}"></input>
+                        </view>
+                    </view>
+                    <view class="P2">
+                        <view class="P3">
+                            <view class='font_input_type'>职务:</view>
+                            <picker class='my_picker' bindchange="roleChange" range-key="name" value="{{roleArr[roleIndex].value}}" range="{{roleArr}}">
+                                <view class="picker">
+                                    {{roleArr[roleIndex].name}}
+                                </view>
+                            </picker>
+                        </view>
+                    </view>
+                    <!-- 访客，需要设置来访时间和离开时间 -->
+                    <block wx:if="{{categoryArr[categoryIndex].value=='2'}}">
+                        <view class="P2">
+                            <view class="P3">
+                                <view class='font_input_type'>来访时间:</view>
+                                <view class="font_input" bindtap="start_time_show">{{startTime}}</view>
+                            </view>
+                        </view>
+                        <view class="P2">
+                            <view class="P3">
+                                <view class='font_input_type'>离开时间:</view>
+                                <view class="font_input" bindtap="end_time_show">{{endTime}}</view>
+                            </view>
+                        </view>
+                        <view class="P2">
+                            <view class="P3">
+                                <view class='font_input_type'>来访事由:</view>
+                                <input class='font_input' placeholder='输入来访事由'  name="reason" type="text" value="{{reason}}"></input>
+                            </view>
+                        </view>
+                    </block>
+                    <view class="P2">
+                        <view class="P3">
+                            <view class='font_input_type'>正面照:</view>
+                            <text bindtap="ChooseImage" class="cuIcon-cameraadd my_photo"></text>
+                        </view>
+                    </view>
+                    <view class="P4">
+                        <block wx:if="{{frontPhoto.length!=0}}">
+                            <image src="{{frontPhoto[0]}}" bindtap="preview" data-url="{{frontPhoto[0]}}" mode="widthFix" style="width:300rpx;height:auto;margin-top:10rpx"></image>
+                            <text bindtap="delview" class="cuIcon-roundclosefill" style="color:red;font-size:60rpx;position:absolute;right:140rpx;top:0rpx;"></text>
+                        </block>
+                    </view>
+                </view>
+                <view style="margin-top:30rpx;margin-bottom:30rpx;">
+                    <button class='bt_submit font_submit' form-type="submit">提交</button>
+                </view>
+            </form>
+        </block>
+    </view>
+</view>
+
+<!-- 来访时间 -->
+<timePicker pickerShow="{{startIsPickerShow}}" id="picker" wx:if="{{startIsPickerRender}}" bind:hidePicker="start_time_hide" bind:setPickerTime="set_start_time" config="{{pickerConfig}}"></timePicker>
+<!-- 离开时间 -->
+<timePicker pickerShow="{{endIsPickerShow}}" id="picker" wx:if="{{endIsPickerRender}}" bind:hidePicker="end_time_hide" bind:setPickerTime="set_end_time" config="{{pickerConfig}}"></timePicker>

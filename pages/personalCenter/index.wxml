@@ -1,0 +1,32 @@
+<view class="page">
+    <!-- 个人信息卡片 -->
+    <view class="P1">
+        <image class="P2" src="/image/icon/user_card.png">
+            <view class="cu-avatar round worker_head" style="background-image:url({{userInfo.head_url==''?'/image/icon/no_head.png':userInfo.head_url}});left:30rpx;top:34rpx;position:absolute;"></view>
+            <view class="user_card_info" style="left:142rpx;top:36rpx;">
+                <view class="name_font">{{userInfo.real_name}}</view>
+                <view class="phone_font">{{userInfo.phone}}</view>
+            </view>
+            <text class="user_card_info worker_font" style="right:46rpx;top:70rpx;">{{userInfo.role_name}}</text>
+            <image class="user_card_info img_next" src="/image/icon/next.png" mode="widthFix" style="right:16rpx;top:80rpx"></image>
+        </image>
+    </view>
+    <!-- 操作栏 -->
+    <view class="P3">
+        <view class="P4" bindtap="enter_instructions">
+            <image class="operation_type" src="/image/icon/instructions.png" ></image>
+            <text class="operation_info">操作指南</text>
+            <image class="operation_next" src="/image/icon/next.png"></image>
+        </view>
+        <view class="P4" bindtap="call_customer">
+            <image class="operation_type" src="/image/icon/customer.png"></image>
+            <text class="operation_info">联系客服 {{customer_phone}}</text>
+            <image class="operation_next" src="/image/icon/next.png" ></image>
+        </view>
+        <view class="P4" bindtap="exit">
+           <image class="operation_type" src="/image/icon/exit.png"></image>
+            <text class="operation_info">退出当前账号</text>
+            <image class="operation_next" src="/image/icon/next.png" ></image>
+        </view>
+    </view>
+</view>

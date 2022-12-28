@@ -1,0 +1,82 @@
+<view class="page">
+    <view class="head1">
+        <view class="cu-avatar xl round" bindtap="preview" data-url="{{personnelInfo.head_url}}" style="background-image:url({{personnelInfo.head_url==''?'/image/icon/no_head.png':personnelInfo.head_url}});"></view>
+    </view>
+    <view class="P1">
+        <view class="P2">
+            <view class="P3">
+                <view class='font_input_type'>姓名:</view>
+                <view class='font_input'>{{personnelInfo.name}}</view>
+            </view>
+        </view>
+        <view class="P2">
+            <view class="P3">
+                <view class='font_input_type'>工号:</view>
+                <view class='font_input'>{{personnelInfo.job_number}}</view>
+            </view>
+        </view>
+        <view class="P2">
+            <view class="P3">
+                <view class='font_input_type'>手机号:</view>
+                <view class='font_input'>{{personnelInfo.phone}}</view>
+            </view>
+        </view>
+        <view class="P2">
+            <view class="P3">
+                <view class='font_input_type'>职务:</view>
+                <view class='font_input'>{{personnelInfo.role_name}}</view>
+            </view>
+        </view>
+
+        <!-- 访客 -->
+        <block wx:if="{{type=='1'}}"> 
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>来访时间:</view>
+                    <view class='font_input'>{{personnelInfo.admission_time}}</view>
+                </view>
+            </view>
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>离开时间:</view>
+                    <view class='font_input'>{{personnelInfo.leaving_time}}</view>
+                </view>
+            </view>
+            <view class="P2">
+                <view class="P3">
+                    <view class='font_input_type'>来访事由:</view>
+                    <view class='font_input'>{{personnelInfo.reason}}</view>
+                </view>
+            </view>
+        </block>
+
+        <!-- 操作 -->
+        <view class="P4">
+            <!-- 员工，隔离，离职，修改，正面照更新 -->
+            <block wx:if="{{type=='0'}}"> 
+                <view class="P4_1">
+                    <button class='bt_operation font_operation' bindtap="modify">修改</button>
+                    <button class='bt_operation font_operation' bindtap="ChooseImage">更新正面照</button>
+                </view>
+                <view class="P4_1">
+                    <button class='bt_operation font_operation' bindtap="isolation">隔离</button>
+                    <button class='bt_operation font_operation' bindtap="departure">离职</button>
+                </view>
+            </block>
+            <!-- 访客，修改，续访 -->
+            <block wx:if="{{type=='1'}}">
+                <block wx:if="{{visitEnd}}">
+                    <view class="P4_1">
+                        <button class='bt_operation font_operation' bindtap="continueVisit">继续来访</button>
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class="P4_1">
+                        <button class='bt_operation font_operation' bindtap="modify">修改</button>
+                        <button class='bt_operation font_operation' bindtap="ChooseImage">更新正面照</button>
+                    </view>
+                </block>
+            </block>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,142 @@
+.font_input{
+    margin-left:30rpx;
+    font-family: "SHSCN_Medium";
+    font-size: 32rpx;
+    color: #333333;
+}
+.font_search{
+    font-family: "SHSCN_Medium";
+    font-size: 32rpx;
+    color: #333333;
+    margin-right: 30rpx;
+    margin-left: auto;
+}
+.P1{
+    height: 128rpx;
+    width: 750rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30rpx;
+    background-color: #FFFFFF;
+    flex-wrap: wrap;
+    height: 200rpx;
+}
+.P2{
+    display: flex;
+    width: 750rpx;
+    height: 100rpx;
+    text-align: left;
+    align-items: center;
+    box-shadow: 0 1px 0 0 rgba(242,242,242,1);
+}
+.P3{
+    width: 750rpx;
+    height: 120rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15rpx;
+    background-color: #FFFFFF;
+    border-bottom: 1rpx solid #F2F2F2;
+    /* margin-top: 20rpx; */
+}
+.bt_operation{
+    width: 165rpx;
+    height: 60rpx;
+    opacity: 1.0;
+    border-radius: 6rpx;
+    background-color: #F8F8F8;
+    border: 2rpx solid RGB(0,0,0, 0.08);
+    margin-right: 10rpx;
+    color: #444444;
+    font-size: 26rpx;
+    font-family: "SHSCN_Regular";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bt_operation_select{
+    background-color: #58A4FD;
+    opacity: 1.0;
+    border: 0rpx solid RGB(0,0,0, 0.08);
+    color: #FEFEFE;
+    font-family: "SHSCN_Regular";
+    font-size: 26rpx;
+}
+/* 详情 */
+.font_info{
+    font-family: "SHSCN_Regular";
+    font-size: 24rpx;
+    color: #2B2B2B;
+    line-height: 40rpx;
+}
+.P4{
+    width: 750rpx;
+    min-height: 330rpx;
+    background-color: #FFFFFF;
+    opacity: 1.0;
+    margin-top: 20rpx;
+    padding: 0 30rpx;
+}
+.P5{
+    padding-top: 46rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.worker_head{
+    width: 64rpx;
+    height: 64rpx;
+    align-self: center;
+}
+.P6{
+    margin-left: 20rpx;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap:wrap;
+}
+.P7{
+    width: 100%;
+    margin-top: 12rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.font_time{
+    font-family: "SHSCN_Regular";
+    font-size: 24rpx;
+    color: #333333;
+}
+/* 操作日志 */
+.P8{
+    width: 750rpx;
+    height: 120rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20rpx 45rpx 0 55rpx;
+    background-color: #FFFFFF;
+    border-bottom: 1rpx solid #F2F2F2;
+    /* margin-top: 20rpx; */
+}
+.P8_1{
+    width: 750rpx;
+    height: 120rpx;
+    padding: 20rpx 45rpx 0 55rpx;
+    background-color: #FFFFFF;
+}
+.P9{
+    margin-top: 40rpx;
+    padding-bottom: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.operation_img{
+    width: 200rpx;
+    height: 74rpx;
+    margin-top: 46rpx;
+    background-color: #F6F7FA;
+}

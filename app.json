@@ -1,0 +1,81 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/main/login",
+        "pages/personalCenter/index",
+        "pages/personalCenter/instructions",
+        "pages/abnormal/pig",
+        "pages/abnormal/car",
+        "pages/abnormal/illegal",
+        "pages/main/select",
+        "pages/operation/index",
+        "pages/home/index",
+        "pages/pigOperation/piggery",
+        "pages/pigOperation/lairage",
+        "pages/pigOperation/jump",
+        "pages/pigOperation/such",
+        "pages/pigOperation/log",
+        "pages/pigOperation/piggery_sty_operation",
+        "pages/pigOperation/remarks",
+        "pages/pigOperation/farm",
+        "pages/pigOperation/sty",
+        "pages/pigOperation/details",
+        "pages/pigOperation/pathogen",
+        "pages/pigOperation/vaccine",
+        "pages/pigOperation/add_remarks",
+        "pages/abnormal/pig_piggery_alarm",
+        "pages/abnormal/pig_piggery_cumulative",
+        "pages/abnormal/pig_alarm_deal",
+        "pages/abnormal/pig_piggery_alarm_history",
+        "component/selectPiggeryAndSty",
+        "pages/abnormal/personnel",
+        "pages/video/index",
+        "pages/personal/entranceGuard",
+        "pages/personal/management",
+        "pages/personal/details",
+        "pages/personal/modify",
+        "pages/personal/isolation",
+        "pages/personal/continueVisit",
+        "pages/personal/record",
+        "pages/car/management",
+        "pages/car/details",
+        "pages/car/modify",
+        "pages/car/virusDetection",
+        "pages/goods/register",
+        "pages/goods/record",
+        "pages/abnormal/goods",
+        "pages/car/register",
+        "pages/bluetooth/index",
+        "pages/abnormal/access"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "",
+        "navigationBarTextStyle": "black"
+    },
+    "sitemapLocation": "sitemap.json",
+    "tabBar": {
+        "list": [
+            {
+                "pagePath": "pages/home/index",
+                "iconPath": "/image/icon/tab_home.png",
+                "selectedIconPath": "/image/icon/tab_home_select.png",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/operation/index",
+                "iconPath": "/image/icon/tab_operation.png",
+                "selectedIconPath": "/image/icon/tab_operation_select.png",
+                "text": "操作"
+            },
+            {
+                "pagePath": "pages/personalCenter/index",
+                "iconPath": "/image/icon/tab_personal_center.png",
+                "selectedIconPath": "/image/icon/tab_personal_center_select.png",
+                "text": "个人"
+            }
+        ],
+        "selectedColor": "#0000FF"
+    }
+}

@@ -1,0 +1,90 @@
+page{
+    background-color: #F2F2F2;
+}
+/* 搜索框 */
+.P01{
+    background-color:#F2F2F2;
+    color:#999999;
+    display:flex;
+    height:120rpx;
+}
+.P02{
+    background-color: #FFFFFF;
+    height: 80rpx;
+    display: flex;
+    align-items: center;
+    margin: 20rpx 20rpx 20rpx 30rpx;
+    border-radius:10rpx;
+    border: 1px solid #E6E6EA;
+}
+.icon_search{
+    margin-left:20rpx;
+    width:25rpx;
+    margin-right:10rpx;
+    height: auto;
+}
+.font_search{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #B2B2B2;
+}
+/* 猪舍猪栏 */
+.font_title{
+    font-family: "SHSCN_Medium";
+    font-size: 36rpx;
+    color: #333333;
+}
+.bt_class_1{
+    margin: 0 30rpx 0 30rpx;
+    width: 690rpx;
+    height: 88rpx;
+}
+.bt_class_2{
+    background-color: #58A4FD;
+    opacity:1.0;
+    border-radius: 10rpx;
+    display: flex;
+    Justify-content:center;
+    align-items:center;
+    text-align: center;
+}
+.font_btn{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #FFFFFF;
+}
+.P1{
+    width:675rpx;
+    margin: 0 20rpx 0 55rpx;
+    display:flex;
+    flex-wrap:wrap;
+}
+.P2{
+    width:190rpx;
+    height:auto;
+    margin-right:35rpx;
+}
+.P3{
+    width:190rpx;
+    height:90rpx;
+    display:flex;
+    border-radius:10rpx;
+    align-items:center;
+    background-color: #FFFFFF;
+}
+.icon_sty{
+    width:90rpx;
+    height:90rpx;
+    border-top-right-radius:45rpx;
+}
+.font_pig_num{
+    font-family: "SHSCN_Regular";
+    /* font-size: 48rpx; */
+    font-size: 40rpx; /* 猪舍会超过100头 */
+    color: #333333;
+}
+.font_unit{
+    font-family: "SHSCN_Regular";
+    font-size: 24rpx;
+    color: #333333;
+}

@@ -1,0 +1,3 @@
+<view class="page">
+    <image src="/image/icon/no_info.png" style="width:750rpx;height:auto" mode="widthFix"></image>
+</view>

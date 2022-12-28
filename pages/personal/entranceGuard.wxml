@@ -1,0 +1,63 @@
+<view class="page">
+   <view class="P1" style="position:fixed;z-index: 1024;top:0;">
+        <view class="P2">
+			<view class="P21">时间：</view>
+			<view class="P22_1" bindtap="goBack">
+				<text class="cuIcon-back lg text-gray"></text>
+			</view>
+			<view class="P22_2">
+				<picker mode="date" value="{{date}}" start="2020-09-01" end="{{date}}" bindchange="DateChange">
+				    <view >{{date}}</view>
+			    </picker>
+			</view>
+			<view class="P22_1" bindtap="goNext">
+				<text class="cuIcon-right lg text-gray"></text>
+			</view>
+		</view>
+		<view class="P2">
+			<view class="P21">门禁：</view>
+			<view class="P22">
+                <picker bindchange="doorChange" range-key="name" value="{{doorIndex}}" range="{{doorArr}}">
+                    <view class="picker">
+                        {{doorArr[doorIndex].name}}
+                    </view>
+                </picker>
+            </view>
+        </view>
+        <view class="P2">
+			<view class="P21">卡号：</view>
+			<view class="P22">
+                <picker bindchange="cardNoChange" range-key="name" value="{{cardNoIndex}}" range="{{cardNoArr}}">
+                    <view class="picker">
+                        {{cardNoArr[cardNoIndex].name}}
+                    </view>
+                </picker>
+            </view>
+		</view>
+    </view>
+    
+    <view style="margin-top:350rpx">
+    
+    <block wx:for="{{record}}">
+        <view class="P3">
+            <view class="font_illegal_info">时间：{{item.time}}</view>
+            <view class="font_illegal_info">门禁：门禁{{item.door_id}}</view>
+            <view class="font_illegal_info">卡号：{{item.card_no}}</view>
+            <view class="font_illegal_info">开门方式：{{item.verified}}</view>
+            <view class="font_illegal_info">出入状态：{{item.inout_state}}</view>
+            <view class="font_illegal_info">事件类型：{{item.event_type}}</view>
+        </view>
+    </block>
+        <block wx:if="{{record.length==0}}">
+        <image src="/image/icon/no_info.png" style="width:750rpx;height:auto" mode="widthFix"></image>
+    </block>
+    <block wx:if="{{isEnd}}">
+        <view class="cu-load over"></view>
+    </block>
+    <block wx:else>
+        <view class="cu-load {{loading?'loading':''}}"></view>
+    </block>
+    </view>
+    
+    <view style="height:100rpx;width:0rpx"></view>
+</view>

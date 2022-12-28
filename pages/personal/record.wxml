@@ -1,0 +1,83 @@
+<wxs src="../../comm.wxs" module="fn" />
+<view class="page">
+    <view class="P0" style="position:fixed;z-index:1024;top:0;height:{{selectedType=='1'?'280rpx;':'180rpx;' }}">
+        <view class="P0_1">
+            <view class="my_select" bindtap="selectFunc" data-type="1">
+                <view class="select_title">员工记录</view>
+                <view class="{{selectedType=='1'?'select_line':''}}"></view>
+            </view>
+            <view class="my_select" bindtap="selectFunc" data-type="2">
+                <view class="select_title">访客记录</view>
+                <view class="{{selectedType=='2'?'select_line':''}}"></view>
+            </view>
+        </view>        
+        <!-- 指定人员 -->
+        <view class="P0_2">
+            <view class="P0_2_show">{{personnelArr[personnelIndex].name}}</view>
+            <picker bindchange="personnelChange" range-key="name" value="{{personnelValue}}" range="{{personnelArr}}">
+                <view class="P0_2_operation" ><text class="cuIcon-people lg" style="margin-right:10rpx"></text>人员</view>                    
+            </picker>
+        </view>
+        <!-- 时间选择器，员工需要展示日期，访客全部展示 -->
+        <block wx:if="{{selectedType=='1'}}">
+            <view class="P0_2" >
+                <view class="P0_2_show">{{date}}</view>
+                <picker mode="date" value="{{date}}" end="{{today}}" bindchange="DateChange">
+				    <view class="P0_2_operation"><text class="cuIcon-time lg" style="margin-right:10rpx"></text>更多日期</view>
+			    </picker>
+            </view>
+        </block>
+    </view>
+    
+    <view style="margin-top:{{selectedType=='1'?'300rpx;':'200rpx;'}}">
+        <!-- 员工记录 -->
+        <block wx:if="{{selectedType=='1'}}">
+            <view wx:if="{{!personnelRecords}}" class="loading cu-load"></view>
+            <block wx:for="{{personnelRecords}}">
+                <view class="P1">
+                    <view class="font_car_info">区域：{{item.location_descr}}</view>
+                    <view class="font_car_info">监测方式：{{fn.monitoring_way(item.type)}}</view>
+                    <view class="font_car_info">时间：{{item.create_time}}</view>
+                    <view class="P2" wx:if="{{item.type=='camera'}}">
+                        <button class="cu-btn bg-blue shadow P3" bindtap="showImage" data-url="{{item.pic}}">图片</button>
+                    </view>
+                </view>
+            </block>
+            <block wx:if="{{personnelRecords.length==0}}">
+                <image src="/image/icon/no_info.png" mode="widthFix" style="width:750rpx;height:auto"></image>
+            </block>
+        </block>
+
+        <!-- 访客记录 -->
+        <block wx:if="{{selectedType=='2'}}">
+            <view wx:if="{{!personnelRecords}}" class="loading cu-load"></view>
+            <block wx:for="{{personnelRecords}}">
+                <view class="P1">
+                    <view class="font_car_info">区域：{{item.location_descr}}</view>
+                    <view class="font_car_info">监测方式：{{fn.monitoring_way(item.type)}}</view>
+                    <view class="font_car_info">时间：{{item.create_time}}</view>
+                    <view class="P2" wx:if="{{item.type=='camera'}}">
+                        <button class="cu-btn bg-blue shadow P3" bindtap="showImage" data-url="{{item.pic}}">图片</button>
+                    </view>
+                </view>
+            </block>
+            <block wx:if="{{personnelRecords.length==0}}">
+                <image src="/image/icon/no_info.png" mode="widthFix" style="width:750rpx;height:auto"></image>
+            </block>
+        </block>
+    </view>
+</view>
+
+<!-- 图片 -->
+<view class="cu-modal {{modalName=='Image'?'show':''}}">
+  	<view class="cu-dialog">
+    	<swiper wx:if="{{swiperRestart}}" class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+      		<swiper-item wx:for="{{swiperList}}" wx:key>
+        		<image src="{{item.url}}" mode="aspectFill"></image>
+      		</swiper-item>
+    	</swiper>
+    	<view class="cu-bar bg-white">
+      		<view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">我知道了</view>
+    	</view>
+  	</view>
+</view>
