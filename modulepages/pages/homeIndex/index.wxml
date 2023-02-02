@@ -1,0 +1,116 @@
+<view class="page">
+    <view class="homeindex_1"></view>
+    <view class="homeindex_2">
+        <image class='homeindex_2_img' src='/image/icon/icon_2023_01_06_03_bg.png'></image>
+        <view class='homeindex_view'>
+            <view class='homeindex_2_view'>
+                <view class="homeindex_2_view_1">{{real_name}}</view>
+                <view class="homeindex_2_view_2">
+                    <image class='homeindex_2_view_2_img' src='/image/icon/icon_2023_01_06_06.png'></image>
+                    <view class="homeindex_2_view_1">{{yearmouthday}}</view>
+                </view>
+            </view>
+            <view class="homeindex_2_2_view">{{company}}</view>
+        </view>
+    </view>
+
+    <view class="homeindex_3" catch:tap="bindHandlerClick" data-urlstring="/modulepages/pages/homeEquipmentStatus/index">
+        <view class="homeindex_3_1">
+            <view class="homeindex_3_title">当前设备</view>
+            <view class="homeindex_3_view">
+                <view class="homeindex_3_view_1">
+                    <view class="homeindex_3_view_1_1">
+                        <image class='homeindex_3_view_1_1_img' src='/image/icon/icon_2023_01_06_04.png'></image>
+                        <view class="homeindex_3_view_1_1_title">运行数量</view>
+                    </view>
+                    <view class="homeindex_3_view_2">{{runningsum}}</view>
+                    <view class="homeindex_3_view_3">
+                        <view class="homeindex_3_view_3_1">
+                            <image class='homeindex_3_view_3_img' src='/image/icon/icon_2023_01_06_07.png'></image>
+                            <view class="homeindex_3_view_3_text">男：</view>
+                            <view class="homeindex_3_view_4_text">{{manRuningsum}}</view>
+                            <view class="homeindex_3_view_5_text">台</view>
+                        </view>
+
+                        <view class="homeindex_3_view_3_1" style="margin-top:16rpx">
+                            <image class='homeindex_3_view_3_img' src='/image/icon/icon_2023_01_06_08.png'></image>
+                            <view class="homeindex_3_view_3_text">女：</view>
+                            <view class="homeindex_3_view_4_text">{{womanRuningsum}}</view>
+                            <view class="homeindex_3_view_5_text">台</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="homeindex_3_view_1" style="background: #EAF9EA;border: 2px solid #EAF9EA;">
+                    <view class="homeindex_3_view_1_1">
+                        <image class='homeindex_3_view_1_1_img' src='/image/icon/icon_2023_01_06_05.png'></image>
+                        <view class="homeindex_3_view_1_1_title">空闲数量</view>
+                    </view>
+                    <view class="homeindex_3_view_2" style="color:#00B777;">{{freesum}}</view>
+                    <view class="homeindex_3_view_3">
+                        <view class="homeindex_3_view_3_1">
+                            <image class='homeindex_3_view_3_img' src='/image/icon/icon_2023_01_06_07.png'></image>
+                            <view class="homeindex_3_view_3_text">男：</view>
+                            <view class="homeindex_3_view_4_text">{{manfreesum}}</view>
+                            <view class="homeindex_3_view_5_text">台</view>
+                        </view>
+
+                        <view class="homeindex_3_view_3_1" style="margin-top:10rpx">
+                            <image class='homeindex_3_view_3_img' src='/image/icon/icon_2023_01_06_08.png'></image>
+                            <view class="homeindex_3_view_3_text">女：</view>
+                            <view class="homeindex_3_view_4_text">{{womanfreesum}}</view>
+                            <view class="homeindex_3_view_5_text">台</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    
+    <view class="homeindex_4">
+        <view class="homeindex_4_1">
+            <view class="homeindex_4_1_top" catch:tap="bindHandlerClick" data-urlstring="/modulepages/pages/homeLookDetails/index">
+                <view class="homeindex_4_1_top_1">
+                    <view class="homeindex_4_1_top_1_t">预警</view>
+                    <view class="homeindex_4_1_top_1_l">{{count}}人</view>
+                </view>
+                <view class="homeindex_4_1_top_2">
+                    <view class="homeindex_4_1_top_2_t">查看详情</view>
+                    <image class='homeindex_4_1_top_2_img' src='/image/icon/icon_2023_01_06_09.png'></image>
+                </view>
+            </view>
+
+            <view class="homeindex_4_1_center" wx:if="{{iwadomListinfo.length>0}}">
+                <block wx:for="{{iwadomListinfo}}" wx:key="index">
+                    <view class="homeindex_4_1_item">
+                        <view class="homeindex_4_1_item_l">
+                            <view class="homeindex_4_1_item_l_1">
+                                <image class='homeindex_4_1_item_l_h' src='{{item.head_url}}'></image>
+                            </view>
+                            <view class="homeindex_4_1_item_l_2">
+                               <view class="homeindex_4_1_item_l_2_title">{{item.real_name}}<view class="homeindex_4_1_item_l_2_title_l {{item.workType== 0 ? 'homeindex_4_1_item_l_2_title_l_1':''}}">{{item.workType== 0 ? '上班' : '下班'}}</view></view>
+                               <view class="homeindex_4_1_item_l_2_time">{{item.create_time}}</view>
+                            </view>
+                        </view>
+                        <view class="homeindex_4_1_item_r">
+                            <view class="homeindex_4_1_item_r_title" style="color: {{item.status == 1 ? '#409DFF' : item.status == 2 ? '#FF2C2B' : '#00BD6A'}};">{{item.status == 1 ? '淋浴成功' : item.status == 2 ? '淋浴失败' : '淋浴中'}}</view>
+                        </view>
+                    </view>
+                </block>
+            </view>
+            
+             <block wx:if="{{iwadomListinfo.length==0}}">
+                <view class="homeindex_4_1_top_2_t" style="display: flex;align-items: center;justify-content: center;padding: 120rpx;">暂无数据</view>
+            </block>
+            <!-- <block wx:if="{{isEnd}}">
+                <view class="cu-load over"></view>
+            </block>
+            <block wx:else>
+                <view class="cu-load {{loading?'loading':''}}"></view>
+            </block> -->
+            <!-- <view style="height:100rpx;width:0rpx"></view> -->
+            
+        </view>
+    </view>
+
+    <view style="height:40rpx;width:0rpx"></view>
+</view>

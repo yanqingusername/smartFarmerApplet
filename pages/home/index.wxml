@@ -83,6 +83,19 @@
                     <view class="error_view font_error_num" wx:if="{{alarmNum.accessAlarmNum>99}}">99+</view>
                 </view>
             </block>
+
+            <!-- 设备列表与管理-->
+            <block >
+                <view class="P2" style="background-color:#CD950C;" bindtap="bindClickHandler">
+                    <text class="font_error_info_num">{{alarmNum.equipmentAlarmNum}}</text>
+                    <view class="p3">
+                        <image class="error_img" src="/image/icon/alarm_equipment.png" mode="widthFix"></image>
+                        <view class="font_error_info">模块</view>
+                    </view>
+                    <view class="error_view font_error_num" wx:if="{{alarmNum.equipmentAlarmNum>0 && alarmNum.equipmentAlarmNum<100}}">{{alarmNum.equipmentAlarmNum}}</view>
+                    <view class="error_view font_error_num" wx:if="{{alarmNum.equipmentAlarmNum>99}}">99+</view>
+                </view>
+            </block>
         </view>
     </block>
     

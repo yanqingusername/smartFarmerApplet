@@ -46,8 +46,37 @@
         "pages/abnormal/goods",
         "pages/car/register",
         "pages/bluetooth/index",
-        "pages/abnormal/access"
+        "pages/abnormal/access",
+        "pages/abnormal/equipment",
+        "pages/abnormal/goods_records",
+        "pages/abnormal/access_records",
+        "pages/abnormal/car_records",
+        "pages/abnormal/equipment_records",
+        "pages/abnormal/illegal_records",
+        "pages/abnormal/personnel_records"
     ],
+    "subpackages": [
+        {
+          "root": "modulepages",
+          "pages": [
+            "pages/moduleMain/index",
+            "pages/homeIndex/index",
+            "pages/homeCusManage/index",
+            "pages/homeCusAdd/index",
+            "pages/homeEquipmentAdd/index",
+            "pages/homeEquipmentManage/index",
+            "pages/homeLookDetails/index",
+            "pages/homeEquipmentStatus/index",
+            "pages/homeEquipmentStatusList/index",
+            "pages/ozoneModuleList/index",
+            "pages/ozoneModuleDetail/index",
+            "pages/ozoneModuleApproval/index",
+            "pages/ozoneModuleManage/index",
+            "pages/ozoneModuleManageAdd/index"
+        
+          ]
+        }
+      ],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",

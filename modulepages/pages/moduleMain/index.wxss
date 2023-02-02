@@ -1,0 +1,83 @@
+page{
+    background-color: #F2F2F2;
+}
+.font_title{
+    font-size: 32rpx;
+    color: #333333;
+}
+.vaccine_img{
+    width: 690rpx;
+    height: 180rpx;
+    margin:0 30rpx 0 30rpx;
+    box-shadow: 0 4rpx 24rpx 0 rgba(221, 221, 221, 0.74);
+    border-radius: 10rpx;
+    opacity:1.0;
+    background-color: #FFFFFF;
+}
+.pathogen_img{
+    width: 690rpx;
+    height: 180rpx;
+    margin:0 30rpx 0 30rpx;
+    box-shadow: 0 4rpx 24rpx 0 rgba(221, 221, 221, 0.74);
+    border-radius: 10rpx;
+    opacity:1.0;
+    background-color: #FFFFFF;
+}
+
+.v1_1{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.v2_1{
+    width: 690rpx;
+height: 180rpx;
+background: #FFFFFF;
+box-shadow: 0px 8rpx 20rpx 0px rgba(0,0,0,0.02);
+border-radius: 8rpx;
+margin-top: 0rpx;
+display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 20rpx;
+
+}
+
+
+
+.v2_1_item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.v2_1_item_img{
+    width:100rpx;
+    height:auto;
+    align-self:center;
+}
+
+.v3{
+    width: 550rpx;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+.v4{
+    width: 550rpx;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.v5{
+    width: 550rpx;
+    display: flex;
+    align-content: center;
+    /* margin-top: 43rpx;
+    margin-bottom: 35rpx; */
+}
+.v6{
+    width: 200rpx;
+    box-shadow: 0 0 2rpx 0 rgba(236, 236, 236, 0) inset;
+}

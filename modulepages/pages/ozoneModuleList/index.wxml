@@ -1,0 +1,19 @@
+<view class="page">
+    
+        <view class="v2_1" wx:for="{{deviceinfoList}}" wx:key="index" bind:tap="clickOzoneModuleDetail">
+            <view class="v2_1_top">
+                <view class="v2_1_top_1"><image class='v2_1_top_1_img' src='/image/icon/icon_2023_01_06_26.png'></image>{{item.sn}}</view>
+                <view class="v2_1_top_2" style="color: {{item.status == 1 ? '#409DFF' : item.status == 2 ? '#FF2C2B' : '#00BD6A'}};">{{item.status == 1 ? '运行' : item.status == 2 ? '离线' : '空闲'}}</view>
+            </view>
+            <view class="v2_1_line"></view>
+            <view class="v2_1_position"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_25.png'></image>设备位置：{{item.address}}</view>
+            <view class="v2_1_time"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_26.png'></image>取货状态：{{'可以取货'}}</view>
+		</view>
+
+        <block wx:if="{{deviceinfoList.length==0}}">
+                <view class="homeindex_4_1_top_2_t" style="display: flex;align-items: center;justify-content: center;padding: 100rpx;">暂无数据</view>
+            </block>
+    
+
+    <view style="height:40rpx;width:0rpx"></view>
+</view>

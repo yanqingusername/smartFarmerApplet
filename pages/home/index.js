@@ -216,4 +216,12 @@ Page({
             url: '/pages/pigOperation/pathogen',
         })
     },
+    /**
+     * 2023-02-02 新增进入模块设备列表与管理
+     */
+    bindClickHandler(){
+        wx.navigateTo({
+            url: '/modulepages/pages/moduleMain/index',
+        })
+    }
 })

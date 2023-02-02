@@ -1,0 +1,106 @@
+<view class="page">
+      <view class="medWhite">
+        <view style="height: 2rpx;"></view>
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">姓名</view>
+          <input class="P5_2 app_font" placeholder="请输入姓名" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="15" value="{{name}}"></input>
+        </view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">工号</view>
+          <input class="P5_2 app_font" placeholder="请输入工号" placeholder-class="place_style" bindinput="bindJobNumber" style="position:relative;right:20rpx" value="{{job_number}}"></input>
+        </view>
+
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">手机号</view>
+          <input class="P5_2 " style="position:relative;right:20rpx" type="number" placeholder="请输入手机号" placeholder-class="place_style" bindinput="bindPhone" maxlength="11" value="{{job_phone}}"></input>
+          <!-- <view id="clear_1" style="padding:16rpx;right: -20rpx;" wx:if="{{job_phone}}" catch:tap="clearPhone">
+            <image class="icon_clear" src="../../../images/icon_clear.png"></image>
+          </view> -->
+        </view>
+
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">密码</view>
+          <input class="P5_2 app_font" placeholder="请输入密码" placeholder-class="place_style" bindinput="bindPassword" style="position:relative;right:20rpx" value="{{password}}"></input>
+        </view>
+
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">岗位</view>
+          <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
+            <picker style="height:100%;margin-top:20rpx;width:90%;" bindchange="bindJobNameChange" range-key="role_name" value="{{jobNameList[categoryIndex].role_name}}" range="{{jobNameList}}">
+              <view class="picker" wx:if="{{isShowRegion == 2}}">{{jobNameList[categoryIndex].role_name}}</view>
+              <view class="picker" style="color: #B1B1B1;" wx:else>请选择所在岗位</view>
+            </picker>
+            <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
+              <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+            </view>
+          </view>
+        </view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">性别</view>
+          <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
+            <picker style="height:100%;margin-top:20rpx;width:90%;" bindchange="bindPickerChangeGender" value="{{genderIndex}}" range="{{genderList}}">
+              <view class="picker" wx:if="{{isShowGender == 2}}">{{genderList[genderIndex]}}</view>
+              <view class="picker" style="color: #B1B1B1;" wx:else>请选择性别</view>
+            </picker>
+            <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
+              <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+            </view>
+          </view>
+        </view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">头像</view>
+          <view wx:if="{{frontPhoto}}" bindtap="preview" data-url="{{frontPhoto}}" style="width:100rpx;height:100rpx;margin-top:0rpx;position:relative;border-radius:100%;">
+            <image wx:if="{{frontPhoto}}" src="{{frontPhoto}}" style="width:100rpx;height:100rpx;margin-top:0rpx;position:relative;border-radius:100%;">
+              
+            </image>
+            <image class="delete_img" catch:tap="delview" src="/image/icon/icon_2023_01_06_27.png"></image>
+          </view>
+          
+          <text wx:else bindtap="ChooseImage" class="cuIcon-cameraadd my_photo"></text>
+        </view>
+
+        <!-- <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">状态</view>
+          <view class="my_photo">
+            <view class="status_view">在职</view>
+            <view class="status_view">离职</view>
+          </view>
+        </view> -->
+
+        <view style="height: 10rpx;"></view>
+      </view>
+
+      <!-- <view class="div_policy">
+        <checkbox-group bindchange="changePolicy">
+          <checkbox class='round pink' checked="{{policyChecked}}" id="privacy_radio"></checkbox>
+
+          <label for="privacy_radio" id="privacy_policy">
+            已阅读并同意 <text class="underline_gray" catchtap="bindUserProtocol">用户服务协议</text> 和 <text class="underline_gray" catchtap="bindPrivacyPolicy">隐私政策</text>
+          </label>
+        </checkbox-group>
+      </view> -->
+
+      <view class="button_gray" wx:if="{{submitState}}">保存</view>
+
+      <view class="button_submit" wx:else bind:tap="submitBuffer">保存</view>
+
+      <view class="button_delete" wx:if="{{isEditCus == 2}}" bind:tap="bindDeleteClick">删除</view>
+</view>
+
+<!-- 删除弹框 -->
+<!-- <modalView show="{{showDialog}}"  datas="{{dialogData}}" bind:dialogCancel="dialogCancel" bind:dialogSure="dialogSure" types="1" /> -->
+ 

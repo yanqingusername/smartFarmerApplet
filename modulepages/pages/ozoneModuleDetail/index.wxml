@@ -1,0 +1,104 @@
+<view class="page">
+	<view class="hld_1">
+		<view class="hld_1_1">
+			<view class="hld_1_1_l" style="padding-left: 20rpx;">
+				<view class="hld_1_1_l_1">开始日期</view>
+				<view class="hld_1_1_l_2">
+					<picker
+					 mode="date"
+					 value="{{start_time}}"
+					 start="2020-01-01"
+					 end="{{yearmouthday}}"
+					 bindchange="bindStartTimeChange"
+					>
+						<view style="display: flex;align-items: center;">
+							<view class="picker">{{start_time}}</view>
+							<image class='hld_1_1_l_2_img' src='/image/icon/icon_2023_01_06_13.png' />
+						</view>
+					</picker>
+				</view>
+			</view>
+			<view class="hld_1_1_l">
+				<view class="hld_1_1_l_1">结束日期</view>
+				<view class="hld_1_1_l_2">
+					<picker
+					 mode="date"
+					 value="{{end_time}}"
+					 start="2020-01-01"
+					 end="{{yearmouthday}}"
+					 bindchange="bindEndTimeChange"
+					>
+						<view style="display: flex;align-items: center;">
+							<view class="picker">{{end_time}}</view>
+							<image class='hld_1_1_l_2_img' src='/image/icon/icon_2023_01_06_13.png' />
+						</view>
+					</picker>
+				</view>
+			</view>
+		</view>
+		<!-- <view class="hld_1_2" /> -->
+
+	</view>
+
+	<view class="homeindex_4">
+
+		<view class="homeindex_4">
+
+			<view class="homeindex_4_1">
+				<view class="homeindex_4_1_top">
+					<view class="homeindex_4_1_top_1">
+						<view class="homeindex_4_1_top_1_t">正常数量(19)</view>
+					</view>
+					<view class="homeindex_4_1_top_2" >
+                        <view class="homeindex_4_1_top_1_t" style="margin-right:0rpx;">违规数量(20)</view>
+                    </view>
+				</view>
+
+				<view class="homeindex_4_1_center">
+					<block wx:for="{{iwadomListinfo}}" wx:key="index">
+						<view class="homeindex_4_1_item">
+							<view class="homeindex_4_1_item_top">
+								<view class="homeindex_4_1_item_top_title">设备编号：{{item.sn}}</view>
+                                <view class="homeindex_4_1_item_top_title">{{item.address}}</view>
+							</view>
+							<view class="homeindex_4_1_item_center" style="flex-direction: column;">
+                                <view class="homeindex_4_1_item_l" style="justify-content: space-between;width: 100%;">
+                                    <view class="homeindex_4_1_item_l_2_title">{{item.real_name}}</view>
+                                    <view class="homeindex_4_1_item_l_2_time" style="margin-top:0rpx;">{{'取货'}}</view>
+                                </view>
+
+                                <view class="homeindex_4_1_item_l" style="justify-content: space-between;width: 100%;margin-top: 20rpx;">
+                                    <view class="homeindex_4_1_item_l_2_time" style="margin-top: 0rpx;">{{item.create_time}}</view>
+                                    <view class="homeindex_4_1_item_r_title" catch:tap="clickOzoneModuleApproval" style="color: {{item.status == 1 ? '#409DFF' : item.status == 2 ? '#FF2C2B' : '#00BD6A'}};">{{item.status == 1 ? '正常' : item.status == 2 ? '违规' : '待审批'}}</view>
+                                </view>
+
+								<!-- <view class="homeindex_4_1_item_l">
+									<view class="homeindex_4_1_item_l_1">
+										<image class='homeindex_4_1_item_l_h' src='{{item.head_url}}' />
+									</view>
+									<view class="homeindex_4_1_item_l_2" style="margin-left:0rpx;">
+										<view class="homeindex_4_1_item_l_2_title">{{item.real_name}}</view>
+										<view class="homeindex_4_1_item_l_2_time">{{item.create_time}}</view>
+                                        
+									</view>
+								</view>
+								<view class="homeindex_4_1_item_r">
+									<view class="homeindex_4_1_item_r_title" style="color: {{item.status == 1 ? '#409DFF' : item.status == 2 ? '#FF2C2B' : '#00BD6A'}};">{{item.status == 1 ? '正常' : item.status == 2 ? '违规' : '待审批'}}</view>
+								</view> -->
+							</view>
+						</view>
+					</block>
+				</view>
+
+				<block wx:if="{{iwadomListinfo.length==0}}">
+					<view class="homeindex_4_1_top_2_t" style="display: flex;align-items: center;justify-content: center;padding: 100rpx;">暂无数据</view>
+				</block>
+
+				<view style="height:30rpx;" />
+			</view>
+		</view>
+
+		<view style="height:50rpx;" />
+
+	</view>
+</view>
