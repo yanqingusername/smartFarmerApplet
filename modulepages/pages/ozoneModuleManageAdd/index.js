@@ -24,7 +24,9 @@ Page({
     job_name: '',
 
     concentration: '',
-    time: ""
+    time: "",
+    managePersion: '',
+    approvalPersion: ""
   },
   onShow: function () {
     this.getdevicelist();
@@ -187,5 +189,38 @@ Page({
       }
     })
 
-  }
+  },
+  bindDeleteClick(e) {
+    let that = this;
+    let id = this.data.uid;
+    if (id) {
+      if(id == app.globalData.userInfo.id){
+        box.showToast("该员工信息无法删除");
+      } else {
+        wx.showModal({
+          title: '确认删除该员工？',
+          content: '删除后无法恢复',
+          success: function (res) {
+            if (res.confirm) {
+              var data = {
+                id: id,
+              }
+              request.request_get('/personnelManagement/deleteEmployee.hn', data, function (res) {
+                if (res) {
+                  if (res.success) {
+                    box.showToast(res.msg);
+                    wx.navigateBack({
+                      delta: 1,
+                    });
+                  } else {
+                    box.showToast(res.msg);
+                  }
+                }
+              })
+            }
+          }
+        })
+      }
+    }
+  },
 })

@@ -5,7 +5,7 @@ const utils = require('../../../utils/utils.js')
 
 Page({
     data:{
-		
+		selectedType: 0,
     },
 
     onLoad:function(){
@@ -14,6 +14,16 @@ Page({
 
     onShow:function(){
         
+    },
+    // 类型切换
+    selectFunc:function(e){
+        var that = this;
+        var initType = that.data.selectedType;
+        var type = e.currentTarget.dataset.type;
+        if(type != initType){
+            
+            that.setData({selectedType: type})
+        }
     },
     //淋浴一体机模块
     bindClickHandler(){

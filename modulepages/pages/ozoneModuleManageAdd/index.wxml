@@ -21,7 +21,7 @@
 
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">有效时长</view>
-          <input class="P5_2 app_font" placeholder="请输入臭氧有效时长(小时)" placeholder-class="place_style" bindinput="bindTime" style="position:relative;right:20rpx" value="{{time}}" type="digit"></input>
+          <input class="P5_2 app_font" placeholder="请输入臭氧有效时长(分钟)" placeholder-class="place_style" bindinput="bindTime" style="position:relative;right:20rpx" value="{{time}}" type="digit"></input>
         </view>
 
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
@@ -31,6 +31,27 @@
           <input class="P5_2 app_font" placeholder="请输入臭氧有效浓度(mg/m3)" placeholder-class="place_style" bindinput="bindConcentration" style="position:relative;right:20rpx" value="{{concentration}}" type="digit"></input>
         </view>
 
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">设备管理员</view>
+          <view class="section" style="width: 68%;height:80rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;">
+            <view class="ozone_1" style="color:{{managePersion?'#555555':'#B1B1B1'}}">{{managePersion ? managePersion : '请选择设备管理员'}}</view>
+            <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
+              <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+            </view>
+          </view>
+        </view>
+
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">审批人</view>
+          <view class="section" style="width: 68%;height:80rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;">
+            <view class="ozone_1" style="color:{{approvalPersion?'#555555':'#B1B1B1'}}">{{approvalPersion ? approvalPersion : '请选择审批人'}}</view>
+            <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
+              <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+            </view>
+          </view>
+        </view>
 
 
         <!-- <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">

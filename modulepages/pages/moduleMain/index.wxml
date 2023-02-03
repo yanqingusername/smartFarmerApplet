@@ -1,94 +1,128 @@
 <view class="page">
+
+    <view class="P0" style="position:fixed;z-index:1024;top:0;">
+        <view class="my_select" bindtap="selectFunc" data-type="0">
+            <view class="select_title">设备列表</view>
+            <view class="{{selectedType=='0'?'select_line':''}}"></view>
+        </view>
+        <view class="my_select" bindtap="selectFunc" data-type="1">
+            <view class="select_title">设备管理</view>
+            <view class="{{selectedType=='1'?'select_line':''}}"></view>
+        </view>
+        <view class="my_select" bindtap="selectFunc" data-type="2">
+            <view class="select_title">人员管理</view>
+            <view class="{{selectedType=='2'?'select_line':''}}"></view>
+        </view>
+    </view>
+
+    <view style="margin-top:100rpx;">
     
-    <block >
-        <view style="margin:40rpx 30rpx 20rpx 30rpx" class="font_title">设备列表</view>
-        <view class="v1_1">
-            <view class="v2_1" bindtap="bindClickHandler">
-                <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/my.png' mode="widthFix"></image></view>
-                <view class="v3">
-                    <view class="v4">
-                        <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'淋浴一体机'}}</text>
-                        <text class="font_reg" style="font-size: 28rpx;color:#333333;margin-left:auto;margin-right:30rpx;align-self:center;"></text>
-                    </view>
-                    <view class="v5">
-                        <view class="v6" style="margin-left:25rpx;border-right: 1px solid  #F2F2F2;">
-                            <text class="font_reg" style="font-size: 24rpx;color:#333333;">运行</text>
-                            <text class="font_reg" style="font-size: 56rpx;color:#E60012;margin-left:15rpx;">{{'10'}}</text>
-                            <text class="font_reg" style="font-size: 24rpx;color:#333333;">台</text>
+        <block wx:if="{{selectedType=='0'}}">
+            <!-- <view style="margin:40rpx 30rpx 20rpx 30rpx" class="font_title">设备列表</view> -->
+            <view class="v1_1">
+                <view class="v2_1" bindtap="bindClickHandler">
+                    <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/my.png' mode="widthFix"></image></view>
+                    <view class="v3">
+                        <view class="v4">
+                            <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'淋浴一体机'}}</text>
+                            <text class="font_reg" style="font-size: 28rpx;color:#333333;margin-left:auto;margin-right:30rpx;align-self:center;"></text>
                         </view>
-                        <view class="v6" style="margin-left:40rpx" >
-                            <text class="font_reg" style="font-size: 24rpx;color:#333333;">离线</text>
-                            <text class="font_reg" style="font-size: 56rpx;color:#5EA3E4;margin-left:15rpx;">{{'2'}}</text>
-                            <text class="font_reg" style="font-size: 24rpx;color:#333333;">台</text>
+                        <view class="v5">
+                            <view class="v6" style="margin-left:25rpx;border-right: 1px solid  #F2F2F2;">
+                                <text class="font_reg" style="font-size: 24rpx;color:#333333;">运行</text>
+                                <text class="font_reg" style="font-size: 56rpx;color:#E60012;margin-left:15rpx;">{{'10'}}</text>
+                                <text class="font_reg" style="font-size: 24rpx;color:#333333;">台</text>
+                            </view>
+                            <view class="v6" style="margin-left:40rpx" >
+                                <text class="font_reg" style="font-size: 24rpx;color:#333333;">离线</text>
+                                <text class="font_reg" style="font-size: 56rpx;color:#5EA3E4;margin-left:15rpx;">{{'2'}}</text>
+                                <text class="font_reg" style="font-size: 24rpx;color:#333333;">台</text>
+                            </view>
                         </view>
                     </view>
                 </view>
             </view>
-        </view>
 
-        <view class="v1_1">
-            <view class="v2_1" bindtap="ozoneBindClickHandler">
-                <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/xx.png' mode="widthFix"></image></view>
-                <view class="v3">
-                    <view class="v4">
-                        <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'物资臭氧监测工作站'}}</text>
-                        <text class="font_reg" style="font-size: 28rpx;color:#333333;margin-left:auto;margin-right:30rpx;align-self:center;"></text>
-                    </view>
-                    <view class="v5">
-                        <view class="v6" style="margin-left:25rpx;border-right: 1px solid  #F2F2F2;">
-                            <text class="font_reg" style="font-size: 24rpx;color:#333333;">运行</text>
-                            <text class="font_reg" style="font-size: 56rpx;color:#E60012;margin-left:15rpx;">{{'10'}}</text>
-                            <text class="font_reg" style="font-size: 24rpx;color:#333333;">台</text>
+            <view class="v1_1">
+                <view class="v2_1" bindtap="ozoneBindClickHandler">
+                    <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/xx.png' mode="widthFix"></image></view>
+                    <view class="v3">
+                        <view class="v4">
+                            <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'物资臭氧监测工作站'}}</text>
+                            <text class="font_reg" style="font-size: 28rpx;color:#333333;margin-left:auto;margin-right:30rpx;align-self:center;"></text>
                         </view>
-                        <view class="v6" style="margin-left:40rpx" >
-                            <text class="font_reg" style="font-size: 24rpx;color:#333333;">离线</text>
-                            <text class="font_reg" style="font-size: 56rpx;color:#5EA3E4;margin-left:15rpx;">{{'2'}}</text>
-                            <text class="font_reg" style="font-size: 24rpx;color:#333333;">台</text>
+                        <view class="v5">
+                            <view class="v6" style="margin-left:25rpx;border-right: 1px solid  #F2F2F2;">
+                                <text class="font_reg" style="font-size: 24rpx;color:#333333;">运行</text>
+                                <text class="font_reg" style="font-size: 56rpx;color:#E60012;margin-left:15rpx;">{{'10'}}</text>
+                                <text class="font_reg" style="font-size: 24rpx;color:#333333;">台</text>
+                            </view>
+                            <view class="v6" style="margin-left:40rpx" >
+                                <text class="font_reg" style="font-size: 24rpx;color:#333333;">离线</text>
+                                <text class="font_reg" style="font-size: 56rpx;color:#5EA3E4;margin-left:15rpx;">{{'2'}}</text>
+                                <text class="font_reg" style="font-size: 24rpx;color:#333333;">台</text>
+                            </view>
                         </view>
                     </view>
                 </view>
             </view>
-        </view>
 
-        <!-- <view bindtap="bindClickHandler">
-            <image class="vaccine_img" src="https://www.prohealth-wch.com:8443/data/pigProject/vaccine.png"></image>
-        </view>
-        <view bindtap="ozoneBindClickHandler">
-            <image class="vaccine_img" src="https://www.prohealth-wch.com:8443/data/pigProject/vaccine.png"></image>
-        </view> -->
-    </block>
-   
-    <block >
-        <view style="margin:40rpx 30rpx 20rpx 30rpx" class="font_title">设备管理</view>
-        <view class="v1_1">
-            <view class="v2_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/homeEquipmentManage/index" data-title="淋浴一体机设备参数">
-                <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/my.png' mode="widthFix"></image></view>
-                <view class="v3">
-                    <view class="v4">
-                        <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'淋浴一体机设备管理'}}</text>
-                        <text class="font_reg" style="font-size: 28rpx;color:#333333;margin-left:auto;margin-right:30rpx;align-self:center;"></text>
+            <!-- <view bindtap="bindClickHandler">
+                <image class="vaccine_img" src="https://www.prohealth-wch.com:8443/data/pigProject/vaccine.png"></image>
+            </view>
+            <view bindtap="ozoneBindClickHandler">
+                <image class="vaccine_img" src="https://www.prohealth-wch.com:8443/data/pigProject/vaccine.png"></image>
+            </view> -->
+        </block>
+    
+        <block wx:if="{{selectedType=='1'}}">
+            <!-- <view style="margin:40rpx 30rpx 20rpx 30rpx" class="font_title">设备管理</view> -->
+            <view class="v1_1">
+                <view class="v2_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/homeEquipmentManage/index" data-title="淋浴一体机设备参数">
+                    <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/my.png' mode="widthFix"></image></view>
+                    <view class="v3">
+                        <view class="v4">
+                            <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'淋浴一体机设备管理'}}</text>
+                            <text class="font_reg" style="font-size: 28rpx;color:#333333;margin-left:auto;margin-right:30rpx;align-self:center;"></text>
+                        </view>
                     </view>
                 </view>
             </view>
-        </view>
 
-        <view class="v1_1">
-            <view class="v2_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/ozoneModuleManage/index" data-title="臭氧浓度监测工作站参数">
-                <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/xx.png' mode="widthFix"></image></view>
-                <view class="v3">
-                    <view class="v4">
-                        <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'物资臭氧设备管理'}}</text>
-                        <text class="font_reg" style="font-size: 28rpx;color:#333333;margin-left:auto;margin-right:30rpx;align-self:center;"></text>
+            <view class="v1_1">
+                <view class="v2_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/ozoneModuleManage/index" data-title="臭氧浓度监测工作站参数">
+                    <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/xx.png' mode="widthFix"></image></view>
+                    <view class="v3">
+                        <view class="v4">
+                            <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'物资臭氧设备管理'}}</text>
+                            <text class="font_reg" style="font-size: 28rpx;color:#333333;margin-left:auto;margin-right:30rpx;align-self:center;"></text>
+                        </view>
                     </view>
                 </view>
             </view>
-        </view>
-        <!-- <view bindtap="catchHandler" data-pathstring="/modulepages/pages/homeEquipmentManage/index" data-title="淋浴一体机设备参数">
-            <image class="pathogen_img" src="https://www.prohealth-wch.com:8443/data/pigProject/pathogen.png"></image>
-        </view>
-        <view bindtap="catchHandler" data-pathstring="/modulepages/pages/ozoneModuleManage/index" data-title="臭氧设备参数">
-            <image class="pathogen_img" src="https://www.prohealth-wch.com:8443/data/pigProject/pathogen.png"></image>
-        </view> -->
-    </block>
+            <!-- <view bindtap="catchHandler" data-pathstring="/modulepages/pages/homeEquipmentManage/index" data-title="淋浴一体机设备参数">
+                <image class="pathogen_img" src="https://www.prohealth-wch.com:8443/data/pigProject/pathogen.png"></image>
+            </view>
+            <view bindtap="catchHandler" data-pathstring="/modulepages/pages/ozoneModuleManage/index" data-title="臭氧设备参数">
+                <image class="pathogen_img" src="https://www.prohealth-wch.com:8443/data/pigProject/pathogen.png"></image>
+            </view> -->
+        </block>
+
+        <block wx:if="{{selectedType=='2'}}">
+            <view class="v1_1">
+                <view class="v2_1" style="height:120rpx;" bindtap="catchHandler" data-pathstring="/modulepages/pages/homeCusManage/index" data-title="员工管理">
+                    <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/icon_2023_01_06_14.png' mode="widthFix"></image></view>
+                    <view class="v3">
+                        <view class="v4">
+                            <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'员工管理'}}</text>
+                            <text class="font_reg" style="font-size: 28rpx;color:#333333;margin-left:auto;margin-right:30rpx;align-self:center;"></text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+           
+        </block>
+
+    </view>
 
 </view>
