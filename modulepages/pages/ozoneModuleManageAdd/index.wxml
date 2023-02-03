@@ -35,7 +35,7 @@
         <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">设备管理员</view>
           <view class="section" style="width: 68%;height:80rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;">
-            <view class="ozone_1" style="color:{{managePersion?'#555555':'#B1B1B1'}}">{{managePersion ? managePersion : '请选择设备管理员'}}</view>
+            <view class="ozone_1" style="color:{{managePersion?'#555555':'#B1B1B1'}}" bind:tap="clickOzoneModuleManagePersion">{{managePersion ? managePersion : '请选择设备管理员'}}</view>
             <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
               <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
             </view>
@@ -46,7 +46,7 @@
         <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">审批人</view>
           <view class="section" style="width: 68%;height:80rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;">
-            <view class="ozone_1" style="color:{{approvalPersion?'#555555':'#B1B1B1'}}">{{approvalPersion ? approvalPersion : '请选择审批人'}}</view>
+            <view class="ozone_1" style="color:{{approvalPersion?'#555555':'#B1B1B1'}}" bind:tap="clickOzoneModuleApprovalPersion">{{approvalPersion ? approvalPersion : '请选择审批人'}}</view>
             <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
               <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
             </view>

@@ -1,4 +1,5 @@
 {
+  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -20,6 +21,13 @@
         {
           "name": "ozoneModuleDetail",
           "pathName": "modulepages/pages/ozoneModuleDetail/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "ozoneModuleManagePersion",
+          "pathName": "modulepages/pages/ozoneModuleManagePersion/index",
           "query": "",
           "scene": null,
           "launchMode": "default"

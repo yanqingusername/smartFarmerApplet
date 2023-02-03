@@ -223,4 +223,14 @@ Page({
       }
     }
   },
+  clickOzoneModuleManagePersion(){
+    wx.navigateTo({
+      url:`/modulepages/pages/ozoneModuleManagePersion/index`
+    });
+  },
+  clickOzoneModuleApprovalPersion(){
+    wx.navigateTo({
+      url:`/modulepages/pages/ozoneModuleApprovalPersion/index`
+    });
+  },
 })

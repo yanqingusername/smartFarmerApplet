@@ -72,8 +72,10 @@
             "pages/ozoneModuleDetail/index",
             "pages/ozoneModuleApproval/index",
             "pages/ozoneModuleManage/index",
-            "pages/ozoneModuleManageAdd/index"
-        
+            "pages/ozoneModuleManageAdd/index",
+            "pages/ozoneModuleManagePersion/index",
+            "pages/ozoneModuleApprovalPersion/index"
+            
           ]
         }
       ],

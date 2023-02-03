@@ -1,0 +1,68 @@
+<view class="page">
+    <view class="search_border">
+        <view class='search'>
+            <view class="search_left">
+                <image class="right_arrow" src="/image/icon/icon_10_08_03.png" />
+                <input id="search_checked" style="width:80%;" type='text' placeholder='搜索审批人' placeholder-style="color: #999999;" confirm-type='search' value="{{searchText}}" bindinput='searchChangeHandle' placeholder-class="phcolor" focus="{{isfocus}}"></input>
+                <view class="weui-icon-clear" wx:if="{{searchText}}" bindtap="clearSearchHandle">
+                    <image style="width:28rpx;height:28rpx;" src="/image/icon/icon_clear.png"></image>
+                </view>
+            </view>
+        </view>
+
+        <view class="select_view">
+            <view class="select_1">已选人员</view>
+            <view class="new_view" >
+                <block wx:for="{{5}}" wx:key="index">
+                    <view class="select_2">
+                        <view class="select_2_1">张三</view>
+                        <image class="select_2_2" src="/image/icon/icon_clear.png"></image>
+                    </view>
+                </block>
+            </view>
+
+            <!-- <block wx:for="{{5}}" wx:key="index">
+                <view class="select_2">
+                    <view class="select_2_1">张三</view>
+                    <image class="select_2_2" src="/image/icon/icon_clear.png"></image>
+                </view>
+            </block> -->
+            
+        </view>
+    </view>
+
+      <view class="homeindex_4_1_center">
+                <block wx:for="{{employeesList}}" wx:key="index">
+                    <view class="homeindex_4_1_item">
+                        <view class="v1_left">
+                            <view class="homeindex_4_1_item_r_title">{{item.job_number}}</view>
+                            <view class="homeindex_4_1_item_l_2_title">{{item.real_name}}</view>
+                        </view>
+                        <view class="v1_right">
+                            <view class="homeindex_4_1_item_l">
+                                <view class="homeindex_4_1_item_l_1">
+                                    <image class='homeindex_4_1_item_l_h' src='{{item.head_url}}'></image>
+                                </view>
+                                <view class="homeindex_4_1_item_l_2">
+                                
+                                <view class="homeindex_4_1_item_l_2_time">{{item.role_name}}</view>
+                                </view>
+                            </view>
+
+                            <view class="homeindex_4_1_item_r" >
+                                <view style="position:relative;display: flex;align-items: center;justify-content: center;flex-direction: column;padding: 20rpx 30rpx 30rpx 30rpx;" catch:tap="bindEditCus" data-uid="{{item.id}}">
+                                    <image style="width:40rpx;height:40rpx;" src="/image/icon/icon_10_08_22.png"></image>
+                                </view>
+                            </view>
+
+                        </view>
+                    </view>
+                </block>
+            </view>
+
+        <!-- <view class="empty_view" wx:if="{{shopList.length == 0 && isSearch}}">
+			<view class="empty_title">暂无数据</view>
+		</view> -->
+
+      <view style="height:50rpx;"></view>
+</view>
