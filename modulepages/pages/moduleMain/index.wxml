@@ -73,7 +73,7 @@
         </view>
 
         <view class="v1_1">
-            <view class="v2_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/ozoneModuleManage/index" data-title="臭氧设备参数">
+            <view class="v2_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/ozoneModuleManage/index" data-title="臭氧浓度监测工作站参数">
                 <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/xx.png' mode="widthFix"></image></view>
                 <view class="v3">
                     <view class="v4">

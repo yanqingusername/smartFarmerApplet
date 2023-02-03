@@ -10,9 +10,9 @@ Page({
    */
   data: {
     frontPhoto: "",
-    name_text: "50%",
-    time_text: "10",
-    endtime_text: "2023-02-05",
+    name_text: "50mg/m3",
+    time_text: "2时30分",
+    endtime_text: "2023-02-05 14:30",
     approvalList: ["通过","未通过"],
     approvalIndex: 0,
     isShowApproval: 1,
@@ -44,7 +44,7 @@ Page({
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '监测信息审批'
+      title: '臭氧监测结果审批'
     })
 
   },

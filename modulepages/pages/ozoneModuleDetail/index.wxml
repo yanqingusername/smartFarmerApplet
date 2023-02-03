@@ -69,7 +69,7 @@
 
                                 <view class="homeindex_4_1_item_l" style="justify-content: space-between;width: 100%;margin-top: 20rpx;">
                                     <view class="homeindex_4_1_item_l_2_time" style="margin-top: 0rpx;">{{item.create_time}}</view>
-                                    <view class="homeindex_4_1_item_r_title" catch:tap="clickOzoneModuleApproval" style="color: {{item.status == 1 ? '#409DFF' : item.status == 2 ? '#FF2C2B' : '#00BD6A'}};">{{item.status == 1 ? '正常' : item.status == 2 ? '违规' : '待审批'}}</view>
+                                    <view class="homeindex_4_1_item_r_title" catch:tap="clickOzoneModuleApproval" style="color: {{item.status == 1 ? '#409DFF' : item.status == 2 ? '#FF2C2B' : '#00BD6A'}};">{{item.status == 1 ? '正常' : item.status == 2 ? '违规' : ''}}</view>
                                 </view>
 
 								<!-- <view class="homeindex_4_1_item_l">

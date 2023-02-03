@@ -68,4 +68,6 @@
 
       <view class="button_submit" wx:else bind:tap="submitBuffer">保存</view>
 
+      <view class="button_delete" wx:if="{{isEditCus == 2}}" bind:tap="bindDeleteClick">删除</view>
+
 </view> 

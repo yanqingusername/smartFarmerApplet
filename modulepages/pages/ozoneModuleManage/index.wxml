@@ -7,7 +7,7 @@
                     <view class="homeindex_4_1_item">
                         <view class="homeindex_4_1_item_top">
                             <view class="homeindex_4_1_item_r_title">{{item.sn}}</view>
-                            <view class="homeindex_4_1_item_l_2_title">{{item.name}}</view>
+                            <view class="homeindex_4_1_item_l_2_title">{{'臭氧浓度监测工作'}}</view>
                         </view>
                         <view class="homeindex_4_1_item_center">
                             <view class="homeindex_4_1_item_l">
@@ -19,12 +19,20 @@
                                     <view class="v2_1_position" style="margin-top: 10rpx;">审批人：{{'李四'}}</view>
                                 </view>
                             </view>
-                            <view class="homeindex_4_1_item_r">
+                            <!-- <view class="homeindex_4_1_item_r">
                                 <view style="position:relative;display: flex;align-items: center;justify-content: center;flex-direction: column;" catch:tap="bindDeleteClick" data-id="{{item.id}}">
                                 <image style="width:40rpx;height:40rpx;" src="/image/icon/icon_2023_01_06_11.png"></image>
                                 <view style="font-size: 24rpx;color: #999999;margin-top: 6rpx;">删除</view>
                                 </view>
+                            </view> -->
+
+                             <view class="homeindex_4_1_item_r">
+                                <view style="position:relative;display: flex;align-items: center;justify-content: center;flex-direction: column;padding: 20rpx 30rpx 30rpx 30rpx;" catch:tap="bindEditCus" data-uid="{{item.id}}">
+                                <image style="width:40rpx;height:40rpx;" src="/image/icon/icon_2023_01_06_18.png"></image>
+                                <view style="font-size: 24rpx;color: #999999;margin-top: 6rpx;">编辑</view>
+                                </view>
                             </view>
+
                         </view>
                     </view>
                 </block>

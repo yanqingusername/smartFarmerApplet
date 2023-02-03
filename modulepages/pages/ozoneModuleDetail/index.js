@@ -35,7 +35,7 @@ Page({
         "real_name": "李思琪",
         "workType": "0",
         "create_time": "2023.01.04 08:30",
-        "status": '3'
+        "status": '2'
       }
     ],
     start_time: "", //开始时间，第二个接口用  默认当前

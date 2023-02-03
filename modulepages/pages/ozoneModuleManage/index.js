@@ -89,4 +89,12 @@ Page({
       url: `/modulepages/pages/ozoneModuleManageAdd/index`
     });
   },
+  bindEditCus(e){
+    let uid = e.currentTarget.dataset.uid;
+    if(uid){
+      wx.navigateTo({
+        url:`/modulepages/pages/ozoneModuleManageAdd/index?isEditCus=2&uid=${uid}`
+      });
+    }
+  },
 });
