@@ -246,3 +246,10 @@ color: #333333;
   right: 36rpx;
   top: -8rpx;
 }
+
+.homeindex_4_1_top_2_t{
+  font-size: 28rpx;
+font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
+color: #999999;margin-right: 4rpx;
+}

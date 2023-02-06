@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+
     yearmouthday: "",
     timestamp: new Date().getTime(),
     startDate: "",
@@ -17,33 +17,34 @@ Page({
 
     page: 1,
     limit: 10,
-    // iwadomListinfo: [],
-    iwadomListinfo: [
-      {
-        "sn": "001",
-        "address": "一消-男",
-        "head_url": "",
-        "real_name": "李思琪",
-        "workType": "0",
-        "create_time": "2023.01.04 08:30",
-        "status": '1'
-      },
-      {
-        "sn": "001",
-        "address": "一消-男",
-        "head_url": "",
-        "real_name": "李思琪",
-        "workType": "0",
-        "create_time": "2023.01.04 08:30",
-        "status": '2'
-      }
-    ],
+    iwadomListinfo: [],
+    // iwadomListinfo: [{
+    //     "sn": "001",
+    //     "address": "一消-男",
+    //     "head_url": "",
+    //     "real_name": "李思琪",
+    //     "workType": "0",
+    //     "create_time": "2023.01.04 08:30",
+    //     "status": '1'
+    //   },
+    //   {
+    //     "sn": "001",
+    //     "address": "一消-男",
+    //     "head_url": "",
+    //     "real_name": "李思琪",
+    //     "workType": "0",
+    //     "create_time": "2023.01.04 08:30",
+    //     "status": '2'
+    //   }
+    // ],
     start_time: "", //开始时间，第二个接口用  默认当前
     end_time: "", //结束时间 同开始时间
-    
+
+    sn: "",
+    normal: '0',//正常数
+    Violation: '0',//违规数
   },
-  onShow: function () {
-  },
+  onShow: function () {},
   onLoad: function (options) {
     let that = this;
 
@@ -51,37 +52,42 @@ Page({
       title: '监测信息记录'
     });
 
-    this.currentTime();
+    this.setData({
+      sn: options.sn
+    });
 
-   
+    this.currentTime();
+    this.getOzoneHistory();
   },
-  getIwadomlistinfo: function () {
+  getOzoneHistory: function () {
     var that = this;
     var data = {
-      id: app.globalData.userInfo.id, //登录人的id
+      sn: that.data.sn,
+      pig_farm_id: app.globalData.userInfo.pig_farm_id,
       start_time: this.data.startDate, //开始时间，第二个接口用  默认当前
       end_time: this.data.endDate, //结束时间 同开始时间
-      status: this.data.status, //洗消状态 1成功 2失败 0沐浴中
-      workType: this.data.workType, //上下班 0是上班 1是下班  ""全部
-      staffids: this.data.homePersonalIds.length > 0 ? this.data.homePersonalIds.join(',') : "", //员工id以','分割
       page: this.data.page,
       limit: this.data.limit
     }
 
     console.log('---->:', data)
 
-    request.request_get('/iwadom/getIwadomlistinfo.hn', data, function (res) {
+    request.request_get('/equipmentManagement/getOzoneHistory.hn', data, function (res) {
       if (res) {
         if (res.success) {
           if (that.data.page == 1) {
             that.setData({
               iwadomListinfo: res.data,
-              page: (res.data && res.data.length > 0) ? that.data.page + 1 : that.data.page
+              page: (res.data && res.data.length > 0) ? that.data.page + 1 : that.data.page,
+              normal: res.normal,//正常数
+              Violation: res.Violation,//违规数
             });
           } else {
             that.setData({
               iwadomListinfo: that.data.iwadomListinfo.concat(res.data || []),
               page: (res.data && res.data.length > 0) ? that.data.page + 1 : that.data.page,
+              normal: res.normal,//正常数
+              Violation: res.Violation,//违规数
             });
           }
         } else {
@@ -91,6 +97,7 @@ Page({
     })
   },
   onReachBottom: function () {
+    this.getOzoneHistory();
   },
   /**
    * 当前日期
@@ -126,7 +133,7 @@ Page({
         page: 1
       })
 
-      this.getIwadomlistinfo();
+      this.getOzoneHistory();
     }
   },
   bindStartTimeChange: function (e) {
@@ -144,6 +151,6 @@ Page({
   clickOzoneModuleApproval: function (e) {
     wx.navigateTo({
       url: '/modulepages/pages/ozoneModuleApproval/index',
-  })
+    })
   },
 })

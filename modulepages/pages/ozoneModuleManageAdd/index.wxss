@@ -269,13 +269,31 @@ page {
   color: #E0694D;
 }
 
-.button_delete {
+/* .button_delete {
   margin-top: 60rpx;
   text-align: center;
   font-size: 28rpx;
   font-weight: 400;
   color: #666666;
+} */
+
+.button_delete {
+  margin-top: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 670rpx;
+  height: 88rpx;
+  background: #EEEEEE;
+  border-radius: 44rpx;
+  border: 2rpx solid #EEEEEE;
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #327FF6;
+  left: 5%;
+  position: relative;
 }
+
 
 .div_policy {
   margin: 10rpx 0 40rpx 24rpx;

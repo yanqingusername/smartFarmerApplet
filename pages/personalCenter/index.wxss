@@ -69,3 +69,57 @@
     margin-left: 30rpx;
     font-family: "SHSCN_Regular";
 }
+
+
+
+
+.v1_1{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 20rpx;
+}
+
+.v2_1{
+    width: 690rpx;
+height: 100rpx;
+background: #FFFFFF;
+box-shadow: 0px 8rpx 20rpx 0px rgba(0,0,0,0.02);
+border-radius: 8rpx;
+margin-top: 0rpx;
+display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 0rpx;
+
+}
+
+.v2_1_item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.v2_1_item_img{
+    width:60rpx;
+    height:60rpx;
+    align-self:center;
+}
+
+.v3{
+    width: 550rpx;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+.v4{
+    width: 550rpx;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.font_title{
+    font-size: 32rpx;
+    color: #333333;
+}

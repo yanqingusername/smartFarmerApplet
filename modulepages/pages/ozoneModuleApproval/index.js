@@ -10,33 +10,22 @@ Page({
    */
   data: {
     frontPhoto: "",
-    name_text: "50mg/m3",
-    time_text: "2时30分",
-    endtime_text: "2023-02-05 14:30",
+    name_text: "",
+    time_text: "",
+    endtime_text: "",
     approvalList: ["通过","未通过"],
     approvalIndex: 0,
     isShowApproval: 1,
     approvalText: '',
     submitState: true,
 
-    reasonList: [
-      {
-        id:'1',
-        name: "时长太短"
-      },
-      {
-        id:'2',
-        name: "浓度未达标"
-      },
-      {
-        id:'3',
-        name: "污染严重"
-      }
-    ],
+    reasonList: [],
     reasonIndex: 0,
     isShowReason: 1,
     reason_id: '',
-    reason_name: ''
+    reason_name: '',
+
+    id: ''
     
   },
   onShow: function () {
@@ -47,6 +36,12 @@ Page({
       title: '臭氧监测结果审批'
     })
 
+    this.setData({
+      id: options.id
+    });
+
+    this.getOzoneInfobyid();
+    this.getReviewfaillist();
   },
   // bindName: function (e) {
   //   var str = e.detail.value;
@@ -62,14 +57,14 @@ Page({
     this.setData({
       reasonIndex: reasonIndex,
       reason_id: this.data.reasonList[reasonIndex].id,
-      reason_name: this.data.reasonList[reasonIndex].name,
+      reason_name: this.data.reasonList[reasonIndex].text,
       isShowReason: 2
     });
     this.checkSubmitStatus();
   },
   //保存按钮禁用判断
   checkSubmitStatus: function (e) {
-    if (this.data.approvalText != '' || (this.data.approvalText == '未通过' && this.data.reason_id != '' && this.data.reason_name != '')) {
+    if ((this.data.approvalText != '' && this.data.approvalText == '通过') || (this.data.approvalText == '未通过' && this.data.reason_id != '' && this.data.reason_name != '')) {
       this.setData({
         submitState: false
       })
@@ -100,6 +95,54 @@ Page({
       urls: [currentUrl] // 需要预览的图片http链接列表
     })
   },
+  /**
+   * 根据id获取待审核的臭氧熏蒸记录
+   */
+   getOzoneInfobyid: function () {
+    var that = this;
+    var data = {
+      recordid: that.data.id,
+    }
+
+    request.request_get('/equipmentManagement/getOzoneInfobyid.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          if(res.data && res.data.length > 0){
+            let ozoneInfo = res.data[0];
+            that.setData({
+              frontPhoto: ozoneInfo.img,
+              name_text: ozoneInfo.concentration+"mg/m3",
+              time_text: ozoneInfo.worktime,
+              endtime_text: ozoneInfo.end_time,
+            });
+          }
+        } else {
+          box.showToast(res.msg);
+        }
+      }
+    })
+  },
+  /**
+   * 获取审核失败的原因列表
+   */
+   getReviewfaillist: function () {
+    var that = this;
+    var data = {
+      pig_farm_id: app.globalData.userInfo.pig_farm_id,
+    }
+
+    request.request_get('/equipmentManagement/getReviewfaillist.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          that.setData({
+            reasonList: res.data
+          });
+        } else {
+          box.showToast(res.msg);
+        }
+      }
+    })
+  },
   submitBuffer() {
     let that = this;
     let approvalText = this.data.approvalText;
@@ -111,15 +154,19 @@ Page({
 
     if(approvalText == '通过'){
       let params = {
-        // company_serial: app.globalData.userInfo.company_serial,
-        approvalText: approvalText, //审批意见
+        pig_farm_id: app.globalData.userInfo.pig_farm_id,
+        recordid: that.data.id, //记录id
+        userid: app.globalData.userInfo.id, //用户id
+        status: "0" //（0通过 1不通过）
       }
   
-      request.request_get('/equipmentManagement/adddeviceinfo.hn', params, function (res) {
+      request.request_get('/equipmentManagement/ReviewOzonefumigation.hn', params, function (res) {
         console.info('回调', res)
         if (res) {
           if (res.success) {
-            
+            wx.navigateBack({
+              delta: 1
+            });
           } else {
             box.showToast(res.msg);
           }
@@ -130,20 +177,31 @@ Page({
     }else{
       let reason_id = this.data.reason_id;
       let reason_name = this.data.reason_name;
+
+      if (!reason_id || !reason_name) {
+        box.showToast("请选择拒绝原因");
+        return;
+      }
+      
       let params = {
-        // company_serial: app.globalData.userInfo.company_serial,
-        approvalText: approvalText, //审批意见
-        reason_id: reason_id,
-        reason_name: reason_name
+        pig_farm_id: app.globalData.userInfo.pig_farm_id,
+        recordid: that.data.id,
+        userid: app.globalData.userInfo.id,
+        status: "1",
+        remark: reason_name, //remark  不通过原因（不通过时必填）
+
+        // reason_id: reason_id,
+        // reason_name: reason_name
       }
       console.log(params)
-      return
   
-      request.request_get('/equipmentManagement/adddeviceinfo.hn', params, function (res) {
+      request.request_get('/equipmentManagement/ReviewOzonefumigation.hn', params, function (res) {
         console.info('回调', res)
         if (res) {
           if (res.success) {
-            
+            wx.navigateBack({
+              delta: 1
+            });
           } else {
             box.showToast(res.msg);
           }

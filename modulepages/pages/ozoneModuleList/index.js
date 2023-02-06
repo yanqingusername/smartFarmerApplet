@@ -3,54 +3,52 @@ const request = require('../../../utils/request.js')
 const box = require('../../../utils/box.js')
 
 Page({
-	data:{
-        page: 1,
-        limit: 10,
-        deviceinfoList: [],
-        id: ""
-	},
-    onLoad:function(options) {
-        this.setData({
-          id: options.eid
-        });
-    },
-    onShow:function(){
-        var that = this;
-        that.getdeviceinfo();
-    },
-    onReachBottom: function () {
-        this.getdeviceinfo();
-      },
-    getdeviceinfo:function(){
-        var that = this;
-        var data = {
-            page: that.data.page,
-            limit: that.data.limit,
-            id: that.data.id
+  data: {
+    page: 1,
+    limit: 10,
+    deviceinfoList: [],
+  },
+  onLoad: function (options) {
+
+  },
+  onShow: function () {
+    var that = this;
+    that.getzonedevicelist();
+  },
+  onReachBottom: function () {
+
+  },
+  getzonedevicelist: function () {
+    var that = this;
+    var data = {
+      pig_farm_id: app.globalData.userInfo.pig_farm_id
+    }
+    request.request_get('/equipmentManagement/getzonedevicelist.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+            that.setData({
+              deviceinfoList: res.data,
+            });
+        } else {
+          box.showToast(res.msg);
         }
-        request.request_get1('/iwadom/getspecificIwadominfo.hn', data, function (res) {
-            if (res) {
-                if (res.success) {
-                  if (that.data.page == 1) {
-                    that.setData({
-                        deviceinfoList: res.data,
-                      page: (res.data && res.data.length > 0) ? that.data.page + 1 : that.data.page
-                    });
-                  } else {
-                    that.setData({
-                        deviceinfoList: that.data.deviceinfoList.concat(res.data || []),
-                      page: (res.data && res.data.length > 0) ? that.data.page + 1 : that.data.page,
-                    });
-                  }
-                } else {
-                  box.showToast(res.msg);
-                }
-              }
-        })
-    },
-    clickOzoneModuleDetail(){
+      }
+    })
+  },
+  clickOzoneModuleDetail(e) {
+    let sn = e.currentTarget.dataset.sn;
+    if(sn){
       wx.navigateTo({
-          url: '/modulepages/pages/ozoneModuleDetail/index',
+        url: `/modulepages/pages/ozoneModuleDetail/index?sn=${sn}`,
       })
-    },
+    }
+  },
+  clickOzoneModuleApproval: function (e) {
+    let id = e.currentTarget.dataset.id;
+    if(id){
+      wx.navigateTo({
+        url: `/modulepages/pages/ozoneModuleApproval/index?id=${id}`,
+      })
+    }
+  },
 });

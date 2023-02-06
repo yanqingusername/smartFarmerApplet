@@ -1,13 +1,17 @@
 <view class="page">
     
-        <view class="v2_1" wx:for="{{deviceinfoList}}" wx:key="index" bind:tap="clickOzoneModuleDetail">
+        <view class="v2_1" wx:for="{{deviceinfoList}}" wx:key="index" bind:tap="clickOzoneModuleDetail" data-sn="{{item.sn}}">
             <view class="v2_1_top">
-                <view class="v2_1_top_1"><image class='v2_1_top_1_img' src='/image/icon/icon_2023_01_06_26.png'></image>{{item.sn}}</view>
-                <view class="v2_1_top_2" style="color: {{item.status == 1 ? '#409DFF' : item.status == 2 ? '#FF2C2B' : '#00BD6A'}};">{{item.status == 1 ? '运行' : item.status == 2 ? '离线' : '空闲'}}</view>
+                <view class="v2_1_top_1"><image class='v2_1_top_1_img' src="{{item.Devicestatus == '运行' ? '/image/icon/icon_2023_02_06_5.png' : '/image/icon/icon_2023_02_06_6.png'}}"></image>{{item.sn}}</view>
+                <view class="v2_1_top_2" style="color: {{item.Devicestatus == '运行' ? '#409DFF' : '#FF2C2B'}};">{{item.Devicestatus}}</view>
             </view>
             <view class="v2_1_line"></view>
             <view class="v2_1_position"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_25.png'></image>设备位置：{{item.address}}</view>
-            <view class="v2_1_time"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_26.png'></image>取货状态：{{'可以取货'}}</view>
+            <view class="v2_2">
+                <view class="v2_1_time" wx:if="{{item.status}}"><image class='v2_1_position_img' src='/image/icon/icon_2023_02_06_7.png'></image>取货状态：<text style="color: {{item.status == '待审核' ? '#FF2C2B' : '#666666'}};">{{item.status}}</text></view>
+                <view class="v2_2_1" wx:if="{{item.isopen == 1}}" catch:tap="clickOzoneModuleApproval" data-id="{{item.id}}">审批</view>
+            </view>
+            
 		</view>
 
         <block wx:if="{{deviceinfoList.length==0}}">

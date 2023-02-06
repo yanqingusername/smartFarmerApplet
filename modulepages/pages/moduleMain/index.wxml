@@ -21,7 +21,7 @@
             <!-- <view style="margin:40rpx 30rpx 20rpx 30rpx" class="font_title">设备列表</view> -->
             <view class="v1_1">
                 <view class="v2_1" bindtap="bindClickHandler">
-                    <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/my.png' mode="widthFix"></image></view>
+                    <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/icon_2023_02_06_1.png'></image></view>
                     <view class="v3">
                         <view class="v4">
                             <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'淋浴一体机'}}</text>
@@ -45,7 +45,7 @@
 
             <view class="v1_1">
                 <view class="v2_1" bindtap="ozoneBindClickHandler">
-                    <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/xx.png' mode="widthFix"></image></view>
+                    <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/icon_2023_02_06_2.png'></image></view>
                     <view class="v3">
                         <view class="v4">
                             <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'物资臭氧监测工作站'}}</text>
@@ -79,7 +79,7 @@
             <!-- <view style="margin:40rpx 30rpx 20rpx 30rpx" class="font_title">设备管理</view> -->
             <view class="v1_1">
                 <view class="v2_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/homeEquipmentManage/index" data-title="淋浴一体机设备参数">
-                    <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/my.png' mode="widthFix"></image></view>
+                    <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/icon_2023_02_06_3.png'></image></view>
                     <view class="v3">
                         <view class="v4">
                             <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'淋浴一体机设备管理'}}</text>
@@ -91,7 +91,7 @@
 
             <view class="v1_1">
                 <view class="v2_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/ozoneModuleManage/index" data-title="臭氧浓度监测工作站参数">
-                    <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/xx.png' mode="widthFix"></image></view>
+                    <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/icon_2023_02_06_4.png'></image></view>
                     <view class="v3">
                         <view class="v4">
                             <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'物资臭氧设备管理'}}</text>

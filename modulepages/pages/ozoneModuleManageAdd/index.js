@@ -9,36 +9,116 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title:"",
+    // title:"",
     name: "",
     position: "",
     submitState: true,
-    jobNameList: [],
-    categoryIndex: 0,
-    isShowRegion: 1,
-    genderList: ['男', '女'],
-    genderIndex: 0,
-    gender: '',
-    isShowGender: 1,
-    job_id: '',
-    job_name: '',
+    
 
     concentration: '',
     time: "",
+    managePersionIds:"",
     managePersion: '',
-    approvalPersion: ""
+    selectPersionList: [],
+
+    approvalPersionIds: "",
+    approvalPersion: "",
+    approvalPersionList: [],
+
+    isEditCus: 1,  //  1-新增   2-编辑
+    uid: '',
+
+    isName: false,
+    isPosition: false
+
   },
   onShow: function () {
-    this.getdevicelist();
+
+    this.checkSubmitStatus();
   },
   onLoad: function (options) {
+    this.setData({
+      isEditCus: options.isEditCus || 1,
+      uid: options.uid
+    });
     wx.setNavigationBarTitle({
-      title: "新增设备信息"
+      title: this.data.isEditCus == 1 ? "新增设备信息" : "编辑设备信息"
+    })
+
+    if(this.data.uid && this.data.isEditCus == 2){
+      this.getdeviceinfobyid();
+    }
+
+  },
+  getdeviceinfobyid(){
+    let that = this
+    let params = {
+      pig_farm_id: app.globalData.userInfo.pig_farm_id,
+      id: this.data.uid,
+    }
+
+    request.request_get('/equipmentManagement/getdeviceinfobyid.hn', params, function (res) {
+      console.info('回调', res)
+      if (res) {
+        if (res.success) {
+          if(res.data && res.data.length > 0){
+            let deviceInfo = res.data[0]
+            that.setData({
+              isName: true,
+              isPosition: true,
+              name: deviceInfo.name,
+              position: deviceInfo.address,
+              time: deviceInfo.duration,
+              concentration: deviceInfo.concentration,
+            });
+          }
+
+          if(res.resforcontroller && res.resforcontroller.length > 0){
+            
+            let resforcontroller = res.resforcontroller
+            let managePersionIds = [];
+            let managePersion = [];
+            for(let j = 0; j < resforcontroller.length; j++) {
+              managePersion.push(resforcontroller[j].name);
+              managePersionIds.push(resforcontroller[j].id);
+            }
+
+            that.setData({
+              managePersionIds:managePersionIds.join(','),
+              managePersion: managePersion.join(','),
+              selectPersionList: resforcontroller,
+            });
+
+          }
+
+          if(res.resforreviewer && res.resforreviewer.length > 0){
+            let resforreviewer = res.resforreviewer
+            let approvalPersionIds = [];
+            let approvalPersion = [];
+            for(let j = 0; j < resforreviewer.length; j++) {
+              approvalPersion.push(resforreviewer[j].name);
+              approvalPersionIds.push(resforreviewer[j].id);
+            }
+
+            that.setData({
+              approvalPersionIds:approvalPersionIds.join(','),
+              approvalPersion: approvalPersion.join(','),
+              approvalPersionList: resforreviewer,
+            });
+          }
+
+          that.checkSubmitStatus();
+        } else {
+          box.showToast(res.msg);
+        }
+      } else {
+        box.showToast("网络不稳定，请重试");
+      }
     })
   },
   //保存按钮禁用判断
   checkSubmitStatus: function (e) {
-    if (this.data.title != '' && this.data.name != '' && this.data.position != '' && this.data.job_id != '' && this.data.job_name != '' && this.data.gender != '') {
+    if (this.data.name != '' && this.data.position != '' && this.data.concentration != '' && this.data.time != '' && this.data.managePersion != '' && this.data.approvalPersion != '') {
       this.setData({
         submitState: false
       })
@@ -49,7 +129,6 @@ Page({
     }
   },
   bindTitle: function (e) {
-    console.log(e.detail.value)
     var str = e.detail.value;
     // str = utils.checkInput_2(str);
     this.setData({
@@ -59,7 +138,6 @@ Page({
     this.checkSubmitStatus();
   },
   bindName: function (e) {
-    console.log(e.detail.value)
     var str = e.detail.value;
     // str = utils.checkInput_2(str);
     this.setData({
@@ -77,7 +155,6 @@ Page({
     this.checkSubmitStatus();
   },
   bindTime: function (e) {
-    console.log(e.detail.value)
     var str = e.detail.value;
     // str = utils.checkInput_2(str);
     this.setData({
@@ -87,7 +164,6 @@ Page({
     this.checkSubmitStatus();
   },
   bindConcentration: function (e) {
-    console.log(e.detail.value)
     var str = e.detail.value;
     // str = utils.checkInput_2(str);
     this.setData({
@@ -96,33 +172,17 @@ Page({
 
     this.checkSubmitStatus();
   },
-  // 类别改变
-  bindJobNameChange: function (e) {
-    var categoryIndex = e.detail.value;
-    this.setData({
-      categoryIndex: categoryIndex,
-      job_id: this.data.jobNameList[categoryIndex].id,
-      job_name: this.data.jobNameList[categoryIndex].name,
-      isShowRegion: 2
-    });
-    this.checkSubmitStatus();
-  },
-  bindPickerChangeGender: function (e) {
-    var that = this;
-    this.setData({
-      genderIndex: e.detail.value,
-      gender: that.data.genderList[e.detail.value],
-      isShowGender: 2
-    });
-    this.checkSubmitStatus();
-  },
   submitBuffer() {
     let that = this;
     let name = this.data.name;
     let position = this.data.position;
-    let job_id = this.data.job_id;
-    let job_name = this.data.job_name;
-    let gender = this.data.gender;
+    let time = this.data.time;
+    let concentration = this.data.concentration;
+    let managePersion = this.data.managePersion;
+    let approvalPersion = this.data.approvalPersion;
+
+    let managePersionIds = this.data.managePersionIds;
+    let approvalPersionIds = this.data.approvalPersionIds;
 
     if (!name) {
       box.showToast("请输入设备编号");
@@ -134,103 +194,121 @@ Page({
       return;
     }
 
-    if (!job_name) {
-      box.showToast("请选择设备类型");
+    if (!time) {
+      box.showToast("请输入臭氧有效时长(分钟)");
       return;
     }
 
-    if (!gender) {
-      box.showToast("请选择性别");
+    if (!concentration) {
+      box.showToast("请输入臭氧有效浓度(mg/m3)");
       return;
     }
 
-    let params = {
-      company_serial: app.globalData.userInfo.company_serial,
-      sn: name, //设备编号
-      address: position, //位置描述
-      type:  job_id,//设备类型
-      gender: gender == '男' ? '0' : '1' //男女
+    if (!managePersion && !managePersionIds) {
+      box.showToast("请选择设备管理员");
+      return;
     }
 
-    request.request_get('/equipmentManagement/adddeviceinfo.hn', params, function (res) {
-      console.info('回调', res)
-      if (res) {
-        if (res.success) {
-          wx.navigateBack({
-            delta: 1,
-          });
-        } else {
-          box.showToast(res.msg);
-        }
-      } else {
-        box.showToast("网络不稳定，请重试");
-      }
-    })
-
-  },
-  getdevicelist() {
-    let that = this;
-    let params = {
-      company_serial: app.globalData.userInfo.company_serial
+    if (!approvalPersion && !approvalPersionIds) {
+      box.showToast("请选择审批人");
+      return;
     }
 
-    request.request_get('/equipmentManagement/getdevicelist.hn', params, function (res) {
-      console.info('回调', res)
-      if (res) {
-        if (res.success) {
-          that.setData({
-            jobNameList: res.type
-          });
-        } else {
-          box.showToast(res.msg);
-        }
-      } else {
-        box.showToast("网络不稳定，请重试");
-      }
-    })
+    
+    // return
 
+    if(this.data.isEditCus == 2){
+      let params1 = {
+        id: this.data.uid,
+        sn: name, //设备编号
+        controller: managePersionIds, //（管理者）
+        address: position, //位置描述
+        reviewer: approvalPersionIds, //(审核者)
+        duration: time, //（（时长）
+        concentration: concentration, //（浓度）
+      }
+
+      console.log('---->:',params1)
+      request.request_get('/equipmentManagement/editdeviceinfo.hn', params1, function (res) {
+        console.info('回调', res)
+        if (res) {
+          if (res.success) {
+            wx.navigateBack({
+              delta: 1,
+            });
+          } else {
+            box.showToast(res.msg);
+          }
+        } else {
+          box.showToast("网络不稳定，请重试");
+        }
+      })
+    }else{
+      let params = {
+        pig_farm_id: app.globalData.userInfo.pig_farm_id,
+        type: '2',
+        sn: name, //设备编号
+        address: position, //位置描述
+        controller: managePersionIds, //（管理者）
+        reviewer: approvalPersionIds, //(审核者)
+        duration: time, //（（时长）
+        concentration: concentration, //（浓度）
+      }
+  
+      console.log('---->:',params)
+      request.request_get('/equipmentManagement/addozonedeviceinfo.hn', params, function (res) {
+        console.info('回调', res)
+        if (res) {
+          if (res.success) {
+            wx.navigateBack({
+              delta: 1,
+            });
+          } else {
+            box.showToast(res.msg);
+          }
+        } else {
+          box.showToast("网络不稳定，请重试");
+        }
+      })
+    }
   },
   bindDeleteClick(e) {
     let that = this;
     let id = this.data.uid;
     if (id) {
-      if(id == app.globalData.userInfo.id){
-        box.showToast("该员工信息无法删除");
-      } else {
-        wx.showModal({
-          title: '确认删除该员工？',
-          content: '删除后无法恢复',
-          success: function (res) {
-            if (res.confirm) {
-              var data = {
-                id: id,
-              }
-              request.request_get('/personnelManagement/deleteEmployee.hn', data, function (res) {
-                if (res) {
-                  if (res.success) {
-                    box.showToast(res.msg);
-                    wx.navigateBack({
-                      delta: 1,
-                    });
-                  } else {
-                    box.showToast(res.msg);
-                  }
-                }
-              })
+      wx.showModal({
+        title: '是否删除设备?',
+        content: '删除设备后无法恢复',
+        success: function (res) {
+          if (res.confirm) {
+            var data = {
+              id: id,
+              status: '1'
             }
+            request.request_get('/equipmentManagement/deletedeviceinfo.hn', data, function (res) {
+              if (res) {
+                if (res.success) {
+                  wx.navigateBack({
+                    delta: 1,
+                  });
+                } else {
+                  box.showToast(res.msg);
+                }
+              }
+            })
           }
-        })
-      }
+        }
+      })
     }
   },
   clickOzoneModuleManagePersion(){
     wx.navigateTo({
-      url:`/modulepages/pages/ozoneModuleManagePersion/index`
+      url:`/modulepages/pages/ozoneModuleManagePersion/index?idlist=${this.data.managePersionIds}`
     });
   },
   clickOzoneModuleApprovalPersion(){
     wx.navigateTo({
-      url:`/modulepages/pages/ozoneModuleApprovalPersion/index`
+      url:`/modulepages/pages/ozoneModuleApprovalPersion/index?idlist=${this.data.approvalPersionIds}`
     });
   },
 })
