@@ -74,7 +74,8 @@
             "pages/ozoneModuleManage/index",
             "pages/ozoneModuleManageAdd/index",
             "pages/ozoneModuleManagePersion/index",
-            "pages/ozoneModuleApprovalPersion/index"
+            "pages/ozoneModuleApprovalPersion/index",
+            "pages/pigAbnormalModuleList/index"
             
           ]
         }

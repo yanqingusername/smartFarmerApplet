@@ -163,8 +163,13 @@ Page({
 
     // 进入异常报警中的猪只
     enter_alarm_pig:function(){
-        wx.navigateTo({
-            url: '/pages/abnormal/pig',
+        // wx.navigateTo({
+        //     url: '/pages/abnormal/pig',
+        // })
+
+        //异常猪只报表
+         wx.navigateTo({
+            url: '/modulepages/pages/pigAbnormalModuleList/index',
         })
     },
     // 进入异常报警中人员
