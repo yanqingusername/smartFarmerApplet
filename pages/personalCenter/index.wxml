@@ -14,11 +14,13 @@
 
             <view class="v1_1">
                 <view class="v2_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/homeEquipmentManage/index" data-title="淋浴一体机设备参数">
-                    <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/icon_2023_02_06_3.png'></image></view>
-                    <view class="v3">
-                        <view class="v4">
+                    <view class="v2_1_view">
+                        <view class="v2_1_item">
+                            <image class='v2_1_item_img' src='/image/icon/icon_2023_02_06_3.png'></image>
                             <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'淋浴一体机设备管理'}}</text>
-                            <text class="font_reg" style="font-size: 28rpx;color:#333333;margin-left:auto;margin-right:30rpx;align-self:center;"></text>
+                        </view>
+                        <view class="v2_1_item">
+                            <image class="operation_next" style="margin-right: 0rpx;" src="/image/icon/next.png"></image>
                         </view>
                     </view>
                 </view>
@@ -26,18 +28,76 @@
 
             <view class="v1_1">
                 <view class="v2_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/ozoneModuleManage/index" data-title="臭氧浓度监测工作站参数">
-                    <view class="v2_1_item"><image class='v2_1_item_img' src='/image/icon/icon_2023_02_06_4.png'></image></view>
-                    <view class="v3">
-                        <view class="v4">
+                    <view class="v2_1_view">
+                        <view class="v2_1_item">
+                            <image class='v2_1_item_img' src='/image/icon/icon_2023_02_06_4.png'></image>
                             <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'物资臭氧设备管理'}}</text>
-                            <text class="font_reg" style="font-size: 28rpx;color:#333333;margin-left:auto;margin-right:30rpx;align-self:center;"></text>
+                        </view>
+                        <view class="v2_1_item">
+                            <image class="operation_next" style="margin-right: 0rpx;" src="/image/icon/next.png"></image>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="v1_1">
+                <view class="v2_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/homeCusManage/index" data-title="员工管理">
+                    <view class="v2_1_view">
+                        <view class="v2_1_item">
+                            <image class='v2_1_item_img' src='/image/icon/icon_2023_01_06_14.png'></image>
+                            <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'员工管理'}}</text>
+                        </view>
+                        <view class="v2_1_item">
+                            <image class="operation_next" style="margin-right: 0rpx;" src="/image/icon/next.png"></image>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="v1_1">
+                <view class="v2_1" bindtap="enter_instructions">
+                    <view class="v2_1_view">
+                        <view class="v2_1_item">
+                            <image class='v2_1_item_img' src='/image/icon/instructions.png'></image>
+                            <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'操作指南'}}</text>
+                        </view>
+                        <view class="v2_1_item">
+                            <image class="operation_next" style="margin-right: 0rpx;" src="/image/icon/next.png"></image>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="v1_1">
+                <view class="v2_1" bindtap="call_customer">
+                    <view class="v2_1_view">
+                        <view class="v2_1_item">
+                            <image class='v2_1_item_img' src='/image/icon/customer.png'></image>
+                            <text class="font_title" style="margin-left:25rpx;align-self:center;">联系客服 {{customer_phone}}</text>
+                        </view>
+                        <view class="v2_1_item">
+                            <image class="operation_next" style="margin-right: 0rpx;" src="/image/icon/next.png"></image>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="v1_1">
+                <view class="v2_1" bindtap="exit">
+                    <view class="v2_1_view">
+                        <view class="v2_1_item">
+                            <image class='v2_1_item_img' src='/image/icon/exit.png'></image>
+                            <text class="font_title" style="margin-left:25rpx;align-self:center;">退出当前账号</text>
+                        </view>
+                        <view class="v2_1_item">
+                            <image class="operation_next" style="margin-right: 0rpx;" src="/image/icon/next.png"></image>
                         </view>
                     </view>
                 </view>
             </view>
 
     <!-- 操作栏 -->
-    <view class="P3">
+    <!-- <view class="P3">
         <view class="P4" bindtap="enter_instructions">
             <image class="operation_type" src="/image/icon/instructions.png" ></image>
             <text class="operation_info">操作指南</text>
@@ -53,5 +113,5 @@
             <text class="operation_info">退出当前账号</text>
             <image class="operation_next" src="/image/icon/next.png" ></image>
         </view>
-    </view>
+    </view> -->
 </view>

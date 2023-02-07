@@ -26,7 +26,7 @@ Page({
             that.getUntreatedAlarmNum();
         }
         if(utils.isInArray('7', applet_permissions_list)){
-            that.pigFarmPie();
+            // that.pigFarmPie();
         }
     },
 
@@ -169,8 +169,13 @@ Page({
     },
     // 进入异常报警中人员
     enter_alarm_personnel:function(){
+        // wx.navigateTo({
+        //     url: '/pages/abnormal/personnel',
+        // })
+
+        //淋浴一体机模块
         wx.navigateTo({
-            url: '/pages/abnormal/personnel',
+            url: '/modulepages/pages/homeIndex/index',
         })
     },
     // 进入异常报警中车辆
@@ -187,8 +192,13 @@ Page({
     },
     // 进入异常报警中的物品
     enter_alarm_goods:function(){
+        // wx.navigateTo({
+        //     url: '/pages/abnormal/goods',
+        // })
+
+        //臭氧模块
         wx.navigateTo({
-            url: '/pages/abnormal/goods',
+            url: '/modulepages/pages/ozoneModuleList/index?eid=1',
         })
     },
     // 进入异常报警中的设备

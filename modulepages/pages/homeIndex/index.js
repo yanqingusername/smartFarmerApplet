@@ -60,7 +60,7 @@ Page({
     getdeviceRun:function(){
         var that = this;
         var data = {
-            company_serial: app.globalData.userInfo.company_serial
+            pig_farm_id: app.globalData.userInfo.pig_farm_id
         }
         request.request_get('/equipmentManagement/getdeviceRun.hn', data, function (res) {
             console.info('回调', res)

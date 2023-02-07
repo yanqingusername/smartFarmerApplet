@@ -82,7 +82,7 @@
 
 .v2_1{
     width: 690rpx;
-height: 100rpx;
+/* height: 100rpx; */
 background: #FFFFFF;
 box-shadow: 0px 8rpx 20rpx 0px rgba(0,0,0,0.02);
 border-radius: 8rpx;
@@ -91,7 +91,7 @@ display: flex;
     justify-content: center;
     align-content: center;
     margin-bottom: 0rpx;
-
+    padding: 20rpx 30rpx;
 }
 
 .v2_1_item{
@@ -122,4 +122,11 @@ display: flex;
 .font_title{
     font-size: 32rpx;
     color: #333333;
+}
+
+.v2_1_view{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
