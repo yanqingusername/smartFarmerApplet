@@ -29,6 +29,20 @@
           "name": "ozoneModuleManagePersion",
           "pathName": "modulepages/pages/ozoneModuleManagePersion/index",
           "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pigAbnormalModuleInfo",
+          "pathName": "modulepages/pages/pigAbnormalModuleInfo/index",
+          "query": "sn=0000001",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pigAbnormalModuleHistoryList",
+          "pathName": "modulepages/pages/pigAbnormalModuleHistoryList/index",
+          "query": "",
           "scene": null,
           "launchMode": "default"
         }

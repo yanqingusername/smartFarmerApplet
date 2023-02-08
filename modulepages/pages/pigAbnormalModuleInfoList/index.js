@@ -7,7 +7,6 @@ Page({
     page: 1,
     limit: 10,
     deviceinfoList: [],
-    pigNumber: '0'
   },
   onLoad: function (options) {
 
@@ -45,13 +44,5 @@ Page({
         }
       }
     })
-  },
-  clickPigAbnormalModuleInfo(e) {
-    let sn = e.currentTarget.dataset.sn;
-    if(sn){
-      wx.navigateTo({
-        url: `/modulepages/pages/pigAbnormalModuleInfo/index?sn=${sn}`,
-      })
-    }
   },
 });

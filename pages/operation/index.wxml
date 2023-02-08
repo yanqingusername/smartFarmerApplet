@@ -139,6 +139,13 @@
                     <view class="font_info single_line">蓝牙连接</view>
                 </view>
             </block>
+
+            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+                <view class="P2" bindtap="clickPigAbnormalModuleManage">
+                    <image class="icon1" src="/image/icon/operation_pig_show.png" mode="widthFix"></image>
+                    <view class="font_info single_line">猪只管理</view>
+                </view>
+            </block>
         </view>
     </block>
 

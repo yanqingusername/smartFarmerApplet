@@ -16,6 +16,9 @@ Page({
     },
     onShow:function(){
         var that = this;
+        this.setData({
+          page: 1
+        });
         that.getdeviceinfo();
     },
     onReachBottom: function () {

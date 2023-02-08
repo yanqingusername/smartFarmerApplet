@@ -61,8 +61,13 @@ Page({
 
     //*******猪只操作******************
     enter_operation_pig_show:function(){
+        // wx.navigateTo({
+        //     url: '/pages/pigOperation/farm',
+        // })
+
+        //猪只历史记录及统计报表
         wx.navigateTo({
-            url: '/pages/pigOperation/farm',
+            url: '/modulepages/pages/pigAbnormalModuleHistoryList/index',
         })
     },
     enter_operation_pig_lairage:function(){
@@ -109,6 +114,13 @@ Page({
     enter_bluetooth:function(){
         wx.navigateTo({
             url: '/pages/bluetooth/index',
+        })
+    },
+    clickPigAbnormalModuleManage:function(){
+
+        //猪只管理
+        wx.navigateTo({
+            url: '/modulepages/pages/pigAbnormalModuleManage/index',
         })
     },
 });
