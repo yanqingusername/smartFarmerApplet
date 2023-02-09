@@ -17,7 +17,7 @@
 
     <view style="margin-top:100rpx;">
     
-        <block wx:if="{{selectedType=='0'}}">
+        <block>
             <view class="P1 font_desc">可 “扫码录入” 或 “手动录入” 进行耳环ID录入</view>
             <button class="bt_code bt_public" bindtap="getQRCode">
                 <image src="/image/icon/get_code.png" style="width:28rpx;height:28rpx;" mode="widthFix"></image>
@@ -48,13 +48,25 @@
                     </view>
                 </picker>
             </view> -->
-            <view class="P3">
+            <!-- <view class="P3">
                 <view class="font_sty">
                     {{piggery_sty.length=='0'?'猪舍：--未选择--；猪栏：--未选择--':'猪舍：'+piggery_sty[0].name+'；猪栏：'+piggery_sty[1].name}}
                 </view>
             </view>
             <button class="bt_submit bt_public font_code" bindtap="select_piggery"
-                style="margin-bottom: 50rpx;">{{piggery_sty.length=='0'?'选择猪栏':'修改猪栏'}}</button>
+                style="margin-bottom: 50rpx;">{{piggery_sty.length=='0'?'选择猪栏':'修改猪栏'}}</button> -->
+
+            <view class="medWhite" wx:if="{{selectedType=='0'}}">
+                <view class="title_1" style="align-items: center;">
+                    <view class="title_bold" style="width:22%">选择猪栏</view>
+                    <view style="align-self:center;width:76%;direction:rtl;height:84rpx;" bindtap="select_piggery">
+                        <view class="picker" style="height:84rpx;display: flex;align-items: center;font-size:32rpx;color:#555555;">{{piggery_sty.length=='0'?'请选择猪栏':''+piggery_sty[0].name+'-'+piggery_sty[1].name}}</view>
+                    </view>
+                    <view style="margin-right:0rpx;margin-top:10rpx;">
+                        <image class="right_arrow" src="/image/icon/icon_2023_01_06_19.png"></image>
+                    </view>
+                </view>
+            </view>
 
             <view class="medWhite">
                 <view class="title_1" style="align-items: center;">
@@ -70,16 +82,11 @@
                 </view>
             </view>
 
-            <button class="bt_submit bt_public font_code" bindtap="submit_label_id">确认入栏</button>
-        </block>
-    
-        <block wx:if="{{selectedType=='1'}}">
-            
-        </block>
+            <button class="bt_submit bt_public font_code" bindtap="submit_label_id" wx:if="{{selectedType=='0'}}">确认入栏</button>
 
-        <block wx:if="{{selectedType=='2'}}">
-            
-           
+            <button class="bt_submit bt_public font_code" bindtap="submit_label_id" wx:if="{{selectedType=='1'}}">确认出栏</button>
+
+            <button class="bt_submit bt_public font_code" bindtap="submit_label_id" wx:if="{{selectedType=='2'}}">确认死亡</button>
         </block>
 
     </view>
