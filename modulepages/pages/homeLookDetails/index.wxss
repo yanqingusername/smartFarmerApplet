@@ -560,3 +560,12 @@ ec-canvas {
   background: #546FC6;
 }
 
+.new_view_empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 300rpx;
+}
+

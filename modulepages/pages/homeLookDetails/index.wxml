@@ -161,8 +161,11 @@
     </view>
     <view class="new_view" wx:if="{{homePersonal.length > 0}}">
           <scroll-view class="mask_4" scroll-y >
-            <view wx:for="{{homePersonal}}" wx:for-item="item" wx:key="index" bindtap="checkboxChange" data-id="{{item.id}}" data-index="{{index}}" checked="{{item.selected}}" class="btn {{item.selected ? 'btn-selected' : ''}}" >{{item.real_name}}</view>
+            <view wx:for="{{homePersonal}}" wx:for-item="item" wx:key="index" bindtap="checkboxChange" data-id="{{item.id}}" data-index="{{index}}" checked="{{item.selected}}" class="btn {{item.selected ? 'btn-selected' : ''}}" >{{item.name}}</view>
           </scroll-view>
+    </view>
+    <view class="new_view_empty" wx:if="{{homePersonal.length == 0}}">
+          <view class="new_view_empty_title">暂无数据</view>
     </view>
   </view>
   <!-- 遮罩 -->

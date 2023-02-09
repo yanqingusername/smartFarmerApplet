@@ -190,7 +190,7 @@ Page({
     this.getIwadomchartinfo();
   },
   onShow: function () {
-    this.getEmployees();
+    this.getPersonnelList();
   },
   onLoad: function (options) {
     let that = this;
@@ -399,22 +399,23 @@ Page({
     return chart;
   },
   // 获取所有人员 
-  getEmployees: function () {
+  getPersonnelList: function () {
     var that = this;
     var data = {
-      id: app.globalData.userInfo.id
+      pig_farm: app.globalData.userInfo.pig_farm_id,
+      source: "1"
     }
-    request.request_get('/personnelManagement/getEmployees.hn', data, function (res) {
+    request.request_get('/personnelManagement/getPersonnelList.hn', data, function (res) {
       if (res) {
         if (res.success) {
-          let list = res.data;
+          let list = res.msg;
           for(let i = 0; i< list.length; i++){
             list[i].selected = false;
           }
           
           that.setData({
             homePersonal: list,
-            homePersonalOld: res.data
+            homePersonalOld: res.msg
           });
         } else {
           box.showToast(res.msg);
@@ -425,7 +426,8 @@ Page({
   getIwadomchartinfo: function () {
     var that = this;
     var data = {
-      company_serial: app.globalData.userInfo.company_serial, //
+      // company_serial: app.globalData.userInfo.company_serial, //
+      pig_farm_id: app.globalData.userInfo.pig_farm_id,
       start_time: this.data.startDate, //开始时间，第二个接口用  默认当前
       end_time: this.data.endDate, //结束时间 同开始时间
       status: this.data.status, //洗消状态 1成功 2失败 0沐浴中
