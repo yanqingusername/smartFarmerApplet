@@ -74,7 +74,7 @@
                     <view class="homeindex_4_1_top_1_l">{{count}}人</view>
                 </view>
                 <view class="homeindex_4_1_top_2">
-                    <view class="homeindex_4_1_top_2_t">查看详情</view>
+                    <view class="homeindex_4_1_top_2_t" style="margin-right: 4rpx;">查看详情</view>
                     <image class='homeindex_4_1_top_2_img' src='/image/icon/icon_2023_01_06_09.png'></image>
                 </view>
             </view>

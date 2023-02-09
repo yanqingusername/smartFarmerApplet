@@ -245,7 +245,7 @@ padding: 0rpx 10rpx;
     font-size: 28rpx;
 font-family: PingFangSC-Regular, PingFang SC;
 font-weight: 400;
-color: #999999;margin-right: 4rpx;
+color: #999999;
 }
 
 .homeindex_4_1_top_2_img{

@@ -24,7 +24,8 @@ Page({
         var data = {
             page: that.data.page,
             limit: that.data.limit,
-            company_serial: app.globalData.userInfo.company_serial
+            // company_serial: app.globalData.userInfo.company_serial
+            pig_farm_id: app.globalData.userInfo.pig_farm_id
         }
         request.request_get('/equipmentManagement/getdeviceinfo.hn', data, function (res) {
             if (res) {

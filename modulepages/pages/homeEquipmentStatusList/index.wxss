@@ -87,5 +87,5 @@ padding-left: 34rpx;
     font-size: 28rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
-  color: #999999;margin-right: 4rpx;
+  color: #999999;
   }

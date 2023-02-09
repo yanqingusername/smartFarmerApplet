@@ -25,11 +25,14 @@ Page({
         },
     },
     onLoad: function (options) {
+
+        // sty=132&label_id=88665306&label_serial=2547&lairage_date=2021-05-19&host_serial=coyote_yizhuang_210517001&sty_num_custom=无&source_label=无
+
         this.setData({
-            label_id: options.label_id,
-            lairage_date: options.lairage_date,
-            label_serial: options.label_serial,
-            host_serial: options.host_serial,
+            label_id: options.label_id || '88665306',
+            lairage_date: options.lairage_date || '2021-05-19',
+            label_serial: options.label_serial || '2547',
+            host_serial: options.host_serial || 'coyote_yizhuang_210517001',
             sty_num_custom: options.sty_num_custom,
             source_label: options.source_label
         })

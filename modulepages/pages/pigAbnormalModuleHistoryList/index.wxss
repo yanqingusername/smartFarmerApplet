@@ -92,7 +92,7 @@ color: #00BD6A; */
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: #999999;
-    margin-right: 4rpx;
+    /* margin-right: 4rpx; */
 }
 
 .v2_2 {

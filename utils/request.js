@@ -5,9 +5,9 @@
 */
 
 // 参数配置
-// var apiurl = 'http://192.168.81.90:8080/wisdomLivestockWH'     // 本地测试
+var apiurl = 'http://192.168.81.90:8080/wisdomLivestockWH'     // 本地测试
 //var apiurl = 'http://dev6.coyotebio-lab.com//wisdomLivestock'   // 测试服务器
-var apiurl = 'http://syrdev.coyotebio-lab.com:8080/wisdomLivestockWH'   // 测试服务器
+// var apiurl = 'http://syrdev.coyotebio-lab.com:8080/wisdomLivestockWH'   // 测试服务器
 // var apiurl = 'https://www.prohealth-wch.com:8443/wisdomLivestock'    //正式服务器
 
 // 常用request get封装-异步
