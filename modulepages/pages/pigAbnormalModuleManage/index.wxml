@@ -29,8 +29,8 @@
                 <button class="bt_confirm font_code bt_public" bindtap="addList">确定</button>
             </view>
             <!-- 耳环id列表 -->
-            <scroll-view style="margin-top:50rpx;" scroll-y="true">
-                <block wx:for="{{label_id_list}}">
+            <scroll-view style="margin-top:50rpx;" scroll-y="true" wx:if="{{label_id_list.length > 0}}">
+                <block wx:for="{{label_id_list}}" wx:key="index">
                     <view class="label_id_item">
                         <view class="font_label" style="width:80rpx;">{{fn.index_text(index)}}</view>
                         <view class="font_label" style="width:200rpx;">{{item.id}}</view>
@@ -82,11 +82,11 @@
                 </view>
             </view>
 
-            <button class="bt_submit bt_public font_code" bindtap="submit_label_id" wx:if="{{selectedType=='0'}}">确认入栏</button>
+            <button class="bt_submit bt_public font_code" bindtap="submit_label_id" wx:if="{{selectedType=='0'}}" style="margin-top:50rpx;">确认入栏</button>
 
-            <button class="bt_submit bt_public font_code" bindtap="submit_label_id" wx:if="{{selectedType=='1'}}">确认出栏</button>
+            <button class="bt_submit bt_public font_code" bindtap="submit_label_id" wx:if="{{selectedType=='1'}}" style="margin-top:50rpx;">确认出栏</button>
 
-            <button class="bt_submit bt_public font_code" bindtap="submit_label_id" wx:if="{{selectedType=='2'}}">确认死亡</button>
+            <button class="bt_submit bt_public font_code" bindtap="submit_label_id" wx:if="{{selectedType=='2'}}" style="margin-top:50rpx;">确认死亡</button>
         </block>
 
     </view>
