@@ -7,25 +7,31 @@ Page({
     page: 1,
     limit: 10,
     deviceinfoList: [],
+    label_id: '',
+    isEmpty: false
   },
   onLoad: function (options) {
+    this.setData({
+      label_id: options.label_id
+    });
 
+    this.getColumntransferrecord();
   },
   onShow: function () {
-    var that = this;
-    that.getzonedevicelist();
+    
   },
   onReachBottom: function () {
-
+    this.getColumntransferrecord();
   },
-  getzonedevicelist: function () {
+  getColumntransferrecord: function () {
     var that = this;
     var data = {
+      label_id: that.data.label_id,
       pig_farm_id: app.globalData.userInfo.pig_farm_id,
       page: that.data.page,
       limit: that.data.limit,
     }
-    request.request_get('/equipmentManagement/getzonedevicelist.hn', data, function (res) {
+    request.request_get('/pigManagement/getColumntransferrecord.hn', data, function (res) {
       if (res) {
         if (res.success) {
             if (that.data.page == 1) {
@@ -37,6 +43,12 @@ Page({
               that.setData({
                 deviceinfoList: that.data.deviceinfoList.concat(res.data || []),
                 page: (res.data && res.data.length > 0) ? that.data.page + 1 : that.data.page,
+              });
+            }
+
+            if(that.data.deviceinfoList.length == 0){
+              that.setData({
+                isEmpty: true
               });
             }
         } else {

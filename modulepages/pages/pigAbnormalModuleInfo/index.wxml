@@ -1,15 +1,20 @@
 <view class="page">
 
     <view class="pig_view">
-        <view class="pig_view_1">耳号：0000001</view>
-        <view class="pig_view_1">耳环编号：0000001</view>
-        <view class="pig_view_1">场区：亦庄测试区</view>
+        <!-- <view class="pig_view_1">耳号：{{source_label}}</view> -->
         <view class="pig_view_2">
-            <view class="pig_view_2_2">栋舍：1栋</view>
-            <view class="pig_view_2_1" catch:tap="clickPigAbnormalModuleInfoList" data-id="{{item.id}}">转栏记录</view>
+            <view class="pig_view_2_2">耳号：{{source_label}}</view>
+            <view class="pig_view_2_1" catch:tap="clickPigAbnormalModuleInfoList" data-labelid="{{label_id}}">转栏记录</view>
         </view>
-        <view class="pig_view_1">栏位：2栏</view>
-        <view class="pig_view_1">性别：公猪</view>
+        <view class="pig_view_1">耳环编号：{{label_id}}</view>
+        <view class="pig_view_1">场区：{{farm_name}}</view>
+        <!-- <view class="pig_view_2">
+            <view class="pig_view_2_2">栋舍：{{door}}</view>
+            <view class="pig_view_2_1" catch:tap="clickPigAbnormalModuleInfoList" data-labelid="{{label_id}}">转栏记录</view>
+        </view> -->
+        <view class="pig_view_1">栋舍：{{door}}</view>
+        <view class="pig_view_1">栏位：{{dorm}}</view>
+        <view class="pig_view_1">性别：{{label_type == 0 ? '育肥猪' : label_type == 1 ? '母猪' : label_type == 2 ? '仔猪' : '公猪'}}</view>
     </view>
 
     

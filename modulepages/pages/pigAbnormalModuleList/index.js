@@ -5,37 +5,39 @@ const box = require('../../../utils/box.js')
 Page({
   data: {
     page: 1,
-    limit: 10,
+    limit: 5,
     deviceinfoList: [],
     pigNumber: '0'
   },
   onLoad: function (options) {
-
+    var that = this;
+    that.getAbnormalLabelInfo();
   },
   onShow: function () {
-    var that = this;
-    that.getzonedevicelist();
+    
   },
   onReachBottom: function () {
-
+    this.getAbnormalLabelInfo();
   },
-  getzonedevicelist: function () {
+  getAbnormalLabelInfo: function () {
     var that = this;
     var data = {
       pig_farm_id: app.globalData.userInfo.pig_farm_id,
       page: that.data.page,
       limit: that.data.limit,
     }
-    request.request_get('/equipmentManagement/getzonedevicelist.hn', data, function (res) {
+    request.request_get('/pigManagement/getAbnormalLabelInfo.hn', data, function (res) {
       if (res) {
         if (res.success) {
             if (that.data.page == 1) {
               that.setData({
+                pigNumber: res.count,
                 deviceinfoList: res.data,
                 page: (res.data && res.data.length > 0) ? that.data.page + 1 : that.data.page
               });
             } else {
               that.setData({
+                pigNumber: res.count,
                 deviceinfoList: that.data.deviceinfoList.concat(res.data || []),
                 page: (res.data && res.data.length > 0) ? that.data.page + 1 : that.data.page,
               });
@@ -47,10 +49,11 @@ Page({
     })
   },
   clickPigAbnormalModuleInfo(e) {
-    let sn = e.currentTarget.dataset.sn;
-    if(sn){
+    let item = e.currentTarget.dataset.item;
+    if(item){
+      let jsonItem = JSON.stringify(item);
       wx.navigateTo({
-        url: `/modulepages/pages/pigAbnormalModuleInfo/index?sn=${sn}`,
+        url: `/modulepages/pages/pigAbnormalModuleInfo/index?jsonItem=${jsonItem}`,
       })
     }
   },

@@ -7,6 +7,14 @@ const utils = require('../../../utils/utils.js')
 
 Page({
     data: {
+        source_label: '',
+        label_id: '',
+        farm_name: '',
+        door: '',
+        dorm: '',
+        label_type: 3, // 耳环类型 0：育肥猪，1：母猪，2：仔猪，3：公猪
+
+
         temp_date: time.getDate(new Date()),
         act_date: time.getDate(new Date()),
         today: time.getDate(new Date()),
@@ -26,16 +34,29 @@ Page({
     },
     onLoad: function (options) {
 
+        if(options && options.jsonItem){
+            let jsonItem = JSON.parse(options.jsonItem);
+      
+            this.setData({
+                source_label: jsonItem.source_label,
+                label_id: jsonItem.label_id,
+                farm_name: jsonItem.farm_name,
+                door: jsonItem.door,
+                dorm: jsonItem.dorm,
+                label_type: jsonItem.label_type,
+            });
+          }
+
         // sty=132&label_id=88665306&label_serial=2547&lairage_date=2021-05-19&host_serial=coyote_yizhuang_210517001&sty_num_custom=无&source_label=无
 
-        this.setData({
-            label_id: options.label_id || '88665306',
-            lairage_date: options.lairage_date || '2021-05-19',
-            label_serial: options.label_serial || '2547',
-            host_serial: options.host_serial || 'coyote_yizhuang_210517001',
-            sty_num_custom: options.sty_num_custom,
-            source_label: options.source_label
-        })
+        // this.setData({
+        //     label_id: options.label_id || '88665306',
+        //     lairage_date: options.lairage_date || '2021-05-19',
+        //     label_serial: options.label_serial || '2547',
+        //     host_serial: options.host_serial || 'coyote_yizhuang_210517001',
+        //     sty_num_custom: options.sty_num_custom,
+        //     source_label: options.source_label
+        // })
         // console.log('进入详情页' + options.label_id)
         this.pig_temp_component = this.selectComponent('#mychart-line_temp');
         this.pig_act_component = this.selectComponent('#mychart-line_act');
@@ -445,11 +466,11 @@ Page({
         return ydata
     },
     clickPigAbnormalModuleInfoList(e) {
-        // let sn = e.currentTarget.dataset.sn;
-        // if(sn){
-          wx.navigateTo({
-            url: `/modulepages/pages/pigAbnormalModuleInfoList/index`,
-          })
-        // }
+        let labelid = e.currentTarget.dataset.labelid;
+        if(labelid){
+            wx.navigateTo({
+                url: `/modulepages/pages/pigAbnormalModuleInfoList/index?label_id=${labelid}`,
+            })
+        }
       },
 })

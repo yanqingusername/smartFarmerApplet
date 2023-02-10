@@ -10,7 +10,7 @@ page {
 }
 
 .pig_view{
-    padding: 20rpx 20rpx;
+    padding: 20rpx 30rpx;
     width: 100%;
     background-color: #FFFFFF;
     display: flex;
