@@ -12,7 +12,7 @@ Page({
     name: '',
     job_number: '',
     job_phone: "",
-    password: '',
+    // password: '',
     job_name: '',
     job_id: '',
     frontPhoto: "",
@@ -57,7 +57,7 @@ Page({
               name: userInfo.real_name,
               job_number: userInfo.job_number,
               job_phone: userInfo.phone,
-              password: userInfo.password,
+              // password: userInfo.password,
               frontPhoto: userInfo.head_url
             });
 
@@ -98,7 +98,8 @@ Page({
   },
   //保存按钮禁用判断
   checkSubmitStatus: function (e) {
-    if (this.data.name != '' && this.data.job_number != '' && this.data.job_phone != '' && this.data.password != '' && this.data.job_name != '' && this.data.job_id != '' && this.data.frontPhoto != '' && this.data.gender != '') {
+    // && this.data.password != '' 
+    if (this.data.name != '' && this.data.job_number != '' && this.data.job_phone != '' && this.data.job_name != '' && this.data.job_id != '' && this.data.frontPhoto != '' && this.data.gender != '') {
       this.setData({
         submitState: false
       })
@@ -233,7 +234,8 @@ Page({
   getRoleinfo() {
     let that = this;
     let params = {
-      company_serial: app.globalData.userInfo.company_serial
+      // company_serial: app.globalData.userInfo.company_serial
+      pig_farm_id: app.globalData.userInfo.pig_farm_id
     }
 
     request.request_get('/personnelManagement/getRoleinfo.hn', params, function (res) {
@@ -259,7 +261,7 @@ Page({
     let name = this.data.name; //姓名
     let job_number = this.data.job_number; //工号
     let job_phone = this.data.job_phone;  //手机号
-    let password = this.data.password;  //密码
+    // let password = this.data.password;  //密码
     let job_name = this.data.job_name;  //岗位id
     let job_id = this.data.job_id;   //岗位id
     let frontPhoto = this.data.frontPhoto;  //图片
@@ -287,10 +289,10 @@ Page({
       return;
     }
 
-    if (!password) {
-      box.showToast("请输入密码");
-      return;
-    }
+    // if (!password) {
+    //   box.showToast("请输入密码");
+    //   return;
+    // }
 
     if (!job_name || !job_id) {
       box.showToast("请选择所在岗位");
@@ -308,14 +310,15 @@ Page({
     }
 
     let params = {
-      company_serial: app.globalData.userInfo.company_serial, //公司id
-      company: app.globalData.userInfo.company, //公司
+      // company_serial: app.globalData.userInfo.company_serial, //公司id
+      // company: app.globalData.userInfo.company, //公司
+      pig_farm_id: app.globalData.userInfo.pig_farm_id,
       real_name: name, //姓名
       gender: gender == '男' ? '0' : '1', //男女
       phone: job_phone, //手机号
       job_number: job_number, //工号
       roleId: job_id, //岗位id
-      password: password, //密码
+      // password: password, //密码
       fileUrl: frontPhoto
     }
 
@@ -333,19 +336,26 @@ Page({
       if (res) {
         if (res.success) {
           box.showToast(res.msg);
-          if(that.data.isEditCus == 2){
-            if(that.data.uid == app.globalData.userInfo.id){
-              that.getWorderInfo();
-            }else{
-              wx.navigateBack({
-                delta: 1,
-              });
-            }
-          }else{
+
+          setTimeout(()=>{
             wx.navigateBack({
               delta: 1,
             });
-          }
+          },1500);
+
+          // if(that.data.isEditCus == 2){
+          //   if(that.data.uid == app.globalData.userInfo.id){
+          //     that.getWorderInfo();
+          //   }else{
+          //     wx.navigateBack({
+          //       delta: 1,
+          //     });
+          //   }
+          // }else{
+          //   wx.navigateBack({
+          //     delta: 1,
+          //   });
+          // }
         } else {
           box.showToast(res.msg);
         }
@@ -374,9 +384,11 @@ Page({
                 if (res) {
                   if (res.success) {
                     box.showToast(res.msg);
-                    wx.navigateBack({
-                      delta: 1,
-                    });
+                    setTimeout(()=>{
+                      wx.navigateBack({
+                        delta: 1,
+                      });
+                    },1500);
                   } else {
                     box.showToast(res.msg);
                   }

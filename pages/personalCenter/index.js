@@ -5,7 +5,8 @@ const box = require('../../utils/box.js')
 Page({
 	data:{
         customer_phone: '400-168-1375',
-	},
+        homePersonal: []
+    },
     onLoad:function() {
         console.log("进入个人中心")
     },
@@ -42,7 +43,10 @@ Page({
             console.info('回调', res)
             if(res){
                 var userInfo = res.msg;
-                that.setData({ userInfo: userInfo})
+                that.setData({ 
+                    userInfo: userInfo,
+                    homePersonal: res.personal
+                })
             }else{
                 box.showToast(res.msg);
             }

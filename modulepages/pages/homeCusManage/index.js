@@ -28,14 +28,18 @@ Page({
   onReachBottom: function () {
     this.getEmployeesList();
   },
+  /**
+   * 获取员工信息列表
+   */
   getEmployeesList: function () {
     var that = this;
     var data = {
       page: that.data.page,
       limit: that.data.limit,
-      company_serial: app.globalData.userInfo.company_serial
+      pig_farm_id: app.globalData.userInfo.pig_farm_id
+      // company_serial: app.globalData.userInfo.company_serial
     }
-    request.request_get('/personnelManagement/getEmployeesList.hn', data, function (res) {
+    request.request_get('/personnelManagement/getEmployeesLists.hn', data, function (res) {
       if (res) {
         if (res.success) {
           if (that.data.page == 1) {

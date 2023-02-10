@@ -25,10 +25,13 @@ page {
 }
 
 .P5_1 {
-  width: 25%;
-  padding: 20rpx 0 20rpx 20rpx;
+  width: 30%;
+  /* padding: 20rpx 0 20rpx 20rpx; */
   height: 80rpx;
   color: #080808;
+  align-items: center;
+    justify-content: center;
+    display: flex;
 }
 
 .P5_2 {

@@ -23,7 +23,7 @@ Page({
     job_name: ''
   },
   onShow: function () {
-    this.getdevicelist();
+    // this.getdevicelist();
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({
@@ -32,7 +32,8 @@ Page({
   },
   //保存按钮禁用判断
   checkSubmitStatus: function (e) {
-    if (this.data.name != '' && this.data.position != '' && this.data.job_id != '' && this.data.job_name != '' && this.data.gender != '') {
+    // && this.data.job_id != '' && this.data.job_name != ''
+    if (this.data.name != '' && this.data.position != '' && this.data.gender != '') {
       this.setData({
         submitState: false
       })
@@ -84,8 +85,8 @@ Page({
     let that = this;
     let name = this.data.name;
     let position = this.data.position;
-    let job_id = this.data.job_id;
-    let job_name = this.data.job_name;
+    // let job_id = this.data.job_id;
+    // let job_name = this.data.job_name;
     let gender = this.data.gender;
 
     if (!name) {
@@ -98,10 +99,10 @@ Page({
       return;
     }
 
-    if (!job_name) {
-      box.showToast("请选择设备类型");
-      return;
-    }
+    // if (!job_name) {
+    //   box.showToast("请选择设备类型");
+    //   return;
+    // }
 
     if (!gender) {
       box.showToast("请选择性别");
@@ -109,14 +110,15 @@ Page({
     }
 
     let params = {
-      company_serial: app.globalData.userInfo.company_serial,
+      // company_serial: app.globalData.userInfo.company_serial,
+      pig_farm_id: app.globalData.userInfo.pig_farm_id,
       sn: name, //设备编号
       address: position, //位置描述
-      type:  job_id,//设备类型
+      type:  '1',//设备类型 job_id
       gender: gender == '男' ? '0' : '1' //男女
     }
 
-    request.request_get('/equipmentManagement/adddeviceinfo.hn', params, function (res) {
+    request.request_get('/equipmentManagement/addDecontaminationdeviceinfo.hn', params, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {
@@ -135,7 +137,7 @@ Page({
   getdevicelist() {
     let that = this;
     let params = {
-      company_serial: app.globalData.userInfo.company_serial
+      pig_farm_id: app.globalData.userInfo.pig_farm_id
     }
 
     request.request_get('/equipmentManagement/getdevicelist.hn', params, function (res) {

@@ -12,21 +12,23 @@
         </image>
     </view>
 
-            <view class="v1_1">
-                <view class="v2_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/homeEquipmentManage/index" data-title="淋浴一体机设备参数">
-                    <view class="v2_1_view">
-                        <view class="v2_1_item">
-                            <image class='v2_1_item_img' src='/image/icon/icon_2023_02_06_3.png'></image>
-                            <text class="font_title" style="margin-left:25rpx;align-self:center;">{{'淋浴一体机设备管理'}}</text>
-                        </view>
-                        <view class="v2_1_item">
-                            <image class="operation_next" style="margin-right: 0rpx;" src="/image/icon/next.png"></image>
+            <block wx:for="{{homePersonal}}" wx:key="index">
+                <view class="v1_1">
+                    <view class="v2_1" bindtap="catchHandler" data-pathstring="{{item.path}}" data-title="{{item.title}}">
+                        <view class="v2_1_view">
+                            <view class="v2_1_item">
+                                <image class='v2_1_item_img' src='/image/icon/{{item.icon}}'></image>
+                                <text class="font_title" style="margin-left:25rpx;align-self:center;">{{item.name}}</text>
+                            </view>
+                            <view class="v2_1_item">
+                                <image class="operation_next" style="margin-right: 0rpx;" src="/image/icon/{{item.img}}"></image>
+                            </view>
                         </view>
                     </view>
                 </view>
-            </view>
+            </block>
 
-            <view class="v1_1">
+            <!-- <view class="v1_1">
                 <view class="v2_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/ozoneModuleManage/index" data-title="臭氧浓度监测工作站参数">
                     <view class="v2_1_view">
                         <view class="v2_1_item">
@@ -52,7 +54,7 @@
                         </view>
                     </view>
                 </view>
-            </view>
+            </view> -->
 
             <view class="v1_1">
                 <view class="v2_1" bindtap="enter_instructions">
