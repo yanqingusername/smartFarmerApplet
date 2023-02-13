@@ -29,14 +29,23 @@
                 <button class="bt_confirm font_code bt_public" bindtap="addList">确定</button>
             </view>
             <!-- 耳环id列表 -->
-            <scroll-view style="margin-top:50rpx;" scroll-y="true" wx:if="{{label_id_list.length > 0}}">
+            <scroll-view style="margin-top:40rpx;" scroll-y="true" wx:if="{{label_id_list.length > 0}}">
                 <block wx:for="{{label_id_list}}" wx:key="index">
-                    <view class="label_id_item">
+                    <!-- <view class="label_id_item">
                         <view class="font_label" style="width:80rpx;">{{fn.index_text(index)}}</view>
                         <view class="font_label" style="width:200rpx;">{{item.id}}</view>
                         <view class="font_label" style="width:250rpx;"><input value="{{item.source_id}}" placeholder="猪排号(选填)"
                                 maxlength="10" bindinput="change_source_id" data-gid="{{index}}" /></view>
                         <view class="font_label" style="width:120rpx;" bindtap="del_label_id" data-gid="{{index}}">删除</view>
+                    </view> -->
+                    <view class="new_label_id_item">
+                        <view class="new_label_id_item_1">
+                            <view class="font_label" style="width:80rpx;">{{fn.index_text(index)}}</view>
+                            <view class="font_label" style="width:200rpx;">{{item.id}}</view>
+                        </view>
+                        <view class="new_label_id_item_1">
+                            <image class="new_delete_img" catch:tap="del_label_id" data-gid="{{index}}" src="/image/icon/icon_2023_01_06_27.png"></image>
+                        </view>
                     </view>
                 </block>
             </scroll-view>
@@ -58,9 +67,9 @@
 
             <view class="medWhite" wx:if="{{selectedType=='0'}}">
                 <view class="title_1" style="align-items: center;">
-                    <view class="title_bold" style="width:22%">选择猪栏</view>
+                    <view class="title_bold" style="width:22%">选择栏号</view>
                     <view style="align-self:center;width:76%;direction:rtl;height:84rpx;" bindtap="select_piggery">
-                        <view class="picker" style="height:84rpx;display: flex;align-items: center;font-size:32rpx;color:#555555;">{{piggery_sty.length=='0'?'请选择猪栏':''+piggery_sty[0].name+'-'+piggery_sty[1].name}}</view>
+                        <view class="picker" style="height:84rpx;display: flex;align-items: center;font-size:32rpx;color:#555555;">{{piggery_sty.length=='0'?'请选择栏号':''+piggery_sty[0].name+'-'+piggery_sty[1].name+'-'+piggery_sty[2].name}}</view>
                     </view>
                     <view style="margin-right:0rpx;margin-top:10rpx;">
                         <image class="right_arrow" src="/image/icon/icon_2023_01_06_19.png"></image>
@@ -95,4 +104,4 @@
     
 </view>
 
-<selectPiggeryAndSty show="{{select_piggery_show}}" bind:selectData='selectPiggeryStyData'></selectPiggeryAndSty>
+<selectPigAbnormalModuleSty show="{{select_piggery_show}}" bind:selectData='selectPiggeryStyData'></selectPigAbnormalModuleSty>

@@ -79,7 +79,8 @@
             "pages/pigAbnormalModuleInfo/index",
             "pages/pigAbnormalModuleHistoryList/index",
             "pages/pigAbnormalModuleInfoList/index",
-            "pages/pigAbnormalModuleManage/index"
+            "pages/pigAbnormalModuleManage/index",
+            "pages/pigAbnormalModuleEarmarkBinding/index"
             
           ]
         }

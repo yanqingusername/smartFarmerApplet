@@ -1,0 +1,39 @@
+<wxs src="../../../comm.wxs" module="fn" />
+<view class="page">
+    
+
+    <view style="margin-top:20rpx;">
+    
+        <block>
+            <view class="P1 font_desc">可 “扫码录入” 或 “手动录入” 进行耳环ID录入</view>
+            <button class="bt_code bt_public" bindtap="getQRCode">
+                <image src="/image/icon/get_code.png" style="width:28rpx;height:28rpx;" mode="widthFix"></image>
+                <text class="font_code" style="margin-left: 20rpx;">扫码录入</text>
+            </button>
+            <view class="P2">
+                <input class="label_id_input" type="number" value="{{inputInfo}}" bindinput="inputInfo"
+                    bindfocus="inputFocus"></input>
+                <button class="bt_confirm font_code bt_public" bindtap="addList">确定</button>
+            </view>
+            <!-- 耳环id列表 -->
+            <scroll-view style="margin-top:50rpx;" scroll-y="true" wx:if="{{label_id_list.length > 0}}">
+                <block wx:for="{{label_id_list}}" wx:key="index">
+                    <view class="label_id_item">
+                        <view class="font_label" style="width:80rpx;">{{fn.index_text(index)}}</view>
+                        <view class="font_label" style="width:200rpx;">{{item.id}}</view>
+                        <view class="font_label" style="width:250rpx;"><input value="{{item.source_id}}" placeholder="猪排号(选填)"
+                                maxlength="10" bindinput="change_source_id" data-gid="{{index}}" /></view>
+                        <view class="font_label" style="width:120rpx;" bindtap="del_label_id" data-gid="{{index}}">删除</view>
+                    </view>
+                </block>
+            </scroll-view>
+            
+
+            <button class="bt_submit bt_public font_code" bindtap="submit_label_id" style="margin-top:50rpx;">确认</button>
+        </block>
+
+    </view>
+
+
+    
+</view>

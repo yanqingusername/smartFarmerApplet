@@ -1,0 +1,66 @@
+<block wx:if="{{show}}">
+	<view class="cu-modal show}}" bindtap="hideModal">
+		<view class="cu-dialog" catchtap>
+			<view class="cu-bar bg-white justify-end">
+				<view class="content">{{isShowNumber == 2 ? '选择猪舍': isShowNumber == 3 ? '选择猪舍' : '选择场区'}}</view>
+				<view class="action" bindtap="hideModal">
+					<text class="cuIcon-close text-black"></text>
+				</view>
+			</view>
+			<!-- 选择场区 -->
+			<block wx:if="{{isShowNumber == 1}}">
+				<scroll-view scroll-y style="height:750rpx">
+					<view class="cu-list menu text-left">
+						<block wx:for="{{farm_list}}" wx:key>
+							<view class="cu-item" bindtap="selectfarm" data-id="{{item.id}}" data-locationdescr="{{item.location_descr}}">
+								<label class="flex justify-between align-center flex-sub">
+									<view class="flex-sub">{{item.location_descr}}</view>
+									<text class="cuIcon-right lg text-gray"></text>
+								</label>
+							</view>
+						</block>
+					</view>
+				</scroll-view>
+			</block>
+			<!-- 选择猪栏 -->
+			<!-- 选择猪舍 -->
+			<block wx:if="{{isShowNumber == 2}}">
+				<scroll-view scroll-y style="height:750rpx">
+					<view class="cu-list menu text-left">
+						<block wx:for="{{piggery_lst}}" wx:key>
+							<view class="cu-item" bindtap="selectSty" data-id="{{item.id}}" data-locationdescr="{{item.location_descr}}">
+								<label class="flex justify-between align-center flex-sub">
+									<view class="flex-sub">{{item.location_descr}}</view>
+									<text class="cuIcon-right lg text-gray"></text>
+								</label>
+							</view>
+						</block>
+					</view>
+				</scroll-view>
+			</block>
+			<!-- 选择猪栏 -->
+			<block wx:if="{{isShowNumber == 3}}">
+				<scroll-view scroll-y style="height:750rpx">
+					<view class="cu-list menu text-left">
+						<block wx:for="{{sty_lst}}" wx:key>
+							<view class="cu-item" bindtap="finishStySelect" data-sty_number="{{item.sty_number}}" data-sty_name="{{item.sty_name}}">
+								<label class="flex justify-between align-center flex-sub">
+									<view class="flex-sub">{{item.sty_name}}</view>
+									<text class="cuIcon-right lg text-gray"></text>
+								</label>
+							</view>
+						</block>
+						<block wx:if="{{sty_lst.length==0}}" wx:key>
+							<image src="/image/icon/no_info.png" style="width:100%;height:auto" mode="widthFix"></image>
+						</block>
+					</view>
+				</scroll-view>
+			</block>
+			<view class="cu-bar bg-white">
+				<view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">取消</view>
+				<view wx:if="{{isShowNumber == 2}}" class="action margin-0 flex-sub  solid-left" bindtap="againSelectPiggery1">重选场区</view>
+				<view wx:if="{{isShowNumber == 3}}" class="action margin-0 flex-sub  solid-left" bindtap="againSelectPiggery">重选猪舍</view>
+			</view>
+		</view>
+	</view>
+</block>

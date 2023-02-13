@@ -207,31 +207,3 @@
         height: 30rpx;
     width: 30rpx;
       }
-
-
-      /* 耳环列表 */
-.new_label_id_item{
-    margin: 0 50rpx;
-    width: 650rpx;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10rpx 0rpx;
-}
-.new_label_id_item_1{
-    display: flex;
-    align-items: center;
-}
-.new_font_label{
-    font-family: "SHSCN_Regular";
-    font-size: 32rpx;
-    color: #999999;
-    line-height: 50rpx;
-    text-align: center;
-}
-
-.new_delete_img{
-    width: 50rpx;
-      height: 50rpx;
-     
-  }

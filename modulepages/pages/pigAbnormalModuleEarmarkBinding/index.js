@@ -140,7 +140,7 @@ Page({
         if (label_id_list.length == 0){
             box.showToast('暂无任何数据，请扫描条形码或手动输入！')
         }else if(piggery_sty.length == 0){
-            box.showToast('请选择场区')
+            box.showToast('请选择猪栏')
         }else{
             box.showLoading('正在入栏');
             // var label_ids = [];
@@ -150,14 +150,11 @@ Page({
             // }
             // label_ids = label_ids.join(",");
             var data = {
-                sty_number: piggery_sty[2].number,
+                sty_number: piggery_sty[1].number,
                 label_ids: JSON.stringify(label_id_list),
                 user_serial: app.globalData.userInfo.id,
                 pig_type: index
             };
-
-            console.log(label_id_list)
-            console.log(JSON.stringify(data))
 
             request.request_get('/pigManagement/lairage.hn', data, function (res) {
                 console.info('回调', res)
@@ -227,7 +224,7 @@ Page({
         var piggery_sty = e.detail;
         console.log(piggery_sty)
         that.setData({select_piggery_show:false})
-        if (piggery_sty.length == 3){
+        if (piggery_sty.length == 2){
             that.setData({piggery_sty:piggery_sty})
         }else{
             console.log('参数传递异常')

@@ -123,4 +123,12 @@ Page({
             url: '/modulepages/pages/pigAbnormalModuleManage/index',
         })
     },
+    clickPigAbnormalModuleEarmarkBinding:function(){
+
+        //耳标绑定
+        wx.navigateTo({
+            url: '/modulepages/pages/pigAbnormalModuleEarmarkBinding/index',
+        })
+    },
+    
 });
