@@ -318,6 +318,32 @@ function alarm_status(status){
     }
 }
 
+// 健康状态
+function label_status_view(status){
+    //健康状态（0正常，101温度过高，102温度过低，103活跃度过高，104活跃度过低，105掉落，106死亡，2离线 , 200离场）
+    if(status ==  0){
+        return '正常'
+    }else if(status == 101){
+        return '发热'
+    }else if(status == 102){
+        return ''
+    }else if(status == 103){
+        return ''
+    }else if(status == 104){
+        return ''
+    }else if(status == 105){
+        return ''
+    }else if(status == 106){
+        return ''
+    }else if(status == 2){
+        return '离线'
+    }else if(status == 200){
+        return '离场'
+    }else{
+        return '未知'
+    }
+}
+
 module.exports = {
     carState_info: carState_info,
     carState_img:carState_img,
@@ -342,5 +368,6 @@ module.exports = {
     alarm_status:alarm_status,
     list1_inexistence_list2:list1_inexistence_list2,
     piggeryType_img:piggeryType_img,
-    monitoring_way:monitoring_way
+    monitoring_way:monitoring_way,
+    label_status_view: label_status_view
 };

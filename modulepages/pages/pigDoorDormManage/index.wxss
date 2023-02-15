@@ -1,0 +1,237 @@
+.P1{
+    width: 750rpx;
+    height: 78rpx;
+    padding-left: 34rpx;
+    background-color: #F2F2F2;
+    display: flex;
+    align-items:center;
+    text-align: left;
+}
+.font_desc{
+    font-family: "SHSCN_Regular";
+    font-size: 28rpx;
+    color: #666666;
+}
+.bt_code{
+    margin: 30rpx 30rpx 0 30rpx;
+    width: 690rpx;
+    height: 88rpx;
+}
+.bt_public{
+    background-color: #58A4FD;
+    opacity:1.0;
+    border-radius: 10rpx;
+    display: flex;
+    Justify-content:center;
+    align-items:center;
+    text-align: center;
+}
+.font_code{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #FFFFFF;
+}
+/* 手动录入 */
+.P2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 690rpx;
+    height: 88rpx;
+    margin: 30rpx 30rpx 0 30rpx;
+}
+.label_id_input{
+    width: 550rpx;
+    height: 88rpx;
+    background-color: #ECECEC;
+    opacity: 1.0;
+    border: 1px solid #CCCCCC;
+    border-radius: 10rpx;
+    padding-left: 30rpx;
+}
+.bt_confirm{
+    width: 120rpx;
+    height: 88rpx;
+    margin-left: 20rpx;
+    min-width: 54px;
+}
+/* 耳环列表 */
+.label_id_item{
+    margin: 0 50rpx;
+    width: 650rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.font_label{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #999999;
+    line-height: 50rpx;
+    text-align: center;
+}
+.bt_submit{
+    margin: 0 30rpx 0 30rpx;
+    width: 690rpx;
+    height: 88rpx;
+    margin-bottom: 100rpx;
+}
+.P3{
+    width: 750rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100rpx;
+}
+.font_sty{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #999999;
+    line-height: 50rpx;
+}
+.mypicker{
+    width: 175px;
+    height: 22.39px;
+    text-align: center;
+    }
+
+
+    .font_title{
+        font-size: 32rpx;
+        color: #333333;
+    }
+    .vaccine_img{
+        width: 690rpx;
+        height: 180rpx;
+        margin:0 30rpx 0 30rpx;
+        box-shadow: 0 4rpx 24rpx 0 rgba(221, 221, 221, 0.74);
+        border-radius: 10rpx;
+        opacity:1.0;
+        background-color: #FFFFFF;
+    }
+    .pathogen_img{
+        width: 690rpx;
+        height: 180rpx;
+        margin:0 30rpx 0 30rpx;
+        box-shadow: 0 4rpx 24rpx 0 rgba(221, 221, 221, 0.74);
+        border-radius: 10rpx;
+        opacity:1.0;
+        background-color: #FFFFFF;
+    }
+    
+    .v1_1{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+    
+    .v2_1{
+        width: 690rpx;
+    height: 180rpx;
+    background: #FFFFFF;
+    box-shadow: 0px 8rpx 20rpx 0px rgba(0,0,0,0.02);
+    border-radius: 8rpx;
+    margin-top: 0rpx;
+    display: flex;
+        justify-content: center;
+        align-content: center;
+        margin-bottom: 20rpx;
+    
+    }
+    
+    
+    /* 表头 */
+.P0{
+    height: 80rpx;
+    width: 750rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30rpx;
+    background-color: #FFFFFF;
+}
+    
+    .my_select{
+        width: 345rpx;
+        height: 80rpx;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        flex-wrap:wrap;
+    }
+    .select_line{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 4rpx;
+        background-color: #58A4FD;
+    }
+
+    .medWhite{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50rpx;
+        /* height: auto;
+        z-index: 999;
+        position: relative;
+        top: -27%;
+        width: 90%;
+        left: 5%;
+        right: 5%;
+        border-radius: 20rpx;
+        margin: 30rpx 30rpx 30rpx 0; */
+        /* box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.06); */
+      }
+
+      .title_1{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    width: 690rpx;
+    margin: 0rpx 30rpx;
+    background-color: #fff;
+    padding: 0rpx 20rpx;
+    border-radius: 10rpx;
+      }
+
+      .title_bold{
+        font-weight: 500;
+        /* margin: 20rpx 0 20rpx 20rpx; */
+      }
+
+      .right_arrow{
+        height: 30rpx;
+    width: 30rpx;
+      }
+
+
+      /* 耳环列表 */
+.new_label_id_item{
+    margin: 0 50rpx;
+    width: 650rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10rpx 0rpx;
+}
+.new_label_id_item_1{
+    display: flex;
+    align-items: center;
+}
+.new_font_label{
+    font-family: "SHSCN_Regular";
+    font-size: 32rpx;
+    color: #999999;
+    line-height: 50rpx;
+    text-align: center;
+}
+
+.new_delete_img{
+    width: 50rpx;
+      height: 50rpx;
+     
+  }

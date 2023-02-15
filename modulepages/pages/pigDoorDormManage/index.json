@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "扫码转/入/出栏",
+  "usingComponents": {
+    "selectPigAbnormalModuleSty": "../../../component/selectPigAbnormalModuleSty"
+  }
+}

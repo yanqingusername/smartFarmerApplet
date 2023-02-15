@@ -4,52 +4,57 @@ const box = require('../../../utils/box.js')
 
 Page({
   data: {
+    sn_text: "",
+    pigNumber: 0,
+
     page: 1,
     limit: 10,
     deviceinfoList: [],
 
-    reasonList: [
-      {
-        "id": '1',
-        "text": "亦庄"
-      },
-      {
-        "id": '2',
-        "text": "丰台"
-      },
-      {
-        "id": '3',
-        "text": "海淀"
-      }
-    ],
+    // reasonList: [
+    //   {
+    //     "id": '1',
+    //     "text": "亦庄"
+    //   },
+    //   {
+    //     "id": '2',
+    //     "text": "丰台"
+    //   },
+    //   {
+    //     "id": '3',
+    //     "text": "海淀"
+    //   }
+    // ],
+    reasonList: [],
     reasonIndex: 0,
     isShowReason: 1,
     reason_id: '',
     reason_name: '',
 
+    piggeryList: [],
+    piggeryIndex: 0,
+    isShowPiggery: 1,
+    piggery_id: '',
+    piggery_name: '',
+
 
     statusList: [
       {
-        "id": '1',
+        "id": '200',
+        "text": "离场"
+      },
+      {
+        "id": '101',
+        "text": "发热"
+      },
+      {
+        "id": '0',
         "text": "正常"
       },
       {
         "id": '2',
         "text": "离线"
-      },
-      {
-        "id": '3',
-        "text": "发热"
-      },
-      {
-        "id": '4',
-        "text": "出栏"
-      },
-      {
-        "id": '5',
-        "text": "死亡"
-      }
-    ],
+      }],
     statusIndex: 0,
     isShowStatus: 1,
     status_id: '',
@@ -64,33 +69,94 @@ Page({
   },
   onLoad: function (options) {
 
-    this.currentTime();
+    // this.currentTime();
 
   },
   onShow: function () {
     var that = this;
-    that.getzonedevicelist();
-  },
-  onReachBottom: function () {
+    that.getPigSitearea();
+    that.getAllPiggery();
 
+    that.setData({
+      page: 1
+    });
+
+    that.getHistoricRecords();
   },
-  getzonedevicelist: function () {
+  // 选择场区***************
+  getPigSitearea: function () {
     var that = this;
     var data = {
+        pig_farm: app.globalData.userInfo.pig_farm_id
+    }
+    // 获取场区*********
+    request.request_get('/pigManagement/getPigSitearea.hn', data, function (res) {
+        console.info('回调', res)
+        if (res) {
+            if (res.success) {
+                var reasonList = res.msg;
+                that.setData({
+                  reasonList: reasonList
+                });
+            } else {
+                box.showToast(res.msg)
+            }
+        }
+    })
+  },
+  getAllPiggery: function (e) {
+    var that = this;
+    var data = {
+      pig_farm_id: app.globalData.userInfo.pig_farm_id
+    }
+    request.request_get('/pigManagement/getAllPiggery.hn', data, function (res) {
+        console.info('回调', res)
+        if (res) {
+            if (res.success) {
+                var piggeryList = res.msg;
+                that.setData({
+                  piggeryList: piggeryList,
+                });
+            } else {
+                box.showToast(res.msg)
+            }
+        }
+    })
+  },
+  bindSn(e){
+    this.setData({
+      sn_text: e.detail.value,
+      page: 1
+    });
+   
+    this.getHistoricRecords();
+  },
+  onReachBottom: function () {
+    this.getHistoricRecords();
+  },
+  getHistoricRecords: function () {
+    var that = this;
+    var data = {
+      label_id: this.data.sn_text,
+      Sitearea: this.data.reason_id,
+      House: this.data.piggery_id,
+      status: this.data.status_id,
       pig_farm_id: app.globalData.userInfo.pig_farm_id,
       page: that.data.page,
       limit: that.data.limit,
     }
-    request.request_get('/equipmentManagement/getzonedevicelist.hn', data, function (res) {
+    request.request_get('/pigManagement/getHistoricRecords.hn', data, function (res) {
       if (res) {
         if (res.success) {
             if (that.data.page == 1) {
               that.setData({
+                pigNumber: res.count,
                 deviceinfoList: res.data,
                 page: (res.data && res.data.length > 0) ? that.data.page + 1 : that.data.page
               });
             } else {
               that.setData({
+                pigNumber: res.count,
                 deviceinfoList: that.data.deviceinfoList.concat(res.data || []),
                 page: (res.data && res.data.length > 0) ? that.data.page + 1 : that.data.page,
               });
@@ -102,10 +168,11 @@ Page({
     })
   },
   clickPigAbnormalModuleInfo(e) {
-    let sn = e.currentTarget.dataset.sn;
-    if(sn){
+    let item = e.currentTarget.dataset.item;
+    if(item){
+      let jsonItem = JSON.stringify(item);
       wx.navigateTo({
-        url: `/modulepages/pages/pigAbnormalModuleInfo/index?sn=${sn}`,
+        url: `/modulepages/pages/pigAbnormalModuleInfo/index?jsonItem=${jsonItem}`,
       })
     }
   },
@@ -114,8 +181,20 @@ Page({
     this.setData({
       reasonIndex: reasonIndex,
       reason_id: this.data.reasonList[reasonIndex].id,
-      reason_name: this.data.reasonList[reasonIndex].text,
+      reason_name: this.data.reasonList[reasonIndex].location_descr,
       isShowReason: 2
+    });
+  },
+  /**
+   * 请选择栋舍
+   */
+  bindPiggeryChange: function (e) {
+    var piggeryIndex = e.detail.value;
+    this.setData({
+      piggeryIndex: piggeryIndex,
+      piggery_id: this.data.piggeryList[piggeryIndex].id,
+      piggery_name: this.data.piggeryList[piggeryIndex].location_descr,
+      isShowPiggery: 2
     });
   },
   bindStatusChange: function (e) {

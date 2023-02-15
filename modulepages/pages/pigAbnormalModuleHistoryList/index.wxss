@@ -164,7 +164,7 @@ color: #00BD6A; */
   }
   
   .P5_1 {
-    width: 25%;
+    width: 20%;
     /* padding: 20rpx 0 20rpx 20rpx; */
     height: 80rpx;
     color: #080808;
@@ -267,4 +267,14 @@ color: #00BD6A; */
       border-right: 10rpx solid transparent;
       border-top: 12rpx solid #D8D8D8;
       margin-left: 8rpx;
+  }
+
+  .place_style{
+    color: #B1B1B1;
+  }
+
+  .v2_view{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }

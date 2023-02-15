@@ -1,24 +1,29 @@
+<wxs src="../../../comm.wxs" module="fn" />
 <view class="page">
 
         <view class="v1_view">
-            <view class="v1_view_1">筛选查看项</view>
+            <view class="v2_view">
+                <view class="v1_view_1">筛选查看项</view>
+                <view class="v1_view_1">猪只数量({{pigNumber}})</view>
+            </view>
+            
             <view class="v1_view_2">
 
                 <view class="P5 app_flex" style="margin: 0rpx 0rpx 0rpx 0rpx;">
                     <view class="P5_1 app_font">耳号</view>
-                    <input class="P5_2 app_font" placeholder="请输入耳号" placeholder-class="place_style" bindinput="bindSn" style="height: 80rpx !important;display: flex;align-items: center;width: 480rpx !important;border-bottom: 1px solid #666666;" value="{{sn_text}}"></input>
+                    <input class="P5_2 app_font" placeholder="请输入耳号" placeholder-class="place_style" bindinput="bindSn" style="height: 80rpx !important;display: flex;align-items: center;width: 80% !important;border-bottom: 1px solid #EEEEEE;padding-left:12rpx" value="{{sn_text}}"></input>
                 </view>
 
-                <view class="P5 app_flex" style="margin: 0rpx 0rpx 0rpx 0rpx;">
+                <!-- <view class="P5 app_flex" style="margin: 0rpx 0rpx 0rpx 0rpx;">
                     <view class="P5_1 app_font">统计数量</view>
                     <input class="P5_2 app_font" placeholder="请输入统计数量" placeholder-class="place_style" bindinput="bindNumber" style="height: 80rpx !important;display: flex;align-items: center;width: 480rpx !important;border-bottom: 1px solid #666666;" value="{{number_text}}"></input>
-                </view>
+                </view> -->
 
                 <view class="P5 app_flex" style="margin: 0rpx 0rpx 0rpx 0rpx;">
                     <view class="P5_1 app_font">场区</view>
-                    <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
-                        <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindReasonChange" range-key="text" value="{{reasonList[reasonIndex].value}}" range="{{reasonList}}">
-                            <view class="picker_view" wx:if="{{isShowReason == 2}}">{{reasonList[reasonIndex].text}}</view>
+                    <view class="section" style="width: 80%;height:84rpx;padding-left:12rpx;font-size:30rpx;display: flex;position: relative;border-bottom: 1px solid #EEEEEE;">
+                        <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindReasonChange" range-key="location_descr" value="{{reasonList[reasonIndex].value}}" range="{{reasonList}}">
+                            <view class="picker_view" wx:if="{{isShowReason == 2}}">{{reasonList[reasonIndex].location_descr}}</view>
                             <view class="picker_view" style="color: #B1B1B1;" wx:else>请选择场区</view>
                         </picker>
                         <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
@@ -29,9 +34,9 @@
 
                 <view class="P5 app_flex" style="margin: 0rpx 0rpx 0rpx 0rpx;">
                     <view class="P5_1 app_font">栋舍</view>
-                    <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
-                        <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindReasonChange" range-key="text" value="{{reasonList[reasonIndex].value}}" range="{{reasonList}}">
-                            <view class="picker_view" wx:if="{{isShowReason == 2}}">{{reasonList[reasonIndex].text}}</view>
+                    <view class="section" style="width: 80%;height:84rpx;padding-left:12rpx;font-size:30rpx;display: flex;position: relative;border-bottom: 1px solid #EEEEEE;">
+                        <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindPiggeryChange" range-key="location_descr" value="{{piggeryList[piggeryIndex].value}}" range="{{piggeryList}}">
+                            <view class="picker_view" wx:if="{{isShowPiggery == 2}}">{{piggeryList[piggeryIndex].location_descr}}</view>
                             <view class="picker_view" style="color: #B1B1B1;" wx:else>请选择栋舍</view>
                         </picker>
                         <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
@@ -42,7 +47,7 @@
 
                 <view class="P5 app_flex" style="margin: 0rpx 0rpx 0rpx 0rpx;">
                     <view class="P5_1 app_font">状态</view>
-                    <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
+                    <view class="section" style="width: 80%;height:84rpx;padding-left:12rpx;font-size:30rpx;display: flex;position: relative;border-bottom: 1px solid #EEEEEE;">
                         <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindStatusChange" range-key="text" value="{{statusList[statusIndex].value}}" range="{{statusList}}">
                             <view class="picker_view" wx:if="{{isShowStatus == 2}}">{{statusList[statusIndex].text}}</view>
                             <view class="picker_view" style="color: #B1B1B1;" wx:else>请选择状态</view>
@@ -53,65 +58,63 @@
                     </view>
                 </view>
 
-                <view class="hld_1">
-		<view class="hld_1_1">
-			<view class="hld_1_1_l" style="padding-left: 0rpx;">
-				<view class="hld_1_1_l_1">开始日期</view>
-				<view class="hld_1_1_l_2">
-					<picker
-					 mode="date"
-					 value="{{start_time}}"
-					 start="2020-01-01"
-					 end="{{yearmouthday}}"
-					 bindchange="bindStartTimeChange"
-					>
-						<view style="display: flex;align-items: center;">
-							<view class="picker">{{start_time}}</view>
-							<image class='hld_1_1_l_2_img' src='/image/icon/icon_2023_01_06_13.png' />
-						</view>
-					</picker>
-				</view>
-			</view>
-			<view class="hld_1_1_l">
-				<view class="hld_1_1_l_1">结束日期</view>
-				<view class="hld_1_1_l_2">
-					<picker
-					 mode="date"
-					 value="{{end_time}}"
-					 start="2020-01-01"
-					 end="{{yearmouthday}}"
-					 bindchange="bindEndTimeChange"
-					>
-						<view style="display: flex;align-items: center;">
-							<view class="picker">{{end_time}}</view>
-							<image class='hld_1_1_l_2_img' src='/image/icon/icon_2023_01_06_13.png' />
-						</view>
-					</picker>
-				</view>
-			</view>
-		</view>
-		<!-- <view class="hld_1_2" /> -->
-
-	</view>
+                <!-- <view class="hld_1">
+                    <view class="hld_1_1">
+                        <view class="hld_1_1_l" style="padding-left: 0rpx;">
+                            <view class="hld_1_1_l_1">开始日期</view>
+                            <view class="hld_1_1_l_2">
+                                <picker
+                                mode="date"
+                                value="{{start_time}}"
+                                start="2020-01-01"
+                                end="{{yearmouthday}}"
+                                bindchange="bindStartTimeChange"
+                                >
+                                    <view style="display: flex;align-items: center;">
+                                        <view class="picker">{{start_time}}</view>
+                                        <image class='hld_1_1_l_2_img' src='/image/icon/icon_2023_01_06_13.png' />
+                                    </view>
+                                </picker>
+                            </view>
+                        </view>
+                        <view class="hld_1_1_l">
+                            <view class="hld_1_1_l_1">结束日期</view>
+                            <view class="hld_1_1_l_2">
+                                <picker
+                                mode="date"
+                                value="{{end_time}}"
+                                start="2020-01-01"
+                                end="{{yearmouthday}}"
+                                bindchange="bindEndTimeChange"
+                                >
+                                    <view style="display: flex;align-items: center;">
+                                        <view class="picker">{{end_time}}</view>
+                                        <image class='hld_1_1_l_2_img' src='/image/icon/icon_2023_01_06_13.png' />
+                                    </view>
+                                </picker>
+                            </view>
+                        </view>
+                    </view>
+	            </view> -->
             </view>
         </view>
 
-        <view class="v2_1" wx:for="{{10}}" wx:key="index" bind:tap="clickPigAbnormalModuleInfo" data-sn="000000{{index+1}}">
-            <view class="v2_1_top">
-                <view class="v2_1_top_1"><image class='v2_1_top_1_img' src="/image/icon/sty_warning.png"></image>000000{{index+1}}</view>
-                <view class="v2_1_top_2" style="color: {{index == 0 ? '#FF2C2B' : '#666666'}};">{{'发热'}}</view>
+            <view class="v2_1" wx:for="{{deviceinfoList}}" wx:key="index" bind:tap="clickPigAbnormalModuleInfo" data-item="{{item}}">
+                <view class="v2_1_top">
+                    <view class="v2_1_top_1"><image class='v2_1_top_1_img' src="/image/icon/icon_2023_02_14_10.png"></image>{{item.label_id}}</view>
+                    <view class="v2_1_top_2" style="color: {{item.status == 101 ? '#FF2C2B' : '#666666'}};">{{fn.label_status_view(item.status)}}</view>
+                </view>
+                <view class="v2_1_line"></view>
+                <!-- <view class="v2_1_position"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_25.png'></image>场区名称：{{'测试区域'}}</view> -->
+                <view class="v2_1_title" wx:if="{{item.Sitearea}}">{{item.Sitearea}}</view>
+                <!-- <view class="v2_1_position" style="margin-top:16rpx;"><image class='v2_1_position_img' src='/image/icon/icon_2023_02_08_1.png'></image>猪只数量：{{'10'}}</view> -->
+                <view class="v2_1_position" style="margin-top:16rpx;"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_25.png'></image>栋舍栏位：{{item.door}}{{item.dorm}}</view>
+                <view class="v2_1_position" style="margin-top:16rpx;"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_24.png'></image>时间：{{item.check_in_time}}</view>
             </view>
-            <view class="v2_1_line"></view>
-            <!-- <view class="v2_1_position"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_25.png'></image>场区名称：{{'测试区域'}}</view> -->
-            <view class="v2_1_title">{{'测试区域'}}</view>
-            <view class="v2_1_position" style="margin-top:16rpx;"><image class='v2_1_position_img' src='/image/icon/icon_2023_02_08_1.png'></image>猪只数量：{{'10'}}</view>
-            <view class="v2_1_position" style="margin-top:16rpx;"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_25.png'></image>栋舍栏位：{{'2栋3栏'}}</view>
-            <view class="v2_1_position" style="margin-top:16rpx;"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_24.png'></image>时间：{{'2023-02-07 18:40'}}</view>
-		</view>
 
-        <!-- <block wx:if="{{deviceinfoList.length==0}}">
-                <view class="homeindex_4_1_top_2_t" style="display: flex;align-items: center;justify-content: center;padding: 100rpx;">暂无数据</view>
-            </block> -->
+        <block wx:if="{{deviceinfoList.length==0}}">
+            <view class="homeindex_4_1_top_2_t" style="display: flex;align-items: center;justify-content: center;padding: 100rpx;">暂无数据</view>
+        </block>
     
 
     <view style="height:40rpx;width:0rpx"></view>

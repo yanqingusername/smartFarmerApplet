@@ -13,8 +13,9 @@ Page({
         door: '',
         dorm: '',
         label_type: 3, // 耳环类型 0：育肥猪，1：母猪，2：仔猪，3：公猪
-
-
+        Sitearea: "",
+        label_serial: "",
+        
         temp_date: time.getDate(new Date()),
         act_date: time.getDate(new Date()),
         today: time.getDate(new Date()),
@@ -36,14 +37,16 @@ Page({
 
         if(options && options.jsonItem){
             let jsonItem = JSON.parse(options.jsonItem);
-      
+            console.log(jsonItem)
             this.setData({
                 source_label: jsonItem.source_label,
                 label_id: jsonItem.label_id,
-                farm_name: jsonItem.farm_name,
+                Sitearea: jsonItem.Sitearea,
                 door: jsonItem.door,
                 dorm: jsonItem.dorm,
                 label_type: jsonItem.label_type,
+                label_serial: jsonItem.serial,
+                farm_name: jsonItem.farm_name
             });
           }
 
@@ -472,5 +475,80 @@ Page({
                 url: `/modulepages/pages/pigAbnormalModuleInfoList/index?label_id=${labelid}`,
             })
         }
-      },
+    },
+    // led等开关改变
+    openLED: function () {
+        var that = this;
+        var ledallowOperation = that.data.ledallowOperation;
+        if (ledallowOperation) {
+            that.setData({
+                ledallowOperation: false,
+                ledTip: true
+            })
+            that.sendOpenLEDCmd();
+        } else {
+            box.showToast("LED正在打开...")
+        }
+    },
+    // 发送打开耳环命令
+    sendOpenLEDCmd: function () {
+        var that = this;
+        var data = {
+            label_serial: that.data.label_serial,
+            userId: app.globalData.userInfo.id,
+            status: "on", // on 打开 off 关闭
+            time: 600, // on 600s off 0
+        };
+        request.request_get('/pigManagement/openLED.hn', data, function (res) {
+            console.info('回调', res)
+            if (res) {
+                if (res.success) {
+                    var id = res.id;
+                    var startTime = new Date().valueOf();
+                    that.checkLedOpenSuccess(id, startTime);
+                } else {
+                    that.setData({
+                        ledIsOpen: false
+                    })
+                    box.showToast(res.msg)
+                }
+            }
+        })
+    },
+    checkLedOpenSuccess: function (id, startTime) {
+        var that = this;
+        request.request_get('/pigManagement/getLEDResult.hn', {
+            id: id
+        }, function (res) {
+            console.info('回调', res)
+            if (res) {
+                if (res.success) {
+                    var open = res.open;
+                    if (open) {
+                        console.log("打开耳环成功")
+                        that.setData({
+                            ledallowOperation: true,
+                            ledOpenMsg: "耳环LED灯已打开!"
+                        }) // 已打开，可以继续打开
+                    } else {
+                        var endTime = new Date().valueOf();
+                        var time = endTime - startTime;
+                        if (time <= 60000) { //60s
+                            setTimeout(function () {
+                                that.checkLedOpenSuccess(id, startTime)
+                            }, 2000);
+                        } else {
+                            console.log("打开耳环灯失败")
+                            that.setData({
+                                ledallowOperation: true,
+                                ledOpenMsg: "耳环LED灯打开失败，请重试!"
+                            }) // 打开失败，可以继续打开
+                        }
+                    }
+                } else {
+                    box.showToast(res.msg)
+                }
+            }
+        })
+    },
 })

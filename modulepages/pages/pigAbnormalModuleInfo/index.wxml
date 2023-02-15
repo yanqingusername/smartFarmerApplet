@@ -6,8 +6,13 @@
             <view class="pig_view_2_2">耳号：{{source_label}}</view>
             <view class="pig_view_2_1" catch:tap="clickPigAbnormalModuleInfoList" data-labelid="{{label_id}}">转栏记录</view>
         </view>
-        <view class="pig_view_1">耳环编号：{{label_id}}</view>
-        <view class="pig_view_1">场区：{{farm_name}}</view>
+        <!-- <view class="pig_view_1">电子耳标：{{label_id}}</view> -->
+        <view class="pig_view_2">
+            <view class="pig_view_2_2">电子耳标：{{label_id}}</view>
+            <view class="pig_view_2_1" catch:tap="openLED" data-labelid="{{label_id}}">打开LED</view>
+        </view>
+
+        <view class="pig_view_1">场区：{{Sitearea}}</view>
         <!-- <view class="pig_view_2">
             <view class="pig_view_2_2">栋舍：{{door}}</view>
             <view class="pig_view_2_1" catch:tap="clickPigAbnormalModuleInfoList" data-labelid="{{label_id}}">转栏记录</view>
