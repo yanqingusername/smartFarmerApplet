@@ -24,7 +24,8 @@
                 <text class="font_code" style="margin-left: 20rpx;">扫码录入</text>
             </button>
             <view class="P2">
-                <input class="label_id_input" type="number" value="{{inputInfo}}" bindinput="inputInfo"
+                <!-- type="number" -->
+                <input class="label_id_input" value="{{inputInfo}}" bindinput="inputInfo"
                     bindfocus="inputFocus"></input>
                 <button class="bt_confirm font_code bt_public" bindtap="addList">确定</button>
             </view>
@@ -93,9 +94,9 @@
 
             <button class="bt_submit bt_public font_code" bindtap="submit_label_id" wx:if="{{selectedType=='0'}}" style="margin-top:50rpx;">确认入栏</button>
 
-            <button class="bt_submit bt_public font_code" bindtap="submit_label_id" wx:if="{{selectedType=='1'}}" style="margin-top:50rpx;">确认出栏</button>
+            <button class="bt_submit bt_public font_code" bindtap="submit_livestock" wx:if="{{selectedType=='1'}}" style="margin-top:50rpx;">确认出栏</button>
 
-            <button class="bt_submit bt_public font_code" bindtap="submit_label_id" wx:if="{{selectedType=='2'}}" style="margin-top:50rpx;">确认死亡</button>
+            <button class="bt_submit bt_public font_code" bindtap="submit_click" wx:if="{{selectedType=='2'}}" style="margin-top:50rpx;">确认死亡</button>
         </block>
 
     </view>

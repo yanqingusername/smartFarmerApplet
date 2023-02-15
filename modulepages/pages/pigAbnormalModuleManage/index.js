@@ -153,7 +153,8 @@ Page({
                 sty_number: piggery_sty[2].number,
                 label_ids: JSON.stringify(label_id_list),
                 user_serial: app.globalData.userInfo.id,
-                pig_type: index
+                pig_type: index,
+                checkinTime: that.data.birthDate  //入栏
             };
 
             console.log(label_id_list)
@@ -175,7 +176,7 @@ Page({
                             }
                         }
                         wx.hideLoading()
-                        that.setData({label_id_list:[] })
+                        that.setData({label_id_list:[],piggery_sty:[] })
                         if(fail_text == ''){
                             wx.showModal({
                                 title: '成功',
@@ -263,4 +264,166 @@ Page({
             label_id_list: label_id_list
         })
       },
+      // 确认出栏
+      submit_livestock:function(){
+        var that = this;
+        var index = that.data.index;
+        var label_id_list = that.data.label_id_list;
+        if (label_id_list.length == 0){
+            box.showToast('暂无任何数据，请扫描条形码或手动输入！')
+        }else{
+            box.showLoading('正在出栏');
+            var label_ids = [];
+            for (var index in label_id_list) {
+                var inputText = label_id_list[index].id;
+                label_ids.push(inputText);
+            }
+            let labelidsstring = label_ids.join(",");
+            var data = {
+                label_ids: labelidsstring,
+                user_serial: app.globalData.userInfo.id,
+                checkoutTime: that.data.birthDate,
+                operation: '2' //2是健康出栏
+            };
+
+            console.log(data)
+
+            request.request_get('/pigManagement/Livestock.hn', data, function (res) {
+                console.info('回调', res)
+                if (res) {
+                    if (res.success) {
+                        var result_arr = res.msg;
+                        var fail_text = '';
+                        for(var a in result_arr){
+                            if(result_arr[a].success){
+
+                            }else{
+                                var info = result_arr[a].label_id + ' ' + result_arr[a].msg
+                                fail_text += info
+                                fail_text += '\r\n'
+                            }
+                        }
+                        wx.hideLoading()
+                        that.setData({label_id_list:[],piggery_sty:[] })
+                        if(fail_text == ''){
+                            wx.showModal({
+                                title: '成功',
+                                content: '出栏成功',
+                                confirmText: '继续出栏',
+                                cancelText: '返回主页',
+                                success: function (res) {
+                                    if (res.confirm) {
+                                        console.log('用户点击了继续出栏')
+                                    } else if (res.cancel) {
+                                        wx.switchTab({
+                                            url: '/pages/operation/index',
+                                        })
+                                    }
+                                }
+                            })
+                        }else{
+                            wx.showModal({
+                                title: '失败',
+                                content: fail_text,
+                                confirmText: '继续出栏',
+                                cancelText: '返回主页',
+                                success: function (res) {
+                                    if (res.confirm) {
+                                        console.log('用户点击了继续出栏')
+                                    } else if (res.cancel) {
+                                        wx.switchTab({
+                                        url: '/pages/operation/index',
+                                        })
+                                    }
+                                }
+                            })
+                        }
+                    } else {
+                        box.showToast(res.msg)
+                    }
+                }
+            })
+        }
+    },
+    // 确认死亡
+    submit_click:function(){
+        var that = this;
+        var index = that.data.index;
+        var label_id_list = that.data.label_id_list;
+        if (label_id_list.length == 0){
+            box.showToast('暂无任何数据，请扫描条形码或手动输入！')
+        }else{
+            box.showLoading('加载中...');
+            var label_ids = [];
+            for (var index in label_id_list) {
+                var inputText = label_id_list[index].id;
+                label_ids.push(inputText);
+            }
+            let labelidsstring = label_ids.join(",");
+            var data = {
+                label_ids: labelidsstring,
+                user_serial: app.globalData.userInfo.id,
+                checkoutTime: that.data.birthDate,
+                operation: '3' //3是死亡
+            };
+
+            console.log(data)
+
+            request.request_get('/pigManagement/Livestock.hn', data, function (res) {
+                console.info('回调', res)
+                if (res) {
+                    if (res.success) {
+                        var result_arr = res.msg;
+                        var fail_text = '';
+                        for(var a in result_arr){
+                            if(result_arr[a].success){
+
+                            }else{
+                                var info = result_arr[a].label_id + ' ' + result_arr[a].msg
+                                fail_text += info
+                                fail_text += '\r\n'
+                            }
+                        }
+                        wx.hideLoading()
+                        that.setData({label_id_list:[],piggery_sty:[] })
+                        if(fail_text == ''){
+                            wx.showModal({
+                                title: '成功',
+                                content: '成功',
+                                confirmText: '继续',
+                                cancelText: '返回主页',
+                                success: function (res) {
+                                    if (res.confirm) {
+                                        console.log('用户点击了确认死亡')
+                                    } else if (res.cancel) {
+                                        wx.switchTab({
+                                            url: '/pages/operation/index',
+                                        })
+                                    }
+                                }
+                            })
+                        }else{
+                            wx.showModal({
+                                title: '失败',
+                                content: fail_text,
+                                confirmText: '继续',
+                                cancelText: '返回主页',
+                                success: function (res) {
+                                    if (res.confirm) {
+                                        console.log('用户点击了确认死亡')
+                                    } else if (res.cancel) {
+                                        wx.switchTab({
+                                        url: '/pages/operation/index',
+                                        })
+                                    }
+                                }
+                            })
+                        }
+                    } else {
+                        box.showToast(res.msg)
+                    }
+                }
+            })
+        }
+    },
 })

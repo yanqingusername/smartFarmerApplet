@@ -117,14 +117,36 @@ Page({
   },
   //利用js进行模糊查询
   searchChangeHandle: function (e) {
+    let that = this;
     this.setData({
       searchText: e.detail.value,
       page: 1
     });
 
+    var value = e.detail.value;
+    var channelList = that.data.employeesList;
+    if (value == '' || value == null) {
+        var arr = [];
+        for (var i = 0; i < channelList.length; i++) {
+          if (channelList[i].name.indexOf(value) >= 0) {
+            channelList[i].isSelect = false;
+            arr.push(channelList[i]);
+          }
+        }
+        console.log(arr);
+        that.setData({
+          employeesList: arr
+        });
 
-    if (e.detail.value) {
-      this.getPersonnelList();
+        if (that.data.employeesList.length == 0) {
+          that.setData({
+            isSearch: true
+          });
+        }
+
+        if (that.data.lableidList.length > 0) {
+          that.setlableidList(1);
+        }
     } else {
       this.setData({
         searchText: '',
@@ -132,6 +154,8 @@ Page({
         employeesList: [],
         isSearch: false
       });
+
+      this.getPersonnelList();
     }
   },
   // 输入框有文字时，点击X清除
@@ -142,6 +166,8 @@ Page({
       isSearch: false,
       employeesList: []
     });
+
+    this.getPersonnelList();
   },
   clickSelectHandler(e) {
 
@@ -204,7 +230,7 @@ Page({
         }
 
       } else {
-        box.showToast('设备管理员不能超过5个');
+        box.showToast('设备审批人不能超过5个');
       }
     }
   },
