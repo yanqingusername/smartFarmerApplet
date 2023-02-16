@@ -108,27 +108,40 @@ Page({
     enter_operation_piggery_sty:function(){
         wx.navigateTo({
             url: '/pages/pigOperation/piggery_sty_operation',
-        })
+        });
     },
 
     enter_bluetooth:function(){
         wx.navigateTo({
             url: '/pages/bluetooth/index',
-        })
+        });
     },
     clickPigAbnormalModuleManage:function(){
 
         //猪只管理
         wx.navigateTo({
             url: '/modulepages/pages/pigAbnormalModuleManage/index',
-        })
+        });
     },
     clickPigAbnormalModuleEarmarkBinding:function(){
 
         //耳标绑定
         wx.navigateTo({
             url: '/modulepages/pages/pigAbnormalModuleEarmarkBinding/index',
-        })
+        });
     },
+    clickPigDoorDormManage:function(){
+        //猪舍档案管理
+        wx.navigateTo({
+            url: '/modulepages/pages/pigDoorDormManage/index',
+        });
+    },
+    clickPigIndividualFilesManage:function(){
+        //猪舍个体档案管理
+        wx.navigateTo({
+            url: '/modulepages/pages/pigIndividualFilesManage/index',
+        });
+    },
+
     
 });

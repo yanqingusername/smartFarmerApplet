@@ -153,6 +153,20 @@
                     <view class="font_info single_line">耳标绑定</view>
                 </view>
             </block>
+
+            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+                <view class="P2" bindtap="clickPigDoorDormManage">
+                    <image class="icon1" src="/image/icon/operation_pig_show.png" mode="widthFix"></image>
+                    <view class="font_info single_line">猪舍档案</view>
+                </view>
+            </block>
+
+            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+                <view class="P2" bindtap="clickPigIndividualFilesManage">
+                    <image class="icon1" src="/image/icon/operation_pig_show.png" mode="widthFix"></image>
+                    <view class="font_info single_line">猪只个体</view>
+                </view>
+            </block>
         </view>
     </block>
 

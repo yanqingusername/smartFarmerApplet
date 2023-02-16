@@ -80,7 +80,12 @@
             "pages/pigAbnormalModuleHistoryList/index",
             "pages/pigAbnormalModuleInfoList/index",
             "pages/pigAbnormalModuleManage/index",
-            "pages/pigAbnormalModuleEarmarkBinding/index"
+            "pages/pigAbnormalModuleEarmarkBinding/index",
+            "pages/pigDoorDormManage/index",
+            "pages/pigDoorDormAdd/index",
+            "pages/pigDoorDormPersion/index",
+            "pages/pigIndividualFilesManage/index",
+            "pages/pigIndividualFilesAdd/index"
             
           ]
         }

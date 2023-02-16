@@ -1,0 +1,45 @@
+<view class="page">
+      <view class="medWhite">
+        <view style="height: 2rpx;"></view>
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">场区名称</view>
+          <input class="P5_2 app_font" placeholder="请输入场区名称" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="15" value="{{name}}"></input>
+        </view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">栋舍名称</view>
+          <input class="P5_2 app_font" placeholder="请输入栋舍名称" placeholder-class="place_style" bindinput="bindDoorName" style="position:relative;right:20rpx" value="{{doorname}}"></input>
+        </view>
+
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">栏位</view>
+          <view class="new_view_1">
+            <input class="new_view_2 app_font" placeholder-class="place_style" bindinput="bindPersionName" value="{{persionname}}"></input>
+            <input class="new_view_3 app_font" placeholder-class="place_style" bindinput="bindPersionName" value="{{persionname}}"></input>
+            <view>—</view>
+            <input class="new_view_4 app_font" placeholder-class="place_style" bindinput="bindPersionName" value="{{persionname}}"></input>
+          </view>
+          <!-- <input class="P5_2 app_font" placeholder="请输入饲养员" placeholder-class="place_style" bindinput="bindPersionName" style="position:relative;right:20rpx" value="{{persionname}}"></input> -->
+        </view>
+
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">饲养员</view>
+          <input class="P5_2 app_font" placeholder="请输入饲养员" placeholder-class="place_style" bindinput="bindPersionName" style="position:relative;right:20rpx" value="{{persionname}}"></input>
+        </view>
+
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view style="height: 10rpx;"></view>
+      </view>
+
+      
+      <view class="button_gray" wx:if="{{submitState}}">保存</view>
+
+      <view class="button_submit" wx:else bind:tap="submitBuffer">保存</view>
+
+</view> 

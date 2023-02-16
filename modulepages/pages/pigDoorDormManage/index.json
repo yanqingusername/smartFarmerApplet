@@ -1,6 +1,5 @@
 {
-  "navigationBarTitleText": "扫码转/入/出栏",
+  "navigationBarTitleText": "猪舍档案管理",
   "usingComponents": {
-    "selectPigAbnormalModuleSty": "../../../component/selectPigAbnormalModuleSty"
   }
 }

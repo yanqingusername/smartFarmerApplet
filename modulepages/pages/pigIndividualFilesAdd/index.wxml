@@ -1,0 +1,67 @@
+<view class="page">
+      <view class="medWhite">
+        <view style="height: 2rpx;"></view>
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">耳号</view>
+          <input class="P5_2 app_font" placeholder="请输入耳号" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="15" value="{{name}}"></input>
+        </view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">电子耳标</view>
+          <input class="P5_2 app_font" placeholder="请输入电子耳标" placeholder-class="place_style" bindinput="bindSnName" style="position:relative;right:20rpx" value="{{snname}}"></input>
+        </view>
+
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">品种</view>
+          <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
+            <picker style="height:100%;margin-top:20rpx;width:90%;" bindchange="bindPickerChangeGender" value="{{genderIndex}}" range="{{genderList}}">
+              <view class="picker" wx:if="{{isShowGender == 2}}">{{genderList[genderIndex]}}</view>
+              <view class="picker" style="color: #B1B1B1;" wx:else>请选择品种</view>
+            </picker>
+            <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
+              <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+            </view>
+          </view>
+        </view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">性别</view>
+          <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
+            <picker style="height:100%;margin-top:20rpx;width:90%;" bindchange="bindPickerChangeGender" value="{{genderIndex}}" range="{{genderList}}">
+              <view class="picker" wx:if="{{isShowGender == 2}}">{{genderList[genderIndex]}}</view>
+              <view class="picker" style="color: #B1B1B1;" wx:else>请选择性别</view>
+            </picker>
+            <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
+              <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+            </view>
+          </view>
+        </view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">在场情况</view>
+          <input class="P5_2 app_font" placeholder="请输入在场情况" placeholder-class="place_style" style="position:relative;right:20rpx" value="{{'在场'}}" disabled="{{true}}"></input>
+        </view>
+
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">录入时间</view>
+          <input class="P5_2 app_font" placeholder="请输入录入时间" placeholder-class="place_style" style="position:relative;right:20rpx" value="{{yearmouthday}}" disabled="{{true}}"></input>
+        </view>
+
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view style="height: 10rpx;"></view>
+      </view>
+
+      
+      <view class="button_gray" wx:if="{{submitState}}">保存</view>
+
+      <view class="button_submit" wx:else bind:tap="submitBuffer">保存</view>
+
+</view> 
