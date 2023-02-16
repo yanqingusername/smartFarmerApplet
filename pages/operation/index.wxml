@@ -2,6 +2,100 @@
 <scroll-view scroll-y class="scrollPage page">
     <!-- 人员管理 -->
     <block wx:if="{{fn.list1_inexistence_list2(['10','11'], applet_permissions_list)}}">
+        <view class="new_view_1">查看</view>
+        <view class="new_view_2">
+            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+                <view class="new_view_2_1">
+                    <view class="new_view_2_1_1"  bindtap="enter_operation_pig_show">
+                        <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_16_2.png"></image>
+                    </view>
+                    <view class="new_view_2_1_title ">猪只查看</view>
+                </view>
+                
+            </block>
+        </view>
+
+        <view class="new_view_1">操作</view>
+        <view class="new_view_2">
+            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+                <view class="new_view_2_1">
+                    <view class="new_view_2_1_1" bindtap="clickPigAbnormalModuleEarmarkBinding">
+                        <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_16_3.png"></image>
+                    </view>
+                    <view class="new_view_2_1_title ">耳标绑定</view>
+                </view>
+            </block>
+
+            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+                <view class="new_view_2_1">
+                    <view class="new_view_2_1_1" bindtap="clickPigAbnormalModuleManage">
+                        <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_16_4.png"></image>
+                    </view>
+                    <view class="new_view_2_1_title ">猪只周转</view>
+                </view>
+                
+            </block>
+            
+        </view>
+
+        <view class="new_view_1">管理</view>
+        <view class="new_view_2">
+            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+                <view class="new_view_2_1">
+                    <view class="new_view_2_1_1" bindtap="clickPigDoorDormManage">
+                        <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_16_6.png"></image>
+                    </view>
+                    <view class="new_view_2_1_title ">猪舍管理</view>
+                </view>
+            </block>
+
+            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+                <view class="new_view_2_1">
+                    <view class="new_view_2_1_1" bindtap="clickPigIndividualFilesManage">
+                        <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_16_5.png"></image>
+                    </view>
+                    <view class="new_view_2_1_title ">猪只档案</view>
+                </view>
+                
+            </block>
+
+            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+                <view class="new_view_2_1">
+                    <view class="new_view_2_1_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/homeCusManage/index" data-title="员工管理">
+                        <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_16_8.png"></image>
+                    </view>
+                    <view class="new_view_2_1_title ">员工管理</view>
+                </view>
+                
+            </block>
+        </view>
+
+        <view class="new_view_2">
+            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+                <view class="new_view_2_1">
+                    <view class="new_view_2_1_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/ozoneModuleManage/index" data-title="臭氧浓度监测工作站参数">
+                        <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_16_7.png"></image>
+                    </view>
+                    <view class="new_view_2_1_title ">物资间信息</view>
+                </view>
+            </block>
+
+            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+                <view class="new_view_2_1">
+                    <view class="new_view_2_1_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/homeEquipmentManage/index" data-title="淋浴一体机设备参数">
+                        <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_16_9.png"></image>
+                    </view>
+                    <view class="new_view_2_1_title ">淋浴间信息</view>
+                </view>
+                
+            </block>
+
+        </view>
+    </block>
+
+
+    <!-- 人员管理-->
+    <!-- <block wx:if="{{fn.list1_inexistence_list2(['10','11'], applet_permissions_list)}}">
         <view class="font_title">人员管理</view>
         <view class="P1">
             <block wx:if="{{fn.exist_list('10', applet_permissions_list)}}">
@@ -23,10 +117,10 @@
                 </view>
             </block>
         </view>
-    </block>
+    </block> -->
 
     <!-- 车辆管理 -->
-    <block wx:if="{{fn.list1_inexistence_list2(['12','13','14','24'], applet_permissions_list)}}">
+    <!-- <block wx:if="{{fn.list1_inexistence_list2(['12','13','14','24'], applet_permissions_list)}}">
         <view class="font_title">车辆管理</view>
         <view class="P1">
             <block wx:if="{{fn.exist_list('12', applet_permissions_list)}}">
@@ -55,10 +149,10 @@
                 </view>
             </block>
         </view>
-    </block>
+    </block> -->
 
     <!-- 物品管理 -->
-    <block wx:if="{{fn.list1_inexistence_list2(['15','16'], applet_permissions_list)}}">
+    <!-- <block wx:if="{{fn.list1_inexistence_list2(['15','16'], applet_permissions_list)}}">
         <view class="font_title">物品管理</view>
         <view class="P1">
             <block wx:if="{{fn.exist_list('15', applet_permissions_list)}}">
@@ -168,7 +262,7 @@
                 </view>
             </block>
         </view>
-    </block>
+    </block> -->
 
     <!-- 无以上权限说明，此页面功能为空 -->
     <block wx:if="{{fn.list1_inexistence_list2(['8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25'],applet_permissions_list)}}">

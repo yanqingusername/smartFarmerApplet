@@ -142,6 +142,15 @@ Page({
             url: '/modulepages/pages/pigIndividualFilesManage/index',
         });
     },
-
+//淋浴一体机设备管理
+catchHandler:function(e){
+    let pathstring = e.currentTarget.dataset.pathstring;
+    let title = e.currentTarget.dataset.title;
+    if(pathstring && title){
+        wx.navigateTo({
+            url: pathstring + "?title=" + title,
+        });
+    }
+},
     
 });

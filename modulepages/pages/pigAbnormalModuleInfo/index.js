@@ -1,4 +1,4 @@
-import * as echarts from '../../../ec-canvas/echarts.min';
+import * as echarts from '../ec-canvas-new/echarts';
 const app = getApp();
 const request = require('../../../utils/request.js')
 const time = require('../../../utils/time.js')
@@ -15,27 +15,119 @@ Page({
         label_type: 3, // 耳环类型 0：育肥猪，1：母猪，2：仔猪，3：公猪
         Sitearea: "",
         label_serial: "",
-        
-        temp_date: time.getDate(new Date()),
-        act_date: time.getDate(new Date()),
-        today: time.getDate(new Date()),
+
+        nowTime: time.getToday(new Date()),
+        start_time: time.getToday(new Date()),
+        end_time: time.getToday(new Date()),
+
+        temp_date_type: 0, // 0-天  2-月
+
         ledallowOperation: true,
         ledTip: false,
         ledOpenMsg: "正在连接耳环....",
-        lairage_date: "",
-        temp_date_type: "0",
-        act_date_type: "0",
-        LabelSumData: {},
+
         ec_pig_temp: {
             lazyLoad: true // 将 lazyLoad 设为 true 后，需要手动初始化图表
         },
         ec_pig_act: {
             lazyLoad: true // 将 lazyLoad 设为 true 后，需要手动初始化图表
         },
+        maxData: 7,
+
+        approvalList: ["死亡","淘汰","出栏"],
+        approvalIndex: 0,
+        isShowApproval: 1,
+        approvalText: '',
+
+        reasonList: [],
+        reasonIndex: 0,
+        isShowReason: 1,
+        reason_id: '',
+        reason_name: '',
+
+        reasonList1: [
+            {
+                'id': '1',
+                'text': '疾病'
+            },
+            {
+                'id': '2',
+                'text': '未知'
+            }
+        ],
+        reasonList2: [
+            {
+                'id': '1',
+                'text': '育种更新'
+            },
+            {
+                'id': '2',
+                'text': '疾病'
+            },
+            {
+                'id': '3',
+                'text': '其它'
+            }
+        ],
+        reasonList3: [
+            {
+                'id': '1',
+                'text': '出栏'
+            },
+            {
+                'id': '2',
+                'text': '未知'
+            }
+        ],
     },
+    /**
+   * 获取审核失败的原因列表
+   */
+   getReviewfaillist: function () {
+    this.setData({
+        reasonList: this.data.approvalIndex == 1 ? this.data.reasonList2 : this.data.approvalIndex == 2 ? this.data.reasonList3 : this.data.reasonList1
+    });
+    
+    // var that = this;
+    // var data = {
+    //   pig_farm_id: app.globalData.userInfo.pig_farm_id,
+    // }
+
+    // request.request_get('/equipmentManagement/getReviewfaillist.hn', data, function (res) {
+    //   if (res) {
+    //     if (res.success) {
+    //       that.setData({
+    //         reasonList: res.data
+    //       });
+    //     } else {
+    //       box.showToast(res.msg);
+    //     }
+    //   }
+    // })
+  },
+    bindApprovalChange: function (e) {
+        var approvalIndex = e.detail.value;
+        this.setData({
+          approvalIndex: approvalIndex,
+          approvalText: this.data.approvalList[approvalIndex],
+          isShowApproval: 2,
+          isShowReason: 1
+        });
+        this.getReviewfaillist();
+      },
+    bindReasonChange: function (e) {
+        var reasonIndex = e.detail.value;
+        this.setData({
+          reasonIndex: reasonIndex,
+          reason_id: this.data.reasonList[reasonIndex].id,
+          reason_name: this.data.reasonList[reasonIndex].text,
+          isShowReason: 2
+        });
+        this.checkSubmitStatus();
+      },
     onLoad: function (options) {
 
-        if(options && options.jsonItem){
+        if (options && options.jsonItem) {
             let jsonItem = JSON.parse(options.jsonItem);
             console.log(jsonItem)
             this.setData({
@@ -48,297 +140,116 @@ Page({
                 label_serial: jsonItem.serial,
                 farm_name: jsonItem.farm_name
             });
-          }
+        }
 
-        // sty=132&label_id=88665306&label_serial=2547&lairage_date=2021-05-19&host_serial=coyote_yizhuang_210517001&sty_num_custom=无&source_label=无
 
-        // this.setData({
-        //     label_id: options.label_id || '88665306',
-        //     lairage_date: options.lairage_date || '2021-05-19',
-        //     label_serial: options.label_serial || '2547',
-        //     host_serial: options.host_serial || 'coyote_yizhuang_210517001',
-        //     sty_num_custom: options.sty_num_custom,
-        //     source_label: options.source_label
-        // })
-        // console.log('进入详情页' + options.label_id)
         this.pig_temp_component = this.selectComponent('#mychart-line_temp');
         this.pig_act_component = this.selectComponent('#mychart-line_act');
+
+        // new 折线图
+        this.getShowLabelSumfilebyid();
+
+        this.getReviewfaillist();
+
     },
-    onShow: function () {
-        this.getLabelSumData();
-    },
-    getLabelSumData: function () {
+    /**
+     *  猪只个体信息 折线图
+     */
+     getShowLabelSumfilebyid: function () {
         var that = this;
-        var label_id = that.data.label_id;
-        var host_serial = that.data.host_serial;
-        request.request_get('/pigManagement/showLabelSumfile.hn', {
-            label_id: label_id,
-            host_serial: host_serial
-        }, function (res) {
+
+        let params = {
+            pig_farm_id: app.globalData.userInfo.pig_farm_id,
+            serial: that.data.label_serial,
+            start_time: this.data.start_time,
+            end_time: this.data.end_time,
+            type: this.data.temp_date_type == 2 ? 'month' : 'day' //(day,month)
+        }
+
+        // let params = {
+        //     pig_farm_id: 'FARM016',
+        //     serial: '4870',
+        //     start_time: '2023-01-02',
+        //     end_time: '2023-01-02',
+        //     type: this.data.temp_date_type == 2 ? 'month' : 'day' 
+        // }
+
+        console.log(params)
+
+        request.request_get('/pigManagement/showLabelSumfilebyid.hn', params, function (res) {
             console.info('回调', res)
             if (res) {
                 if (res.success) {
-                    var LabelSumData = res.msg;
-                    that.setData({
-                        LabelSumData: LabelSumData
-                    })
-                    that.dealWithData(that.data.temp_date_type, "temp")
-                    that.dealWithData(that.data.act_date_type, "act")
+                    var xdata = res.xdata
+                    var ydata = []
+                    var series = res.ydata || []
+
+                    let seriesTemp = [];
+                    let seriesAct = [];
+                    for(let i = 0; i < series.length; i++){
+                        let objTemp = {
+                            name: '温度',
+                            smooth: true,
+                            type: "line",
+                            data: series[i].temp
+                        }
+                        seriesTemp.push(objTemp)
+
+                        let objAct = {
+                            name: '活动量',
+                            smooth: true,
+                            type: "line",
+                            data: series[i].act
+                        }
+                        seriesAct.push(objAct)
+                    }
+                    var axisLabel = { //设置x轴的字
+                        show: true,
+                        interval: 0,
+                        rotate: 40
+                    }
+                    that.chartInitTemp(xdata, ydata, axisLabel, seriesTemp);
+
+                    that.chartInitAct(xdata, ydata, axisLabel, seriesAct)
+
                 } else {
                     box.showToast(res.msg)
                 }
             }
         })
     },
-    //改变温度的选项
-    temp_time_type: function (e) {
-        var that = this;
-        var temp_date_type = e.currentTarget.dataset.type;
-        that.setData({
-            temp_date_type: temp_date_type
-        })
-        that.dealWithData(temp_date_type, "temp")
-    },
-    //改变活跃度的选项
-    act_time_type: function (e) {
-        var that = this;
-        var act_date_type = e.currentTarget.dataset.type;
-        that.setData({
-            act_date_type: act_date_type
-        })
-        that.dealWithData(act_date_type, "act")
-    },
-
-    // 处理数据
-    dealWithData: function (timeType, lineType) {
-        var that = this
-        var LabelSumData = that.data.LabelSumData;
-        var date = null;
-        // 获取日期
-        if (lineType == "temp") {
-            date = that.data.temp_date;
-        } else if (lineType == "act") {
-            date = that.data.act_date;
-        }
-
-        // 设置横纵坐标
-        var xdata = [];
-        var ydata = [];
-        if (timeType == '0') { // 天
-            xdata = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00',
-                '06:00', '07:00', '08:00', '09:00', '10:00', '11:00',
-                '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
-                '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'
-            ]
-            if (typeof (LabelSumData[date]) == "undefined") { // 说明今天没有数据
-                ydata = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
-            } else {
-                var dayVals = LabelSumData[date][lineType];
-                for (var a in xdata) {
-                    var val = dayVals[xdata[a] + ":00"];
-                    if (typeof (val) == "undefined") {
-                        ydata.push(null)
-                    } else {
-                        ydata.push(val)
-                    }
-                }
-            }
-
-            xdata.push("24:00"); // 为第二天的数据
-            var arr = date.split("/");
-            var newDate = new Date(new Date(arr[0], (arr[1] - parseInt(1)), arr[2], '00', '00', '00').getTime() + 24 * 3600 * 1000);
-            var tomorrow = time.getDate(newDate);
-            // console.log(LabelSumData[tomorrow])
-            if (typeof (LabelSumData[tomorrow]) == "undefined") {
-                ydata.push(null)
-            } else {
-                if (typeof (LabelSumData[tomorrow][lineType]["00:00:00"]) == "undefined") {
-                    ydata.push(null)
-                } else {
-                    ydata.push(LabelSumData[tomorrow][lineType]["00:00:00"])
-                }
-            }
-        } else if (timeType == '1') { // 周近七天
-            var days = time.getBefore7Date(new Date()); // 2020/07/10
-            // console.log(days)
-            for (var a in days) {
-                var x_show_day = days[a].split("/")[1] + "/" + days[a].split("/")[2]
-                if (typeof (LabelSumData[days[a]]) == "undefined") {
-                    xdata.push(x_show_day)
-                    ydata.push(null)
-                } else {
-                    xdata.push(x_show_day)
-                    var dayVals = LabelSumData[days[a]][lineType];
-                    var sum = 0;
-                    var num = 0;
-                    for (var a in dayVals) { // 必须存在一个，所以分母不会为0
-                        num += 1;
-                        sum += dayVals[a]
-                    }
-                    ydata.push(sum / num);
-                }
-            }
-        } else if (timeType == '2') { // 6个月
-            var months = time.get6Month(new Date());
-            xdata = months;
-            var months_dic = {};
-            for (var a in months) {
-                months_dic[months[a]] = [];
-            }
-            // 获取数据
-            for (var a in LabelSumData) {
-                var month = a.split("/")[0] + "/" + a.split("/")[1];
-                if (utils.isInArray(month, months)) {
-                    for (var b in LabelSumData[a][lineType]) {
-                        months_dic[month].push(LabelSumData[a][lineType][b])
-                    }
-                } else {
-                    continue;
-                }
-            }
-            // 处理数据
-            for (var a in months_dic) {
-                if (months_dic[a].length == 0) {
-                    ydata.push(null)
-                } else {
-                    var sum = 0;
-                    for (var i = 0; i < months_dic[a].length; i++) {
-                        sum += months_dic[a][i];
-                    }
-                    ydata.push(sum / months_dic[a].length)
-                }
-            }
-        }
-
-        // console.log(lineType + ":横坐标、纵坐标")
-        // console.log(xdata)
-        // console.log(ydata)
-
-        var ydata_1 = that.processing_breakpoint_data(ydata, lineType);
-        // console.log("断点处理后的数据")
-        // console.log(ydata_1)
-
-        if (lineType == "temp") {
-            that.chartInit_temp(xdata, ydata_1, lineType, timeType)
-        } else if (lineType == "act") {
-            that.chartInit_act(xdata, ydata_1, lineType, timeType)
-        }
-    },
-    chartInit_temp: function (xdata, ydata, lineType, timeType) {
+    // 开始画图
+    chartInitTemp: function (xdata, ydata, axisLabel, series) {
         var that = this;
         that.pig_temp_component.init((canvas, width, height) => {
-            const chartTemp = echarts.init(canvas, null, {
+            const chart = echarts.init(canvas, null, {
                 width: width,
                 height: height
             });
-            chartTemp.showLoading();
-            that.setLineOption(chartTemp, xdata, ydata, lineType, timeType);
-            return chartTemp; // 注意这里一定要返回 chart 实例，否则会影响事件处理等
+            that.setLineOptionTemp(chart, xdata, ydata, axisLabel, series);
+            return chart; // 注意这里一定要返回 chart 实例，否则会影响事件处理等
         });
     },
-    chartInit_act: function (xdata, ydata, lineType, timeType) {
-        var that = this;
-        that.pig_act_component.init((canvas, width, height) => {
-            const chartAct = echarts.init(canvas, null, {
-                width: width,
-                height: height
-            });
-            chartAct.showLoading();
-            that.setLineOption(chartAct, xdata, ydata, lineType, timeType);
-            return chartAct; // 注意这里一定要返回 chart 实例，否则会影响事件处理等
-        });
-    },
-    setLineOption: function (chart, xdata, ydata, lineType, timeType) {
-        var my_x_axisLabel = {}
-        var my_y_axisLabel = {}
-        var my_series = []
-        var mycolor = [];
-        var myminInterval = 1;
-        var my_legend = {};
-        var max = 'dataMax';
-        var min = 'dataMin';
-        if (lineType == 'temp') {
-            mycolor = ["#FEA416", "#F8D055"]
-            myminInterval = 0.5
-            my_series = [{
-                    name: '温度',
-                    type: 'line',
-                    smooth: true,
-                    data: ydata
-                }],
-                my_y_axisLabel = {
-                    show: true,
-                    formatter: function (value) {
-                        return value.toFixed(1);
-                    }
-                },
-                my_legend = {
-                    show: false
-                }
-        } else if (lineType == 'act') {
-            max = 3; // 0-无活跃,1-低活跃,2-中等活跃,3-高活跃）
-            min = 0; // 0-无活跃,1-低活跃,2-中等活跃,3-高活跃）
-            mycolor = ["#455CE2"]
-            myminInterval = 1
-            my_series = [{
-                    name: '活动量',
-                    type: 'line',
-                    smooth: true,
-                    data: ydata
-                }],
-                my_y_axisLabel = {
-                    show: true,
-                    formatter: function (value) {
-                        var info = ""
-                        if (value == 0) {
-                            info = "0";
-                        } else if (value == 1) {
-                            info = "低";
-                        } else if (value == 2) {
-                            info = "中";
-                        } else if (value == 3) {
-                            info = "高";
-                        } else {
-                            info = "未知";
-                        }
-                        return info
-                        //return value.toFixed(0);
-                    }
-                },
-                my_legend = {
-                    show: false
-                }
-        }
-        //*************************** */
-        if (timeType == '0') {
-            my_x_axisLabel = {
-                show: true,
-                interval: 2
-            }
-        } else if (timeType == '1') {
-            my_x_axisLabel = {
-                show: true,
-                interval: 0
-            }
-        }
-        if (timeType == '2') {
-            my_x_axisLabel = {
-                show: true,
-                interval: 0
-            }
-        }
-        // **************************
+    setLineOptionTemp: function (chart, xdata, ydata, axisLabel, series) {
         var option = {
-            backgroundColor: "#ffffff",
-            color: mycolor,
+            dataZoom: [{
+                type: 'inside', //1平移 缩放
+                throttle: '50', //设置触发视图刷新的频率。单位为毫秒（ms）。
+                minValueSpan: 6, //用于限制窗口大小的最小值,在类目轴上可以设置为 5 表示 5 个类目
+                start: 1, //数据窗口范围的起始百分比 范围是：0 ~ 100。表示 0% ~ 100%。
+                end: 60, //数据窗口范围的结束百分比。范围是：0 ~ 100。
+                zoomLock: true, //如果设置为 true 则锁定选择区域的大小，也就是说，只能平移，不能缩放。
+            }],
             title: {
                 show: false
             },
-            legend: my_legend,
+            legend: {
+                show: false
+            },
             grid: {
                 containLabel: true,
-                top: 20,
-                bottom: 0
+                top: 50,
+                bottom: 20
             },
             tooltip: {
                 show: true,
@@ -346,9 +257,10 @@ Page({
             },
             xAxis: {
                 type: 'category',
-                boundaryGap: false,
+                boundaryGap: true,
                 data: xdata,
-                axisLabel: my_x_axisLabel,
+                axisLabel: axisLabel,
+                alignWithLabel: true
             },
             yAxis: {
                 x: 'center',
@@ -358,119 +270,104 @@ Page({
                         type: 'dashed'
                     }
                 },
-                min: min,
-                max: max,
-                minInterval: myminInterval,
-                axisLabel: my_y_axisLabel
-
+                minInterval: 1,
+                // show: true
             },
-            series: my_series
+            series: series
         };
         chart.setOption(option);
-        chart.hideLoading();
         return chart;
     },
 
-    goBack: function (e) {
+    // 开始画图
+    chartInitAct: function (xdata, ydata, axisLabel, series) {
         var that = this;
-        var type = e.currentTarget.dataset.type;
-        var date = null;
-        if (type == 'act') {
-            date = that.data.act_date;
-        } else if (type == 'temp') {
-            date = that.data.temp_date;
-        } else {
-            box.showToast("类型错误，请联系客服！");
-            return;
-        }
-        if (date == that.data.lairage_date) {
-            box.showToast("没有更多数据!")
-        } else {
-            var arr = date.split("/");
-            var newDate = new Date(new Date(arr[0], (arr[1] - parseInt(1)), arr[2], '00', '00', '00').getTime() - 24 * 3600 * 1000);
-            var newDateString = time.getDate(newDate);
-            console.log(newDateString)
-            let key = type + '_date'
-            that.setData({
-                [key]: newDateString
-            })
-            that.dealWithData("0", type)
-        }
+        that.pig_act_component.init((canvas, width, height) => {
+            const chartAct = echarts.init(canvas, null, {
+                width: width,
+                height: height
+            });
+            that.setLineOptionAct(chartAct, xdata, ydata, axisLabel, series);
+            return chartAct; // 注意这里一定要返回 chart 实例，否则会影响事件处理等
+        });
     },
-    goNext: function (e) {
-        var that = this;
-        var type = e.currentTarget.dataset.type;
-        var date = null;
-        if (type == 'act') {
-            date = that.data.act_date;
-        } else if (type == 'temp') {
-            date = that.data.temp_date;
-        } else {
-            box.showToast("类型错误，请联系客服！");
-            return;
-        }
-        if (date == that.data.today) {
-            box.showToast("没有更多数据!")
-        } else {
-            var arr = date.split("/");
-            var newDate = new Date(new Date(arr[0], (arr[1] - parseInt(1)), arr[2], '00', '00', '00').getTime() + 24 * 3600 * 1000);
-            var newDateString = time.getDate(newDate);
-            console.log(newDateString)
-            let key = type + '_date'
-            that.setData({
-                [key]: newDateString
-            })
-            that.dealWithData("0", type)
-        }
-    },
-    processing_breakpoint_data: function (ydata, lineType) {
-        var beforeVal = null; // 前一个值
-        var afterVal = null; // 后一个值
-        var needVal = []; //需要补充的值
-        // console.log(lineType)
-        // console.log(ydata)
-
-        for (var i = 0; i < ydata.length; i++) {
-            var val = ydata[i];
-            if (val == null) { // 点为空
-                // if (beforeVal != null) { // 点为空，且前一个值不为空
-                //     needVal.push(i); // 将空点保存
-                //     console.log(needVal)
-                // } else {
-                //     // 空点不处理
-                // }
-                needVal.push(i); // 将空点保存
-                console.log(needVal)
-            } else {
-                console.log("非空点" + val)
-                if (needVal.length == 0) { // 不存在空数据，记录最新点
-                    beforeVal = val;
-                } else { // 存在空数据
-                    afterVal = val;
-                    // 处理空点数据
-                    if (lineType == 'temp') {
-                        //RG 202203161345
-                        //var average = (afterVal + beforeVal) / 2;
-                        var average = afterVal;
-                        for (var a in needVal) {
-                            var index = needVal[a];
-                            ydata[index] = average;
-                        }
-                    } else if (lineType == 'act') {
-                        for (var a in needVal) {
-                            var index = needVal[a];
-                            ydata[index] = 0; // 无活跃度
-                        }
-                    }
-                    needVal = [];
+    setLineOptionAct: function (chartAct, xdata, ydata, axisLabel, series) {
+        var my_y_axisLabel = {
+            show: true,
+            formatter: function (value) {
+                var info = ""
+                if (value == 0) {
+                    info = "0";
+                } else if (value == 1) {
+                    info = "低";
+                } else if (value == 2) {
+                    info = "中";
+                } else if (value == 3) {
+                    info = "高";
+                } else {
+                    info = "未知";
                 }
+                return info
+                //return value.toFixed(0);
             }
         }
-        return ydata
+
+        var optionAct = {
+            dataZoom: [{
+                type: 'inside', //1平移 缩放
+                throttle: '50', //设置触发视图刷新的频率。单位为毫秒（ms）。
+                minValueSpan: 6, //用于限制窗口大小的最小值,在类目轴上可以设置为 5 表示 5 个类目
+                start: 1, //数据窗口范围的起始百分比 范围是：0 ~ 100。表示 0% ~ 100%。
+                end: 60, //数据窗口范围的结束百分比。范围是：0 ~ 100。
+                zoomLock: true, //如果设置为 true 则锁定选择区域的大小，也就是说，只能平移，不能缩放。
+            }],
+            title: {
+                show: false
+            },
+            legend: {
+                show: false
+            },
+            grid: {
+                containLabel: true,
+                top: 50,
+                bottom: 20
+            },
+            tooltip: {
+                show: true,
+                trigger: 'axis'
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: true,
+                data: xdata,
+                axisLabel: axisLabel,
+                alignWithLabel: true
+            },
+            yAxis: {
+                x: 'center',
+                type: 'value',
+                splitLine: {
+                    lineStyle: {
+                        type: 'dashed'
+                    }
+                },
+                min: 0,
+                max: 3,
+                minInterval: 1,
+                axisLabel: my_y_axisLabel
+                // show: true
+            },
+            series: series
+        };
+        chartAct.setOption(optionAct);
+        return chartAct;
     },
+    /**
+     * 转栏记录
+     */
     clickPigAbnormalModuleInfoList(e) {
         let labelid = e.currentTarget.dataset.labelid;
-        if(labelid){
+        if (labelid) {
             wx.navigateTo({
                 url: `/modulepages/pages/pigAbnormalModuleInfoList/index?label_id=${labelid}`,
             })
@@ -550,5 +447,67 @@ Page({
                 }
             }
         })
+    },
+    //改变温度的选项
+    temp_time_type: function (e) {
+        var that = this;
+        var temp_date_type = e.currentTarget.dataset.type;
+        that.setData({
+            temp_date_type: temp_date_type
+        });
+
+        if(temp_date_type == 2){
+            let month = time.get6MonthDay(new Date());
+            that.setData({
+                start_time: month[0]
+            });
+
+            this.getShowLabelSumfilebyid();
+        }else{
+            that.setData({
+                nowTime: time.getToday(new Date()),
+                start_time: time.getToday(new Date()),
+                end_time: time.getToday(new Date()),
+            });
+            this.getShowLabelSumfilebyid();
+        }
+    },
+    goBack: function (e) {
+        
+        if(this.data.maxData == 1){
+
+        }else{
+            var that = this;
+            var date = this.data.start_time;
+            var arr = date.split("-");
+            var newDate = new Date(new Date(arr[0], (arr[1] - parseInt(1)), arr[2], '00', '00', '00').getTime() - 24 * 3600 * 1000);
+            var newDateString = time.getToday(newDate);
+            let maxData = this.data.maxData;
+            maxData = maxData - 1;
+            that.setData({
+                start_time: newDateString,
+                maxData: maxData
+            });
+
+            this.getShowLabelSumfilebyid();
+        }
+    },
+    goNext: function (e) {
+        if(this.data.maxData == 7){
+
+        }else{
+            var that = this;
+            var date = this.data.start_time;
+            var arr = date.split("-");
+            var newDate = new Date(new Date(arr[0], (arr[1] - parseInt(1)), arr[2], '00', '00', '00').getTime() + 24 * 3600 * 1000);
+            var newDateString = time.getToday(newDate);
+            let maxData = this.data.maxData;
+            maxData = maxData + 1;
+            that.setData({
+                start_time: newDateString,
+                maxData: maxData
+            });
+            this.getShowLabelSumfilebyid();
+        }
     },
 })

@@ -27,28 +27,31 @@
         <view class="P4">
             <image src="/image/icon/template.png" style="width:40rpx;height:auto" mode="widthFix"></image>
             <text class="font_title" style="margin-left:20rpx">猪只体温记录</text>
-            <block wx:if="{{temp_date_type=='0'}}">
+            <!-- <block wx:if="{{temp_date_type=='0'}}">
                 <view class="P41">
                     <text class="cuIcon-back text-gray icon1" bindtap="goBack" data-type="temp"></text>
                     <view class="font_date">{{temp_date}}</view>
                     <text class="cuIcon-right lg text-gray icon1" bindtap="goNext" data-type="temp"></text>
                 </view>
-            </block>
+            </block> -->
         </view>
-        <view class="P5" style="{{modalName?'margin-top:1000vh;margin-bottom:1000vh':''}}">
+        <view class="P5">
             <ec-canvas id="mychart-line_temp" canvas-id="mychart-line_temp" ec="{{ ec_pig_temp }}"></ec-canvas>
         </view>
-        <view class="P6" style="justify-content: space-between;padding: 50rpx 40rpx 38rpx 40rpx;">
+        <view class="P6" style="justify-content: space-around;padding: 10rpx 40rpx 38rpx 40rpx;">
             <view class="pig_view_6">
-                <text class="cuIcon-back text-gray icon2" bindtap="goBack" data-type="temp"></text>
+                <text class="cuIcon-back text-gray icon2" bindtap="goBack"></text>
                 <view class="select_btn {{temp_date_type=='0'?'select_default':''}}" style="margin-right:0rpx"
                 bindtap="temp_time_type" data-type="0">天</view>
-                <text class="cuIcon-right lg text-gray icon2" bindtap="goNext" data-type="temp"></text>
+                <text class="cuIcon-right lg text-gray icon2" bindtap="goNext"></text>
             </view>
-            <view class="select_btn {{temp_date_type=='1'?'select_default':''}}" style="margin-right:0rpx"
-                bindtap="temp_time_type" data-type="1">周</view>
-            <view class="select_btn {{temp_date_type=='2'?'select_default':''}}" bindtap="temp_time_type" data-type="2">
-                6个月</view>
+            <view class="pig_view_6">
+                <!-- <text class="cuIcon-back text-gray icon2" bindtap="goBack"></text> -->
+                <view class="select_btn {{temp_date_type=='2'?'select_default':''}}" style="margin-right:0rpx"
+                 bindtap="temp_time_type" data-type="2">6个月</view>
+                <!-- <text class="cuIcon-right lg text-gray icon2" bindtap="goNext"></text> -->
+            </view>
+           
         </view>
     </view>
 
@@ -56,24 +59,67 @@
         <view class="P4">
             <image src="/image/icon/active.png" style="width:40rpx;height:auto" mode="widthFix"></image>
             <text class="font_title" style="margin-left:20rpx">活跃量</text>
-            <block wx:if="{{act_date_type=='0'}}">
+            <!-- <block wx:if="{{act_date_type=='0'}}">
                 <view class="P41">
                     <text class="cuIcon-back text-gray icon1" bindtap="goBack" data-type="act"></text>
                     <view class="font_date">{{act_date}}</view>
                     <text class="cuIcon-right lg text-gray icon1" bindtap="goNext" data-type="act"></text>
                 </view>
-            </block>
+            </block> -->
         </view>
-        <view class="P5" style="{{modalName?'margin-top:1000vh;margin-bottom:1000vh':''}}">
+        <view class="P5">
             <ec-canvas id="mychart-line_act" canvas-id="mychart-line_act" ec="{{ ec_pig_act }}"></ec-canvas>
         </view>
-        <view class="P6">
+        <!-- <view class="P6">
             <view class="select_btn {{act_date_type=='0'?'select_default':''}}" style="margin-right:148rpx"
                 bindtap="act_time_type" data-type="0">天</view>
             <view class="select_btn {{act_date_type=='1'?'select_default':''}}" style="margin-right:148rpx"
                 bindtap="act_time_type" data-type="1">周</view>
             <view class="select_btn {{act_date_type=='2'?'select_default':''}}" bindtap="act_time_type" data-type="2">
                 6个月</view>
+        </view> -->
+    </view>
+
+    <view class="new_view">
+        <view class="new_view_1">
+            <image src="/image/icon/icon_2023_02_16_1.png" style="width:80rpx;height:80rpx"></image>
+            <text class="font_title" style="margin-left:20rpx;font-size: 32rpx;">离场处理</text>
+        </view>
+
+        <view class="new_view_2">
+            <view class="new_app_flex" style="margin-top: 0rpx;">
+            <view class="new_app_flex_1">离场选项</view>
+            <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
+                <picker style="height:100%;margin-top:20rpx;width:90%;" bindchange="bindApprovalChange" value="{{approvalIndex}}" range="{{approvalList}}">
+                <view class="picker" wx:if="{{isShowApproval == 2}}">{{approvalList[approvalIndex]}}</view>
+                <view class="picker" style="color: #B1B1B1;" wx:else>请选择离场选项</view>
+                </picker>
+                <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
+                <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+                </view>
+            </view>
+            </view>
+
+            <view style="height: 2rpx;background:#DDDDDD;width: 90%;"></view>
+            <view class="new_app_flex" >
+            <view class="new_app_flex_1">离场原因</view>
+            <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
+                <picker style="height:100%;margin-top:20rpx;width:90%;" bindchange="bindReasonChange" range-key="text" value="{{reasonList[reasonIndex].value}}" range="{{reasonList}}">
+                <view class="picker" wx:if="{{isShowReason == 2}}">{{reasonList[reasonIndex].text}}</view>
+                <view class="picker" style="color: #B1B1B1;" wx:else>请选择离场原因</view>
+                </picker>
+                <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
+                <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+                </view>
+            </view>
+            </view>
+            <view style="height: 2rpx;background:#DDDDDD;width: 90%;"></view>
+        
+            <view style="height: 50rpx;"></view>
+
+            <view class="button_gray">确定</view>
+
+            <view style="height: 70rpx;"></view>
         </view>
     </view>
 </view>

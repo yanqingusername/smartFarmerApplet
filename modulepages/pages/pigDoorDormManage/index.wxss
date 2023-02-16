@@ -118,7 +118,7 @@ page {
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: #333333;
-    margin-left: 20rpx;
+    margin-left: 0rpx;
 }
 
 .v1_right_2 {

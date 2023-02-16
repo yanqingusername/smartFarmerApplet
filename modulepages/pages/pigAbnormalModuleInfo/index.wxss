@@ -158,7 +158,7 @@ page {
 }
 
 .P5 {
-    height: 300rpx;
+    height: 580rpx;
     width: 750rpx;
 }
 
@@ -369,3 +369,65 @@ page {
     margin-bottom: 2%;
     border: 1px solid #c0ccda;
 }
+
+.new_app_flex {
+    display: flex;
+    justify-content: initial;
+    width: 670rpx;
+    margin: 16rpx 0rpx 10rpx 0rpx;
+    height: auto;
+    /* border-bottom: 2rpx solid #F9F9F9; */
+    /* color: #BBBBBB; */
+  }
+
+  .new_app_flex_1 {
+    width: 25%;
+    height: 80rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555555;
+  }
+
+  .right_arrow {
+    height: 26rpx;
+    width: 26rpx;
+  }
+
+  .button_gray {
+    margin-top: 0rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 670rpx;
+    height: 88rpx;
+    background: #327FF6;
+    border-radius: 44rpx;
+    /* opacity: 0.6; */
+    border: 2rpx solid #327FF6;
+    font-size: 34rpx;
+    font-weight: 500;
+    color: #FFFFFF;
+    /* left: 5%; */
+    /* position: relative; */
+  }
+
+  .new_view{
+    width: 100%;
+    background-color: #FFFFFF;
+    margin-top: 20rpx;
+  }
+
+  .new_view_1{
+    display: flex;
+    align-items: center;
+    padding-left: 30rpx;
+    height: 100rpx;
+  }
+
+  .new_view_2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }

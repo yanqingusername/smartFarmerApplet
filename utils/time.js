@@ -183,7 +183,39 @@ function mGetDate(){
       return year + ' 年 ' + month + ' 月 ' + day + ' 日 ' 
   }
   
- 
+ // 时间今天 -> 日期
+const getToday = date => {
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    return [year, month, day].map(formatNumber).join('-')
+}
+
+// 获取前半年的月份
+const get6MonthDay = date => {
+    var months = [];
+    var year = date.getFullYear();
+    var month = date.getMonth()+1;
+    var day = date.getDate()
+    months.push([year, month, day].map(formatNumber).join('-'))
+    // 前五个月
+    for (var i = 0; i < 5; i++) { 
+        var month = date.getMonth();
+        if(month == 0){
+            date.setFullYear(date.getFullYear()-1);
+            date.setMonth(11);
+        }else{
+            month = month -1;
+            date.setMonth(month);
+        }
+        year = date.getFullYear();
+        month = date.getMonth()+1;
+        months.push([year, month, day].map(formatNumber).join('-'))        
+    }
+
+    months = months.reverse(); 
+    return months;
+}
  
   
 const formatNumber = n => {
@@ -205,5 +237,7 @@ module.exports = {
     getNextDate:getNextDate,
     mGetDate:mGetDate,
     get6Month:get6Month,
-    get6Month1:get6Month1
+    get6Month1:get6Month1,
+    getToday: getToday,
+    get6MonthDay: get6MonthDay
 }

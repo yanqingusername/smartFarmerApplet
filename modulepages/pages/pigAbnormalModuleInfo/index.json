@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "猪只个体信息",
   "usingComponents": {
-      "ec-canvas": "../../../ec-canvas/ec-canvas"
+    "ec-canvas": "../ec-canvas-new/ec-canvas"
   }
 }
