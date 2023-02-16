@@ -12,7 +12,7 @@
         </image>
     </view>
 
-            <block wx:for="{{homePersonal}}" wx:key="index">
+            <!-- <block wx:for="{{homePersonal}}" wx:key="index">
                 <view class="v1_1">
                     <view class="v2_1" bindtap="catchHandler" data-pathstring="{{item.path}}" data-title="{{item.title}}">
                         <view class="v2_1_view">
@@ -26,7 +26,7 @@
                         </view>
                     </view>
                 </view>
-            </block>
+            </block> -->
 
             <!-- <view class="v1_1">
                 <view class="v2_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/ozoneModuleManage/index" data-title="臭氧浓度监测工作站参数">
