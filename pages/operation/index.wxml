@@ -70,7 +70,7 @@
             </block>
         </view>
 
-        <view class="new_view_2">
+        <view class="new_view_2" style="margin-top:30rpx;">
             <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
                 <view class="new_view_2_1">
                     <view class="new_view_2_1_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/ozoneModuleManage/index" data-title="臭氧浓度监测工作站参数">

@@ -8,7 +8,7 @@
                     <view class="homeindex_4_1_item">
                         <view class="v1_left">
                             <view class="v1_left_title">{{item.Sitearea}}({{item.count}})</view>
-                            <view class="v1_left_btn" catch:tap="updatePigDoorDormAdd" data-id="{{item.id}}">新增栋舍</view>
+                            <view class="v1_left_btn" catch:tap="updatePigDoorDormAdd" data-id="{{item.Siteareaid}}" data-name="{{item.Sitearea}}">新增栋舍</view>
                         </view>
                         <block wx:for="{{item.door}}" wx:for-item="itemdoor" wx:key="index">
                             <view class="v1_right">
@@ -19,8 +19,8 @@
                                     <view class="v1_right_1_2">{{itemdoor.administrators}}</view>
                                 </view>
                                 <view class="v1_right_2">
-                                   <view class="v1_right_2_1_btn" catch:tap="updatePigDoorDormPersion" data-id="{{itemdoor.id}}">编辑</view>
-                                   <view class="v1_right_2_2_btn" catch:tap="deletePigDoorDorm" data-id="{{itemdoor.id}}">删除</view>
+                                   <view class="v1_right_2_1_btn" catch:tap="updatePigDoorDormPersion" data-id="{{itemdoor.doorid}}" data-name="{{item.administrators}}">编辑</view>
+                                   <view class="v1_right_2_2_btn" catch:tap="deletePigDoorDorm" data-id="{{itemdoor.doorid}}">删除</view>
                                 </view>
                             </view>
                         </block>

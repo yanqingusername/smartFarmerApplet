@@ -3,7 +3,7 @@
         <view style="height: 2rpx;"></view>
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">场区名称</view>
-          <input class="P5_2 app_font" placeholder="请输入场区名称" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="15" value="{{name}}"></input>
+          <input class="P5_2 app_font" placeholder="请输入场区名称" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="15" value="{{name}}" disabled="{{isShowName}}"></input>
         </view>
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
 
@@ -14,32 +14,74 @@
 
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
 
-        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
-          <view class="P5_1 app_font">栏位</view>
-          <view class="new_view_1">
-            <input class="new_view_2 app_font" placeholder-class="place_style" bindinput="bindPersionName" value="{{persionname}}"></input>
-            <input class="new_view_3 app_font" placeholder-class="place_style" bindinput="bindPersionName" value="{{persionname}}"></input>
-            <view>—</view>
-            <input class="new_view_4 app_font" placeholder-class="place_style" bindinput="bindPersionName" value="{{persionname}}"></input>
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;flex-direction: column;">
+          <view class="dorm_view">
+            <view class="P5_1 app_font">栏位</view>
+
+            <view class="button_dorm" bindtap="addDorm">新增栏位</view>
           </view>
-          <!-- <input class="P5_2 app_font" placeholder="请输入饲养员" placeholder-class="place_style" bindinput="bindPersionName" style="position:relative;right:20rpx" value="{{persionname}}"></input> -->
+          
+
+          <view wx:for="{{info.details}}" wx:key="index" class="dorm_item">
+            <view class="group1 flex-col" style="width:240rpx;">
+              <input class="word6" style="width:200rpx !important;" placeholder="请填写栏位名称" id="dormtitle-{{index}}" bindinput="setDorm" value="{{item.dorm_content}}"></input>
+            </view>
+            <view class="group2 flex-col" style="width:120rpx;">
+              <input class="txt2" style="width:80rpx !important;" type="number" placeholder="栏号" id="dormstart-{{index}}" bindinput="setDormStart" value="{{item.dorm_start}}"></input>
+            </view>
+            <view>—</view>
+            <view class="group2 flex-col" style="width:120rpx;">
+              <input class="txt2" style="width:80rpx !important;" type="number" placeholder="栏号" id="dormend-{{index}}" bindinput="setDormEnd" value="{{item.dorm_end}}"></input>
+            </view>
+
+            <view class="group2 flex-col" style="background: #FFFFFF;padding-left: 0rpx;width:50rpx;flex-direction: row;justify-content: center;display: flex;align-items: center;" bindtap="delFood" data-index="{{index}}">
+              <image src="/image/icon/icon_2023_01_06_27.png" class="closeView"></image>
+            </view>
+          </view>
+
+
+          <!-- <view class="new_view_1">
+            <input class="new_view_2 app_font" placeholder-class="place_style" bindinput="bindDormName" value="{{dormname}}"></input>
+            <input class="new_view_3 app_font" placeholder-class="place_style" bindinput="bindDormNumberStart" value="{{dormnumberstart}}"></input>
+            <view>—</view>
+            <input class="new_view_4 app_font" placeholder-class="place_style" bindinput="bindDormNumberEnd" value="{{dormnumberend}}"></input>
+          </view> -->
         </view>
 
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
 
-        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">饲养员</view>
+          <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
+            <picker style="height:84rpx;margin-top:0rpx;width:90%;" bindchange="bindPickerChangeRoleName" range-key="real_name" value="{{roleNameList[roleNameIndex].real_name}}" range="{{roleNameList}}">
+              <view class="picker" wx:if="{{isShowRoleName == 2}}">{{roleNameList[roleNameIndex].real_name}}</view>
+              <view class="picker" style="color: #B1B1B1;" wx:else>请选择饲养员</view>
+            </picker>
+            <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
+              <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+            </view>
+          </view>
+        </view>
+
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+
+        <!-- <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">饲养员</view>
           <input class="P5_2 app_font" placeholder="请输入饲养员" placeholder-class="place_style" bindinput="bindPersionName" style="position:relative;right:20rpx" value="{{persionname}}"></input>
         </view>
 
-        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view> -->
 
         <view style="height: 10rpx;"></view>
       </view>
 
-      
-      <view class="button_gray" wx:if="{{submitState}}">保存</view>
+      <view class="button_view">
 
-      <view class="button_submit" wx:else bind:tap="submitBuffer">保存</view>
+        <view class="button_gray" wx:if="{{submitState}}">保存</view>
+
+        <view class="button_submit" wx:else bind:tap="submitBuffer">保存</view>
+
+      </view>
 
 </view> 

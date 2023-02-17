@@ -1,9 +1,22 @@
 <view class="page">
       <view class="medWhite">
         <view style="height: 2rpx;"></view>
-        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+        <!-- <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">姓名</view>
           <input class="P5_2 app_font" placeholder="请输入饲养员姓名" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="15" value="{{name}}"></input>
+        </view> -->
+
+        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">饲养员</view>
+          <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
+            <picker style="height:84rpx;margin-top:0rpx;width:90%;" bindchange="bindPickerChangeRoleName" range-key="real_name" value="{{roleNameList[roleNameIndex].real_name}}" range="{{roleNameList}}">
+              <view class="picker" wx:if="{{isShowRoleName == 2}}">{{roleNameList[roleNameIndex].real_name}}</view>
+              <view class="picker" style="color: #B1B1B1;" wx:else>请选择饲养员</view>
+            </picker>
+            <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
+              <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+            </view>
+          </view>
         </view>
 
         <view style="height: 10rpx;"></view>

@@ -336,3 +336,9 @@ page {
     top: 0rpx;
     right: 0rpx;
 }
+
+.picker{
+  height: 84rpx;
+  display: flex;
+  align-items: center;
+}

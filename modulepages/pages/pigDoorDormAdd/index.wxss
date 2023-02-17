@@ -202,8 +202,15 @@ page {
   right: -20rpx;
 }
 
-.button_gray {
+.button_view{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   margin-top: 60rpx;
+}
+
+.button_gray {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -216,12 +223,9 @@ page {
   font-size: 34rpx;
   font-weight: 500;
   color: #FFFFFF;
-  left: 5%;
-  position: relative;
 }
 
 .button_submit {
-  margin-top: 60rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -233,8 +237,6 @@ page {
   font-size: 34rpx;
   font-weight: 500;
   color: #FFFFFF;
-  left: 5%;
-  position: relative;
 }
 
 .notice_view {
@@ -380,3 +382,101 @@ page {
   border: 1px solid #DDDDDD;
 }
 
+.picker{
+  height: 84rpx;
+  display: flex;
+  align-items: center;
+}
+
+.button_dorm{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    font-size: 24rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #58A4FD;
+    border: 1px solid #58A4FD;
+    border-radius: 30rpx;
+    margin-right: 20rpx;
+    height: 60rpx;
+    padding: 6rpx 20rpx;
+}
+
+.dorm_view{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.dorm_item{
+  z-index: auto;
+  /* width: 670rpx; */
+  height: 80rpx;
+  justify-content: space-between;
+  margin: 10rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.group1 {
+  z-index: 88;
+  height: 80rpx;
+  border-radius: 12rpx;
+  background-color: rgba(245, 245, 245, 1);
+  width: 400rpx;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 20rpx;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.word6 {
+  z-index: 90;
+  width: 360rpx;
+  height: 40rpx;
+  display: block;
+  overflow-wrap: break-word;
+  color:black;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular;
+  white-space: nowrap;
+  line-height: 40rpx;
+  text-align: left;
+}
+
+.group2 {
+  z-index: 89;
+  height: 80rpx;
+  border-radius: 12rpx;
+  background-color: rgba(245, 245, 245, 1);
+  width: 240rpx;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 20rpx;
+}
+
+.txt2 {
+  z-index: 91;
+  width: 200rpx;
+  height: 40rpx;
+  display: block;
+  overflow-wrap: break-word;
+  color: black;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular;
+  white-space: nowrap;
+  line-height: 40rpx;
+  text-align: left;
+}
+
+.closeView{
+  width: 40rpx;
+  height: 40rpx;
+}

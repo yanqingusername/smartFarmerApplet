@@ -9,25 +9,69 @@ Page({
    * 页面的初始数据
    */
   data: {
-    name: '',
     submitState: true,
-    uid: ''
+    uid: '',
+
+    role_name: '',
+    role_id: '',
+    roleNameList: [],
+    roleNameIndex: 0,
+    isShowRoleName: 1,
   },
   onShow: function () {
     
   },
   onLoad: function (options) {
     this.setData({
-      uid: options.id
+      uid: options.id,
+      role_name: options.name,
+      role_id: options.role_id
     });
     wx.setNavigationBarTitle({
       title: "编辑饲养员"
     })
 
+    if(this.data.role_name){
+      this.setData({
+        isShowRoleName: 2
+      });
+    }
+
+    this.getEmployeesList();
+
+  },
+  // 获取员工列表
+  getEmployeesList: function () {
+    var that = this;
+    var data = {
+      pig_farm: app.globalData.userInfo.pig_farm_id
+    }
+    request.request_get('/personnelManagement/getEmployeesList.hn', data, function (res) {
+      console.info('回调', res)
+      if (res.success) {
+        var roleNameList = res.msg;
+        that.setData({
+          roleNameList: roleNameList
+        })
+      } else {
+        box.showToast(res.msg)
+      }
+    })
+  },
+  // 饲养员
+  bindPickerChangeRoleName: function (e) {
+    var roleNameIndex = e.detail.value;
+    this.setData({
+      roleNameIndex: roleNameIndex,
+      role_name: this.data.roleNameList[roleNameIndex].real_name,
+      role_id: this.data.roleNameList[roleNameIndex].id,
+      isShowRoleName: 2
+    });
+    this.checkSubmitStatus();
   },
   //保存按钮禁用判断
   checkSubmitStatus: function (e) {
-    if (this.data.name != '') {
+    if (this.data.role_name != '') {
       this.setData({
         submitState: false
       })
@@ -37,21 +81,11 @@ Page({
       })
     }
   },
-  bindName: function (e) {
-    var str = e.detail.value;
-    // str = utils.checkInput_2(str);
-    this.setData({
-      name: str
-    })
-
-    this.checkSubmitStatus();
-  },
-  
   submitBuffer() {
     let that = this;
-    let name = this.data.name; //姓名
+    let role_name = this.data.role_name; //姓名
 
-    if (!name) {
+    if (!role_name) {
       box.showToast("请输入姓名");
       return;
     }
@@ -60,7 +94,7 @@ Page({
 
     let params = {
       pig_farm_id: app.globalData.userInfo.pig_farm_id,
-      real_name: name, //姓名
+      role_name: role_name, //姓名
       id: this.data.uid
     }
 

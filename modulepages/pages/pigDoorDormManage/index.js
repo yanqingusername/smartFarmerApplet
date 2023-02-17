@@ -9,11 +9,11 @@ Page({
     deviceinfoList: [],
   },
   onLoad: function (options) {
-    var that = this;
-    that.getAbnormalLabelInfo();
+    
   },
   onShow: function () {
-
+    var that = this;
+    that.getAbnormalLabelInfo();
   },
   onReachBottom: function () {
   },
@@ -53,15 +53,19 @@ Page({
   },
   updatePigDoorDormAdd(e) {
     let id = e.currentTarget.dataset.id;
+    let name = e.currentTarget.dataset.name;
     if (id) {
-
+      wx.navigateTo({
+        url: `/modulepages/pages/pigDoorDormAdd/index?isDoor=2&siteareaid=${id}&name=${name}`,
+      });
     }
   },
   updatePigDoorDormPersion(e) {
     let id = e.currentTarget.dataset.id;
+    let name = e.currentTarget.dataset.name;
     if (id) {
       wx.navigateTo({
-        url: `/modulepages/pages/pigDoorDormPersion/index?id=${id}`,
+        url: `/modulepages/pages/pigDoorDormPersion/index?id=${id}&name=${name}`,
       });
     }
   },

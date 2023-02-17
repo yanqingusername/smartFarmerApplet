@@ -3,84 +3,105 @@ var request = require('../../../utils/request.js')
 var box = require('../../../utils/box.js')
 const utils = require('../../../utils/utils.js')
 
+/**
+ * Detail类 构造函数 
+ * @param {string} dorm_content 栏位名称
+ * @param {string} dorm_start 栏号
+ * @param {string} dorm_end 栏号
+ */
+function Detail(dorm_content, dorm_start, dorm_end) {
+  this.dorm_content = dorm_content;
+  this.dorm_start = dorm_start;
+  this.dorm_end = dorm_end;
+}
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+    isDoor: 1, //1-新增猪舍  2-新增栋舍
+    siteareaid: "",
+    name: '',
+    doorname: '',
+    dormname: '',
+    dormnumberstart: '',
+    dormnumberend: '',
+
+    info: {
+      details: [{
+        dorm_content: '',
+        dorm_start: '',
+        dorm_end: ''
+      }]
+    },
+
+    role_name: '',
+    role_id: '',
+    roleNameList: [],
+    roleNameIndex: 0,
+    isShowRoleName: 1,
+    submitState: true,
+
+    isShowName: false
   },
   onShow: function () {
-    
+
   },
   onLoad: function (options) {
-    
-    wx.setNavigationBarTitle({
-      title: "新增猪舍信息"
-    })
 
-    
-  },
-  getuserinfo() {
-    let that = this;
-    let params = {
-      id: this.data.uid
+    this.setData({
+      isDoor: options.isDoor || 1,
+      siteareaid: options.siteareaid,
+      name: options.name
+    });
+
+    if (this.data.name) {
+      this.setData({
+        isShowName: true
+      });
     }
 
-    request.request_get('/personnelManagement/getuserinfo.hn', params, function (res) {
-      if (res) {
-        if (res.success) {
-          let userList = res.data;
-          if(userList && userList.length > 0){
-            let userInfo = userList[0];
-            that.setData({
-              name: userInfo.real_name,
-              job_number: userInfo.job_number,
-              job_phone: userInfo.phone,
-              // password: userInfo.password,
-              frontPhoto: userInfo.head_url
-            });
+    wx.setNavigationBarTitle({
+      title: this.data.isDoor == 1 ? "新增猪舍信息" : "新增栋舍信息"
+    })
 
-            let job_id = userInfo.roleId;
-            let job_name_1 = "";
-            let categoryIndex = 0;
-            if(that.data.jobNameList.length > 0){
-              for(let i = 0; i < that.data.jobNameList.length; i++){
-                if(job_id == that.data.jobNameList[i].id){
-                  job_name_1 = that.data.jobNameList[i].role_name;
-                  categoryIndex = i;
-                  break;
-                }
-              }
-            }
-            let gender = userInfo.gender == 0 ? '男' : '女';
-            let genderIndex = userInfo.gender == 0 ? '0' : '1';
-
-            that.setData({
-              job_name: job_name_1,
-              job_id: job_id,
-              categoryIndex: categoryIndex,
-              gender: gender,
-              genderIndex: genderIndex,
-              isShowGender: 2,
-              isShowRegion: 2
-            });
-
-            that.checkSubmitStatus();
-          }
-        } else {
-          box.showToast(res.msg);
-        }
-      } else {
-        box.showToast("网络不稳定，请重试");
-      }
-    });
+    this.getEmployeesList();
   },
+  // 获取员工列表
+  getEmployeesList: function () {
+    var that = this;
+    var data = {
+      pig_farm: app.globalData.userInfo.pig_farm_id
+    }
+    request.request_get('/personnelManagement/getEmployeesList.hn', data, function (res) {
+      console.info('回调', res)
+      if (res.success) {
+        var roleNameList = res.msg;
+        that.setData({
+          roleNameList: roleNameList
+        })
+      } else {
+        box.showToast(res.msg)
+      }
+    })
+  },
+  // 饲养员
+  bindPickerChangeRoleName: function (e) {
+    var roleNameIndex = e.detail.value;
+    this.setData({
+      roleNameIndex: roleNameIndex,
+      role_name: this.data.roleNameList[roleNameIndex].real_name,
+      role_id: this.data.roleNameList[roleNameIndex].id,
+      isShowRoleName: 2
+    });
+    this.checkSubmitStatus();
+  },
+
   //保存按钮禁用判断
   checkSubmitStatus: function (e) {
-    // && this.data.password != '' 
-    if (this.data.name != '' && this.data.job_number != '' && this.data.job_phone != '' && this.data.job_name != '' && this.data.job_id != '' && this.data.frontPhoto != '' && this.data.gender != '') {
+    if (this.data.name != '' && this.data.doorname != '' && this.data.role_name != '' && this.data.role_id != '') {
       this.setData({
         submitState: false
       })
@@ -99,244 +120,127 @@ Page({
 
     this.checkSubmitStatus();
   },
-  bindJobNumber: function (e) {
+  bindDoorName: function (e) {
     var str = e.detail.value;
     // str = utils.checkInput(str);
     this.setData({
-      job_number: str
+      doorname: str
     })
 
     this.checkSubmitStatus();
   },
-  bindPhone: function (e) {
-    var str = e.detail.value;
-    // str = utils.checkInput_2(str);
-    this.setData({
-      job_phone: str
-    })
 
-    this.checkSubmitStatus();
-  },
-  bindPassword: function (e) {
-    var str = e.detail.value;
-    // str = utils.checkInput_2(str);
-    this.setData({
-      password: str
-    })
-
-    this.checkSubmitStatus();
-  },
-  // bindJobNameChange(e){
-  //   console.log(e.detail.detail)
-  //   this.setData({
-  //     job_name: '',
-  //     isShowRegion: 2
-  //   });
-  // },
-  // 类别改变
-  bindJobNameChange: function (e) {
-    var categoryIndex = e.detail.value;
-    this.setData({
-      categoryIndex: categoryIndex,
-      job_name: this.data.jobNameList[categoryIndex].role_name,
-      job_id: this.data.jobNameList[categoryIndex].id,
-      isShowRegion: 2
-    });
-    this.checkSubmitStatus();
-  },
-  bindPickerChangeGender: function (e) {
-    var that = this;
-    this.setData({
-      genderIndex: e.detail.value,
-      gender: that.data.genderList[e.detail.value],
-      isShowGender: 2
-    })
-    this.checkSubmitStatus();
-  },
-  // 头像上传
-  ChooseImage: function () {
-    var that = this;
-    let data = [];
-    that.setData({
-      imgFlag: true
-    })
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        var filePath = res.tempFilePaths;
-
-        for (let i = 0; i < filePath.length; i++) {
-          wx.uploadFile({
-            url: 'http://syrdev.coyotebio-lab.com:8080/IntelligentCreature/personnelManagement/upload.hn',  // 测试服务器
-            // url: 'https://monitor.coyotebio-lab.com:8443/IntelligentCreature/personnelManagement/upload.hn',  // 正式服务器
-            filePath: filePath[i],
-            name: 'imageFile',
-            formData: data,
-            header: {
-              "chartset": "utf-8"
-            },
-            success: function (returnRes) {
-              let data = JSON.parse(returnRes.data)
-              if(data){
-                if(data.success){
-                  let msg = data.msg;
-                  that.setData({
-                    frontPhoto: msg
-                  })
-                  that.checkSubmitStatus();
-                }
-              }
-            },
-          })
-        }
-      }
-    })
-  },
-  //预览图片，放大预览
-  preview: function (e) {
-    var that = this;
-    that.setData({
-      imgFlag: true
-    })
-    let currentUrl = e.currentTarget.dataset.url
-    wx.previewImage({
-      current: currentUrl, // 当前显示图片的http链接
-      urls: [currentUrl] // 需要预览的图片http链接列表
-    })
-  },
-  delview: function () {
-    this.setData({
-      frontPhoto: ""
-    });
-    this.checkSubmitStatus();
-  },
-  getRoleinfo() {
-    let that = this;
-    let params = {
-      // company_serial: app.globalData.userInfo.company_serial
-      pig_farm_id: app.globalData.userInfo.pig_farm_id
-    }
-
-    request.request_get('/personnelManagement/getRoleinfo.hn', params, function (res) {
-      if (res) {
-        if (res.success) {
-          that.setData({
-            jobNameList: res.data
-          });
-
-          if(that.data.uid){
-            that.getuserinfo();
-          }
-        } else {
-          box.showToast(res.msg);
-        }
-      } else {
-        box.showToast("网络不稳定，请重试");
-      }
-    });
-  },
   submitBuffer() {
     let that = this;
-    let name = this.data.name; //姓名
-    let job_number = this.data.job_number; //工号
-    let job_phone = this.data.job_phone;  //手机号
-    // let password = this.data.password;  //密码
-    let job_name = this.data.job_name;  //岗位id
-    let job_id = this.data.job_id;   //岗位id
-    let frontPhoto = this.data.frontPhoto;  //图片
-    let gender = this.data.gender; //性别
 
+    let name = this.data.name; //场区名称
+    let doorname = this.data.doorname; //栋舍名称
 
+    let role_name = this.data.role_name; //饲养员
+    let role_id = this.data.role_id; //饲养员id
+
+    let doorDormList = this.data.info.details
 
     if (!name) {
-      box.showToast("请输入姓名");
+      box.showToast("请输入场区名称");
       return;
     }
 
-    if (!job_number) {
-      box.showToast("请输入工号");
+    if (!doorname) {
+      box.showToast("请输入栋舍名称");
       return;
     }
 
-    if (!job_phone) {
-      box.showToast("请输入手机号");
+    if (doorDormList.length == 1 && doorDormList[0].dorm_content == "" && doorDormList[0].dorm_start == "" && doorDormList[0].dorm_end == "") {
+      box.showToast("请填写栏位信息");
       return;
     }
 
-    if (!utils.checkPhone(job_phone)) {
-      box.showToast("手机号有误");
-      return;
+    for (let i = 0; i < doorDormList.length; i++) { //删除双空白项
+      if (doorDormList[i].dorm_content == '' && doorDormList[i].dorm_start == '') {
+        doorDormList.splice(i, 1);
+        i--;
+      }
     }
 
-    // if (!password) {
-    //   box.showToast("请输入密码");
-    //   return;
-    // }
-
-    if (!job_name || !job_id) {
-      box.showToast("请选择所在岗位");
-      return;
+    for (let i in doorDormList) {
+      if (doorDormList[i].dorm_content == '' && doorDormList[i].dorm_start != '' || doorDormList[i].dorm_content != '' && doorDormList[i].dorm_start == '') {
+        box.showToast("请填写栏位信息");
+        return;
+      }
+      if (doorDormList[i].dorm_end == '') {
+        box.showToast("请填写栏位信息");
+        return;
+      }
     }
 
-    if (!gender) {
-      box.showToast("请选择性别");
-      return;
+    let dormList = []
+    for (let i in doorDormList) {
+      let number1 = parseInt(doorDormList[i].dorm_start);
+      let number2 = parseInt(doorDormList[i].dorm_end);
+
+      if (number1 < number2) {
+        for (let j = number1; j <= number2; j++) {
+          dormList.push(doorDormList[i].dorm_content + j + '')
+        }
+      } else {
+        box.showToast("栏号填写错误,请重新填写!");
+        return;
+      }
     }
 
-    if (!frontPhoto) {
-      box.showToast("请上传头像");
+    if (!role_name || !role_id) {
+      box.showToast("请选择饲养员");
       return;
     }
 
     let params = {
-      // company_serial: app.globalData.userInfo.company_serial, //公司id
-      // company: app.globalData.userInfo.company, //公司
       pig_farm_id: app.globalData.userInfo.pig_farm_id,
-      real_name: name, //姓名
-      gender: gender == '男' ? '0' : '1', //男女
-      phone: job_phone, //手机号
-      job_number: job_number, //工号
-      roleId: job_id, //岗位id
-      // password: password, //密码
-      fileUrl: frontPhoto
+      door: doorname,
+      userId: role_id,
+      dorm: dormList.join(',')
     }
 
-    console.log('---->:',params)
-
-    let url = "/personnelManagement/adduserinfo.hn";
-    if(this.data.isEditCus == 2){
-      params.id = this.data.uid;
-      params.status = '0';
-      url = "/personnelManagement/edituserinfo.hn";
+    if (this.data.isDoor == 2) {
+      params.type = '2';
+      params.Sitearea = this.data.siteareaid;
+    } else {
+      params.type = '1';
+      params.Sitearea = this.data.name;
     }
 
-    request.request_get(url, params, function (res) {
+    console.log('---->:', params)
+
+    request.request_get("/PigstyManagement/addSitearea.hn", params, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {
           box.showToast(res.msg);
 
-          setTimeout(()=>{
+          setTimeout(() => {
             wx.navigateBack({
               delta: 1,
             });
-          },1500);
+          }, 1500);
 
-          // if(that.data.isEditCus == 2){
-          //   if(that.data.uid == app.globalData.userInfo.id){
-          //     that.getWorderInfo();
-          //   }else{
-          //     wx.navigateBack({
-          //       delta: 1,
-          //     });
+          // wx.showModal({
+          //   title: '成功',
+          //   content: res.msg,
+          //   confirmText: '继续新增',
+          //   cancelText: '返回上一级',
+          //   success: function (res) {
+          //       if (res.confirm) {
+          //         wx.navigateBack({
+          //           delta: 1,
+          //         });
+          //       } else if (res.cancel) {
+          //         wx.navigateBack({
+          //           delta: 1,
+          //         });
+          //       }
           //   }
-          // }else{
-          //   wx.navigateBack({
-          //     delta: 1,
-          //   });
-          // }
+          // });
+
         } else {
           box.showToast(res.msg);
         }
@@ -346,60 +250,62 @@ Page({
     })
 
   },
-  bindDeleteClick(e) {
+  addDorm: function (e) {
+    let info = this.data.info;
+    info.details.push(new Detail('', '', ''));
+    this.setData({
+      info: info
+    });
+    console.log(info.details)
+  },
+  setDorm: function (e) {
+    let index = parseInt(e.currentTarget.id.replace("dormtitle-", ""));
+    let dorm_content = e.detail.value;
+    let info = this.data.info;
+    info.details[index].dorm_content = dorm_content;
+    this.setData({
+      info: info
+    });
+  },
+  setDormStart: function (e) {
+    let index = parseInt(e.currentTarget.id.replace("dormstart-", ""));
+    let dorm_start = e.detail.value;
+    let info = this.data.info;
+    info.details[index].dorm_start = dorm_start;
+    this.setData({
+      info: info
+    });
+  },
+  setDormEnd(e) {
+    let index = parseInt(e.currentTarget.id.replace("dormend-", ""));
+    let dorm_end = e.detail.value;
+    let info = this.data.info;
+    info.details[index].dorm_end = dorm_end;
+    this.setData({
+      info: info
+    });
+  },
+  delFood(e) {
+    let closeIndex = e.currentTarget.dataset.index;
+
     let that = this;
-    let id = this.data.uid;
-    if (id) {
-      if(id == app.globalData.userInfo.id){
-        box.showToast("该员工信息无法删除");
-      } else {
-        wx.showModal({
-          title: '确认删除该员工？',
-          content: '删除后无法恢复',
-          success: function (res) {
-            if (res.confirm) {
-              var data = {
-                id: id,
-              }
-              request.request_get('/personnelManagement/deleteEmployee.hn', data, function (res) {
-                if (res) {
-                  if (res.success) {
-                    box.showToast(res.msg);
-                    setTimeout(()=>{
-                      wx.navigateBack({
-                        delta: 1,
-                      });
-                    },1500);
-                  } else {
-                    box.showToast(res.msg);
-                  }
-                }
-              })
-            }
-          }
-        })
+    let info = that.data.info;
+    if (info && info.details && info.details.length == 1) {
+      info.details[0].dorm_content = '';
+      info.details[0].dorm_start = '';
+      info.details[0].dorm_end = '';
+      that.setData({
+        info: info
+      });
+    } else {
+      if (closeIndex != -1) {
+        let index = closeIndex;
+        let info = that.data.info;
+        info.details.splice(index, 1);
+        that.setData({
+          info: info
+        });
       }
     }
   },
-// 获取个人中心的信息
-    getWorderInfo:function(){
-        var that = this;
-        var data = {
-            id: this.data.uid
-        }
-        request.request_get('/AppletCommon/getUserinfo.hn', data, function (res) {
-            if(res){
-                if(res.success){
-                    var userInfo = res.userinfo;
-                    //存储用户信息
-                    app.globalData.userInfo = userInfo[0];
-                    wx.navigateBack({
-                      delta: 1,
-                    });
-                }else{
-                    box.showToast(res.msg);
-                }
-            }
-        })
-    },
 })

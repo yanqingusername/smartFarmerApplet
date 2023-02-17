@@ -89,7 +89,7 @@ height: 80rpx;
 }
 
 .new_view_2_1_title{
-    margin-top: 10rpx;
+    margin-top: 20rpx;
     font-size: 24rpx;
     font-family: PingFangSC-Medium, PingFang SC;
     font-weight: 500;

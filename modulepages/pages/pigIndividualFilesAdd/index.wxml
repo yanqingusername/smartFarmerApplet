@@ -17,8 +17,8 @@
         <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">品种</view>
           <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
-            <picker style="height:100%;margin-top:20rpx;width:90%;" bindchange="bindPickerChangeGender" value="{{genderIndex}}" range="{{genderList}}">
-              <view class="picker" wx:if="{{isShowGender == 2}}">{{genderList[genderIndex]}}</view>
+            <picker style="height:100%;margin-top:20rpx;width:90%;" bindchange="bindPickerChangeVarieties" value="{{varietiesIndex}}" range="{{varietiesList}}">
+              <view class="picker" wx:if="{{isShowVarieties == 2}}">{{varietiesList[varietiesIndex]}}</view>
               <view class="picker" style="color: #B1B1B1;" wx:else>请选择品种</view>
             </picker>
             <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
