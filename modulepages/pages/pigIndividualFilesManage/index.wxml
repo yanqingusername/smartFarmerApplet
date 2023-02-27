@@ -6,7 +6,7 @@
       <view class="v2_1" wx:for="{{deviceinfoList}}" wx:key="index">
             <view class="v2_1_top">
                 <view class="v2_1_top_1"><image class='v2_1_top_1_img' src="/image/icon/icon_2023_02_14_10.png"></image>{{item.source_label}}</view>
-                <view class="v2_1_top_2" style="color: {{item.operation == '1' ? '#666666' : '#FF2C2B'}};">{{item.operation == '1' ? '在场' : '离场'}}</view>
+                <view class="v2_1_top_2" style="color: {{item.operation == '1' ? '#FF2C2B' : '#666666'}};">{{item.operation == '1' ? '离场' : '在场'}}</view>
             </view>
             <view class="v2_1_line"></view>
             <view class="v1_right">
@@ -17,7 +17,7 @@
                     <view class="v2_1_position_2">性别：{{item.label_type==3?'公猪':'母猪'}}</view>
                 </view>
                 <view class="homeindex_4_1_item_r">
-                    <view style="position:relative;display: flex;align-items: center;justify-content: center;flex-direction: column;padding: 30rpx 30rpx 30rpx 30rpx;" catch:tap="editPigIndividualFilesAdd" data-id="{{item.serial}}">
+                    <view style="position:relative;display: flex;align-items: center;justify-content: center;flex-direction: column;padding: 30rpx 30rpx 30rpx 30rpx;" catch:tap="editPigIndividualFilesAdd" data-id="{{item.id}}">
                         <image style="width:40rpx;height:40rpx;" src="/image/icon/icon_2023_01_06_18.png"></image>
                         <view style="font-size: 24rpx;color: #999999;margin-top: 6rpx;">编辑</view>
                     </view>

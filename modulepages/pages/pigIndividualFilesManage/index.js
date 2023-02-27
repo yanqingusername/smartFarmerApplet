@@ -9,11 +9,14 @@ Page({
     deviceinfoList: [],
   },
   onLoad: function (options) {
-    var that = this;
-    that.getAbnormalLabelInfo();
+    
   },
   onShow: function () {
-    
+    var that = this;
+    that.setData({
+      page: 1
+    });
+    that.getAbnormalLabelInfo();
   },
   onReachBottom: function () {
     this.getAbnormalLabelInfo();
