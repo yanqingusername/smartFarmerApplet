@@ -137,7 +137,7 @@ Page({
   getHistoricRecords: function () {
     var that = this;
     var data = {
-      label_id: this.data.sn_text,
+      source_label: this.data.sn_text,
       Sitearea: this.data.reason_id,
       House: this.data.piggery_id,
       status: this.data.status_id,

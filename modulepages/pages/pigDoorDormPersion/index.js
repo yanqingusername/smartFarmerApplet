@@ -24,8 +24,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       uid: options.id,
-      role_name: options.name,
-      role_id: options.role_id
+      role_name: options.name
     });
     wx.setNavigationBarTitle({
       title: "编辑饲养员"
@@ -71,7 +70,7 @@ Page({
   },
   //保存按钮禁用判断
   checkSubmitStatus: function (e) {
-    if (this.data.role_name != '') {
+    if (this.data.role_id != '') {
       this.setData({
         submitState: false
       })
@@ -83,24 +82,20 @@ Page({
   },
   submitBuffer() {
     let that = this;
-    let role_name = this.data.role_name; //姓名
+    let role_id = this.data.role_id; //姓名
 
-    if (!role_name) {
+    if (!role_id) {
       box.showToast("请输入姓名");
       return;
     }
 
-    
-
     let params = {
       pig_farm_id: app.globalData.userInfo.pig_farm_id,
-      role_name: role_name, //姓名
-      id: this.data.uid
+      userId: role_id, //姓名
+      door: this.data.uid
     }
 
-    console.log('---->:',params)
-
-    request.request_get("/personnelManagement/edituserinfo.hn", params, function (res) {
+    request.request_get("/PigstyManagement/editadministrators.hn", params, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {
@@ -118,6 +113,5 @@ Page({
         box.showToast("网络不稳定，请重试");
       }
     })
-
   },
 })

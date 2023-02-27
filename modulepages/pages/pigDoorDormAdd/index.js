@@ -209,8 +209,6 @@ Page({
       params.Sitearea = this.data.name;
     }
 
-    console.log('---->:', params)
-
     request.request_get("/PigstyManagement/addSitearea.hn", params, function (res) {
       console.info('回调', res)
       if (res) {

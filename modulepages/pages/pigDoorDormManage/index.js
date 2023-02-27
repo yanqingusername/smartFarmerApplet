@@ -70,6 +70,7 @@ Page({
     }
   },
   deletePigDoorDorm(e) {
+    var that = this;
     let id = e.currentTarget.dataset.id;
     if (id) {
       wx.showModal({
@@ -78,17 +79,19 @@ Page({
         success: function (res) {
           if (res.confirm) {
             var data = {
-              id: id,
+              door: id,
+              pig_farm_id: app.globalData.userInfo.pig_farm_id,
             }
-            request.request_get('/personnelManagement/deleteEmployee.hn', data, function (res) {
+            request.request_get('/PigstyManagement/deleteDoor.hn', data, function (res) {
               if (res) {
                 if (res.success) {
                   box.showToast(res.msg);
-                  //   setTimeout(()=>{
-                  //     wx.navigateBack({
-                  //       delta: 1,
-                  //     });
-                  //   },1500);
+                    setTimeout(()=>{
+                      that.getAbnormalLabelInfo();
+                      // wx.navigateBack({
+                      //   delta: 1,
+                      // });
+                    },1500);
                 } else {
                   box.showToast(res.msg);
                 }

@@ -5,7 +5,7 @@ const box = require('../../../utils/box.js')
 Page({
   data: {
     page: 1,
-    limit: 5,
+    limit: 10,
     deviceinfoList: [],
   },
   onLoad: function (options) {
@@ -25,7 +25,7 @@ Page({
       page: that.data.page,
       limit: that.data.limit,
     }
-    request.request_get('/pigManagement/getAbnormalLabelInfo.hn', data, function (res) {
+    request.request_get('/pigManagement/getpiglist.hn', data, function (res) {
       if (res) {
         if (res.success) {
             if (that.data.page == 1) {

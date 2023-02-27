@@ -12,13 +12,13 @@ Page({
     name: "",
     snname: "",
 
-    varietiesList: ['大白', '长白', '杜洛克'],
+    varietiesList: [],
     varietiesIndex: 0,
     varieties: '',
     isShowVarieties: 1,
 
     submitState: true,
-    genderList: ['母猪', '公猪'],
+    genderList: ['母猪', '公猪'], // 1-母猪   3-公猪
     genderIndex: 0,
     gender: '',
     isShowGender: 1,
@@ -27,6 +27,9 @@ Page({
 
     yearmouthday: "",
     timestamp: new Date().getTime(),
+
+    individualStatus: '在场',
+    pidinfo: ''
   },
   onShow: function () {
 
@@ -43,6 +46,66 @@ Page({
     });
 
     this.currentTime();
+
+    this.getBreedlist();
+
+    if(this.data.isEdit == 2){
+      /**
+       * 根据ID获取品种信息
+       */
+      this.getPidinfobyid();
+    }
+  },
+  /**
+   * 根据ID获取品种信息
+   */
+   getPidinfobyid: function () {
+    var that = this;
+    var data = {
+      id: this.data.uid,
+    }
+    request.request_get('/pigManagement/getPidinfobyid.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          if(res.data && res.data.length > 0){
+            let pidinfo = res.data[0];
+            that.setData({
+              name: pidinfo.source_label,
+              snname: pidinfo.label_id,
+              varieties: pidinfo.breed,
+              isShowVarieties: 2,
+              gender: pidinfo.label_type == 3 ? '公猪' : '母猪',
+              isShowGender: 2,
+              individualStatus: pidinfo.operation == 1 ? '在场' : '离场'
+            });
+
+            that.checkSubmitStatus();
+          }
+        } else {
+          box.showToast(res.msg);
+        }
+      }
+    })
+  },
+  /**
+   * 获取品种信息
+   */
+  getBreedlist: function () {
+    var that = this;
+    var data = {
+      pig_farm_id: app.globalData.userInfo.pig_farm_id,
+    }
+    request.request_get('/pigManagement/getBreedlist.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          that.setData({
+            varietiesList: res.data,
+          });
+        } else {
+          // box.showToast(res.msg);
+        }
+      }
+    })
   },
   /**
    * 当前日期
@@ -66,7 +129,7 @@ Page({
   //保存按钮禁用判断
   checkSubmitStatus: function (e) {
     // && this.data.password != '' 
-    if (this.data.name != '' && this.data.job_number != '' && this.data.job_phone != '' && this.data.job_name != '' && this.data.job_id != '' && this.data.frontPhoto != '' && this.data.gender != '') {
+    if (this.data.name != '' && this.data.varieties != '' && this.data.gender != '') {
       this.setData({
         submitState: false
       })
@@ -99,19 +162,9 @@ Page({
     var that = this;
     this.setData({
       varietiesIndex: e.detail.value,
-      varieties: that.data.genderList[e.detail.value],
+      varieties: that.data.varietiesList[e.detail.value],
       isShowVarieties: 2
     })
-    this.checkSubmitStatus();
-  },
-  bindJobNameChange: function (e) {
-    var categoryIndex = e.detail.value;
-    this.setData({
-      categoryIndex: categoryIndex,
-      job_name: this.data.jobNameList[categoryIndex].role_name,
-      job_id: this.data.jobNameList[categoryIndex].id,
-      isShowRegion: 2
-    });
     this.checkSubmitStatus();
   },
   bindPickerChangeGender: function (e) {
@@ -135,10 +188,10 @@ Page({
       return;
     }
 
-    if (!snname) {
-      box.showToast("请输入电子耳标");
-      return;
-    }
+    // if (!snname) {
+    //   box.showToast("请输入电子耳标");
+    //   return;
+    // }
 
     if (!varieties) {
       box.showToast("请选择品种");
@@ -152,19 +205,19 @@ Page({
 
     let params = {
       pig_farm_id: app.globalData.userInfo.pig_farm_id,
-      name: name,
-      gender: gender,
-      snname: snname,
-      varieties: varieties
+      source_label: name,
+      type: gender == '母猪' ? '1' : '3',// 1-母猪   3-公猪
+      label_id: snname,
+      breed: varieties,
+      create_time: this.data.yearmouthday
     }
 
     console.log('---->:', params)
 
-    let url = "/personnelManagement/adduserinfo.hn";
-    if (this.data.isEditCus == 2) {
+    let url = "/pigManagement/addPiginfo.hn";
+    if (this.data.isEdit == 2) {
       params.id = this.data.uid;
-      params.status = '0';
-      url = "/personnelManagement/edituserinfo.hn";
+      url = "/pigManagement/editPiginfo.hn";
     }
 
     request.request_get(url, params, function (res) {

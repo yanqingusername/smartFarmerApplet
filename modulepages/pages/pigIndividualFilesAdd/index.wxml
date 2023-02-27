@@ -44,14 +44,14 @@
 
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">在场情况</view>
-          <input class="P5_2 app_font" placeholder="请输入在场情况" placeholder-class="place_style" style="position:relative;right:20rpx" value="{{'在场'}}" disabled="{{true}}"></input>
+          <input class="P5_2 app_font" placeholder-class="place_style" style="position:relative;right:20rpx" value="{{individualStatus}}" disabled="{{true}}"></input>
         </view>
 
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
 
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
-          <view class="P5_1 app_font">录入时间</view>
-          <input class="P5_2 app_font" placeholder="请输入录入时间" placeholder-class="place_style" style="position:relative;right:20rpx" value="{{yearmouthday}}" disabled="{{true}}"></input>
+          <view class="P5_1 app_font">{{isEdit==2?'更新时间':'录入时间'}}</view>
+          <input class="P5_2 app_font" placeholder-class="place_style" style="position:relative;right:20rpx" value="{{yearmouthday}}" disabled="{{true}}"></input>
         </view>
 
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
