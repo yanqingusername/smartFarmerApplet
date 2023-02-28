@@ -22,20 +22,22 @@
 
             <view class="bind_4">
                 <input class="bind_4_input" value="{{searchname}}" bindinput="inputSearchName"
-                    bindfocus="inputSearchNameFocus"></input>
+                    focus="{{true}}"></input>
             </view>
 
             <view class="new_view" wx:if="{{homePersonal.length > 0}}">
                 <scroll-view class="mask_4" scroll-y >
-                    <view wx:for="{{homePersonal}}" wx:for-item="item" wx:key="index" bindtap="checkboxChange" data-id="{{item.id}}" data-name="{{item.name}}" class="btn {{select_bindid == item.id ? 'btn-selected' : ''}}" >{{item.name}}</view>
+                    <view wx:for="{{homePersonal}}" wx:for-item="item" wx:key="index" bindtap="checkboxChange" data-id="{{item.id}}" data-name="{{item.source_label}}" class="btn {{select_bindid == item.id ? 'btn-selected' : ''}}" >{{item.source_label}}</view>
                 </scroll-view>
             </view>
             
-            <view class="bind_5">
+            <!-- <view class="bind_5">
                 <view class="bind_5_1" bindtap="submitNext">绑定下一只</view>
                 <view class="bind_5_1" bindtap="submitClick">确定</view>
+            </view> -->
+             <view class="bind_6">
+                <view class="bind_6_1" bindtap="submitClick">确认</view>
             </view>
-            <!-- <button class="bt_submit bt_public font_code" bindtap="submit_label_id" style="margin-top:50rpx;">确认</button> -->
         </block>
 
     </view>

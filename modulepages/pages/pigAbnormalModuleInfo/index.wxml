@@ -117,7 +117,7 @@
         
             <view style="height: 50rpx;"></view>
 
-            <view class="button_gray">确定</view>
+            <view class="button_gray" bind:tap="submitClick">确定</view>
 
             <view style="height: 70rpx;"></view>
         </view>

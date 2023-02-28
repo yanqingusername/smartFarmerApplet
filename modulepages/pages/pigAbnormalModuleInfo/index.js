@@ -510,4 +510,26 @@ Page({
             this.getShowLabelSumfilebyid();
         }
     },
+    submitClick: function () {
+
+        var that = this;
+        var data = {
+            serial: that.data.label_serial,
+            operation: that.data.approvalText == '淘汰' ? '5' : that.data.approvalText == '出栏' ? '2' : '3', //["死亡","淘汰","出栏"] 2出栏 3是死亡 5是淘汰
+            remarks: that.data.reason_name,
+        };
+        request.request_get('/pigManagement/pighandle.hn', data, function (res) {
+            if (res) {
+                if (res.success) {
+                    box.showToast('离场处理成功');
+                    // that.setData({
+                    //     isShowApproval: 1,
+                    //     isShowReason: 1
+                    // });
+                } else {
+                    box.showToast(res.msg)
+                }
+            }
+        })
+    },
 })
