@@ -11,7 +11,7 @@
                         <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_14_1.png"></image>
                         <view class="new_view_2_1_1_title">猪只</view>
                     </view>
-                    <view class="new_view_2_1_2">105</view>
+                    <view class="new_view_2_1_2">107</view>
                     <view class="new_view_2_1_3">异常<view class="new_view_2_1_3_1">13</view></view>
                 </view>
             </block>
@@ -22,7 +22,7 @@
                         <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_14_2.png"></image>
                         <view class="new_view_2_1_1_title">人员</view>
                     </view>
-                    <view class="new_view_2_1_2">100</view>
+                    <view class="new_view_2_1_2">30</view>
                     <view class="new_view_2_1_3">异常<view class="new_view_2_1_3_1">3</view></view>
                 </view>
             </block>
@@ -35,8 +35,8 @@
                         <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_14_3.png"></image>
                         <view class="new_view_2_1_1_title">物品</view>
                     </view>
-                    <view class="new_view_2_1_2">105</view>
-                    <view class="new_view_2_1_3">异常<view class="new_view_2_1_3_1">13</view></view>
+                    <view class="new_view_2_1_2">20</view>
+                    <view class="new_view_2_1_3">异常<view class="new_view_2_1_3_1">9</view></view>
                 </view>
             </block>
 
@@ -46,8 +46,8 @@
                         <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_14_4.png"></image>
                         <view class="new_view_2_1_1_title">异物</view>
                     </view>
-                    <view class="new_view_2_1_2">100</view>
-                    <view class="new_view_2_1_3">异常<view class="new_view_2_1_3_1">3</view></view>
+                    <view class="new_view_2_1_2">0</view>
+                    <view class="new_view_2_1_3">异常<view class="new_view_2_1_3_1">0</view></view>
                 </view>
             </block>
         </view>
@@ -59,7 +59,7 @@
                     <view class="new_view_3_1_1">物资臭氧消毒监测工作站</view>
                     <view class="new_view_3_1_2">
                         <view class="new_view_3_1_2_1">
-                            <view class="new_view_3_1_1_title">105</view>
+                            <view class="new_view_3_1_1_title">20</view>
                             <view class="new_view_3_1_1_text">离线<view class="new_view_3_1_1_text_1">10</view></view>
                         </view>
                         <image class="new_view_3_1_2_2_img" src="/image/icon/icon_2023_02_14_5.png"></image>
@@ -70,8 +70,8 @@
                     <view class="new_view_3_1_1">淋浴一体机</view>
                     <view class="new_view_3_1_2">
                         <view class="new_view_3_1_2_1">
-                            <view class="new_view_3_1_1_title">105</view>
-                            <view class="new_view_3_1_1_text">离线<view class="new_view_3_1_1_text_1">10</view></view>
+                            <view class="new_view_3_1_1_title">30</view>
+                            <view class="new_view_3_1_1_text">离线<view class="new_view_3_1_1_text_1">12</view></view>
                         </view>
                         <image class="new_view_3_1_2_2_img" src="/image/icon/icon_2023_02_14_6.png"></image>
                     </view>
@@ -83,8 +83,8 @@
                     <view class="new_view_3_1_1">电子耳标</view>
                     <view class="new_view_3_1_2">
                         <view class="new_view_3_1_2_1">
-                            <view class="new_view_3_1_1_title">105</view>
-                            <view class="new_view_3_1_1_text">离线<view class="new_view_3_1_1_text_1">10</view></view>
+                            <view class="new_view_3_1_1_title">80</view>
+                            <view class="new_view_3_1_1_text">离线<view class="new_view_3_1_1_text_1">50</view></view>
                         </view>
                         <image class="new_view_3_1_2_2_img" src="/image/icon/icon_2023_02_14_7.png"></image>
                     </view>
@@ -94,8 +94,8 @@
                     <view class="new_view_3_1_1">门禁</view>
                     <view class="new_view_3_1_2">
                         <view class="new_view_3_1_2_1">
-                            <view class="new_view_3_1_1_title">105</view>
-                            <view class="new_view_3_1_1_text">离线<view class="new_view_3_1_1_text_1">10</view></view>
+                            <view class="new_view_3_1_1_title">98</view>
+                            <view class="new_view_3_1_1_text">离线<view class="new_view_3_1_1_text_1">55</view></view>
                         </view>
                         <image class="new_view_3_1_2_2_img" src="/image/icon/icon_2023_02_14_8.png"></image>
                     </view>
@@ -107,8 +107,8 @@
                     <view class="new_view_3_1_1">小动物监测工作站</view>
                     <view class="new_view_3_1_2">
                         <view class="new_view_3_1_2_1">
-                            <view class="new_view_3_1_1_title">105</view>
-                            <view class="new_view_3_1_1_text">离线<view class="new_view_3_1_1_text_1">10</view></view>
+                            <view class="new_view_3_1_1_title">100</view>
+                            <view class="new_view_3_1_1_text">离线<view class="new_view_3_1_1_text_1">48</view></view>
                         </view>
                         <image class="new_view_3_1_2_2_img" src="/image/icon/icon_2023_02_14_9.png"></image>
                     </view>

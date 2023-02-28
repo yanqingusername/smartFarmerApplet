@@ -20,6 +20,9 @@ Page({
         start_time: time.getToday(new Date()),
         end_time: time.getToday(new Date()),
 
+        start_time_text: time.getTodayLine(new Date()),
+        end_time_text: time.getTodayLine(new Date()),
+
         temp_date_type: 0, // 0-天  2-月
 
         ledallowOperation: true,
@@ -459,7 +462,8 @@ Page({
         if(temp_date_type == 2){
             let month = time.get6MonthDay(new Date());
             that.setData({
-                start_time: month[0]
+                start_time: month[0],
+                start_time_text: month[0],
             });
 
             this.getShowLabelSumfilebyid();
@@ -468,6 +472,8 @@ Page({
                 nowTime: time.getToday(new Date()),
                 start_time: time.getToday(new Date()),
                 end_time: time.getToday(new Date()),
+                start_time_text: time.getTodayLine(new Date()),
+                end_time_text: time.getTodayLine(new Date()),
             });
             this.getShowLabelSumfilebyid();
         }
@@ -482,11 +488,13 @@ Page({
             var arr = date.split("-");
             var newDate = new Date(new Date(arr[0], (arr[1] - parseInt(1)), arr[2], '00', '00', '00').getTime() - 24 * 3600 * 1000);
             var newDateString = time.getToday(newDate);
+            var newDateStringText = time.getTodayLine(newDate);
             let maxData = this.data.maxData;
             maxData = maxData - 1;
             that.setData({
                 start_time: newDateString,
-                maxData: maxData
+                maxData: maxData,
+                start_time_text: newDateStringText,
             });
 
             this.getShowLabelSumfilebyid();
@@ -501,11 +509,13 @@ Page({
             var arr = date.split("-");
             var newDate = new Date(new Date(arr[0], (arr[1] - parseInt(1)), arr[2], '00', '00', '00').getTime() + 24 * 3600 * 1000);
             var newDateString = time.getToday(newDate);
+            var newDateStringText = time.getTodayLine(newDate);
             let maxData = this.data.maxData;
             maxData = maxData + 1;
             that.setData({
                 start_time: newDateString,
-                maxData: maxData
+                maxData: maxData,
+                start_time_text: newDateStringText,
             });
             this.getShowLabelSumfilebyid();
         }

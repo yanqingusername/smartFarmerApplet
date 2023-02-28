@@ -27,13 +27,13 @@
         <view class="P4">
             <image src="/image/icon/template.png" style="width:40rpx;height:auto" mode="widthFix"></image>
             <text class="font_title" style="margin-left:20rpx">猪只体温记录</text>
-            <!-- <block wx:if="{{temp_date_type=='0'}}">
+            <block wx:if="{{temp_date_type=='0'}}">
                 <view class="P41">
-                    <text class="cuIcon-back text-gray icon1" bindtap="goBack" data-type="temp"></text>
-                    <view class="font_date">{{temp_date}}</view>
-                    <text class="cuIcon-right lg text-gray icon1" bindtap="goNext" data-type="temp"></text>
+                    <view class="font_date">{{start_time_text}}</view>
+                    <view class="font_date">-</view>
+                    <view class="font_date">{{end_time_text}}</view>
                 </view>
-            </block> -->
+            </block>
         </view>
         <view class="P5">
             <ec-canvas id="mychart-line_temp" canvas-id="mychart-line_temp" ec="{{ ec_pig_temp }}"></ec-canvas>

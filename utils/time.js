@@ -216,6 +216,14 @@ const get6MonthDay = date => {
     months = months.reverse(); 
     return months;
 }
+
+// 时间今天 -> 日期
+const getTodayLine = date => {
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    return [year, month, day].map(formatNumber).join('/')
+}
  
   
 const formatNumber = n => {
@@ -239,5 +247,6 @@ module.exports = {
     get6Month:get6Month,
     get6Month1:get6Month1,
     getToday: getToday,
-    get6MonthDay: get6MonthDay
+    get6MonthDay: get6MonthDay,
+    getTodayLine: getTodayLine
 }

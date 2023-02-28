@@ -306,8 +306,8 @@ page {
 .font_date {
     font-family: "SHSCN_Light";
     color: #333333;
-    font-size: 32rpx;
-    line-height: 48rpx;
+    font-size: 28rpx;
+    /* line-height: 48rpx; */
 }
 
 .prompt {
