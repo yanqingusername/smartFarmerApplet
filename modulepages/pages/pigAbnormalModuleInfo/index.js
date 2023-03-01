@@ -209,7 +209,8 @@ Page({
                     var axisLabel = { //设置x轴的字
                         show: true,
                         interval: 0,
-                        rotate: 40
+                        // rotate: 40,
+                        // fontSize: 24
                     }
                     that.chartInitTemp(xdata, ydata, axisLabel, seriesTemp);
 
@@ -273,6 +274,9 @@ Page({
                         type: 'dashed'
                     }
                 },
+                // axisLabel:{
+                //     fontSize: 24
+                // },
                 minInterval: 1,
                 // show: true
             },
