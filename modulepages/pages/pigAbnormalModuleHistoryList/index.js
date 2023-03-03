@@ -40,6 +40,10 @@ Page({
 
     statusList: [
       {
+        "id": '',
+        "text": "全部"
+      },
+      {
         "id": '200',
         "text": "离场"
       },
@@ -95,6 +99,11 @@ Page({
         if (res) {
             if (res.success) {
                 var reasonList = res.msg;
+                let reagentHead = {
+                  "id": "",
+                  "location_descr": "全部",
+                }
+                reasonList.unshift(reagentHead)
                 that.setData({
                   reasonList: reasonList
                 });
@@ -114,6 +123,11 @@ Page({
         if (res) {
             if (res.success) {
                 var piggeryList = res.msg;
+                let reagentHead = {
+                  "id": "",
+                  "location_descr": "全部",
+                }
+                piggeryList.unshift(reagentHead)
                 that.setData({
                   piggeryList: piggeryList,
                 });
