@@ -389,7 +389,7 @@ Page({
                         if(fail_text == ''){
                             wx.showModal({
                                 title: '成功',
-                                content: '成功',
+                                content: '',
                                 confirmText: '继续',
                                 cancelText: '返回主页',
                                 success: function (res) {
