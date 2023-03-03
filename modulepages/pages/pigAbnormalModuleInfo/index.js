@@ -527,6 +527,16 @@ Page({
     submitClick: function () {
 
         var that = this;
+        if(!that.data.approvalText){
+            box.showToast("请选择离场选项");
+            return;
+        }
+
+        if(!that.data.reason_name){
+            box.showToast("请选择离场原因");
+            return;
+        }
+        
         var data = {
             serial: that.data.label_serial,
             operation: that.data.approvalText == '淘汰' ? '5' : that.data.approvalText == '出栏' ? '2' : '3', //["死亡","淘汰","出栏"] 2出栏 3是死亡 5是淘汰

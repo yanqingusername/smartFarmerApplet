@@ -182,8 +182,11 @@ Page({
       reasonIndex: reasonIndex,
       reason_id: this.data.reasonList[reasonIndex].id,
       reason_name: this.data.reasonList[reasonIndex].location_descr,
-      isShowReason: 2
+      isShowReason: 2,
+      page: 1
     });
+
+    this.getHistoricRecords();
   },
   /**
    * 请选择栋舍
@@ -194,8 +197,11 @@ Page({
       piggeryIndex: piggeryIndex,
       piggery_id: this.data.piggeryList[piggeryIndex].id,
       piggery_name: this.data.piggeryList[piggeryIndex].location_descr,
-      isShowPiggery: 2
+      isShowPiggery: 2,
+      page: 1
     });
+
+    this.getHistoricRecords();
   },
   bindStatusChange: function (e) {
     var statusIndex = e.detail.value;
@@ -203,8 +209,11 @@ Page({
       statusIndex: statusIndex,
       status_id: this.data.statusList[statusIndex].id,
       status_name: this.data.statusList[statusIndex].text,
-      isShowStatus: 2
+      isShowStatus: 2,
+      page: 1
     });
+
+    this.getHistoricRecords();
   },
   /**
    * 当前日期
