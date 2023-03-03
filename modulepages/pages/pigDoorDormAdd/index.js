@@ -179,7 +179,7 @@ Page({
       let number1 = parseInt(doorDormList[i].dorm_start);
       let number2 = parseInt(doorDormList[i].dorm_end);
 
-      if (number1 < number2) {
+      if (number1 > 0 && number2 > 0 && number1 < number2  ) {
         for (let j = number1; j <= number2; j++) {
           dormList.push(doorDormList[i].dorm_content + j + '')
         }
@@ -208,6 +208,9 @@ Page({
       params.type = '1';
       params.Sitearea = this.data.name;
     }
+
+    console.log(params)
+    // return
 
     request.request_get("/PigstyManagement/addSitearea.hn", params, function (res) {
       console.info('回调', res)
