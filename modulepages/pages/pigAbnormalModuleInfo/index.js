@@ -212,9 +212,11 @@ Page({
                         // rotate: 40,
                         // fontSize: 24
                     }
-                    that.chartInitTemp(xdata, ydata, axisLabel, seriesTemp);
 
-                    that.chartInitAct(xdata, ydata, axisLabel, seriesAct)
+                    let canvasDpr = wx.getSystemInfoSync().pixelRatio;
+                    that.chartInitTemp(xdata, ydata, axisLabel, seriesTemp, canvasDpr);
+
+                    that.chartInitAct(xdata, ydata, axisLabel, seriesAct, canvasDpr)
 
                 } else {
                     box.showToast(res.msg)
@@ -223,12 +225,13 @@ Page({
         })
     },
     // 开始画图
-    chartInitTemp: function (xdata, ydata, axisLabel, series) {
+    chartInitTemp: function (xdata, ydata, axisLabel, series, canvasDpr) {
         var that = this;
         that.pig_temp_component.init((canvas, width, height) => {
             const chart = echarts.init(canvas, null, {
                 width: width,
-                height: height
+                height: height,
+                devicePixelRatio: canvasDpr, // 像素
             });
             that.setLineOptionTemp(chart, xdata, ydata, axisLabel, series);
             return chart; // 注意这里一定要返回 chart 实例，否则会影响事件处理等
@@ -287,12 +290,13 @@ Page({
     },
 
     // 开始画图
-    chartInitAct: function (xdata, ydata, axisLabel, series) {
+    chartInitAct: function (xdata, ydata, axisLabel, series, canvasDpr) {
         var that = this;
         that.pig_act_component.init((canvas, width, height) => {
             const chartAct = echarts.init(canvas, null, {
                 width: width,
-                height: height
+                height: height,
+                devicePixelRatio: canvasDpr, // 像素
             });
             that.setLineOptionAct(chartAct, xdata, ydata, axisLabel, series);
             return chartAct; // 注意这里一定要返回 chart 实例，否则会影响事件处理等

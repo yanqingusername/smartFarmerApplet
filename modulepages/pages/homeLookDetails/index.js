@@ -321,12 +321,13 @@ Page({
     });
   },
   // 开始画图
-  chartInit: function (xdata, ydata, axisLabel, series) {
+  chartInit: function (xdata, ydata, axisLabel, series, canvasDpr) {
     var that = this;
     that.pig_component.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
         width: width,
-        height: height
+        height: height,
+        devicePixelRatio: canvasDpr, // 像素
       });
       that.setLineOption(chart, xdata, ydata, axisLabel, series);
       return chart; // 注意这里一定要返回 chart 实例，否则会影响事件处理等
@@ -474,7 +475,8 @@ Page({
             interval: 0,
             rotate: 40
           }
-          that.chartInit(xdata, ydata, axisLabel, series)
+          let canvasDpr = wx.getSystemInfoSync().pixelRatio;
+          that.chartInit(xdata, ydata, axisLabel, series, canvasDpr)
 
         } else {
           box.showToast(res.msg);
