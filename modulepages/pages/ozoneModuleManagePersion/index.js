@@ -13,31 +13,50 @@ Page({
     //   "head_url": "",
     //   "name": "张三",
     //   "id": 98,
-    //   "job_number": "00001111"
+    //   "job_number": "00001111",
+    //   "isSelect": false
     // }, {
     //   "role_name": "生产区员工",
     //   "head_url": "",
     //   "name": "李四",
     //   "id": 99,
-    //   "job_number": "22221111"
+    //   "job_number": "22221111",
+    //   "isSelect": false
     // }, {
     //   "role_name": "生产区员工",
     //   "head_url": "",
     //   "name": "王五",
     //   "id": 96,
-    //   "job_number": "33331111"
+    //   "job_number": "33331111",
+    //   "isSelect": false
     // }, {
     //   "role_name": "测试区员工",
     //   "head_url": "",
     //   "name": "赵四",
     //   "id": 95,
-    //   "job_number": "55552222"
+    //   "job_number": "55552222",
+    //   "isSelect": false
     // }, {
     //   "role_name": "生产区员工",
     //   "head_url": "",
     //   "name": "测试",
     //   "id": 97,
-    //   "job_number": "77887788"
+    //   "job_number": "77887788",
+    //   "isSelect": false
+    // }, {
+    //   "role_name": "生产区员工",
+    //   "head_url": "",
+    //   "name": "测试8",
+    //   "id": 94,
+    //   "job_number": "77887784",
+    //   "isSelect": false
+    // }, {
+    //   "role_name": "生产区员工",
+    //   "head_url": "",
+    //   "name": "测试9",
+    //   "id": 93,
+    //   "job_number": "77887783",
+    //   "isSelect": false
     // }],
     title: "",
 
@@ -175,15 +194,19 @@ Page({
     let lableid = e.currentTarget.dataset.id;
     let lableidList = this.data.lableidList;
     if (lableid) {
-      if (this.data.selectPersionList.length < 5) {
+      // if (this.data.selectPersionList.length < 5) {
         for (let i = 0; i < this.data.employeesList.length; i++) {
           if (lableid == this.data.employeesList[i].id) {
             if (this.data.employeesList[i].isSelect) {
               this.data.lableidList.splice(this.data.lableidList.findIndex(index => index == lableid), 1)
               this.data.employeesList[i].isSelect = false;
             } else {
-              lableidList.push(lableid);
-              this.data.employeesList[i].isSelect = true;
+              if (this.data.lableidList.length < 5) {
+                lableidList.push(lableid);
+                this.data.employeesList[i].isSelect = true;
+              } else {
+                box.showToast('设备管理员不能超过5个');
+              }
             }
           }
         }
@@ -235,9 +258,9 @@ Page({
           });
         }
 
-      } else {
-        box.showToast('设备管理员不能超过5个');
-      }
+      // } else {
+      //   box.showToast('设备管理员不能超过5个');
+      // }
     }
   },
   setlableidList(typestring) {
