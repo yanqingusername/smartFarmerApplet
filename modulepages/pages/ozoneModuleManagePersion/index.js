@@ -126,7 +126,17 @@ Page({
     var value = e.detail.value;
     var channelList = that.data.employeesList;
     if (value == '' || value == null) {
-        var arr = [];
+      this.setData({
+        searchText: '',
+        page: 1,
+        employeesList: [],
+        isSearch: false
+      });
+
+      this.getPersonnelList();
+
+    } else {
+      var arr = [];
         for (var i = 0; i < channelList.length; i++) {
           if (channelList[i].name.indexOf(value) >= 0) {
             channelList[i].isSelect = false;
@@ -147,16 +157,6 @@ Page({
         if (that.data.lableidList.length > 0) {
           that.setlableidList(1);
         }
-
-    } else {
-      this.setData({
-        searchText: '',
-        page: 1,
-        employeesList: [],
-        isSearch: false
-      });
-
-      this.getPersonnelList();
     }
   },
   // 输入框有文字时，点击X清除
@@ -224,6 +224,14 @@ Page({
             managePersion: managePersionList.join(','),
             selectPersionList: selectPersionList,
             managePersionIds: managePersionIds.join(','),
+          });
+        }else{
+          let pages = getCurrentPages();
+          let prevPage = pages[pages.length - 2];
+          prevPage.setData({
+            managePersion: "",
+            selectPersionList: [],
+            managePersionIds: "",
           });
         }
 
