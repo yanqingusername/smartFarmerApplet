@@ -139,6 +139,15 @@ Page({
       })
     }
   },
+  inputTap(e){
+    var that = this
+    wx.hideKeyboard()
+    setTimeout(function(){
+      that.setData({
+        focusId: e.currentTarget.id
+      })
+    },200)
+  },
   bindName: function (e) {
     var str = e.detail.value;
     // str = utils.checkInput_2(str);

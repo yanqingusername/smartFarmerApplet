@@ -43,6 +43,15 @@ Page({
       })
     }
   },
+  inputTap(e){
+    var that = this
+    wx.hideKeyboard()
+    setTimeout(function(){
+      that.setData({
+        focusId: e.currentTarget.id
+      })
+    },200)
+  },
   bindName: function (e) {
     console.log(e.detail.value)
     var str = e.detail.value;

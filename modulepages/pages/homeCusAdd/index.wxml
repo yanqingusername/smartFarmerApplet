@@ -3,13 +3,13 @@
         <view style="height: 2rpx;"></view>
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">姓名</view>
-          <input class="P5_2 app_font" placeholder="请输入姓名" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="15" value="{{name}}"></input>
+          <input class="P5_2 app_font" placeholder="请输入姓名" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="15" value="{{name}}" bindtap="inputTap" id="name" focus="{{focusId=='name'?true:false}}"></input>
         </view>
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
 
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">工号</view>
-          <input class="P5_2 app_font" placeholder="请输入工号" placeholder-class="place_style" bindinput="bindJobNumber" style="position:relative;right:20rpx" value="{{job_number}}"></input>
+          <input class="P5_2 app_font" placeholder="请输入工号" placeholder-class="place_style" bindinput="bindJobNumber" style="position:relative;right:20rpx" value="{{job_number}}" bindtap="inputTap" id="job_number" focus="{{focusId=='job_number'?true:false}}"></input>
         </view>
 
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
