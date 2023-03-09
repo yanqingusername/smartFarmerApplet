@@ -203,11 +203,13 @@ Page({
       return;
     }
 
+    let dormList1 = [...new Set(dormList)]
+
     let params = {
       pig_farm_id: app.globalData.userInfo.pig_farm_id,
       door: doorname,
       userId: role_id,
-      dorm: dormList.join(',')
+      dorm: dormList1.join(',')
     }
 
     if (this.data.isDoor == 2) {

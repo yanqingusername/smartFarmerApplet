@@ -24,7 +24,7 @@
 					<picker
 					 mode="date"
 					 value="{{end_time}}"
-					 start="2020-01-01"
+					 start="{{startDate}}"
 					 end="{{yearmouthday}}"
 					 bindchange="bindEndTimeChange"
 					>

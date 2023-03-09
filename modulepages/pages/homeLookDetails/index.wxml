@@ -15,7 +15,7 @@
             <view class="hld_1_1_l">
                 <view class="hld_1_1_l_1">结束日期</view>
                 <view class="hld_1_1_l_2">
-                    <picker mode="date" value="{{end_time}}" start="2020-01-01" end="{{yearmouthday}}" bindchange="bindEndTimeChange">
+                    <picker mode="date" value="{{end_time}}" start="{{startDate}}" end="{{yearmouthday}}" bindchange="bindEndTimeChange">
                         <view style="display: flex;align-items: center;">
                             <view class="picker">{{end_time}}</view>
                             <image class='hld_1_1_l_2_img' src='/image/icon/icon_2023_01_06_13.png'></image>

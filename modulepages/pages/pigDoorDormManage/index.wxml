@@ -13,7 +13,7 @@
                         <block wx:for="{{item.door}}" wx:for-item="itemdoor" wx:key="index">
                             <view class="v1_right">
                                 <view class="v1_right_1">
-                                    <view class="v1_right_1_1">{{itemdoor.door}}({{item.count}})</view>
+                                    <view class="v1_right_1_1">{{itemdoor.door}}({{itemdoor.count}})</view>
                                 </view>
                                 <view class="v1_right_2">
                                     <view class="v1_right_1_2">{{itemdoor.administrators}}</view>
