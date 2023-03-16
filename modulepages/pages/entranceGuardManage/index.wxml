@@ -1,6 +1,6 @@
 <view class="page">
      <view class="subject_view" bind:tap="bindAddEntranceGuardManage">
-        <view class="subject_view_white"><image  class="icon_add" src="/image/icon/icon_2023_01_06_12.png"/>新增设备信息</view>
+        <view class="subject_view_white"><image  class="icon_add" src="/image/icon/icon_2023_01_06_12.png"/>新增门禁位点信息</view>
       </view>
       <view class="homeindex_4_1_center">
                 <block wx:for="{{deviceinfoList}}" wx:key="index">
