@@ -118,7 +118,7 @@ Page({
     let params = {
       pig_farm: app.globalData.userInfo.pig_farm_id ,
       sn: name, //设备编号
-      address_id: position, //设备位置
+      address: position, //设备位置
     }
 
     request.request_get('/equipmentManagement/addForeignMatter.hn', params, function (res) {
