@@ -12,7 +12,7 @@
                         <view class="homeindex_4_1_item_center">
                             <view class="homeindex_4_1_item_l">
                                 <view class="homeindex_4_1_item_l_1">
-                                    <image class='homeindex_4_1_item_l_h' src='/image/icon/icon_2023_01_06_26.png'></image>
+                                    <image class='homeindex_4_1_item_l_h' src='/image/icon/icon_2023_02_06_5.png'></image>
                                 </view>
                                 <view class="homeindex_4_1_item_l_2">
                                 <view class="homeindex_4_1_item_r_title">{{item.address}}<view class="homeindex_4_1_item_l_2_time" style="margin-left:6rpx;color: {{item.status == 0 ? '#00BD6A' : item.status == 1 ? '#409DFF' : '#666666'}}">{{item.statusinfo}}</view></view>

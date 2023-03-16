@@ -263,7 +263,7 @@ Page({
         page: 1
       })
 
-      this.getOzoneHistory();
+      this.getHistoricRecords();
     }
   },
   bindStartTimeChange: function (e) {

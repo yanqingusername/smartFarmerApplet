@@ -29,8 +29,12 @@ Page({
     //***********进入操作指南 */
     enter_instructions:function(){
         console.log('进入操作指南')
+        // wx.navigateTo({
+        //     url: '/pages/personalCenter/instructions',
+        // })
+
         wx.navigateTo({
-            url: '/pages/personalCenter/instructions',
+            url: '/modulepages/pages/instructionsModule/index',
         })
     },
     // 获取个人中心的信息

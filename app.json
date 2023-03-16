@@ -85,7 +85,15 @@
             "pages/pigDoorDormAdd/index",
             "pages/pigDoorDormPersion/index",
             "pages/pigIndividualFilesManage/index",
-            "pages/pigIndividualFilesAdd/index"
+            "pages/pigIndividualFilesAdd/index",
+            "pages/entranceGuardModuleList/index",
+            "pages/foreignMatterModuleList/index",
+            "pages/instructionsModule/index",
+            "pages/mainH5/index",
+            "pages/entranceGuardManage/index",
+            "pages/entranceGuardManageAdd/index",
+            "pages/foreignMatterManage/index",
+            "pages/foreignMatterManageAdd/index"
             
           ]
         }

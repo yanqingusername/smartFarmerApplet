@@ -3,20 +3,20 @@
     
     <!-- 异常报警 -->
     <block wx:if="{{fn.list1_inexistence_list2(['1','2','3','4','5','6','30'],applet_permissions_list)}}">
-        <view class="new_view_1">异常报警</view>
+        <view class="new_view_1" wx:if="{{showMainAlarmInfoList.length>0}}">异常报警</view>
         <view class="new_view_2">
-            <block wx:if="{{fn.exist_list('1', applet_permissions_list)}}">
-                <view class="new_view_2_1" bindtap="enter_alarm_pig">
+            <block wx:for="{{showMainAlarmInfoList}}" wx:key="index">
+                <view class="new_view_2_1" bindtap="bindClickMoudleHandler" data-pathurl="{{item.path}}">
                     <view class="new_view_2_1_1">
-                        <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_14_1.png"></image>
-                        <view class="new_view_2_1_1_title">猪只</view>
+                        <image class="new_view_2_1_1_img" src="{{item.icon}}"></image>
+                        <view class="new_view_2_1_1_title">{{item.name}}</view>
                     </view>
-                    <view class="new_view_2_1_2">107</view>
-                    <view class="new_view_2_1_3">异常<view class="new_view_2_1_3_1">13</view></view>
+                    <view class="new_view_2_1_2">{{item.sum}}</view>
+                    <view class="new_view_2_1_3">异常<view class="new_view_2_1_3_1">{{item.abnormalsum}}</view></view>
                 </view>
             </block>
 
-            <block wx:if="{{fn.exist_list('2', applet_permissions_list)}}">
+            <!-- <block wx:if="{{fn.exist_list('2', applet_permissions_list)}}">
                 <view class="new_view_2_1" bindtap="enter_alarm_personnel">
                     <view class="new_view_2_1_1">
                         <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_14_2.png"></image>
@@ -25,10 +25,10 @@
                     <view class="new_view_2_1_2">30</view>
                     <view class="new_view_2_1_3">异常<view class="new_view_2_1_3_1">3</view></view>
                 </view>
-            </block>
+            </block> -->
         </view>
 
-        <view class="new_view_2">
+        <!-- <view class="new_view_2">
             <block wx:if="{{fn.exist_list('5', applet_permissions_list)}}">
                 <view class="new_view_2_1" bindtap="enter_alarm_goods">
                     <view class="new_view_2_1_1">
@@ -50,35 +50,38 @@
                     <view class="new_view_2_1_3">异常<view class="new_view_2_1_3_1">0</view></view>
                 </view>
             </block>
-        </view>
+        </view> -->
 
 
-        <view class="new_view_1">设备数量</view>
-        <view class="new_view_3">
-                <view class="new_view_3_1">
-                    <view class="new_view_3_1_1">物资臭氧消毒监测工作站</view>
-                    <view class="new_view_3_1_2">
-                        <view class="new_view_3_1_2_1">
-                            <view class="new_view_3_1_1_title">20</view>
-                            <view class="new_view_3_1_1_text">离线<view class="new_view_3_1_1_text_1">10</view></view>
+        <view class="new_view_1" wx:if="{{showMainDeviceInfoList.length > 0}}">设备数量</view>
+            <view class="new_view_3" wx:if="{{showMainDeviceInfoList.length > 0}}">
+                <block wx:for="{{showMainDeviceInfoList}}" wx:key="index">
+                    <view class="new_view_3_1">
+                        <view class="new_view_3_1_1">{{item.name}}</view>
+                        <view class="new_view_3_1_2">
+                            <view class="new_view_3_1_2_1">
+                                <view class="new_view_3_1_1_title">{{item.sum}}</view>
+                                <view class="new_view_3_1_1_text">离线<view class="new_view_3_1_1_text_1">{{item.offsum}}</view></view>
+                            </view>
+                            <image class="new_view_3_1_2_2_img" src="{{item.icon}}"></image>
                         </view>
-                        <image class="new_view_3_1_2_2_img" src="/image/icon/icon_2023_02_14_5.png"></image>
                     </view>
-                </view>
 
-                <view class="new_view_3_1">
-                    <view class="new_view_3_1_1">淋浴一体机</view>
-                    <view class="new_view_3_1_2">
-                        <view class="new_view_3_1_2_1">
-                            <view class="new_view_3_1_1_title">30</view>
-                            <view class="new_view_3_1_1_text">离线<view class="new_view_3_1_1_text_1">12</view></view>
+                    <!-- <view class="new_view_3_1">
+                        <view class="new_view_3_1_1">淋浴一体机</view>
+                        <view class="new_view_3_1_2">
+                            <view class="new_view_3_1_2_1">
+                                <view class="new_view_3_1_1_title">30</view>
+                                <view class="new_view_3_1_1_text">离线<view class="new_view_3_1_1_text_1">12</view></view>
+                            </view>
+                            <image class="new_view_3_1_2_2_img" src="/image/icon/icon_2023_02_14_6.png"></image>
                         </view>
-                        <image class="new_view_3_1_2_2_img" src="/image/icon/icon_2023_02_14_6.png"></image>
-                    </view>
-                </view>
-        </view>
+                    </view> -->
+                </block>
+            </view>
+        
 
-        <view class="new_view_3">
+        <!-- <view class="new_view_3">
                 <view class="new_view_3_1">
                     <view class="new_view_3_1_1">电子耳标</view>
                     <view class="new_view_3_1_2">
@@ -118,8 +121,15 @@
                 </view>
 
             
-        </view>
+        </view> -->
 
+        <!-- <view class="new_view_1">设备操作流程图</view>
+        <view class="new_view_3">
+            <view bindtap="bindClickInstructionsModule">
+                <image class="vaccine_img_new" src="/image/icon/user_card.png"></image>
+            </view>
+                
+        </view> -->
 
         <!-- <view style="margin:50rpx 30rpx 20rpx 30rpx" class="font_title">异常报警</view>
         <view class="P1">

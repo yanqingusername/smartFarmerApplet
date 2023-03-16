@@ -238,7 +238,8 @@ color: #333333;
     align-items: center;
     justify-content: space-between;
     padding: 0rpx 32rpx;
-    margin-top: 22rpx;
+    flex-wrap: wrap;
+    /* margin-top: 22rpx; */
 }
 
 .new_view_2_1{
@@ -248,6 +249,7 @@ background: #FFFFFF;
 box-shadow: 0px 8rpx 20rpx 0px rgba(0,0,0,0.02);
 border-radius: 8rpx;
 position: relative;
+margin-top: 22rpx;
 }
 
 .new_view_2_1_1{
@@ -307,14 +309,16 @@ color: #666666;
 
 
 .new_view_3{
+    flex-wrap: wrap;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0rpx 32rpx;
-    margin-top: 22rpx;
+    /* margin-top: 22rpx; */
 }
 
 .new_view_3_1{
+    margin-top: 22rpx;
     width: 332rpx;
     height: 240rpx;
     background: #FFFFFF;
@@ -369,4 +373,14 @@ color: #666666;
 .new_view_3_1_2_2_img{
     width: 88rpx;
     height: 88rpx;
+}
+
+.vaccine_img_new{
+    width: 690rpx;
+    height: 180rpx;
+    /* margin:0 30rpx 0 30rpx; */
+    box-shadow: 0 4rpx 24rpx 0 rgba(221, 221, 221, 0.74);
+    border-radius: 10rpx;
+    opacity:1.0;
+    background-color: #FFFFFF;
 }

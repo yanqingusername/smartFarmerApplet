@@ -44,7 +44,13 @@ Page({
     isShowRoleName: 1,
     submitState: true,
 
-    isShowName: false
+    isShowName: false,
+
+    workstation_name: '',
+    workstation_id: '',
+    workstationList: [],
+    workstationIndex: 0,
+    isShowWorkstation: 1,
   },
   onShow: function () {
 
@@ -68,6 +74,7 @@ Page({
     })
 
     this.getEmployeesList();
+    this.getWorkstationList();
   },
   // 获取员工列表
   getEmployeesList: function () {
@@ -98,10 +105,38 @@ Page({
     });
     this.checkSubmitStatus();
   },
+  // 获取工作站
+  getWorkstationList: function () {
+    var that = this;
+    var data = {
+      pig_farm_id: app.globalData.userInfo.pig_farm_id
+    }
+    request.request_get('/PigstyManagement/getHostList.hn', data, function (res) {
 
+      if (res.success) {
+        var workstationList = res.data;
+        that.setData({
+          workstationList: workstationList
+        })
+      } else {
+        box.showToast(res.msg)
+      }
+    })
+  },
+  // 工作站
+  bindPickerChangeWorkstation: function (e) {
+    var workstationIndex = e.detail.value;
+    this.setData({
+      workstationIndex: workstationIndex,
+      workstation_name: this.data.workstationList[workstationIndex].host_name,
+      workstation_id: this.data.workstationList[workstationIndex].id,
+      isShowWorkstation: 2
+    });
+    this.checkSubmitStatus();
+  },
   //保存按钮禁用判断
   checkSubmitStatus: function (e) {
-    if (this.data.name != '' && this.data.doorname != '' && this.data.role_name != '' && this.data.role_id != '') {
+    if (this.data.name != '' && this.data.doorname != '' && this.data.role_name != '' && this.data.role_id != '' && this.data.workstation_name != '' && this.data.workstation_id != '') {
       this.setData({
         submitState: false
       })
@@ -147,6 +182,9 @@ Page({
 
     let role_name = this.data.role_name; //饲养员
     let role_id = this.data.role_id; //饲养员id
+
+    let workstation_name = this.data.workstation_name; //工作站
+    let workstation_id = this.data.workstation_id; //工作站id
 
     let doorDormList = this.data.info.details
 
@@ -203,13 +241,19 @@ Page({
       return;
     }
 
+    if (!workstation_name || !workstation_id) {
+      box.showToast("请选择工作站");
+      return;
+    }
+
     let dormList1 = [...new Set(dormList)]
 
     let params = {
       pig_farm_id: app.globalData.userInfo.pig_farm_id,
       door: doorname,
       userId: role_id,
-      dorm: dormList1.join(',')
+      dorm: dormList1.join(','),
+      hostid: workstation_id
     }
 
     if (this.data.isDoor == 2) {

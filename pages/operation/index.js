@@ -70,6 +70,11 @@ Page({
             url: '/modulepages/pages/pigAbnormalModuleHistoryList/index',
         })
     },
+    clickEntranceGuardModuleList:function(){
+        wx.navigateTo({
+            url: '/modulepages/pages/entranceGuardModuleList/index',
+        })
+    },
     enter_operation_pig_lairage:function(){
         wx.navigateTo({
             url: '/pages/pigOperation/lairage',

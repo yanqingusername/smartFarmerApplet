@@ -1,0 +1,29 @@
+<!-- <web-view src="{{url}}"></web-view> -->
+<view class="page">
+    <view class="view_7" wx:if="{{typestring == 1}}">
+        <image src="/image/icon/icon_2023_03_16_1.jpg" lazy-load style="width:100%;" mode="widthFix"/>
+        <image src="/image/icon/icon_2023_03_16_2.jpg" lazy-load style="width:100%;" mode="widthFix"/>
+    </view>
+
+    <view class="view_7" wx:if="{{typestring == 5}}">
+        <image src="/image/icon/icon_2023_03_16_3.jpg" lazy-load style="width:100%;" mode="widthFix"/>
+        <image src="/image/icon/icon_2023_03_16_4.jpg" lazy-load style="width:100%;" mode="widthFix"/>
+    </view>
+
+    <view class="view_7" wx:if="{{typestring == 2}}">
+        <image src="/image/icon/icon_2023_03_14_7.jpg" lazy-load style="width:100%;" mode="widthFix"/>
+        <image src="/image/icon/icon_2023_03_14_8.jpg" lazy-load style="width:100%;" mode="widthFix"/>
+        <image src="/image/icon/icon_2023_03_14_9.jpg" lazy-load style="width:100%;" mode="widthFix"/>
+    </view>
+
+    <view class="view_7" wx:if="{{typestring == 3}}">
+        <image src="/image/icon/icon_2023_03_14_2.jpg" lazy-load style="width:100%;" mode="widthFix"/>
+        <image src="/image/icon/icon_2023_03_14_3.jpg" lazy-load style="width:100%;" mode="widthFix"/>
+    </view>
+
+    <view class="view_7" wx:if="{{typestring == 4}}">
+        <image src="/image/icon/icon_2023_03_14_4.jpg" lazy-load style="width:100%;" mode="widthFix"/>
+        <image src="/image/icon/icon_2023_03_14_5.jpg" lazy-load style="width:100%;" mode="widthFix"/>
+        <image src="/image/icon/icon_2023_03_14_6.jpg" lazy-load style="width:100%;" mode="widthFix"/>
+    </view>
+</view>

@@ -1,0 +1,92 @@
+<view class="page">
+
+    <!-- <view class="pig_1">
+        <view class="pig_1_1">异物总数量({{count}})</view>
+    </view> -->
+
+    <view class="v1_view">
+            <view class="v2_view">
+                <view class="v1_view_1">筛选查看项</view>
+                <view class="v1_view_1">异物总数量({{count}})</view>
+            </view>
+            
+            <view class="v1_view_2">
+
+                <view class="P5 app_flex" style="margin: 0rpx 0rpx 20rpx 0rpx;">
+                    <view class="P5_1 app_font">设备位置</view>
+                    <view class="section" style="width: 80%;height:84rpx;padding-left:12rpx;font-size:30rpx;display: flex;position: relative;border-bottom: 1px solid #EEEEEE;">
+                        <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindPositionChange" range-key="location_descr" value="{{positionList[positionIndex].value}}" range="{{positionList}}">
+                            <view class="picker_view" wx:if="{{isShowPosition == 2}}">{{positionList[positionIndex].location_descr}}</view>
+                            <view class="picker_view" style="color: #B1B1B1;" wx:else>请选择设备位置</view>
+                        </picker>
+                        <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
+                        <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+                        </view>
+                    </view>
+                </view>
+
+                <view class="hld_1">
+                    <view class="hld_1_1">
+                        <view class="hld_1_1_l" style="padding-left: 0rpx;">
+                            <view class="hld_1_1_l_1">开始日期</view>
+                            <view class="hld_1_1_l_2">
+                                <picker
+                                mode="date"
+                                value="{{start_time}}"
+                                start="2020-01-01"
+                                end="{{yearmouthday}}"
+                                bindchange="bindStartTimeChange"
+                                >
+                                    <view style="display: flex;align-items: center;">
+                                        <view class="picker">{{start_time}}</view>
+                                        <image class='hld_1_1_l_2_img' src='/image/icon/icon_2023_01_06_13.png' />
+                                    </view>
+                                </picker>
+                            </view>
+                        </view>
+                        <view class="hld_1_1_l">
+                            <view class="hld_1_1_l_1">结束日期</view>
+                            <view class="hld_1_1_l_2">
+                                <picker
+                                mode="date"
+                                value="{{end_time}}"
+                                start="{{startDate}}"
+                                end="{{yearmouthday}}"
+                                bindchange="bindEndTimeChange"
+                                >
+                                    <view style="display: flex;align-items: center;">
+                                        <view class="picker">{{end_time}}</view>
+                                        <image class='hld_1_1_l_2_img' src='/image/icon/icon_2023_01_06_13.png' />
+                                    </view>
+                                </picker>
+                            </view>
+                        </view>
+                    </view>
+	            </view>
+            </view>
+        </view>
+
+        <view class="v2_1" wx:for="{{deviceinfoList}}" wx:key="index">
+            <view class="v2_1_top">
+                <view class="v2_1_top_1"><image class='v2_1_top_1_img' src="/image/icon/icon_2023_03_10_2.png"></image>{{item.position}}</view>
+                <view class="v2_1_top_2" style="color: {{item.status == '2' ? '#FF2C2B' : '#666666'}};">{{item.status == '2' ? '离线' : '在线'}}</view>
+            </view>
+            <view class="v2_1_line"></view>
+            <view class="v2_2">
+                <view class="v2_2_left" bindtap="preview" data-url="{{item.headerimg}}">
+                    <image class='v2_2_left_img' src="{{item.headerimg}}" mode="aspectFill"></image>
+                </view>
+                <view class="v2_2_right">
+                    <view class="v2_1_title">{{item.label_sn}}</view>
+                    <view class="v2_1_position">{{item.time}}</view>
+                </view>
+            </view>
+		</view>
+
+        <block wx:if="{{deviceinfoList.length==0}}">
+            <view class="homeindex_4_1_top_2_t" style="display: flex;align-items: center;justify-content: center;padding: 100rpx;">暂无数据</view>
+        </block>
+    
+
+    <view style="height:40rpx;width:0rpx"></view>
+</view>

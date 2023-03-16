@@ -30,7 +30,7 @@
 
         <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">性别：</view>
-          <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
+          <view class="section" style="width: 65%;height:84rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;">
             <picker style="height:100%;margin-top:20rpx;width:90%;" bindchange="bindPickerChangeGender" value="{{genderIndex}}" range="{{genderList}}">
               <view class="picker" wx:if="{{isShowGender == 2}}">{{genderList[genderIndex]}}</view>
               <view class="picker" style="color: #B1B1B1;" wx:else>请选择性别</view>

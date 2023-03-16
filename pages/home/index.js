@@ -10,6 +10,8 @@ Page({
 		ec_pig: {
             lazyLoad: true // 将 lazyLoad 设为 true 后，需要手动初始化图表
         },
+        showMainDeviceInfoList: [],
+        showMainAlarmInfoList: []
     },
 
     onLoad:function(){
@@ -28,6 +30,9 @@ Page({
         if(utils.isInArray('7', applet_permissions_list)){
             // that.pigFarmPie();
         }
+
+        this.getShowMainDeviceInfo();
+        this.getShowMainAlarmInfo();
     },
 
     //*******获取未处理异常预警数*********
@@ -191,8 +196,13 @@ Page({
     },
     // 进入异常报警中的异物
     enter_alarm_illegal:function(){
+        // wx.navigateTo({
+        //     url: '/pages/abnormal/illegal',
+        // })
+
+        //异物
         wx.navigateTo({
-            url: '/pages/abnormal/illegal',
+            url: '/modulepages/pages/foreignMatterModuleList/index',
         })
     },
     // 进入异常报警中的物品
@@ -238,5 +248,56 @@ Page({
         wx.navigateTo({
             url: '/modulepages/pages/moduleMain/index',
         })
-    }
+    },
+    bindClickInstructionsModule(){
+        wx.navigateTo({
+            url: '/modulepages/pages/instructionsModule/index',
+        })
+    },
+    /**
+     * 获取首页数据
+     */
+    getShowMainDeviceInfo:function(){
+        var that = this;
+        var data = {
+            pig_farm_id: app.globalData.userInfo.pig_farm_id
+        }
+        request.request_get('/equipmentManagement/getShowMainDeviceInfo.hn', data, function (res) {
+            if (res) {
+                if (res.success) {
+                    that.setData({
+                        showMainDeviceInfoList: res.data
+                    });
+                } else {
+                    box.showToast(res.msg)
+                }
+            }
+        })
+    },
+    //报警
+    getShowMainAlarmInfo:function(){
+        var that = this;
+        var data = {
+            pig_farm_id: app.globalData.userInfo.pig_farm_id
+        }
+        request.request_get('/equipmentManagement/getShowMainAlarmInfo.hn', data, function (res) {
+            if (res) {
+                if (res.success) {
+                    that.setData({
+                        showMainAlarmInfoList: res.data
+                    });
+                } else {
+                    box.showToast(res.msg)
+                }
+            }
+        })
+    },
+    bindClickMoudleHandler(e){
+        let pathstring = e.currentTarget.dataset.pathurl;
+        if(pathstring){
+            wx.navigateTo({
+                url: pathstring,
+            });
+        }
+    },
 })
