@@ -41,7 +41,7 @@ Page({
       limit: that.data.limit,
       start_time: this.data.startDate, //开始时间，第二个接口用  默认当前
       end_time: this.data.endDate, //结束时间 同开始时间
-      position: this.data.position_name  //设备位置
+      position: this.data.position_name == '全部' ? '' : this.data.position_name //设备位置
     }
     request.request_get('/equipmentManagement/getForeignMatterList.hn', data, function (res) {
       if (res) {
@@ -74,6 +74,7 @@ Page({
       isShowPosition: 2,
       page: 1
     });
+    this.getForeignMatterList();
   },
   getPositionList() {
     let that = this;
