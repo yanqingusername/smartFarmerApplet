@@ -8,7 +8,7 @@
         <!-- <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view> -->
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">设备编号</view>
-          <input class="P5_2 app_font" placeholder="请输入设备编号" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="15" value="{{name}}" disabled="{{isName}}" bindtap="inputTap" id="name" focus="{{focusId=='name'?true:false}}"></input>
+          <input class="P5_2 app_font" placeholder="请输入设备编号" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx"  value="{{name}}" disabled="{{isName}}" bindtap="inputTap" id="name" focus="{{focusId=='name'?true:false}}"></input>
         </view>
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
 

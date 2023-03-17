@@ -384,3 +384,10 @@ color: #666666;
     opacity:1.0;
     background-color: #FFFFFF;
 }
+
+.new_view_1_top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40rpx 32rpx 0rpx 32rpx;
+}

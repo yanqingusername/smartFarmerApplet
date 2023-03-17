@@ -56,7 +56,7 @@
 
 				<view class="homeindex_4_1_center">
 					<block wx:for="{{iwadomListinfo}}" wx:key="index">
-						<view class="homeindex_4_1_item">
+						<view class="homeindex_4_1_item" catch:tap="clickOzoneModuleApproval" data-id="{{item.id}}">
 							<view class="homeindex_4_1_item_top">
 								<view class="homeindex_4_1_item_top_title">设备编号：{{item.SN}}</view>
                                 <view class="homeindex_4_1_item_top_title">{{item.address}}</view>
@@ -64,7 +64,8 @@
 							<view class="homeindex_4_1_item_center" style="flex-direction: column;">
                                 <view class="homeindex_4_1_item_l" style="justify-content: space-between;width: 100%;">
                                     <view class="homeindex_4_1_item_l_2_title">{{item.controller}}</view>
-                                    <view class="homeindex_4_1_item_l_2_time" style="margin-top:0rpx;color: {{item.status == '待审核' ? '#FF2C2B' : '#409DFF'}};">{{item.status}}</view>
+                                    <!-- <view class="homeindex_4_1_item_l_2_time" style="margin-top:0rpx;color: {{item.status == '待审核' ? '#FF2C2B' : '#409DFF'}};">{{item.status}}</view> -->
+									<view class="homeindex_4_1_item_l_2_time" style="margin-top:0rpx;color: #FF2C2B;">{{item.ViolationReason}}</view>
                                 </view>
 
                                 <view class="homeindex_4_1_item_l" style="justify-content: space-between;width: 100%;margin-top: 20rpx;">

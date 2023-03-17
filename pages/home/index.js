@@ -11,7 +11,10 @@ Page({
             lazyLoad: true // 将 lazyLoad 设为 true 后，需要手动初始化图表
         },
         showMainDeviceInfoList: [],
-        showMainAlarmInfoList: []
+        showMainAlarmInfoList: [],
+        
+        yearmouthday: "",
+        timestamp: new Date().getTime(),
     },
 
     onLoad:function(){
@@ -19,6 +22,8 @@ Page({
         var applet_permissions_list = app.globalData.userInfo.applet_permissions_list;
         console.log("权限信息:" + applet_permissions_list);
         this.setData({applet_permissions_list:applet_permissions_list});
+
+        this.currentTime();
     },
 
     onShow:function(){
@@ -34,7 +39,25 @@ Page({
         this.getShowMainDeviceInfo();
         this.getShowMainAlarmInfo();
     },
-
+    /**
+     * 当前日期
+     */
+    currentTime() {
+        let tempTime = new Date(this.data.timestamp);
+        let month = tempTime.getMonth() + 1;
+        let day = tempTime.getDate();
+        if (month < 10) {
+        month = "0" + month
+        }
+        if (day < 10) {
+        day = "0" + day
+        }
+        let curtime = tempTime.getFullYear() + "年" + (month) + "月" + day + "日";
+        let curDate = tempTime.getFullYear() + "-" + (month) + "-" + day;
+        this.setData({
+            yearmouthday: curtime,
+        });
+    },
     //*******获取未处理异常预警数*********
     getUntreatedAlarmNum:function(){
         var that = this;

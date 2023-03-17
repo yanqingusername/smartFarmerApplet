@@ -153,7 +153,7 @@ Page({
     }
 
     this.getIwadomlistinfo();
-    this.getIwadomchartinfo();
+    // this.getIwadomchartinfo();
   },
   checkboxChange(e) {
     let string = "homePersonal[" + e.target.dataset.index + "].selected"
@@ -175,7 +175,7 @@ Page({
     });
 
     this.getIwadomlistinfo();
-    this.getIwadomchartinfo();
+    // this.getIwadomchartinfo();
   },
   bindPickerChangeWork(e) {
     console.log(e.detail.value)
@@ -187,7 +187,7 @@ Page({
     });
 
     this.getIwadomlistinfo();
-    this.getIwadomchartinfo();
+    // this.getIwadomchartinfo();
   },
   onShow: function () {
     this.getPersonnelList();
@@ -202,9 +202,9 @@ Page({
     this.currentTime();
 
     this.getIwadomlistinfo();
-    this.getIwadomchartinfo();
+    // this.getIwadomchartinfo();
 
-    this.pig_component = this.selectComponent('#mychart-line');
+    // this.pig_component = this.selectComponent('#mychart-line');
   },
   getIwadomlistinfo: function () {
     var that = this;
@@ -279,7 +279,7 @@ Page({
       })
 
       this.getIwadomlistinfo();
-      this.getIwadomchartinfo();
+      // this.getIwadomchartinfo();
     }
   },
   bindStartTimeChange: function (e) {

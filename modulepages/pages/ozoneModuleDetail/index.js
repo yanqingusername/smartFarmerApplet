@@ -149,8 +149,11 @@ Page({
     }
   },
   clickOzoneModuleApproval: function (e) {
-    wx.navigateTo({
-      url: '/modulepages/pages/ozoneModuleApproval/index',
-    })
+    let id = e.currentTarget.dataset.id;
+    if(id){
+      wx.navigateTo({
+        url: `/modulepages/pages/ozoneModuleApprovalDetail/index?id=${id}`,
+      })
+    }
   },
 })

@@ -93,7 +93,8 @@
             "pages/entranceGuardManage/index",
             "pages/entranceGuardManageAdd/index",
             "pages/foreignMatterManage/index",
-            "pages/foreignMatterManageAdd/index"
+            "pages/foreignMatterManageAdd/index",
+            "pages/ozoneModuleApprovalDetail/index"
             
           ]
         }

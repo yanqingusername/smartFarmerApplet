@@ -66,7 +66,7 @@ Page({
             that.setData({
               isName: true,
               isPosition: true,
-              name: deviceInfo.name,
+              name: deviceInfo.sn,
               position: deviceInfo.address,
               time: deviceInfo.duration,
               concentration: deviceInfo.concentration,

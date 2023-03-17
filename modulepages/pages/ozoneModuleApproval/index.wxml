@@ -4,8 +4,8 @@
 
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">照片</view>
-          <view bindtap="preview" data-url="{{frontPhoto}}" style="width:480rpx;height:200rpx;margin-top:0rpx;position:relative;border-radius:100%;">
-            <image src="{{frontPhoto}}" style="width:480rpx;height:200rpx;margin-top:0rpx;position:relative;border-radius:100%;" mode="aspectFill"></image>
+          <view bindtap="preview" data-url="{{frontPhoto}}" style="width:480rpx;height:200rpx;margin-top:0rpx;position:relative;">
+            <image src="{{frontPhoto}}" style="width:480rpx;height:200rpx;margin-top:0rpx;position:relative;" mode="aspectFill"></image>
           </view>
         </view>
 

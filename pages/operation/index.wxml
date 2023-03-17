@@ -119,6 +119,15 @@
                 </view>
             </block>
 
+             <block wx:if="{{fn.exist_list('25', applet_permissions_list)}}">
+                <view class="new_view_2_1">
+                    <view class="new_view_2_1_1" bindtap="catchHandler" data-pathstring="/pages/bluetooth/index" data-title="蓝牙连接">
+                        <image class="new_view_2_1_1_img" style="width: 64rpx;height: 64rpx;" src="/image/icon/icon_2023_03_17_01.png"></image>
+                    </view>
+                    <view class="new_view_2_1_title">蓝牙连接</view>
+                </view>
+            </block>
+
         </view>
     </block>
 

@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: column;
     width: 686rpx;
-height: 220rpx;
+height: 270rpx;
 background: #FFFFFF;
 box-shadow: 0px 8rpx 20rpx 0px rgba(0,0,0,0.02);
 border-radius: 8rpx;

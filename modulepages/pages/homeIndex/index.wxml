@@ -14,7 +14,7 @@
         </view>
     </view>
 
-    <view class="homeindex_3" catch:tap="bindHandlerClick" data-urlstring="/modulepages/pages/homeEquipmentStatus/index">
+    <!-- <view class="homeindex_3" catch:tap="bindHandlerClick" data-urlstring="/modulepages/pages/homeEquipmentStatus/index">
         <view class="homeindex_3_1">
             <view class="homeindex_3_title">当前设备</view>
             <view class="homeindex_3_view">
@@ -63,9 +63,34 @@
                     </view>
                 </view>
             </view>
+             
         </view>
+    </view> -->
+    <view >
+        <view class="homeindex_3_title">全部设备({{devicecount}})台</view>
+        <view class="v2" wx:if="{{deviceinfoList.length > 0}}">
+                <view class="v2_1" catchtap="handleRouter" wx:for="{{deviceinfoList}}" wx:key="index" data-id="{{item.id}}">
+                    <view class="v2_1_top">
+                        <view class="v2_1_top_1" wx:if="{{item.gender == 0}}"><image class='v2_1_top_1_img' src='/image/icon/icon_2023_01_06_07.png'></image>男</view>
+                        <view class="v2_1_top_1" wx:if="{{item.gender == 1}}"><image class='v2_1_top_1_img' src='/image/icon/icon_2023_01_06_08.png'></image>女</view>
+                        <!-- <view class="v2_1_top_2" style="color: {{item.status == 0 ? '#00BD6A' : item.status == 1 ? '#409DFF' : '#666666'}}">{{item.statusinfo}}</view> -->
+                        <view class="v2_1_cen_1_text" style="margin-top: 0rpx;">{{item.name}}</view>
+                    </view>
+                    <view class="v2_1_cen">
+                        <view class="v2_1_cen_1" style="width: 65%;">
+                            <view class="v2_1_cen_1_title">{{item.sn}}</view>
+                            <!-- <view class="v2_1_cen_1_text">{{item.name}}</view> -->
+                        </view>
+                        <view >
+                            <image class='v2_1_cen_img' src='/image/icon/icon_2023_01_06_21.png' wx:if="{{item.status == 0}}"></image>
+                            <image class='v2_1_cen_img' src='/image/icon/icon_2023_01_06_22.png' wx:if="{{item.status == 1}}"></image>
+                            <image class='v2_1_cen_img' src='/image/icon/icon_2023_01_06_20.png' wx:if="{{item.status == 2}}"></image>
+                        </view>
+                    </view>
+                </view>
+            </view>
     </view>
-    
+
     <view class="homeindex_4">
         <view class="homeindex_4_1">
             <view class="homeindex_4_1_top" catch:tap="bindHandlerClick" data-urlstring="/modulepages/pages/homeLookDetails/index">

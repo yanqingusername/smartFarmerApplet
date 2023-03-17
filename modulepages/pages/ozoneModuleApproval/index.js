@@ -10,6 +10,7 @@ Page({
    */
   data: {
     frontPhoto: "",
+    frontPhotoList:[],
     name_text: "",
     time_text: "",
     endtime_text: "",
@@ -92,7 +93,7 @@ Page({
     let currentUrl = e.currentTarget.dataset.url
     wx.previewImage({
       current: currentUrl, // 当前显示图片的http链接
-      urls: [currentUrl] // 需要预览的图片http链接列表
+      urls: this.data.frontPhotoList // 需要预览的图片http链接列表
     })
   },
   /**
@@ -109,8 +110,13 @@ Page({
         if (res.success) {
           if(res.data && res.data.length > 0){
             let ozoneInfo = res.data[0];
+            let frontPhoto = '';
+            if(ozoneInfo && ozoneInfo.img.length > 0){
+              frontPhoto = ozoneInfo.img[0]
+            }
             that.setData({
-              frontPhoto: ozoneInfo.img,
+              frontPhoto: frontPhoto,
+              frontPhotoList: ozoneInfo.img,
               name_text: ozoneInfo.concentration+"mg/m3",
               time_text: ozoneInfo.worktime,
               endtime_text: ozoneInfo.end_time,

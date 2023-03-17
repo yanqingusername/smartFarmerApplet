@@ -18,7 +18,11 @@ Page({
         page: 1,
         limit: 10,
         iwadomListinfo: [],
-        count: 0
+        count: 0,
+
+        
+        deviceinfoList: [],
+        devicecount: 0
     },
 
     onLoad:function(){
@@ -37,6 +41,8 @@ Page({
         this.currentTime();
         this.getdeviceRun();
         this.getIwadomlistinfo();
+
+        this.getdeviceinfo();
     },
     /**
      * 当前日期
@@ -125,4 +131,42 @@ Page({
               }
         })
     },
+    /**
+     * 淋浴一体机 1.0 设备
+     */
+    getdeviceinfo:function(){
+        var that = this;
+        var data = {
+            page: 1,
+            limit: 10,
+            pig_farm_id: app.globalData.userInfo.pig_farm_id
+        }
+        request.request_get('/equipmentManagement/getdeviceinfo.hn', data, function (res) {
+            if (res) {
+                if (res.success) {
+                  if (that.data.page == 1) {
+                    that.setData({
+                        devicecount: res.count,
+                        deviceinfoList: res.info,
+                    });
+                  } else {
+                    that.setData({
+                        devicecount: res.count,
+                        deviceinfoList: that.data.deviceinfoList.concat(res.info || []),
+                    });
+                  }
+                } else {
+                  box.showToast(res.msg);
+                }
+              }
+        })
+    },
+    handleRouter(e){
+        let id = e.currentTarget.dataset.id;
+        if(id){
+          wx.navigateTo({
+            url: `/modulepages/pages/homeEquipmentStatusList/index?eid=${id}`
+          });
+        }
+      }
 })

@@ -15,7 +15,8 @@
                                     <image class='homeindex_4_1_item_l_h' src='/image/icon/icon_2023_02_06_5.png'></image>
                                 </view>
                                 <view class="homeindex_4_1_item_l_2">
-                                <view class="homeindex_4_1_item_r_title">{{item.address}}<view class="homeindex_4_1_item_l_2_time" style="margin-left:6rpx;color: {{item.status == 1 ? '#409DFF' : '#666666'}}">{{item.statusinfo}}</view></view>
+                                <!-- <view class="homeindex_4_1_item_r_title">{{item.address}}<view class="homeindex_4_1_item_l_2_time" style="margin-left:6rpx;color: {{item.status == 1 ? '#409DFF' : '#666666'}}">{{item.statusinfo}}</view></view> -->
+                                <view class="homeindex_4_1_item_r_title">{{item.address}}</view>
                                 <!-- <view class="homeindex_4_1_item_l_2_time">{{item.statusinfo}}</view> -->
                                 <view class="homeindex_4_1_item_l_2_time">{{item.create_time}}</view>
                                 </view>
