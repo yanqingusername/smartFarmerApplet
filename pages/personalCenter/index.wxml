@@ -8,7 +8,7 @@
                 <view class="phone_font">{{userInfo.phone}}</view>
             </view>
             <text class="user_card_info worker_font" style="right:46rpx;top:70rpx;">{{userInfo.role_name}}</text>
-            <image class="user_card_info img_next" src="/image/icon/next.png" mode="widthFix" style="right:16rpx;top:80rpx"></image>
+            <!-- <image class="user_card_info img_next" src="/image/icon/next.png" mode="widthFix" style="right:16rpx;top:80rpx"></image> -->
         </image>
     </view>
 
@@ -70,7 +70,7 @@
                 </view>
             </view>
 
-            <view class="v1_1">
+            <!-- <view class="v1_1">
                 <view class="v2_1" bindtap="call_customer">
                     <view class="v2_1_view">
                         <view class="v2_1_item">
@@ -82,7 +82,7 @@
                         </view>
                     </view>
                 </view>
-            </view>
+            </view> -->
 
             <view class="v1_1">
                 <view class="v2_1" bindtap="exit">

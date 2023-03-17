@@ -22,14 +22,14 @@ Page({
     },
 
     onShow:function(){
-        var that = this;
-        var applet_permissions_list = that.data.applet_permissions_list;
-        if(utils.list1_inexistence_list2(['1','2','3','4','5','6'],applet_permissions_list)){
-            that.getUntreatedAlarmNum();
-        }
-        if(utils.isInArray('7', applet_permissions_list)){
-            // that.pigFarmPie();
-        }
+        // var that = this;
+        // var applet_permissions_list = that.data.applet_permissions_list;
+        // if(utils.list1_inexistence_list2(['1','2','3','4','5','6'],applet_permissions_list)){
+        //     that.getUntreatedAlarmNum();
+        // }
+        // if(utils.isInArray('7', applet_permissions_list)){
+        //     // that.pigFarmPie();
+        // }
 
         this.getShowMainDeviceInfo();
         this.getShowMainAlarmInfo();

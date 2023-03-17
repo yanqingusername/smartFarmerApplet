@@ -13,7 +13,7 @@ page{
 
 .new_view_3_1{
     width: 332rpx;
-    /* height: 240rpx; */
+    height: 240rpx;
     background: #FFFFFF;
     box-shadow: 0px 8rpx 20rpx 0px rgba(0,0,0,0.02);
     border-radius: 8rpx;
