@@ -73,8 +73,11 @@
             </view>
             <view class="v2_1_line"></view>
             <view class="v2_2">
-                <view class="v2_2_left" bindtap="preview" data-url="{{item.headerimg}}">
-                    <image class='v2_2_left_img' src="{{item.headerimg}}" mode="aspectFill"></image>
+                <view class="v2_2_left" bindtap="preview" data-url="{{item.headerimg}}" wx:if="{{item.headerimg}}">
+                    <image class='v2_2_left_img' src="{{item.headerimg}}" mode="aspectFill"></image> 
+                </view>
+                <view class="v2_2_left" wx:else style="display: flex;align-items: center;justify-content: center;">
+                    <view class="v2_1_title">暂无图片</view>
                 </view>
                 <view class="v2_2_right">
                     <!-- <view class="v2_1_title">{{item.SN}}</view> -->
