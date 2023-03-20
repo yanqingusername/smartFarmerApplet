@@ -1,6 +1,7 @@
 const app = getApp();
 const request = require('../../../utils/request.js')
 const box = require('../../../utils/box.js')
+const utils = require('../../../utils/utils.js')
 
 Page({
   data: {
@@ -137,14 +138,14 @@ Page({
         }
     })
   },
-  bindSn(e){
+  bindSn: utils.debounce(function(e) {
     this.setData({
       sn_text: e.detail.value,
       page: 1
     });
    
     this.getHistoricRecords();
-  },
+  },300),
   onReachBottom: function () {
     this.getHistoricRecords();
   },

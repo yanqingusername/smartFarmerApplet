@@ -18,7 +18,7 @@
     <view style="margin-top:100rpx;">
     
         <block>
-            <view class="P1 font_desc">可 “扫码录入” 或 “手动录入” 进行耳环ID录入</view>
+            <view class="P1 font_desc">可 “扫码录入” 或 “手动录入” 进行耳标ID录入</view>
             <button class="bt_code bt_public" bindtap="getQRCode">
                 <image src="/image/icon/get_code.png" style="width:28rpx;height:28rpx;" mode="widthFix"></image>
                 <text class="font_code" style="margin-left: 20rpx;">扫码录入</text>
@@ -27,7 +27,7 @@
                 <!-- type="number" -->
                 <input class="label_id_input" value="{{inputInfo}}" bindinput="inputInfo"
                     bindfocus="inputFocus"></input>
-                <button class="bt_confirm font_code bt_public" bindtap="addList">确定</button>
+                <button class="bt_confirm font_code bt_public" bindtap="addList" style="padding: 0rpx;">确定</button>
             </view>
             <!-- 耳环id列表 -->
             <scroll-view style="margin-top:40rpx;" scroll-y="true" wx:if="{{label_id_list.length > 0}}">
@@ -43,6 +43,7 @@
                         <view class="new_label_id_item_1">
                             <view class="font_label" style="width:80rpx;">{{fn.index_text(index)}}</view>
                             <view class="font_label" style="width:200rpx;">{{item.id}}</view>
+                            <view class="font_label" style="width:250rpx;">{{item.source_id}}</view>
                         </view>
                         <view class="new_label_id_item_1">
                             <image class="new_delete_img" catch:tap="del_label_id" data-gid="{{index}}" src="/image/icon/icon_2023_01_06_27.png"></image>

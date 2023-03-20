@@ -44,9 +44,40 @@ function exist_arr(arr, self_value, self_item){
     return flag
 }
 
+/*函数节流*/
+function throttle(fn, interval){
+    var enterTime = 0;
+    var gapTime = interval || 300;
+    return function(){
+        var context = this;
+        var backTime = new Date();
+        if(backTime - enterTime > gapTime){
+            fn.call(context, arguments);
+            enterTime = backTime;
+        }
+    };
+}
+
+/*函数防抖*/
+function debounce(fn, interval){
+    var timer;
+    var gapTime = interval || 1000;
+    return function() {
+        clearTimeout(timer);
+        var context = this;
+        var args = arguments;
+        timer = setTimeout(function() {
+            fn.apply(context,args);
+        }, gapTime);
+    };
+}
+
+
 module.exports = {
     checkPhone: checkPhone,
     list1_inexistence_list2:list1_inexistence_list2,
     isInArray:isInArray,
-    exist_arr:exist_arr
+    exist_arr:exist_arr,
+    throttle: throttle,
+    debounce: debounce
 }

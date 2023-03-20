@@ -82,6 +82,7 @@ Page({
                 'text': '未知'
             }
         ],
+        operation: 1 //  1是在场  其余离场
     },
     /**
    * 获取审核失败的原因列表
@@ -141,7 +142,8 @@ Page({
                 dorm: jsonItem.dorm,
                 label_type: jsonItem.label_type,
                 label_serial: jsonItem.serial,
-                farm_name: jsonItem.farm_name
+                farm_name: jsonItem.farm_name,
+                operation: jsonItem.operation
             });
         }
 
@@ -595,10 +597,9 @@ Page({
             if (res) {
                 if (res.success) {
                     box.showToast('离场处理成功');
-                    // that.setData({
-                    //     isShowApproval: 1,
-                    //     isShowReason: 1
-                    // });
+                    that.setData({
+                        operation: 0
+                    });
                 } else {
                     box.showToast(res.msg)
                 }

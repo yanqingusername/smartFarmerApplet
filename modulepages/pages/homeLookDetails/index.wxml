@@ -1,5 +1,5 @@
 <view class="page">
-    <!-- <view class="hld_1">
+    <view class="hld_1">
         <view class="hld_1_1">
             <view class="hld_1_1_l" style="padding-left: 20rpx;">
                 <view class="hld_1_1_l_1">开始日期</view>
@@ -25,7 +25,7 @@
             </view>
         </view>
         <view class="hld_1_2"></view>
-        <view class="hld_1_3">
+        <!-- <view class="hld_1_3">
             <view class="hld_1_3_1" style="padding-left: 20rpx;" bind:tap="clickName">
                 <view class="hld_1_3_1_1">姓名</view>
                 <text class="hld_1_3_1_2"></text>
@@ -50,12 +50,12 @@
            
              
 
-        </view>
+        </view>-->
 
         
 
 
-    </view> -->
+    </view> 
 
 <!-- <view class="homeindex_4"> -->
     <!-- <view class="canvas_view">

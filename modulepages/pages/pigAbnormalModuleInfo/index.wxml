@@ -86,7 +86,12 @@
             <text class="font_title" style="margin-left:20rpx;font-size: 32rpx;">离场处理</text>
         </view>
 
-        <view class="new_view_2">
+        <view class="new_view_2" wx:if="{{operation != 1}}">
+            <view class="new_app_flex_1">已离场</view>
+            <view style="height:30rpx;"></view>
+        </view>
+
+        <view class="new_view_2" wx:if="{{operation == 1}}">
             <view class="new_app_flex" style="margin-top: 0rpx;">
             <view class="new_app_flex_1">离场选项</view>
             <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">

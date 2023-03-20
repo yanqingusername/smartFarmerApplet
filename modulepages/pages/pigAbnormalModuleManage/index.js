@@ -73,7 +73,41 @@ Page({
             modalName: null
         })
     },
+    getSourceLabelByLabelId(label_id, typestring) {
+        var that = this;
+        var data = {
+            pig_farm_id: app.globalData.userInfo.pig_farm_id,
+            label_id: label_id
+        }
+        request.request_get('/pigManagement/getSourceLabelByLabelId.hn', data, function (res) {
+          if (res) {
+            if (res.success) {
+                var label_id_list = that.data.label_id_list;
+                let dataList = res.data;
+                let source_label;
+                if(dataList && dataList.length > 0){
+                    source_label = dataList[0].source_label;
+                }else{
+                    source_label= '';
+                }
+                var label_id_info_array = {"id":label_id,"source_id":source_label,'time': time.formatTime(new Date)};
+                label_id_list.push(label_id_info_array)
 
+                that.setData({
+                    label_id_list: label_id_list
+                });
+
+                if(typestring == 2){
+                    that.setData({
+                        inputInfo:''
+                    });
+                }
+            } else {
+              box.showToast(res.msg);
+            }
+          }
+        });
+    },
     // 扫码录入
     getQRCode:function(){
         var that = this;
@@ -87,13 +121,15 @@ Page({
                 }else if (utils.exist_arr(label_id_list, 'id', res.result)){
                     box.showToast('已经扫描过')
                 }else{
-                    var label_id_info_array = {"id":res.result,"source_id":'','time': time.formatTime(new Date)};
-                    label_id_list.push(label_id_info_array)
-                    box.showToast('成功', 'success')
+                    that.getSourceLabelByLabelId(res.result, 1);
+
+                    // var label_id_info_array = {"id":res.result,"source_id":'','time': time.formatTime(new Date)};
+                    // label_id_list.push(label_id_info_array)
+                    // box.showToast('成功', 'success')
                 }
-                that.setData({
-                    label_id_list: label_id_list
-                });
+                // that.setData({
+                //    label_id_list: label_id_list
+                // });
             }
         })
     },
@@ -114,9 +150,11 @@ Page({
         } else if (utils.exist_arr(label_id_list, 'id', inputInfo)){
             box.showToast('请勿重复录入')
         }else{
-            var label_id_info_array = {"id":inputInfo,"source_id":'','time': time.formatTime(new Date)};
-            label_id_list.push(label_id_info_array)
-            that.setData({ label_id_list: label_id_list, inputInfo:'' })
+            this.getSourceLabelByLabelId(inputInfo, 2);
+
+            // var label_id_info_array = {"id":inputInfo,"source_id":'','time': time.formatTime(new Date)};
+            // label_id_list.push(label_id_info_array)
+            // that.setData({ label_id_list: label_id_list, inputInfo:'' })
         }
     },
 
