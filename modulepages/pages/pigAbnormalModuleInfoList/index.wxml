@@ -1,10 +1,11 @@
+<wxs src="../../../comm.wxs" module="fn" />
 <view class="page">
 
         <view class="v2_1" wx:for="{{deviceinfoList}}" wx:key="index">
             <!-- 操作（1入栏，2健康出栏，3无害处理(死亡)，4农信互联耳环删除） 5是淘汰 -->
             <view class="v2_1_title_view">
                 <view class="v2_1_title">{{item.farm_name}}</view>
-                <view class="v2_1_title" style="color:#FF2C2B;">{{item.operation == 5 ? '淘汰' : item.operation == 4 ? '删除' : item.operation == 3 ? '死亡' : item.operation == 2 ? '出栏' : item.operation == 1 ? '入栏' : ''}}</view>
+                <view class="v2_1_title" style="color:#FF2C2B;">{{fn.label_status_view1(item.operation)}}</view>
             </view>
             <view class="v2_1_position"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_25.png'></image>栋舍栏位：{{item.door}}{{item.dorm}}</view>
             <view class="v2_1_position"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_24.png'></image>日期：{{item.create_time}}</view>

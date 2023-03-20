@@ -344,6 +344,26 @@ function label_status_view(status){
     }
 }
 
+// 健康状态
+function label_status_view1(status){
+    //1入栏，2转栏，3健康出栏，4无害处理，501温度过高，502温度过低，503活跃度过高，504活跃度过低，505掉落，506死亡，6离线，7恢复正常，8删除耳环，9死亡
+    if(status ==  1){
+        return '入栏'
+    }else if(status == 2){
+        return '转栏'
+    }else if(status == 3){
+        return '出栏'
+    }else if(status == 4){
+        return '死亡'
+    }else if(status == 506){
+        return '死亡'
+    }else if(status == 9){
+        return '506'
+    }else{
+        return '未知'
+    }
+}
+
 module.exports = {
     carState_info: carState_info,
     carState_img:carState_img,
@@ -369,5 +389,6 @@ module.exports = {
     list1_inexistence_list2:list1_inexistence_list2,
     piggeryType_img:piggeryType_img,
     monitoring_way:monitoring_way,
-    label_status_view: label_status_view
+    label_status_view: label_status_view,
+    label_status_view1: label_status_view1
 };
