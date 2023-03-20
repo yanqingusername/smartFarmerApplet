@@ -1,16 +1,17 @@
 <view class="page">
 
     <view class="pig_1">
-        <view class="pig_1_1">门禁数量({{count}})</view>
+        <view class="pig_1_1">门禁记录({{count}})</view>
     </view>
 
         <view class="v2_1" wx:for="{{deviceinfoList}}" wx:key="index">
             <view class="v2_1_top">
                 <view class="v2_1_top_1"><image class='v2_1_top_1_img' src="{{item.headerimg}}"></image>{{item.label_sn}}</view>
-                <view class="v2_1_top_2" style="color: {{item.status == '2' ? '#FF2C2B' : '#666666'}};">{{item.status == '2' ? '离线' : '在线'}}</view>
+                <!-- <view class="v2_1_top_2" style="color: {{item.status == '2' ? '#FF2C2B' : '#666666'}};">{{item.status == '2' ? '离线' : '在线'}}</view> -->
             </view>
             <view class="v2_1_line"></view>
             <view class="v2_1_title" >{{item.name}}</view>
+            <view class="v2_1_position">通行状态：{{item.type_desc}}</view>
             <view class="v2_1_position"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_25.png'></image>位置：{{item.position}}</view>
             <view class="v2_1_position"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_24.png'></image>刷脸时间：{{item.time}}</view>
 		</view>
