@@ -212,7 +212,8 @@ Page({
       id: app.globalData.userInfo.id, //登录人的id
       start_time: this.data.startDate, //开始时间，第二个接口用  默认当前
       end_time: this.data.endDate, //结束时间 同开始时间
-      status: this.data.status, //洗消状态 1成功 2失败 0沐浴中
+      // status: this.data.status, //洗消状态 1成功 2失败 0沐浴中
+      status: '0', // 旧版只有 0  // 2.0//洗消状态 1成功 2失败 0沐浴中
       workType: this.data.workType, //上下班 0是上班 1是下班  ""全部
       staffids: this.data.homePersonalIds.length > 0 ? this.data.homePersonalIds.join(',') : "", //员工id以','分割
       page: this.data.page,

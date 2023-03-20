@@ -15,7 +15,7 @@
                         <image class="new_view_2_1_1_img" src="{{item.icon}}"></image>
                         <view class="new_view_2_1_1_title">{{item.name}}</view>
                     </view>
-                    <view class="new_view_2_1_2">{{item.sum}}</view>
+                    <view class="new_view_2_1_2">{{item.abnormalsum}}</view>
                     <!-- <view class="new_view_2_1_3">异常<view class="new_view_2_1_3_1">{{item.abnormalsum}}</view></view> -->
                 </view>
             </block>

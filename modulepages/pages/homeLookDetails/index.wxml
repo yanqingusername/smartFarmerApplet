@@ -80,7 +80,7 @@
             </view>
 
             <view class="homeindex_4_1_center">
-                <block wx:for="{{iwadomListinfo}}" wx:key="index">
+                <!-- <block wx:for="{{iwadomListinfo}}" wx:key="index">
                     <view class="homeindex_4_1_item">
                         <view class="homeindex_4_1_item_top">
                             <view class="homeindex_4_1_item_top_title">设备编号：{{item.sn}}</view>
@@ -101,7 +101,17 @@
                             </view>
                         </view>
                     </view>
-                </block>
+                </block> -->
+                 <view class="new_v2_1" wx:for="{{iwadomListinfo}}" wx:key="index" wx:if="{{iwadomListinfo.length>0}}">
+                    <view class="new_v2_1_top">
+                        <view class="new_v2_1_top_1"><image class='new_v2_1_top_1_img' src='/image/icon/icon_2023_01_06_26.png'></image>{{item.real_name}}</view>
+                        <view class="new_v2_1_top_2" style="color: {{item.status == 1 ? '#409DFF' : '#FF2C2B'}};">{{item.status == 1 ? '淋浴成功' : item.status == -1 ? '穿行' : '淋浴失败'}}</view>
+                    </view>
+                    <view class="new_v2_1_line"></view>
+                    <view class="new_v2_1_position"><image class='new_v2_1_position_img' src='/image/icon/icon_2023_01_06_25.png'></image>设备位置：{{item.address}}</view>
+                    <view class="new_v2_1_time"><image class='new_v2_1_position_img' src='/image/icon/icon_2023_01_06_24.png'></image>结束时间：{{item.create_time}}</view>
+                    <view class="new_v2_1_time"><image class='new_v2_1_position_img' src='/image/icon/icon_2023_01_06_24.png'></image>淋浴时长：{{item.wash_time}}</view>
+                </view>
             </view>
 
             <block wx:if="{{iwadomListinfo.length==0}}">

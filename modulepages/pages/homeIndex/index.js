@@ -103,7 +103,7 @@ Page({
             id: app.globalData.userInfo.id,  //登录人的id
             start_time: "", //开始时间，第二个接口用  默认当前
             end_time: "", //结束时间 同开始时间
-            status: '2', //洗消状态 1成功 2失败 0沐浴中
+            status: '0', // 旧版只有 0  // 2.0//洗消状态 1成功 2失败 0沐浴中
             workType:"", //上下班 0是上班 1是下班  ""全部
             staffids: '', //员工id以','分割
             page: this.data.page,
@@ -144,17 +144,10 @@ Page({
         request.request_get('/equipmentManagement/getdeviceinfo.hn', data, function (res) {
             if (res) {
                 if (res.success) {
-                  if (that.data.page == 1) {
                     that.setData({
                         devicecount: res.count,
                         deviceinfoList: res.info,
                     });
-                  } else {
-                    that.setData({
-                        devicecount: res.count,
-                        deviceinfoList: that.data.deviceinfoList.concat(res.info || []),
-                    });
-                  }
                 } else {
                   box.showToast(res.msg);
                 }
