@@ -224,6 +224,28 @@ const getTodayLine = date => {
     const day = date.getDate()
     return [year, month, day].map(formatNumber).join('/')
 }
+
+const formatTime2 = date => {
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+    const second = date.getSeconds()
+  
+    return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+}
+
+const formatTime3 = date => {
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+    const second = date.getSeconds()
+  
+    return [hour, minute, second].map(formatNumber).join(':')
+}
  
   
 const formatNumber = n => {
@@ -248,5 +270,7 @@ module.exports = {
     get6Month1:get6Month1,
     getToday: getToday,
     get6MonthDay: get6MonthDay,
-    getTodayLine: getTodayLine
+    getTodayLine: getTodayLine,
+    formatTime2: formatTime2,
+    formatTime3: formatTime3
 }

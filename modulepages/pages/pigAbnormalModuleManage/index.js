@@ -187,12 +187,17 @@ Page({
             //     label_ids.push(inputText);
             // }
             // label_ids = label_ids.join(",");
+
+            let date3 = new Date().getTime();
+            let tempTime3 = new Date(date3);
+            let formatTime3 =  time.formatTime3(tempTime3);
+
             var data = {
                 sty_number: piggery_sty[2].number,
                 label_ids: JSON.stringify(label_id_list),
                 user_serial: app.globalData.userInfo.id,
                 pig_type: index,
-                checkinTime: that.data.birthDate  //入栏
+                checkinTime: that.data.birthDate + " " + formatTime3 //入栏
             };
 
             console.log(label_id_list)
@@ -317,10 +322,15 @@ Page({
                 label_ids.push(inputText);
             }
             let labelidsstring = label_ids.join(",");
+
+            let date3 = new Date().getTime();
+            let tempTime3 = new Date(date3);
+            let formatTime3 =  time.formatTime3(tempTime3);
+
             var data = {
                 label_ids: labelidsstring,
                 user_serial: app.globalData.userInfo.id,
-                checkoutTime: that.data.birthDate,
+                checkoutTime: that.data.birthDate + " " + formatTime3,
                 operation: '2' //2是健康出栏
             };
 
@@ -398,10 +408,15 @@ Page({
                 label_ids.push(inputText);
             }
             let labelidsstring = label_ids.join(",");
+
+            let date3 = new Date().getTime();
+            let tempTime3 = new Date(date3);
+            let formatTime3 =  time.formatTime3(tempTime3);
+
             var data = {
                 label_ids: labelidsstring,
                 user_serial: app.globalData.userInfo.id,
-                checkoutTime: that.data.birthDate,
+                checkoutTime: that.data.birthDate + " " + formatTime3,
                 operation: '3' //3是死亡
             };
 

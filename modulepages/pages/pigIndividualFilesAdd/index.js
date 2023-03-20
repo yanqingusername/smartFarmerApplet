@@ -2,6 +2,7 @@ const app = getApp()
 var request = require('../../../utils/request.js')
 var box = require('../../../utils/box.js')
 const utils = require('../../../utils/utils.js')
+const times = require('../../../utils/time.js')
 
 Page({
 
@@ -29,7 +30,8 @@ Page({
     timestamp: new Date().getTime(),
 
     individualStatus: '在场',
-    pidinfo: ''
+    pidinfo: '',
+    curDateString: ''
   },
   onShow: function () {
 
@@ -122,8 +124,10 @@ Page({
     }
     // let curtime = tempTime.getFullYear() + "年" + (month) + "月" + day + "日";
     let curDate = tempTime.getFullYear() + "-" + (month) + "-" + day;
+    let curDateString = times.formatTime2(tempTime);
     this.setData({
-      yearmouthday: curDate
+      yearmouthday: curDate,
+      curDateString: curDateString
     })
   },
   //保存按钮禁用判断
@@ -218,7 +222,7 @@ Page({
       type: gender == '母猪' ? '1' : '3',// 1-母猪   3-公猪
       label_id: snname,
       breed: varieties,
-      create_time: this.data.yearmouthday
+      create_time: this.data.curDateString
     }
 
     console.log('---->:', params)
