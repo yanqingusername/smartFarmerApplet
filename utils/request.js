@@ -32,6 +32,28 @@ function request_get(controller, data, cb) {
     })
 }
 
+// 常用request post封装-异步
+function request_post(controller, data, cb) {
+    var url = apiurl + controller;
+    wx.request({
+        url: url,
+        data: data,
+        method: 'POST',
+        success: function (res) {
+            return typeof cb == "function" && cb(res.data)
+        },
+        fail: function (res) {
+            console.log('request networkTimeout')
+            wx.showModal({
+                title: "提示",
+                showCancel: false,
+                content: '请求超时,请检查网络！'
+            })
+            return typeof cb == "function" && cb(false)
+        }
+    })
+}
+
 // 文件上传
 function upload_file(controller, file, name, data, cb) {
     var url = apiurl + controller;
@@ -65,5 +87,6 @@ function upload_file(controller, file, name, data, cb) {
 
 module.exports = {
     request_get:request_get,
-    upload_file:upload_file
+    upload_file:upload_file,
+    request_post: request_post
 }

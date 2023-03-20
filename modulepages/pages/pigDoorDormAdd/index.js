@@ -267,7 +267,7 @@ Page({
     console.log(params)
     // return
 
-    request.request_get("/PigstyManagement/addSitearea.hn", params, function (res) {
+    request.request_post("/PigstyManagement/addSitearea.hn", params, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {
