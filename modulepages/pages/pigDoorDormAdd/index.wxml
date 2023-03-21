@@ -9,7 +9,7 @@
 
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">栋舍名称</view>
-          <input class="P5_2 app_font" placeholder="请输入栋舍名称" placeholder-class="place_style" bindinput="bindDoorName" style="position:relative;right:20rpx" value="{{doorname}}" bindtap="inputTap" id="doorname" focus="{{focusId=='doorname'?true:false}}"></input>
+          <input class="P5_2 app_font" placeholder="请输入栋舍名称" placeholder-class="place_style" bindinput="bindDoorName" style="position:relative;right:20rpx" maxlength="15" value="{{doorname}}" bindtap="inputTap" id="doorname" focus="{{focusId=='doorname'?true:false}}"></input>
         </view>
 
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
@@ -24,7 +24,7 @@
 
           <view wx:for="{{info.details}}" wx:key="index" class="dorm_item">
             <view class="group1 flex-col" style="width:240rpx;">
-              <input class="word6" style="width:200rpx !important;" placeholder="请填写栏位名称" id="dormtitle-{{index}}" bindinput="setDorm" value="{{item.dorm_content}}"></input>
+              <input class="word6" style="width:200rpx !important;" placeholder="请填写栏位名称" id="dormtitle-{{index}}" bindinput="setDorm" value="{{item.dorm_content}}" maxlength="10"></input>
             </view>
             <view class="group2 flex-col" style="width:120rpx;">
               <input class="txt2" style="width:80rpx !important;" type="number" placeholder="栏号" id="dormstart-{{index}}" bindinput="setDormStart" value="{{item.dorm_start}}" maxlength="3"></input>

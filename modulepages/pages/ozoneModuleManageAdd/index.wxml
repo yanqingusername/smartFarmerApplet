@@ -14,21 +14,21 @@
 
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">设备位置</view>
-          <input class="P5_2 app_font" placeholder="请输入设备位置" placeholder-class="place_style" bindinput="bindPosition" style="position:relative;right:20rpx" value="{{position}}" disabled="{{isPosition}}" bindtap="inputTap" id="position" focus="{{focusId=='position'?true:false}}"></input>
+          <input class="P5_2 app_font" placeholder="请输入设备位置" placeholder-class="place_style" bindinput="bindPosition" style="position:relative;right:20rpx" maxlength="12" value="{{position}}" disabled="{{isPosition}}" bindtap="inputTap" id="position" focus="{{focusId=='position'?true:false}}"></input>
         </view>
 
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
 
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">有效时长</view>
-          <input class="P5_2 app_font" placeholder="请输入臭氧有效时长(分钟)" placeholder-class="place_style" bindinput="bindTime" style="position:relative;right:20rpx" value="{{time}}" type="digit"></input>
+          <input class="P5_2 app_font" placeholder="请输入臭氧有效时长(分钟)" placeholder-class="place_style" bindinput="bindTime" style="position:relative;right:20rpx" maxlength="5" value="{{time}}" type="digit"></input>
         </view>
 
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
 
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">有效浓度</view>
-          <input class="P5_2 app_font" placeholder="请输入臭氧有效浓度(mg/m3)" placeholder-class="place_style" bindinput="bindConcentration" style="position:relative;right:20rpx" value="{{concentration}}" type="digit"></input>
+          <input class="P5_2 app_font" placeholder="请输入臭氧有效浓度(mg/m3)" placeholder-class="place_style" bindinput="bindConcentration" style="position:relative;right:20rpx" maxlength="8" value="{{concentration}}" type="digit"></input>
         </view>
 
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
