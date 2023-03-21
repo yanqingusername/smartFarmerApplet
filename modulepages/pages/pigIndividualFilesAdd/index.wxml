@@ -3,7 +3,7 @@
         <view style="height: 2rpx;"></view>
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">耳号</view>
-          <input class="P5_2 app_font" placeholder="请输入耳号" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" value="{{name}}" bindtap="inputTap" id="name" focus="{{focusId=='name'?true:false}}"></input>
+          <input class="P5_2 app_font" placeholder="请输入耳号" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="18" value="{{name}}" bindtap="inputTap" id="name" focus="{{focusId=='name'?true:false}}"></input>
         </view>
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
 
