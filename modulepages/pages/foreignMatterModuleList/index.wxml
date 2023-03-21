@@ -7,7 +7,7 @@
     <view class="v1_view">
             <view class="v2_view">
                 <view class="v1_view_1">筛选查看项</view>
-                <view class="v1_view_1">异物总数量({{count}})</view>
+                <view class="v1_view_1">异物记录({{count}})</view>
             </view>
             
             <view class="v1_view_2">
