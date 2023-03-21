@@ -216,24 +216,47 @@ Page({
 
                     let seriesTemp = [];
                     let seriesAct = [];
-                    for(let i = 0; i < series.length; i++){
-                        let name = series[i].date;
-                        name = name.substring(5,7);
-                        let objTemp = {
-                            name: name+'月温度',
-                            smooth: true,
-                            type: "line",
-                            data: series[i].temp
+                    if(that.data.temp_date_type == 2){
+                        for(let i = 0; i < series.length; i++){
+                            let name = series[i].date;
+                            name = name.substring(5,7);
+                            let objTemp = {
+                                name: name+'月温度',
+                                smooth: true,
+                                type: "line",
+                                data: series[i].temp
+                            }
+                            seriesTemp.push(objTemp)
+    
+                            let objAct = {
+                                name: name+'月活动量',
+                                smooth: true,
+                                type: "line",
+                                data: series[i].act
+                            }
+                            seriesAct.push(objAct)
                         }
-                        seriesTemp.push(objTemp)
-
-                        let objAct = {
-                            name: name+'月活动量',
-                            smooth: true,
-                            type: "line",
-                            data: series[i].act
+                    }else{
+                        for(let i = 0; i < series.length; i++){
+                            let name = series[i].date;
+                            let moth = name.substring(5,7);
+                            let date = name.substring(8,10);
+                            let objTemp = {
+                                name: moth+"/"+date+'温度',
+                                smooth: true,
+                                type: "line",
+                                data: series[i].temp
+                            }
+                            seriesTemp.push(objTemp)
+    
+                            let objAct = {
+                                name: moth+"/"+date+'活动量',
+                                smooth: true,
+                                type: "line",
+                                data: series[i].act
+                            }
+                            seriesAct.push(objAct)
                         }
-                        seriesAct.push(objAct)
                     }
                     var axisLabel = { //设置x轴的字
                         show: true,

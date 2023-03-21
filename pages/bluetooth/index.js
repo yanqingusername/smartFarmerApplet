@@ -4,6 +4,7 @@ const box = require('../../utils/box.js')
 Page({
 	data: {
 		devices_list:[], // 搜索可连接设备列表
+		deviceId: ''
  	},
 	
 	onLoad:function () {
@@ -11,6 +12,14 @@ Page({
 		//由于系统限制，Android 上获取到的 deviceId 为设备 MAC 地址，iOS 上则为设备 uuid。因此 deviceId 不能硬编码到代码中
 		console.log("进入蓝牙连接页面")
 		this.init_Bluetooth(); // 初始化蓝牙模块
+
+		var bluetoothStatus = app.globalData.bluetoothStatus;
+        var bluetoothInfo = app.globalData.bluetoothInfo;
+        if(bluetoothStatus){
+			this.setData({
+				deviceId: bluetoothInfo.deviceId
+			});
+        } 
 	},
 
 	// 初始化蓝牙模块
@@ -109,6 +118,10 @@ Page({
 				console.log("连接蓝牙成功!")
 				wx.showToast("蓝牙连接成功");
 				that.getServiceId(deviceId);
+
+				that.setData({
+					deviceId: deviceId
+				});
 			},
 			fail(res) {
 				console.log("连接蓝牙失败:");

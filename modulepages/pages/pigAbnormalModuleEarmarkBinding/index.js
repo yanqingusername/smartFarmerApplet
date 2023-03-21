@@ -82,11 +82,11 @@ Page({
     inputFocus: function () {
         // 输入框聚焦，判断是否开启蓝牙输入功能
         console.log("输入框聚焦");
-        // var bluetoothStatus = app.globalData.bluetoothStatus;
-        // var bluetoothInfo = app.globalData.bluetoothInfo;
-        // if (bluetoothStatus) {
-        //     bluetooth.get_device_value(bluetoothInfo, this.bluetoothRollback)
-        // }
+        var bluetoothStatus = app.globalData.bluetoothStatus;
+        var bluetoothInfo = app.globalData.bluetoothInfo;
+        if (bluetoothStatus) {
+            bluetooth.get_device_value(bluetoothInfo, this.bluetoothRollback)
+        }
     },
     bluetoothRollback: function (text) {
         console.log("蓝牙设备的返回值" + text);
