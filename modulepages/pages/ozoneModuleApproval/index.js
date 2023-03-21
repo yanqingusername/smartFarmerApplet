@@ -86,15 +86,17 @@ Page({
   },
   //预览图片，放大预览
   preview: function (e) {
-    var that = this;
-    that.setData({
-      imgFlag: true
-    })
-    let currentUrl = e.currentTarget.dataset.url
-    wx.previewImage({
-      current: currentUrl, // 当前显示图片的http链接
-      urls: this.data.frontPhotoList // 需要预览的图片http链接列表
-    })
+    if(e.currentTarget.dataset.url){
+      var that = this;
+      that.setData({
+        imgFlag: true
+      })
+      let currentUrl = e.currentTarget.dataset.url
+      wx.previewImage({
+        current: currentUrl, // 当前显示图片的http链接
+        urls: this.data.frontPhotoList // 需要预览的图片http链接列表
+      })
+    }
   },
   /**
    * 根据id获取待审核的臭氧熏蒸记录
