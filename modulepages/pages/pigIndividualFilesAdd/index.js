@@ -78,7 +78,7 @@ Page({
               isShowVarieties: 2,
               gender: pidinfo.label_type == 3 ? '公猪' : '母猪',
               isShowGender: 2,
-              individualStatus: pidinfo.operation == 1 ? '离场' : '在场'
+              individualStatus: pidinfo.status == 2 ? '离场' : '在场'
             });
 
             that.checkSubmitStatus();
