@@ -58,7 +58,11 @@
             </view>
           </view>
         </view>
-        
+
+        <!-- <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;" wx:if="{{reason_id == 4}}"></view> -->
+        <view class="new_view" wx:if="{{reason_id == 4}}">
+          <textarea class="new_view_font_text" value="{{textareaAValue}}" maxlength="50" bindinput="textareaAInput" placeholder="请填写拒绝理由"></textarea>
+        </view>
 
         <view style="height: 10rpx;"></view>
       </view>

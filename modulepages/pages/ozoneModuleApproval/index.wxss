@@ -333,3 +333,27 @@ page {
     top: 0rpx;
     right: 0rpx;
 }
+
+.new_view{
+    display: flex;
+    align-items: center;
+    border: 1px solid #999999;
+    width: 650rpx;
+    margin-left: 10rpx;
+    margin-bottom: 20rpx;
+}
+
+textarea{
+  /* margin: 32rpx 0 30rpx; */
+  height: 160rpx !important;
+  width: 100%;
+    flex: 1;
+    font-size: 28rpx;
+    padding: 20rpx;
+}
+
+.new_view_font_text{
+  font-family: 'SHSCN_Regular';
+  font-size: 28rpx;
+  color: #333333;
+}

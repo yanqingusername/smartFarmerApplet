@@ -26,7 +26,8 @@ Page({
     reason_id: '',
     reason_name: '',
 
-    id: ''
+    id: '',
+    textareaAValue: ""
     
   },
   onShow: function () {
@@ -59,7 +60,8 @@ Page({
       reasonIndex: reasonIndex,
       reason_id: this.data.reasonList[reasonIndex].id,
       reason_name: this.data.reasonList[reasonIndex].text,
-      isShowReason: 2
+      isShowReason: 2,
+      textareaAValue: ''
     });
     this.checkSubmitStatus();
   },
@@ -190,6 +192,15 @@ Page({
         box.showToast("请选择拒绝原因");
         return;
       }
+
+      if (reason_id == 4) {
+        reason_name = this.data.textareaAValue;
+
+        if (!reason_id || !reason_name) {
+          box.showToast("请填写拒绝理由");
+          return;
+        }
+      }
       
       let params = {
         pig_farm_id: app.globalData.userInfo.pig_farm_id,
@@ -218,5 +229,10 @@ Page({
         }
       })
     }
+  },
+  textareaAInput:function(e){
+    this.setData({
+        textareaAValue: e.detail.value
+    })
   },
 })
