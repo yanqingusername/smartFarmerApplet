@@ -316,3 +316,11 @@ page {
   color: #999999;
   width: 400rpx;
 }
+.ozone_1{
+  font-family: "Microsoft YaHei";
+  font-size: 30rpx;
+  height:100%;
+  width:90%;
+  display: flex;
+  align-items: center;
+}

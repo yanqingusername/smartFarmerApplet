@@ -36,8 +36,8 @@ Page({
             lazyLoad: true // 将 lazyLoad 设为 true 后，需要手动初始化图表
         },
         maxData: 7,
-
-        approvalList: ["死亡","淘汰","出栏"],
+        // approvalList: ["死亡","淘汰","出栏"],
+        approvalList: ["死亡","出栏"],
         approvalIndex: 0,
         isShowApproval: 1,
         approvalText: '',
@@ -91,23 +91,6 @@ Page({
     this.setData({
         reasonList: this.data.approvalIndex == 1 ? this.data.reasonList2 : this.data.approvalIndex == 2 ? this.data.reasonList3 : this.data.reasonList1
     });
-    
-    // var that = this;
-    // var data = {
-    //   pig_farm_id: app.globalData.userInfo.pig_farm_id,
-    // }
-
-    // request.request_get('/equipmentManagement/getReviewfaillist.hn', data, function (res) {
-    //   if (res) {
-    //     if (res.success) {
-    //       that.setData({
-    //         reasonList: res.data
-    //       });
-    //     } else {
-    //       box.showToast(res.msg);
-    //     }
-    //   }
-    // })
   },
     bindApprovalChange: function (e) {
         var approvalIndex = e.detail.value;
@@ -117,7 +100,7 @@ Page({
           isShowApproval: 2,
           isShowReason: 1
         });
-        this.getReviewfaillist();
+        // this.getReviewfaillist();
       },
     bindReasonChange: function (e) {
         var reasonIndex = e.detail.value;
@@ -127,7 +110,6 @@ Page({
           reason_name: this.data.reasonList[reasonIndex].text,
           isShowReason: 2
         });
-        this.checkSubmitStatus();
       },
     onLoad: function (options) {
 
@@ -154,7 +136,7 @@ Page({
         // new 折线图
         this.getShowLabelSumfilebyid();
 
-        this.getReviewfaillist();
+        // this.getReviewfaillist();
 
     },
     /**
@@ -606,15 +588,18 @@ Page({
             return;
         }
 
-        if(!that.data.reason_name){
-            box.showToast("请选择离场原因");
-            return;
-        }
+        // if(!that.data.reason_name){
+        //     box.showToast("请选择离场原因");
+        //     return;
+        // }
         
         var data = {
             serial: that.data.label_serial,
-            operation: that.data.approvalText == '淘汰' ? '5' : that.data.approvalText == '出栏' ? '2' : '3', //["死亡","淘汰","出栏"] 2出栏 3是死亡 5是淘汰
-            remarks: that.data.reason_name,
+            operation: that.data.approvalText == '出栏' ? '2' : '3', //["死亡","淘汰","出栏"] 2出栏 3是死亡 5是淘汰
+            // operation: that.data.approvalText == '淘汰' ? '5' : that.data.approvalText == '出栏' ? '2' : '3', //["死亡","淘汰","出栏"] 2出栏 3是死亡 5是淘汰
+            // remarks: that.data.reason_name,
+            // remarks: that.data.approvalText
+            user_id: app.globalData.userInfo.id, //用户id
         };
         request.request_get('/pigManagement/pighandle.hn', data, function (res) {
             if (res) {

@@ -31,9 +31,9 @@
             <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
                 <view class="new_view_2_1">
                     <view class="new_view_2_1_1" bindtap="clickPigAbnormalModuleEarmarkBinding">
-                        <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_16_3.png"></image>
+                        <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_03_28_1.png"></image>
                     </view>
-                    <view class="new_view_2_1_title">耳标绑定</view>
+                    <view class="new_view_2_1_title">扫码看猪</view>
                 </view>
             </block>
 

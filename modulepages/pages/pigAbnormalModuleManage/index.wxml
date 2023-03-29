@@ -6,11 +6,11 @@
             <view class="{{selectedType=='0'?'select_line':''}}"></view>
         </view>
         <view class="my_select" bindtap="selectFunc" data-type="1">
-            <view class="select_title">出栏</view>
+            <view class="select_title">离场</view>
             <view class="{{selectedType=='1'?'select_line':''}}"></view>
         </view>
         <view class="my_select" bindtap="selectFunc" data-type="2">
-            <view class="select_title">死亡</view>
+            <view class="select_title">转栏</view>
             <view class="{{selectedType=='2'?'select_line':''}}"></view>
         </view>
     </view>
@@ -19,18 +19,18 @@
     
         <block>
             <view class="P1 font_desc">可 “扫码录入” 或 “手动录入” 进行耳标ID录入</view>
-            <button class="bt_code bt_public" bindtap="getQRCode">
+            <button class="bt_code bt_public" bindtap="getQRCode" wx:if="{{selectedType == 0 || selectedType == 1}}">
                 <image src="/image/icon/get_code.png" style="width:28rpx;height:28rpx;" mode="widthFix"></image>
                 <text class="font_code" style="margin-left: 20rpx;">扫码录入</text>
             </button>
-            <view class="P2">
+            <view class="P2" wx:if="{{selectedType == 0 || selectedType == 1}}">
                 <!-- type="number" -->
                 <input class="label_id_input" value="{{inputInfo}}" bindinput="inputInfo"
                     bindfocus="inputFocus"></input>
                 <button class="bt_confirm font_code bt_public" bindtap="addList" style="padding: 0rpx;">确定</button>
             </view>
             <!-- 耳环id列表 -->
-            <scroll-view style="margin-top:40rpx;" scroll-y="true" wx:if="{{label_id_list.length > 0}}">
+            <scroll-view style="margin-top:40rpx;" scroll-y="true" wx:if="{{(selectedType == 0 || selectedType == 1) && label_id_list.length > 0}}">
                 <block wx:for="{{label_id_list}}" wx:key="index">
                     <!-- <view class="label_id_item">
                         <view class="font_label" style="width:80rpx;">{{fn.index_text(index)}}</view>
@@ -67,7 +67,8 @@
             <button class="bt_submit bt_public font_code" bindtap="select_piggery"
                 style="margin-bottom: 50rpx;">{{piggery_sty.length=='0'?'选择猪栏':'修改猪栏'}}</button> -->
 
-            <view class="medWhite" wx:if="{{selectedType=='0'}}">
+            <!-- 弹框选择改为多个 -->
+            <!-- <view class="medWhite" wx:if="{{selectedType=='0'}}">
                 <view class="title_1" style="align-items: center;">
                     <view class="title_bold" style="width:22%">选择栏号</view>
                     <view style="align-self:center;width:76%;direction:rtl;height:84rpx;" bindtap="select_piggery">
@@ -77,9 +78,146 @@
                         <image class="right_arrow" src="/image/icon/icon_2023_01_06_19.png"></image>
                     </view>
                 </view>
+            </view> -->
+
+            <view class="P2" wx:if="{{selectedType == 2}}">
+                <view style="min-width: 140rpx;">耳号:</view>
+                <input class="label_id_input" value="{{snname}}" bindinput="inputSnNameInfo"
+                    bindfocus="inputSnNameFocus"></input>
+            </view>
+            <view class="P2" wx:if="{{selectedType == 2}}">
+                <view style="min-width: 140rpx;">电子耳标:</view>
+                <input class="label_id_input" value="{{sourcelable}}" bindinput="inputSourceInfo"
+                    bindfocus="inputSourceFocus"></input>
+                <button class="bt_confirm font_code bt_public" bindtap="addSourceList" style="padding: 0rpx;">确定</button>
+            </view>
+            <!-- 耳环id列表 -->
+            <scroll-view style="margin-top:40rpx;" scroll-y="true" wx:if="{{selectedType == 2 && source_label_list.length > 0}}">
+                <block wx:for="{{source_label_list}}" wx:key="index">
+                    <view class="new_label_id_item2">
+                        <view class="new_label_id_item_12" style="width: 100%;">
+                            <view class="font_label" style="width:80rpx;">{{(index+1)}}、</view>
+                            <view class="font_label" style="width:160rpx;">{{item.label_id}}</view>
+                            <view class="font_label" style="width:180rpx;">{{item.source_label}}</view>
+                            <view class="font_label" style="width:180rpx;">{{item.Sitearea}}{{item.door}}{{item.dorm}}</view>
+                        </view>
+                        <view class="new_label_id_item_12">
+                            <image class="new_delete_img" catch:tap="del_source_id" data-gid="{{index}}" src="/image/icon/icon_2023_01_06_27.png"></image>
+                        </view>
+                    </view>
+                </block>
+            </scroll-view>
+
+            <view style="margin: 20rpx 30rpx 0rpx 30rpx;" wx:if="{{selectedType=='2'}}">转入信息</view>
+            <!--转栏 栏位选择 -->
+            <view class="medWhite" style="margin-top:20rpx;" wx:if="{{selectedType=='2'}}">
+                <view class="title_1" style="align-items: center;">
+                    <view class="title_bold" style="width:22%">选择场区</view>
+                    <view style="align-self:center;width:76%;direction:rtl;height:84rpx;">
+                        <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindPickerPigSitearea2" range-key="location_descr" value="{{farmList2[farmIndex2].location_descr}}" range="{{farmList2}}">
+                            <view class="picker" style="height:84rpx;display: flex;align-items: center;" wx:if="{{isShowFarm2 == 2}}">{{farm_name2}}</view>
+                            <view class="picker" style="color: #B1B1B1;height:84rpx;display: flex;align-items: center;" wx:else>请选择场区</view>
+                        </picker>
+                    </view>
+                    <view style="margin-right:0rpx;margin-top:10rpx;">
+                        <image class="right_arrow" src="/image/icon/icon_2023_01_06_19.png"></image>
+                    </view>
+                </view>
             </view>
 
-            <view class="medWhite">
+            <view class="medWhite" style="margin-top:20rpx;" wx:if="{{selectedType=='2'}}">
+                <view class="title_1" style="align-items: center;">
+                    <view class="title_bold" style="width:22%">选择栋舍</view>
+                    <view style="align-self:center;width:76%;direction:rtl;height:84rpx;">
+                        <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindPickerPiggery2" range-key="location_descr" value="{{piggeryList2[piggeryIndex2].location_descr}}" range="{{piggeryList2}}">
+                            <view class="picker" style="height:84rpx;display: flex;align-items: center;" wx:if="{{isShowPiggery2 == 2}}">{{piggery_name2}}</view>
+                            <view class="picker" style="color: #B1B1B1;height:84rpx;display: flex;align-items: center;" wx:else>请选择栋舍</view>
+                        </picker>
+                    </view>
+                    <view style="margin-right:0rpx;margin-top:10rpx;">
+                        <image class="right_arrow" src="/image/icon/icon_2023_01_06_19.png"></image>
+                    </view>
+                </view>
+            </view>
+
+            <view class="medWhite" style="margin-top:20rpx;" wx:if="{{selectedType=='2'}}">
+                <view class="title_1" style="align-items: center;">
+                    <view class="title_bold" style="width:22%">选择栏号</view>
+                    <view style="align-self:center;width:76%;direction:rtl;height:84rpx;">
+                        <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindPickerSty2" range-key="sty_name" value="{{styList2[styIndex2].sty_name}}" range="{{styList2}}">
+                            <view class="picker" style="height:84rpx;display: flex;align-items: center;" wx:if="{{isShowSty2 == 2}}">{{sty_name2}}</view>
+                            <view class="picker" style="color: #B1B1B1;height:84rpx;display: flex;align-items: center;" wx:else>请选择栏号</view>
+                        </picker>
+                    </view>
+                    <view style="margin-right:0rpx;margin-top:10rpx;">
+                        <image class="right_arrow" src="/image/icon/icon_2023_01_06_19.png"></image>
+                    </view>
+                </view>
+            </view>
+
+            <!--转入 栏位选择 -->
+            <view class="medWhite" wx:if="{{selectedType=='0'}}">
+                <view class="title_1" style="align-items: center;">
+                    <view class="title_bold" style="width:22%">选择场区</view>
+                    <view style="align-self:center;width:76%;direction:rtl;height:84rpx;">
+                        <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindPickerPigSitearea" range-key="location_descr" value="{{farmList[farmIndex].location_descr}}" range="{{farmList}}">
+                            <view class="picker" style="height:84rpx;display: flex;align-items: center;" wx:if="{{isShowFarm == 2}}">{{farm_name}}</view>
+                            <view class="picker" style="color: #B1B1B1;height:84rpx;display: flex;align-items: center;" wx:else>请选择场区</view>
+                        </picker>
+                    </view>
+                    <view style="margin-right:0rpx;margin-top:10rpx;">
+                        <image class="right_arrow" src="/image/icon/icon_2023_01_06_19.png"></image>
+                    </view>
+                </view>
+            </view>
+
+            <view class="medWhite" style="margin-top:20rpx;" wx:if="{{selectedType=='0'}}">
+                <view class="title_1" style="align-items: center;">
+                    <view class="title_bold" style="width:22%">选择栋舍</view>
+                    <view style="align-self:center;width:76%;direction:rtl;height:84rpx;">
+                        <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindPickerPiggery" range-key="location_descr" value="{{piggeryList[piggeryIndex].location_descr}}" range="{{piggeryList}}">
+                            <view class="picker" style="height:84rpx;display: flex;align-items: center;" wx:if="{{isShowPiggery == 2}}">{{piggery_name}}</view>
+                            <view class="picker" style="color: #B1B1B1;height:84rpx;display: flex;align-items: center;" wx:else>请选择栋舍</view>
+                        </picker>
+                    </view>
+                    <view style="margin-right:0rpx;margin-top:10rpx;">
+                        <image class="right_arrow" src="/image/icon/icon_2023_01_06_19.png"></image>
+                    </view>
+                </view>
+            </view>
+
+            <view class="medWhite" style="margin-top:20rpx;" wx:if="{{selectedType=='0'}}">
+                <view class="title_1" style="align-items: center;">
+                    <view class="title_bold" style="width:22%">选择栏号</view>
+                    <view style="align-self:center;width:76%;direction:rtl;height:84rpx;">
+                        <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindPickerSty" range-key="sty_name" value="{{styList[styIndex].sty_name}}" range="{{styList}}">
+                            <view class="picker" style="height:84rpx;display: flex;align-items: center;" wx:if="{{isShowSty == 2}}">{{sty_name}}</view>
+                            <view class="picker" style="color: #B1B1B1;height:84rpx;display: flex;align-items: center;" wx:else>请选择栏号</view>
+                        </picker>
+                    </view>
+                    <view style="margin-right:0rpx;margin-top:10rpx;">
+                        <image class="right_arrow" src="/image/icon/icon_2023_01_06_19.png"></image>
+                    </view>
+                </view>
+            </view>
+
+
+            <view class="medWhite" wx:if="{{selectedType=='1'}}">
+                <view class="title_1" style="align-items: center;">
+                    <view class="title_bold" style="width:22%">离场选项</view>
+                    <view style="align-self:center;width:76%;direction:rtl;height:84rpx;">
+                        <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindApprovalChange" value="{{approvalIndex}}" range="{{approvalList}}">
+                            <view class="picker" style="height:84rpx;display: flex;align-items: center;" wx:if="{{isShowApproval == 2}}">{{approvalList[approvalIndex]}}</view>
+                            <view class="picker" style="color: #B1B1B1;height:84rpx;display: flex;align-items: center;" wx:else>请选择离场选项</view>
+                        </picker>
+                    </view>
+                    <view style="margin-right:0rpx;margin-top:10rpx;">
+                        <image class="right_arrow" src="/image/icon/icon_2023_01_06_19.png"></image>
+                    </view>
+                </view>
+            </view>
+
+            <view class="medWhite" wx:if="{{selectedType=='0'}}">
                 <view class="title_1" style="align-items: center;">
                     <view class="title_bold" style="width:30%">日期</view>
                     <view style="align-self:center;width:60%;direction:rtl;height:84rpx;">
@@ -93,11 +231,42 @@
                 </view>
             </view>
 
+            <view class="medWhite" wx:if="{{selectedType=='1'}}">
+                <view class="title_1" style="align-items: center;">
+                    <view class="title_bold" style="width:30%">日期</view>
+                    <view style="align-self:center;width:60%;direction:rtl;height:84rpx;">
+                    <picker mode="date" style="height:100%;margin-top:0rpx;align-items: center;dispaly:flex;" value="{{birthDate1}}" start="1900-01-01" end="{{yearmouthday}}" bindchange="bindDateChange1">
+                        <view class="picker" style="height:84rpx;display: flex;align-items: center;font-size:32rpx;color:#555555;">{{birthDate1}}</view>
+                    </picker>
+                    </view>
+                    <view style="margin-right:0rpx;margin-top:10rpx;">
+                        <image class="right_arrow" src="/image/icon/icon_2023_01_06_19.png"></image>
+                    </view>
+                </view>
+            </view>
+
+            <view class="medWhite" wx:if="{{selectedType=='2'}}">
+                <view class="title_1" style="align-items: center;">
+                    <view class="title_bold" style="width:30%">日期</view>
+                    <view style="align-self:center;width:60%;direction:rtl;height:84rpx;">
+                    <picker mode="date" style="height:100%;margin-top:0rpx;align-items: center;dispaly:flex;" value="{{birthDate2}}" start="1900-01-01" end="{{yearmouthday}}" bindchange="bindDateChange2">
+                        <view class="picker" style="height:84rpx;display: flex;align-items: center;font-size:32rpx;color:#555555;">{{birthDate2}}</view>
+                    </picker>
+                    </view>
+                    <view style="margin-right:0rpx;margin-top:10rpx;">
+                        <image class="right_arrow" src="/image/icon/icon_2023_01_06_19.png"></image>
+                    </view>
+                </view>
+            </view>
+
+
             <button class="bt_submit bt_public font_code" bindtap="submit_label_id" wx:if="{{selectedType=='0'}}" style="margin-top:50rpx;">确认入栏</button>
 
-            <button class="bt_submit bt_public font_code" bindtap="submit_livestock" wx:if="{{selectedType=='1'}}" style="margin-top:50rpx;">确认出栏</button>
+            <button class="bt_submit bt_public font_code" bindtap="submit_livestock" wx:if="{{selectedType=='1'}}" style="margin-top:50rpx;">确认离场</button>
 
-            <button class="bt_submit bt_public font_code" bindtap="submit_click" wx:if="{{selectedType=='2'}}" style="margin-top:50rpx;">确认死亡</button>
+            <!-- <button class="bt_submit bt_public font_code" bindtap="submit_click" wx:if="{{selectedType=='2'}}" style="margin-top:50rpx;">确认死亡</button> -->
+
+            <button class="bt_submit bt_public font_code" bindtap="submit_jump" wx:if="{{selectedType=='2'}}" style="margin-top:50rpx;">确认转栏</button>
         </block>
 
     </view>

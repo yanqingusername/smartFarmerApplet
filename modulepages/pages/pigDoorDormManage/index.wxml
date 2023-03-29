@@ -19,7 +19,7 @@
                                     <view class="v1_right_1_2">{{itemdoor.administrators}}</view>
                                 </view>
                                 <view class="v1_right_2">
-                                   <view class="v1_right_2_1_btn" catch:tap="updatePigDoorDormPersion" data-id="{{itemdoor.doorid}}" data-name="{{itemdoor.administrators}}">编辑</view>
+                                   <view class="v1_right_2_1_btn" catch:tap="updatePigDoorDormPersion" data-id="{{itemdoor.doorid}}" data-name="{{itemdoor.administrators}}" data-administratorsid="{{itemdoor.administrators_id}}" data-hostid="{{itemdoor.Hostid}}" data-hostname="{{itemdoor.HostName}}" data-siteareaid="{{item.Siteareaid}}">编辑</view>
                                    <view class="v1_right_2_2_btn" catch:tap="deletePigDoorDorm" data-id="{{itemdoor.doorid}}">删除</view>
                                 </view>
                             </view>

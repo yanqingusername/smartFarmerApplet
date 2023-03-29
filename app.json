@@ -94,7 +94,9 @@
             "pages/entranceGuardManageAdd/index",
             "pages/foreignMatterManage/index",
             "pages/foreignMatterManageAdd/index",
-            "pages/ozoneModuleApprovalDetail/index"
+            "pages/ozoneModuleApprovalDetail/index",
+            "pages/pigAbnormalModuleQRCode/index",
+            "pages/entranceGuardManagePersion/index"
             
           ]
         }

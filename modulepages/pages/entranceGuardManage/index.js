@@ -92,4 +92,12 @@ Page({
       url: `/modulepages/pages/entranceGuardManageAdd/index`
     });
   },
+  bindEditClick(e){
+    let uid = e.currentTarget.dataset.id;
+    if(uid){
+      wx.navigateTo({
+        url:`/modulepages/pages/entranceGuardManageAdd/index?isEdit=2&uid=${uid}`
+      });
+    }
+  }
 });

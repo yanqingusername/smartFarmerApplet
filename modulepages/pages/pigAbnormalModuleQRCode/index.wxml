@@ -1,0 +1,33 @@
+<wxs src="../../../comm.wxs" module="fn" />
+<view class="page">
+    
+
+    <view style="margin-top:0rpx;">
+    
+        <block>
+            <view class="bind_1" style="padding: 20rpx 30rpx 0rpx 30rpx;">可 “扫码录入” 或 “手动录入” 耳环ID查看猪只信息</view>
+
+            <view class="bind_2">读取耳标号</view>
+
+            <view class="bind_3">
+                <input class="bind_3_input" type="number" value="{{inputInfo}}" bindinput="inputInfo"
+                    bindfocus="inputFocus"></input>
+                <button class="bind_3_bt" bindtap="getQRCode">
+                    <image src="/image/icon/get_code.png" style="width:28rpx;height:28rpx;" mode="widthFix"></image>
+                    <text class="bind_3_btfont_code" style="margin-left: 20rpx;">扫码读取</text>
+                </button>
+            </view>
+
+            <view class="bind_2" style="margin-top:40rpx;">猪只信息</view>
+            <view class="bind_2" style="margin-top:20rpx;margin-left:20rpx;">本场耳号: {{source_label}}</view>
+
+             <view class="bind_6">
+                <view class="bind_6_1" bindtap="submitClick">确认</view>
+            </view>
+        </block>
+
+    </view>
+
+
+    
+</view>

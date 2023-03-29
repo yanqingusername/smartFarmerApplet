@@ -15,7 +15,7 @@
           <view class="P5_1 app_font">设备位置：</view>
           <view class="section" style="width: 65%;height:84rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;">
             <picker style="height:100%;margin-top:20rpx;width:90%;" bindchange="bindPositionChange" range-key="location_descr" value="{{positionList[positionIndex].value}}" range="{{positionList}}">
-              <view class="picker" wx:if="{{isShowPosition == 2}}">{{positionList[positionIndex].location_descr}}</view>
+              <view class="picker" wx:if="{{isShowPosition == 2}}">{{position_name}}</view>
               <view class="picker" style="color: #B1B1B1;" wx:else>请选择设备位置</view>
             </picker>
             <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
@@ -39,11 +39,24 @@
           </view>
         </view> -->
 
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">门禁管理员</view>
+          <view class="section" style="width: 68%;min-height:80rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;">
+            <view class="ozone_1" style="color:{{managePersion?'#555555':'#B1B1B1'}}" bind:tap="clickOzoneModuleManagePersion">{{managePersion ? managePersion : '请选择门禁管理员'}}</view>
+            <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
+              <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+            </view>
+          </view>
+        </view>
+
         <view style="height: 10rpx;"></view>
       </view>
 
       <view class="button_gray" wx:if="{{submitState}}">保存</view>
 
       <view class="button_submit" wx:else bind:tap="submitBuffer">保存</view>
+
+      <view class="button_delete" wx:if="{{isEditCus == 2}}" bind:tap="bindDeleteClick">删除</view>
 
 </view>

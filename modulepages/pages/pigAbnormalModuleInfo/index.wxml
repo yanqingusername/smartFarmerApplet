@@ -106,7 +106,7 @@
             </view>
 
             <view style="height: 2rpx;background:#DDDDDD;width: 90%;"></view>
-            <view class="new_app_flex" >
+            <!-- <view class="new_app_flex" >
             <view class="new_app_flex_1">离场原因</view>
             <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
                 <picker style="height:100%;margin-top:20rpx;width:90%;" bindchange="bindReasonChange" range-key="text" value="{{reasonList[reasonIndex].value}}" range="{{reasonList}}">
@@ -118,7 +118,7 @@
                 </view>
             </view>
             </view>
-            <view style="height: 2rpx;background:#DDDDDD;width: 90%;"></view>
+            <view style="height: 2rpx;background:#DDDDDD;width: 90%;"></view> -->
         
             <view style="height: 50rpx;"></view>
 

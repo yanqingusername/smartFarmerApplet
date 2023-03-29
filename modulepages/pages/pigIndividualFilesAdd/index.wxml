@@ -9,7 +9,7 @@
 
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">电子耳标</view>
-          <input class="P5_2 app_font" placeholder="请输入电子耳标" placeholder-class="place_style" bindinput="bindSnName" style="position:relative;right:20rpx" maxlength="15" value="{{snname}}" bindtap="inputTap" id="snname" focus="{{focusId=='snname'?true:false}}"></input>
+          <input class="P5_2 app_font" placeholder="请输入电子耳标" placeholder-class="place_style" bindinput="bindSnName" style="position:relative;right:20rpx" maxlength="15" value="{{snname}}" bindtap="inputTap" id="snname" focus="{{focusId=='snname'?true:false}}" bindfocus="inputFocus"></input>
         </view>
 
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>

@@ -117,7 +117,8 @@ Page({
   getAllPiggery: function (e) {
     var that = this;
     var data = {
-      pig_farm_id: app.globalData.userInfo.pig_farm_id
+      pig_farm_id: app.globalData.userInfo.pig_farm_id,
+      id: this.data.reason_id,
     }
     request.request_get('/pigManagement/getAllPiggery.hn', data, function (res) {
         console.info('回调', res)
@@ -201,6 +202,16 @@ Page({
       page: 1
     });
 
+    this.setData({
+      piggeryList: [],
+      piggeryIndex: 0,
+      isShowPiggery: 1,
+      piggery_id: '',
+      piggery_name: '',
+    });
+
+    this.getAllPiggery();
+    
     this.getHistoricRecords();
   },
   /**

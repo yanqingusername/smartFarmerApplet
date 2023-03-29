@@ -66,7 +66,7 @@ font-family: PingFangSC-Regular, PingFang SC;
 font-weight: 400;
 color: #666666;
 margin-top: 22rpx;
-padding-left: 34rpx;
+/* padding-left: 34rpx; */
 }
 
 .v2_1_position_img{
@@ -147,4 +147,16 @@ padding-left: 34rpx; */
 margin-top: 22rpx;
 padding-left: 34rpx;
 padding-right: 34rpx;
+}
+
+.v2_2_view{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 34rpx;
+padding-right: 34rpx;
+}
+
+.v2_2_view_1{
+
 }

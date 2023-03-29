@@ -3,6 +3,7 @@ var request = require('../../../utils/request.js')
 var box = require('../../../utils/box.js')
 const utils = require('../../../utils/utils.js')
 const times = require('../../../utils/time.js')
+const bluetooth = require('../../../utils/bluetooth.js')
 
 Page({
 
@@ -164,11 +165,30 @@ Page({
   bindSnName: function (e) {
     var str = e.detail.value;
     // str = utils.checkInput(str);
-    this.setData({
-      snname: str
-    })
+    // this.setData({
+    //   snname: str
+    // })
 
-    this.checkSubmitStatus();
+    // this.checkSubmitStatus();
+
+    that.bluetoothRollback(e.detail.value);
+  },
+  inputFocus: function () {
+    // 输入框聚焦，判断是否开启蓝牙输入功能
+    console.log("输入框聚焦");
+    var bluetoothStatus = app.globalData.bluetoothStatus;
+    var bluetoothInfo = app.globalData.bluetoothInfo;
+    if (bluetoothStatus) {
+        bluetooth.get_device_value(bluetoothInfo, this.bluetoothRollback)
+    }
+  },
+  bluetoothRollback: function (text) {
+      console.log("蓝牙设备的返回值" + text);
+      this.setData({
+        snname: text
+      });
+
+      this.checkSubmitStatus();
   },
   // 品种改变
   bindPickerChangeVarieties: function (e) {

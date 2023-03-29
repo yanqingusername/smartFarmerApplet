@@ -20,6 +20,21 @@
           </view>
         </view>
 
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">工作站</view>
+          <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
+            <picker style="height:84rpx;margin-top:0rpx;width:90%;" bindchange="bindPickerChangeWorkstation" range-key="host_name" value="{{workstationList[workstationIndex].host_name}}" range="{{workstationList}}">
+              <view class="picker" wx:if="{{isShowWorkstation == 2}}">{{workstation_name}}</view>
+              <view class="picker" style="color: #B1B1B1;" wx:else>请选择工作站</view>
+            </picker>
+            <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
+              <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+            </view>
+          </view>
+        </view>
+
         <view style="height: 10rpx;"></view>
       </view>
 

@@ -131,8 +131,13 @@ Page({
     clickPigAbnormalModuleEarmarkBinding:function(){
 
         //耳标绑定
+        // wx.navigateTo({
+        //     url: '/modulepages/pages/pigAbnormalModuleEarmarkBinding/index',
+        // });
+
+        //扫码看猪
         wx.navigateTo({
-            url: '/modulepages/pages/pigAbnormalModuleEarmarkBinding/index',
+            url: '/modulepages/pages/pigAbnormalModuleQRCode/index',
         });
     },
     clickPigDoorDormManage:function(){

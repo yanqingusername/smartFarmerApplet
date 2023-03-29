@@ -4,7 +4,7 @@
         <view class="v1_view">
             <view class="v2_view">
                 <view class="v1_view_1">筛选查看项</view>
-                <view class="v1_view_1">猪只数量({{pigNumber}})</view>
+                <view class="v1_view_1">猪只历史记录({{pigNumber}})</view>
             </view>
             
             <view class="v1_view_2">

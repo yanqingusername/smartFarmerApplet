@@ -63,9 +63,14 @@ Page({
   updatePigDoorDormPersion(e) {
     let id = e.currentTarget.dataset.id;
     let name = e.currentTarget.dataset.name;
+    let aid = e.currentTarget.dataset.administratorsid;
+    let hostid = e.currentTarget.dataset.hostid;
+    let hostname = e.currentTarget.dataset.hostname;
+    let siteareaid = e.currentTarget.dataset.siteareaid;
+
     if (id) {
       wx.navigateTo({
-        url: `/modulepages/pages/pigDoorDormPersion/index?id=${id}&name=${name}`,
+        url: `/modulepages/pages/pigDoorDormPersion/index?id=${id}&name=${name}&aid=${aid}&hostid=${hostid}&hostname=${hostname}&siteareaid=${siteareaid}`,
       });
     }
   },
