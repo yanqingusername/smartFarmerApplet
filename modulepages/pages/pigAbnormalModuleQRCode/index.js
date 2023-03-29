@@ -90,16 +90,23 @@ Page({
         var inputInfo = that.data.inputInfo;
 
         if (inputInfo == '') {
-            box.showToast('耳环ID不能为空')
+            box.showToast('电子耳标ID不能为空')
         } else {
             if(this.data.objData && this.data.objData.length > 0){
                 let item = this.data.objData[0];
                 if(item){
+                    // this.setData({
+                    //     inputInfo: '',
+                    //     source_label: "",
+                    //     objData: []
+                    // });
                     let jsonItem = JSON.stringify(item);
-                    wx.navigateTo({
+                    wx.redirectTo({
                         url: `/modulepages/pages/pigAbnormalModuleInfo/index?jsonItem=${jsonItem}`,
                     })
                 }
+            }else{
+                box.showToast('未查询到猪只信息')
             }
         }
     },

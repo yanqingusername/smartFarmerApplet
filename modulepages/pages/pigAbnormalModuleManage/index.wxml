@@ -83,12 +83,12 @@
             <view class="P2" wx:if="{{selectedType == 2}}">
                 <view style="min-width: 140rpx;">耳号:</view>
                 <input class="label_id_input" value="{{snname}}" bindinput="inputSnNameInfo"
-                    bindfocus="inputSnNameFocus"></input>
+                    bindfocus="inputSnNameFocus" bindtap="inputTap" id="snname" focus="{{focusId=='snname'?true:false}}"></input>
             </view>
             <view class="P2" wx:if="{{selectedType == 2}}">
                 <view style="min-width: 140rpx;">电子耳标:</view>
                 <input class="label_id_input" value="{{sourcelable}}" bindinput="inputSourceInfo"
-                    bindfocus="inputSourceFocus"></input>
+                    bindfocus="inputSourceFocus" bindtap="inputTap" id="sourcelable" focus="{{focusId=='sourcelable'?true:false}}"></input>
                 <button class="bt_confirm font_code bt_public" bindtap="addSourceList" style="padding: 0rpx;">确定</button>
             </view>
             <!-- 耳环id列表 -->

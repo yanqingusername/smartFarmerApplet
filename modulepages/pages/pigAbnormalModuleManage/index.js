@@ -785,6 +785,15 @@ Page({
     /**
      * 转栏
      */
+     inputTap(e){
+        var that = this
+        wx.hideKeyboard()
+        setTimeout(function(){
+          that.setData({
+            focusId: e.currentTarget.id
+          })
+        },200)
+      },
      inputSnNameInfo:function(e){
         let that = this;
         that.setData({

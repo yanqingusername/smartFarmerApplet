@@ -5,9 +5,9 @@
     <view style="margin-top:0rpx;">
     
         <block>
-            <view class="bind_1">可 “扫码录入” 或 “手动录入” 进行耳环ID录入</view>
+            <view class="bind_1">可 “扫码录入” 或 “手动录入” 进行耳标ID录入</view>
 
-            <view class="bind_2">读取耳标号</view>
+            <view class="bind_2">读取电子耳标</view>
 
             <view class="bind_3">
                 <input class="bind_3_input" type="number" value="{{inputInfo}}" bindinput="inputInfo"

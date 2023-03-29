@@ -6,8 +6,8 @@
 
 // 参数配置
 // var apiurl = 'http://172.16.24.189:8080/wisdomLivestockWH'     // 本地测试
-var apiurl = 'http://syrdev.coyotebio-lab.com:8080/wisdomLivestockWH'   // 测试服务器
-// var apiurl = 'https://monitor.coyotebio-lab.com:8443/wisdomLivestockWH'    //正式服务器
+// var apiurl = 'http://syrdev.coyotebio-lab.com:8080/wisdomLivestockWH'   // 测试服务器
+var apiurl = 'https://monitor.coyotebio-lab.com:8443/wisdomLivestockWH'    //正式服务器
 
 // 常用request get封装-异步
 function request_get(controller, data, cb) {

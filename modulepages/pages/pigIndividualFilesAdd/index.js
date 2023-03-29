@@ -134,7 +134,7 @@ Page({
   //保存按钮禁用判断
   checkSubmitStatus: function (e) {
     // && this.data.password != '' 
-    if (this.data.name != '' && this.data.varieties != '' && this.data.gender != '') {
+    if (this.data.name != '' && this.data.snname != '' && this.data.varieties != '' && this.data.gender != '') {
       this.setData({
         submitState: false
       })
@@ -171,7 +171,7 @@ Page({
 
     // this.checkSubmitStatus();
 
-    that.bluetoothRollback(e.detail.value);
+    this.bluetoothRollback(e.detail.value);
   },
   inputFocus: function () {
     // 输入框聚焦，判断是否开启蓝牙输入功能
@@ -221,10 +221,10 @@ Page({
       return;
     }
 
-    // if (!snname) {
-    //   box.showToast("请输入电子耳标");
-    //   return;
-    // }
+    if (!snname) {
+      box.showToast("请输入电子耳标");
+      return;
+    }
 
     if (!varieties) {
       box.showToast("请选择品种");

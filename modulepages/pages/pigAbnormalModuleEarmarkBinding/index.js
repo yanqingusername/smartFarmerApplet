@@ -112,7 +112,7 @@ Page({
         var inputInfo = that.data.inputInfo;
 
         if (inputInfo == '') {
-            box.showToast('耳环ID不能为空')
+            box.showToast('电子耳标ID不能为空')
         } else if (select_bindid == '' || select_bindname == ''){
             box.showToast('请选择猪只耳号')
         } else {

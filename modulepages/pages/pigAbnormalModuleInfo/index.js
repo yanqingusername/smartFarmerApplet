@@ -598,7 +598,7 @@ Page({
             operation: that.data.approvalText == '出栏' ? '2' : '3', //["死亡","淘汰","出栏"] 2出栏 3是死亡 5是淘汰
             // operation: that.data.approvalText == '淘汰' ? '5' : that.data.approvalText == '出栏' ? '2' : '3', //["死亡","淘汰","出栏"] 2出栏 3是死亡 5是淘汰
             // remarks: that.data.reason_name,
-            // remarks: that.data.approvalText
+            remarks: that.data.approvalText,
             user_id: app.globalData.userInfo.id, //用户id
         };
         request.request_get('/pigManagement/pighandle.hn', data, function (res) {

@@ -6,6 +6,7 @@
                 <view class="v2_1_title">{{item.farm_name}}</view>
                 <view class="v2_1_title" style="color:#FF2C2B;" wx:if="{{item.status == 0 }}">{{'离场'}}</view>
                 <view class="v2_1_title" style="color:#FF2C2B;" wx:if="{{item.operation == 1 }}">{{'入栏'}}</view>
+                <view class="v2_1_title" style="color:#FF2C2B;" wx:if="{{item.operation == 2 }}">{{'转栏'}}</view>
             </view>
             <view class="v2_2_view">
                 <view class="v2_2_view_1">
