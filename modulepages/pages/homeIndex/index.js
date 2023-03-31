@@ -120,7 +120,7 @@ Page({
                     });
                   } else {
                     that.setData({
-                        count: res.count,
+                        // count: res.count,
                         iwadomListinfo: that.data.iwadomListinfo.concat(res.data || []),
                       page: (res.data && res.data.length > 0) ? that.data.page + 1 : that.data.page,
                     });

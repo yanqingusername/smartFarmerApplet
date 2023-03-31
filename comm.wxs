@@ -345,6 +345,22 @@ function label_status_view(status){
 }
 
 // 健康状态
+function new_label_status_view(status){
+    //1正常 2离线 3离场 4发热
+    if(status ==  1){
+        return '正常'
+    }else if(status == 2){
+        return '离线'
+    }else if(status == 3){
+        return '离场'
+    }else if(status == 4){
+        return '发热'
+    }else{
+        return '未知'
+    }
+}
+
+// 健康状态
 function label_status_view1(status){
     //1入栏，2转栏，3健康出栏，4无害处理，501温度过高，502温度过低，503活跃度过高，504活跃度过低，505掉落，506死亡，6离线，7恢复正常，8删除耳环，9死亡
     if(status ==  1){
@@ -390,5 +406,6 @@ module.exports = {
     piggeryType_img:piggeryType_img,
     monitoring_way:monitoring_way,
     label_status_view: label_status_view,
-    label_status_view1: label_status_view1
+    label_status_view1: label_status_view1,
+    new_label_status_view: new_label_status_view
 };

@@ -38,22 +38,22 @@ Page({
     piggery_id: '',
     piggery_name: '',
 
-
+    //1正常 2离线 3离场 4发热
     statusList: [
       {
         "id": '',
         "text": "全部"
       },
       {
-        "id": '200',
+        "id": '3',
         "text": "离场"
       },
       {
-        "id": '101',
+        "id": '4',
         "text": "发热"
       },
       {
-        "id": '0',
+        "id": '1',
         "text": "正常"
       },
       {
@@ -172,7 +172,7 @@ Page({
               });
             } else {
               that.setData({
-                pigNumber: res.count,
+                // pigNumber: res.count,
                 deviceinfoList: that.data.deviceinfoList.concat(res.data || []),
                 page: (res.data && res.data.length > 0) ? that.data.page + 1 : that.data.page,
               });

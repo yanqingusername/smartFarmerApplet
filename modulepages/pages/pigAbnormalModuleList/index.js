@@ -37,7 +37,7 @@ Page({
               });
             } else {
               that.setData({
-                pigNumber: res.count,
+                // pigNumber: res.count,
                 deviceinfoList: that.data.deviceinfoList.concat(res.data || []),
                 page: (res.data && res.data.length > 0) ? that.data.page + 1 : that.data.page,
               });

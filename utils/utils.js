@@ -72,6 +72,16 @@ function debounce(fn, interval){
     };
 }
 
+// 查看ip格式是否正确
+function checkIP(ip) {
+    var isIP = ip.match(/^([1-9]\d*|0[0-7]*|0x[\da-f]+)(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))$/i);
+    if (!isIP) {
+        return false
+    } else {
+        return true
+    }
+}
+
 
 module.exports = {
     checkPhone: checkPhone,
@@ -79,5 +89,6 @@ module.exports = {
     isInArray:isInArray,
     exist_arr:exist_arr,
     throttle: throttle,
-    debounce: debounce
+    debounce: debounce,
+    checkIP: checkIP
 }

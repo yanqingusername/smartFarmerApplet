@@ -520,10 +520,10 @@ Page({
         });
 
         if(temp_date_type == 2){
-            let month = time.get6MonthDay(new Date());
+            let month = time.getPreMonthDay(time.getTodayLine(new Date()),5);
             that.setData({
-                start_time: month[0],
-                start_time_text: month[0],
+                start_time: month,
+                start_time_text: month,
             });
 
             this.getShowLabelSumfilebyid();

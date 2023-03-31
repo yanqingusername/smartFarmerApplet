@@ -10,7 +10,7 @@ Page({
    */
   data: {
     name: "",
-    position: "",
+    ipstring: "",
     submitState: true,
     jobNameList: [],
     categoryIndex: 0,
@@ -30,6 +30,7 @@ Page({
     managePersionIds:"",
     managePersion: '',
     selectPersionList: [],
+    employeesList: []
   },
   onShow: function () {
     // this.getPersonnelList();
@@ -47,19 +48,20 @@ Page({
     })
 
     this.getPositionList();
+    this.getEmployeesList();
 
     if(this.data.uid && this.data.isEdit == 2){
-      this.getdeviceinfobyid();
+      this.getAccessdeviceinfobyid();
     }
   },
-  getdeviceinfobyid(){
+  getAccessdeviceinfobyid(){
     let that = this
     let params = {
-      pig_farm_id: app.globalData.userInfo.pig_farm_id,
+      // pig_farm_id: app.globalData.userInfo.pig_farm_id,
       id: this.data.uid,
     }
 
-    request.request_get('/equipmentManagement/getdeviceinfobyid.hn', params, function (res) {
+    request.request_get('/AccessManagement/getAccessdeviceinfobyid.hn', params, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {
@@ -67,26 +69,27 @@ Page({
             let deviceInfo = res.data[0]
             that.setData({
               name: deviceInfo.sn,
-              // position: deviceInfo.address,
-              position_id: deviceInfo.addressId,
-              position_name: deviceInfo.address
+              ipstring: deviceInfo.access_control_ipaddress,
+              position_id: deviceInfo.location_id,
+              position_name: deviceInfo.location_descr,
+              isShowPosition: 2
             });
           }
 
-          if(res.resforcontroller && res.resforcontroller.length > 0){
+          if(res.user && res.user.length > 0){
             
-            let resforcontroller = res.resforcontroller
+            let user = res.user
             let managePersionIds = [];
             let managePersion = [];
-            for(let j = 0; j < resforcontroller.length; j++) {
-              managePersion.push(resforcontroller[j].name);
-              managePersionIds.push(resforcontroller[j].id);
+            for(let j = 0; j < user.length; j++) {
+              managePersion.push(user[j].name);
+              managePersionIds.push(user[j].id);
             }
 
             that.setData({
               managePersionIds:managePersionIds.join(','),
               managePersion: managePersion.join(','),
-              selectPersionList: resforcontroller,
+              selectPersionList: user,
             });
 
           }
@@ -103,7 +106,7 @@ Page({
   //保存按钮禁用判断
   checkSubmitStatus: function (e) {
     // && this.data.job_id != '' && this.data.job_name != ''
-    if (this.data.name != '' && this.data.position_id != '' && this.data.position_name != '' && this.data.managePersion != '') {
+    if (this.data.name != '' && this.data.ipstring != '' && this.data.position_id != '' && this.data.position_name != '' && this.data.managePersion != '') {
       this.setData({
         submitState: false
       })
@@ -142,14 +145,14 @@ Page({
     });
     this.checkSubmitStatus();
   },
-  // bindPosition: function (e) {
-  //   var str = e.detail.value;
-  //   this.setData({
-  //     position: str
-  //   })
+  bindIp: function (e) {
+    var str = e.detail.value;
+    this.setData({
+      ipstring: str
+    })
 
-  //   this.checkSubmitStatus();
-  // },
+    this.checkSubmitStatus();
+  },
   bindJobNameChange: function (e) {
     var categoryIndex = e.detail.value;
     this.setData({
@@ -163,6 +166,7 @@ Page({
   submitBuffer() {
     let that = this;
     let name = this.data.name;
+    let ipstring = this.data.ipstring;
     let position_id = this.data.position_id;
     let position_name = this.data.position_name;
     // let job_id = this.data.job_id;
@@ -176,37 +180,85 @@ Page({
       return;
     }
 
+    if (!ipstring) {
+      box.showToast("请输入设备IP");
+      return;
+    }
+
+    if (!utils.checkIP(ipstring)) {
+      box.showToast("ip格式有误");
+      return;
+    }
+
     if (!position_id && !position_name) {
       box.showToast("请选择设备位置");
       return;
     }
 
     if (!managePersion && !managePersionIds) {
-      box.showToast("请选择设备管理员");
+      box.showToast("请选择设备人员");
       return;
     }
-    
+    box.showLoading('加载中...');
     // if (!job_id && !job_name) {
     //   box.showToast("请选择设备管理员");
     //   return;
     // }
-    if(this.data.isEditCus == 2){
+    if(this.data.isEdit == 2){
       let params = {
         pig_farm: app.globalData.userInfo.pig_farm_id ,
         sn: name, //设备编号
+        ip: ipstring, //设备IP
         address_id: position_id, //设备位置
         // user_id:  job_id,//设备管理员id
-        controller: managePersionIds, //（管理者）
+        Person_authority: managePersionIds, //（管理者）
+        id: this.data.uid,
       }
 
-      request.request_get('/AccessManagement/addEntranceGuard.hn', params, function (res) {
+      request.request_get('/AccessManagement/editEntranceGuard.hn', params, function (res) {
+        wx.hideLoading();
         if (res) {
           if (res.success) {
-            wx.navigateBack({
-              delta: 1,
-            });
+            box.showToast(res.msg,'',1000);
+            setTimeout(()=>{
+              wx.navigateBack({
+                delta: 1,
+              });
+            },1500);
           } else {
-            box.showToast(res.msg);
+            if(res.errormsg && res.errormsg.length > 0){
+              let employeesList = that.data.employeesList;
+              let errormsg = res.errormsg || [];
+              let persionListName = [];
+              if (errormsg.length > 0) {
+                if (employeesList.length > 0) {
+                  for (let i = 0; i < employeesList.length; i++) {
+                    for (let j = 0; j < errormsg.length; j++) {
+                      if (errormsg[j] == employeesList[i].id) {
+                        persionListName.push(employeesList[i].name)
+                        break;
+                      } else {
+                      }
+                    }
+                  }
+                }
+                let fail_text = persionListName.join('/')
+                wx.showModal({
+                  title: '失败',
+                  content: fail_text + " " + res.msg,
+                  confirmText: '确定',
+                  // cancelText: '返回主页',
+                  showCancel: false,
+                  success: function (res) {
+                      if (res.confirm) {
+                          
+                      }
+                  }
+                })
+              }
+            }else{
+              box.showToast(res.msg);
+            }
           }
         } else {
           box.showToast("网络不稳定，请重试");
@@ -216,19 +268,58 @@ Page({
       let params = {
         pig_farm: app.globalData.userInfo.pig_farm_id ,
         sn: name, //设备编号
+        ip: ipstring, //设备IP
         address_id: position_id, //设备位置
         // user_id:  job_id,//设备管理员id
-        controller: managePersionIds, //（管理者）
+        Person_authority: managePersionIds, //（管理者）
       }
 
+      console.log('---->:',params)
+
       request.request_get('/AccessManagement/addEntranceGuard.hn', params, function (res) {
+        wx.hideLoading();
         if (res) {
           if (res.success) {
-            wx.navigateBack({
-              delta: 1,
-            });
+            box.showToast(res.msg,'',1000);
+            setTimeout(()=>{
+              wx.navigateBack({
+                delta: 1,
+              });
+            },1500);
           } else {
-            box.showToast(res.msg);
+            if(res.errormsg && res.errormsg.length > 0){
+              let employeesList = that.data.employeesList;
+              let errormsg = res.errormsg || [];
+              let persionListName = [];
+              if (errormsg.length > 0) {
+                if (employeesList.length > 0) {
+                  for (let i = 0; i < employeesList.length; i++) {
+                    for (let j = 0; j < errormsg.length; j++) {
+                      if (errormsg[j] == employeesList[i].id) {
+                        persionListName.push(employeesList[i].name)
+                        break;
+                      } else {
+                      }
+                    }
+                  }
+                }
+                let fail_text = persionListName.join('/')
+                wx.showModal({
+                  title: '失败',
+                  content: fail_text + " " + res.msg,
+                  confirmText: '确定',
+                  // cancelText: '返回主页',
+                  showCancel: false,
+                  success: function (res) {
+                      if (res.confirm) {
+                          
+                      }
+                  }
+                })
+              }
+            }else{
+              box.showToast(res.msg);
+            }
           }
         } else {
           box.showToast("网络不稳定，请重试");
@@ -314,5 +405,23 @@ Page({
     wx.navigateTo({
       url:`/modulepages/pages/entranceGuardManagePersion/index?idlist=${this.data.managePersionIds}`
     });
+  },
+  getEmployeesList: function () {
+    var that = this;
+    var data = {
+      source: "1",
+      pig_farm: app.globalData.userInfo.pig_farm_id
+    }
+    request.request_get('/personnelManagement/getPersonnelList.hn', data, function (res) {
+      if (res) {
+        if (res.success) {
+          that.setData({
+            employeesList: res.msg
+          });
+        } else {
+          box.showToast(res.msg);
+        }
+      }
+    })
   },
 })
