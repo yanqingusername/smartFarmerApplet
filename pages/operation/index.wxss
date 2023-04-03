@@ -95,3 +95,17 @@ height: 80rpx;
     font-weight: 500;
     color: #666666;
 }
+
+.new_empty{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 600rpx;
+}
+
+.new_empty_title{
+    font-size: 24rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #666666;
+}

@@ -1,19 +1,19 @@
 <wxs src="../../comm.wxs" module="fn" />
 <scroll-view scroll-y class="scrollPage page">
     <!-- 人员管理 -->
-    <block wx:if="{{fn.list1_inexistence_list2(['10','11'], applet_permissions_list)}}">
+    <block wx:if="{{fn.list1_inexistence_list2(['0','1'], roleStatus)}}">
         <view class="new_view_1">查看</view>
         <view class="new_view_2">
-            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+            <!-- <block wx:if="{{fn.exist_list('17', roleStatus)}}"> -->
                 <view class="new_view_2_1">
                     <view class="new_view_2_1_1"  bindtap="enter_operation_pig_show">
                         <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_16_2.png"></image>
                     </view>
                     <view class="new_view_2_1_title">猪只查看</view>
                 </view>
-            </block>
+            <!-- </block> -->
 
-            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+            <block wx:if="{{fn.exist_list('1', roleStatus)}}">
                 <view class="new_view_2_1">
                     <view class="new_view_2_1_1" bindtap="clickEntranceGuardModuleList">
                         <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_03_10_3.png"></image>
@@ -25,19 +25,19 @@
         </view>
     </block>
 
-    <block wx:if="{{fn.list1_inexistence_list2(['10','11'], applet_permissions_list)}}">
+    <block wx:if="{{fn.list1_inexistence_list2(['0','1'], roleStatus)}}">
         <view class="new_view_1">操作</view>
         <view class="new_view_2">
-            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+            <!-- <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}"> -->
                 <view class="new_view_2_1">
                     <view class="new_view_2_1_1" bindtap="clickPigAbnormalModuleEarmarkBinding">
                         <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_03_28_1.png"></image>
                     </view>
                     <view class="new_view_2_1_title">扫码看猪</view>
                 </view>
-            </block>
+            <!-- </block> -->
 
-            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+            <block wx:if="{{fn.exist_list('1', roleStatus)}}">
                 <view class="new_view_2_1">
                     <view class="new_view_2_1_1" bindtap="clickPigAbnormalModuleManage">
                         <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_16_4.png"></image>
@@ -49,10 +49,10 @@
         </view>
     </block>
 
-    <block wx:if="{{fn.list1_inexistence_list2(['10','11'], applet_permissions_list)}}">
+    <block wx:if="{{fn.list1_inexistence_list2(['1'], roleStatus)}}">
         <view class="new_view_1">管理</view>
         <view class="new_view_2">
-            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+            <block wx:if="{{fn.exist_list('1', roleStatus)}}">
                 <view class="new_view_2_1">
                     <view class="new_view_2_1_1" bindtap="clickPigDoorDormManage">
                         <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_16_6.png"></image>
@@ -61,7 +61,7 @@
                 </view>
             </block>
 
-            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+            <block wx:if="{{fn.exist_list('1', roleStatus)}}">
                 <view class="new_view_2_1">
                     <view class="new_view_2_1_1" bindtap="clickPigIndividualFilesManage">
                         <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_16_5.png"></image>
@@ -70,7 +70,7 @@
                 </view>
             </block>
 
-            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+            <block wx:if="{{fn.exist_list('1', roleStatus)}}">
                 <view class="new_view_2_1">
                     <view class="new_view_2_1_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/homeCusManage/index" data-title="员工管理">
                         <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_16_8.png"></image>
@@ -81,7 +81,7 @@
         </view>
 
         <view class="new_view_2" style="margin-top:30rpx;">
-            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+            <block wx:if="{{fn.exist_list('1', roleStatus)}}">
                 <view class="new_view_2_1">
                     <view class="new_view_2_1_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/ozoneModuleManage/index" data-title="臭氧浓度监测工作站参数">
                         <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_16_7.png"></image>
@@ -90,7 +90,7 @@
                 </view>
             </block>
 
-            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+            <block wx:if="{{fn.exist_list('1', roleStatus)}}">
                 <view class="new_view_2_1">
                     <view class="new_view_2_1_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/homeEquipmentManage/index" data-title="淋浴一体机设备参数">
                         <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_02_16_9.png"></image>
@@ -99,7 +99,7 @@
                 </view>
             </block>
 
-            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+            <block wx:if="{{fn.exist_list('1', roleStatus)}}">
                 <view class="new_view_2_1">
                     <view class="new_view_2_1_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/entranceGuardManage/index" data-title="门禁位点信息管理">
                         <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_03_10_1.png"></image>
@@ -110,7 +110,7 @@
         </view>
 
         <view class="new_view_2" style="margin-top:30rpx;">
-            <block wx:if="{{fn.exist_list('17', applet_permissions_list)}}">
+            <block wx:if="{{fn.exist_list('1', roleStatus)}}">
                 <view class="new_view_2_1">
                     <view class="new_view_2_1_1" bindtap="catchHandler" data-pathstring="/modulepages/pages/foreignMatterManage/index" data-title="异物采集位点管理">
                         <image class="new_view_2_1_1_img" src="/image/icon/icon_2023_03_14_1.png"></image>
@@ -119,7 +119,7 @@
                 </view>
             </block>
 
-             <block wx:if="{{fn.exist_list('25', applet_permissions_list)}}">
+             <block wx:if="{{fn.exist_list('1', roleStatus)}}">
                 <view class="new_view_2_1">
                     <view class="new_view_2_1_1" bindtap="catchHandler" data-pathstring="/pages/bluetooth/index" data-title="蓝牙连接">
                         <image class="new_view_2_1_1_img" style="width: 64rpx;height: 64rpx;" src="/image/icon/icon_2023_03_17_01.png"></image>
@@ -310,6 +310,15 @@
     <block wx:else>
         <image src="/image/icon/no_info.png" style="width:750rpx;height:auto" mode="widthFix"></image>
     </block>
+
+    <!-- <block wx:if="{{fn.list1_inexistence_list2(['35'],applet_permissions_list)}}">
+        <view style="height:100rpx;"></view>
+    </block>
+    <block wx:else>
+        <view class="new_empty">
+            <view class="new_empty_title">您暂无该页面的操作权限~</view>
+        </view>
+    </block> -->
 </scroll-view>
 
 

@@ -219,51 +219,53 @@ Page({
         wx.hideLoading();
         if (res) {
           if (res.success) {
-            box.showToast(res.msg,'',1000);
-            setTimeout(()=>{
-              wx.navigateBack({
-                delta: 1,
-              });
-            },1500);
-          } else {
-            if(res.errormsg && res.errormsg.length > 0){
-              let employeesList = that.data.employeesList;
-              let errormsg = res.errormsg || [];
-              let persionListName = [];
-              if (errormsg.length > 0) {
-                if (employeesList.length > 0) {
-                  for (let i = 0; i < employeesList.length; i++) {
-                    for (let j = 0; j < errormsg.length; j++) {
-                      if (errormsg[j] == employeesList[i].id) {
-                        persionListName.push(employeesList[i].name)
-                        break;
-                      } else {
-                      }
-                    }
-                  }
-                }
-                let fail_text = persionListName.join('/')
-                wx.showModal({
-                  title: '失败',
-                  content: fail_text + " " + res.msg,
-                  confirmText: '确定',
-                  // cancelText: '返回主页',
-                  showCancel: false,
-                  success: function (res) {
-                      if (res.confirm) {
-                          
-                      }
-                  }
-                })
-              }
-            }else{
-              box.showToast(res.msg);
+            // box.showToast(res.msg,'',1000);
+            // setTimeout(()=>{
+            //   wx.navigateBack({
+            //     delta: 1,
+            //   });
+            // },1500);
+            let fail_text = '';
+
+            if(res.inserterrormsg && res.inserterrormsg.length > 0){
+              fail_text += that.setMsg(res.inserterrormsg, '新增失败')
             }
+
+            if(res.insertsuccessmsg && res.insertsuccessmsg.length > 0){
+              fail_text += that.setMsg(res.insertsuccessmsg, '新增成功')
+            }
+
+            if(res.deleteerrormsg && res.deleteerrormsg.length > 0){
+              fail_text += that.setMsg(res.deleteerrormsg, '删除失败')
+            }
+
+            if(res.deletesuccessmsg && res.deletesuccessmsg.length > 0){
+              fail_text += that.setMsg(res.deletesuccessmsg, '删除成功')
+            }
+
+            wx.showModal({
+              title: '温馨提示',
+              content: fail_text,
+              confirmText: '确定',
+              cancelText: '返回',
+              // showCancel: false,
+              success: function (res) {
+                  if (res.confirm) {
+                    
+                  }else {
+                    wx.navigateBack({
+                      delta: 1,
+                    });
+                  }
+              }
+            })
+          } else {
+            box.showToast(res.msg);
           }
         } else {
           box.showToast("网络不稳定，请重试");
         }
-      })
+      });
     }else{
       let params = {
         pig_farm: app.globalData.userInfo.pig_farm_id ,
@@ -424,4 +426,28 @@ Page({
       }
     })
   },
+  setMsg(dataList, textName){
+    let that = this;
+    let fail_text = ''
+    if(dataList && dataList.length > 0){
+      let employeesList = that.data.employeesList;
+      let persionListName = [];
+      if (dataList.length > 0) {
+        if (employeesList.length > 0) {
+          for (let i = 0; i < employeesList.length; i++) {
+            for (let j = 0; j < dataList.length; j++) {
+              if (dataList[j] == employeesList[i].id) {
+                persionListName.push(employeesList[i].name)
+                break;
+              } else {
+              }
+            }
+          }
+        }
+        fail_text = persionListName.join('/');
+        fail_text = fail_text + textName + '\r\n'
+      }
+    }
+    return fail_text;
+  }
 })

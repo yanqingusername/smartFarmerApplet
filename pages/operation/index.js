@@ -7,6 +7,9 @@ Page({
         var applet_permissions_list = app.globalData.userInfo.applet_permissions_list;
         console.log("权限信息:" + applet_permissions_list);
         this.setData({applet_permissions_list:applet_permissions_list});
+
+        var roleStatus = app.globalData.userInfo.role;
+        this.setData({roleStatus:roleStatus});
     },
     
     //人员管理
