@@ -35,10 +35,18 @@ font-weight: 500;
 color: #333333;
 }
 
+.v2_1_top_1_img_view{
+    width: 74rpx;
+    height: 74rpx;
+    background: #FAFCFF;
+    border: 1px solid #EAF4FE;
+    border-radius: 100%;
+    margin-right: 10rpx;
+}
+
 .v2_1_top_1_img{
     width: 70rpx;
     height: 70rpx;
-    margin-right: 10rpx;
     border-radius: 100%;
 }
 

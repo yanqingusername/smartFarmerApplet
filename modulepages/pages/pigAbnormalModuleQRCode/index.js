@@ -95,13 +95,16 @@ Page({
             if(this.data.objData && this.data.objData.length > 0){
                 let item = this.data.objData[0];
                 if(item){
-                    // this.setData({
-                    //     inputInfo: '',
-                    //     source_label: "",
-                    //     objData: []
-                    // });
+                    that.setData({
+                        inputInfo: '',
+                        source_label: "",
+                        objData: []
+                    });
                     let jsonItem = JSON.stringify(item);
-                    wx.redirectTo({
+                    // wx.redirectTo({
+                    //     url: `/modulepages/pages/pigAbnormalModuleInfo/index?jsonItem=${jsonItem}`,
+                    // })
+                    wx.navigateTo({
                         url: `/modulepages/pages/pigAbnormalModuleInfo/index?jsonItem=${jsonItem}`,
                     })
                 }
