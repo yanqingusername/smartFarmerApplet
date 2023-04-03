@@ -34,7 +34,7 @@ Page({
 		  	fail(res) {
 				console.log("蓝牙模块初始化失败:");
 				console.log(res);
-				box.showToast("开启蓝牙失败，请重试!");
+				box.showToast("开启蓝牙失败，请检查蓝牙是否打开!");
 		  	}
 		})
 	},
