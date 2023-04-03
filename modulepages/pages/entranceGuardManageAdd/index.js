@@ -282,46 +282,76 @@ Page({
         wx.hideLoading();
         if (res) {
           if (res.success) {
-            box.showToast(res.msg,'',1000);
-            setTimeout(()=>{
-              wx.navigateBack({
-                delta: 1,
-              });
-            },1500);
-          } else {
-            if(res.errormsg && res.errormsg.length > 0){
-              let employeesList = that.data.employeesList;
-              let errormsg = res.errormsg || [];
-              let persionListName = [];
-              if (errormsg.length > 0) {
-                if (employeesList.length > 0) {
-                  for (let i = 0; i < employeesList.length; i++) {
-                    for (let j = 0; j < errormsg.length; j++) {
-                      if (errormsg[j] == employeesList[i].id) {
-                        persionListName.push(employeesList[i].name)
-                        break;
-                      } else {
-                      }
-                    }
-                  }
-                }
-                let fail_text = persionListName.join('/')
-                wx.showModal({
-                  title: '失败',
-                  content: fail_text + " " + res.msg,
-                  confirmText: '确定',
-                  // cancelText: '返回主页',
-                  showCancel: false,
-                  success: function (res) {
-                      if (res.confirm) {
-                          
-                      }
-                  }
-                })
-              }
-            }else{
-              box.showToast(res.msg);
+            // box.showToast(res.msg,'',1000);
+            // setTimeout(()=>{
+            //   wx.navigateBack({
+            //     delta: 1,
+            //   });
+            // },1500);
+
+            let fail_text = '';
+
+            if(res.successmsg && res.successmsg.length > 0){
+              fail_text += that.setMsg(res.successmsg, '下发命令成功')
             }
+
+            if(res.errormsg && res.errormsg.length > 0){
+              fail_text += that.setMsg(res.errormsg, '下发命令失败')
+            }
+
+
+            wx.showModal({
+              title: '温馨提示',
+              content: fail_text,
+              confirmText: '确定',
+              cancelText: '返回',
+              // showCancel: false,
+              success: function (res) {
+                  if (res.confirm) {
+                    wx.navigateBack({
+                      delta: 1,
+                    });
+                  }else {
+                    wx.navigateBack({
+                      delta: 1,
+                    });
+                  }
+              }
+            })
+          } else {
+            // if(res.errormsg && res.errormsg.length > 0){
+            //   let employeesList = that.data.employeesList;
+            //   let errormsg = res.errormsg || [];
+            //   let persionListName = [];
+            //   if (errormsg.length > 0) {
+            //     if (employeesList.length > 0) {
+            //       for (let i = 0; i < employeesList.length; i++) {
+            //         for (let j = 0; j < errormsg.length; j++) {
+            //           if (errormsg[j] == employeesList[i].id) {
+            //             persionListName.push(employeesList[i].name)
+            //             break;
+            //           } else {
+            //           }
+            //         }
+            //       }
+            //     }
+            //     let fail_text = persionListName.join('/')
+            //     wx.showModal({
+            //       title: '失败',
+            //       content: fail_text + " " + res.msg,
+            //       confirmText: '确定',
+            //       // cancelText: '返回主页',
+            //       showCancel: false,
+            //       success: function (res) {
+            //           if (res.confirm) {
+                          
+            //           }
+            //       }
+            //     })
+            //   }
+            // }else{
+              box.showToast(res.msg);
+            // }
           }
         } else {
           box.showToast("网络不稳定，请重试");
