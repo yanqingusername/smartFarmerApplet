@@ -318,12 +318,12 @@
     </block> -->
 
     <!-- 无以上权限说明，此页面功能为空 -->
-    <block wx:if="{{fn.list1_inexistence_list2(['1','2','3','4','5','6','7','8','9','30'], applet_permissions_list)}}">
+    <!-- <block wx:if="{{fn.list1_inexistence_list2(['1','2','3','4','5','6','7','8','9','30'], applet_permissions_list)}}"> -->
         <!-- 底部留白 -->
         <view style="height:100rpx;"></view>
-    </block>
+    <!-- </block> -->
 
-    <block wx:else>
+    <!-- <block wx:else>
         <image src="/image/icon/no_info.png" style="width:750rpx;height:auto" mode="widthFix"></image>
-    </block>
+    </block> -->
 </view>

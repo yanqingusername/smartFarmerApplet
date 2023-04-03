@@ -303,13 +303,13 @@
     </block> -->
 
     <!-- 无以上权限说明，此页面功能为空 -->
-    <block wx:if="{{fn.list1_inexistence_list2(['8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25'],applet_permissions_list)}}">
+    <!-- <block wx:if="{{fn.list1_inexistence_list2(['8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25'],applet_permissions_list)}}"> -->
         <!-- 底部留白 -->
         <view style="height:100rpx;"></view>
-    </block>
-    <block wx:else>
+    <!-- </block> -->
+    <!-- <block wx:else>
         <image src="/image/icon/no_info.png" style="width:750rpx;height:auto" mode="widthFix"></image>
-    </block>
+    </block> -->
 
     <!-- <block wx:if="{{fn.list1_inexistence_list2(['35'],applet_permissions_list)}}">
         <view style="height:100rpx;"></view>
