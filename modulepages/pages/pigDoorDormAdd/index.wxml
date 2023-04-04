@@ -53,7 +53,7 @@
         <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">饲养员</view>
           <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
-            <picker style="height:84rpx;margin-top:0rpx;width:90%;" bindchange="bindPickerChangeRoleName" range-key="real_name" value="{{roleNameList[roleNameIndex].real_name}}" range="{{roleNameList}}">
+            <picker style="height:84rpx;margin-top:0rpx;width:100%;" bindchange="bindPickerChangeRoleName" range-key="real_name" value="{{roleNameList[roleNameIndex].real_name}}" range="{{roleNameList}}">
               <view class="picker" wx:if="{{isShowRoleName == 2}}">{{roleNameList[roleNameIndex].real_name}}</view>
               <view class="picker" style="color: #B1B1B1;" wx:else>请选择饲养员</view>
             </picker>
@@ -68,7 +68,7 @@
         <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">工作站</view>
           <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
-            <picker style="height:84rpx;margin-top:0rpx;width:90%;" bindchange="bindPickerChangeWorkstation" range-key="host_name" value="{{workstationList[workstationIndex].host_name}}" range="{{workstationList}}">
+            <picker style="height:84rpx;margin-top:0rpx;width:100%;" bindchange="bindPickerChangeWorkstation" range-key="host_name" value="{{workstationList[workstationIndex].host_name}}" range="{{workstationList}}">
               <view class="picker" wx:if="{{isShowWorkstation == 2}}">{{workstationList[workstationIndex].host_name}}</view>
               <view class="picker" style="color: #B1B1B1;" wx:else>请选择工作站</view>
             </picker>

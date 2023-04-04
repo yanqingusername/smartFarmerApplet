@@ -380,3 +380,10 @@ page {
   border: 1px solid #DDDDDD;
 }
 
+.picker{
+  height: 84rpx;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+

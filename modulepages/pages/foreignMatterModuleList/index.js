@@ -26,9 +26,10 @@ Page({
 
     var that = this;
     that.getForeignMatterList();
+    this.getForeignMatterposition();
   },
   onShow: function () {
-    this.getPositionList();
+    
   },
   onReachBottom: function () {
     this.getForeignMatterList();
@@ -41,7 +42,8 @@ Page({
       limit: that.data.limit,
       start_time: this.data.startDate, //开始时间，第二个接口用  默认当前
       end_time: this.data.endDate, //结束时间 同开始时间
-      position: this.data.position_name == '全部' ? '' : this.data.position_name //设备位置
+      position: this.data.position_id //设备位置
+      // position: this.data.position_name == '全部' ? '' : this.data.position_name //设备位置
     }
     request.request_get('/equipmentManagement/getForeignMatterList.hn', data, function (res) {
       if (res) {
@@ -69,28 +71,35 @@ Page({
     var positionIndex = e.detail.value;
     this.setData({
       positionIndex: positionIndex,
-      position_id: this.data.positionList[positionIndex].id,
-      position_name: this.data.positionList[positionIndex].location_descr,
+      position_id: this.data.positionList[positionIndex].sn,
+      position_name: this.data.positionList[positionIndex].address,
       isShowPosition: 2,
       page: 1
     });
     this.getForeignMatterList();
   },
-  getPositionList() {
+  getForeignMatterposition() {
     let that = this;
     let params = {
       pig_farm_id: app.globalData.userInfo.pig_farm_id
     }
 
-    request.request_get('/AccessManagement/getAccesslayout.hn', params, function (res) {
+    request.request_get('/equipmentManagement/getForeignMatterposition.hn', params, function (res) {
       if (res) {
         if (res.success) {
           var reasonList = res.data;
           let reagentHead = {
-            "id": "",
-            "location_descr": "全部",
+            // "id": "",
+            // "location_descr": "全部",
+            "address": "全部",
+            "pigfarmID": "",
+            "sn": ""
           }
           reasonList.unshift(reagentHead);
+
+          for (let i = 0; i < reasonList.length; i++) {
+            reasonList[i].titleorsn = reasonList[i].sn+""+reasonList[i].address;
+          }
           that.setData({
             positionList: reasonList
           });

@@ -22,7 +22,7 @@
                 <view class="P5 app_flex" style="margin: 0rpx 0rpx 0rpx 0rpx;">
                     <view class="P5_1 app_font">场区</view>
                     <view class="section" style="width: 80%;height:84rpx;padding-left:12rpx;font-size:30rpx;display: flex;position: relative;border-bottom: 1px solid #EEEEEE;">
-                        <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindReasonChange" range-key="location_descr" value="{{reasonList[reasonIndex].value}}" range="{{reasonList}}">
+                        <picker style="height:100%;margin-top:0rpx;width:100%;" bindchange="bindReasonChange" range-key="location_descr" value="{{reasonList[reasonIndex].value}}" range="{{reasonList}}">
                             <view class="picker_view" wx:if="{{isShowReason == 2}}">{{reasonList[reasonIndex].location_descr}}</view>
                             <view class="picker_view" style="color: #B1B1B1;" wx:else>请选择场区</view>
                         </picker>
@@ -35,7 +35,7 @@
                 <view class="P5 app_flex" style="margin: 0rpx 0rpx 0rpx 0rpx;">
                     <view class="P5_1 app_font">栋舍</view>
                     <view class="section" style="width: 80%;height:84rpx;padding-left:12rpx;font-size:30rpx;display: flex;position: relative;border-bottom: 1px solid #EEEEEE;">
-                        <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindPiggeryChange" range-key="location_descr" value="{{piggeryList[piggeryIndex].value}}" range="{{piggeryList}}">
+                        <picker style="height:100%;margin-top:0rpx;width:100%;" bindchange="bindPiggeryChange" range-key="location_descr" value="{{piggeryList[piggeryIndex].value}}" range="{{piggeryList}}">
                             <view class="picker_view" wx:if="{{isShowPiggery == 2}}">{{piggeryList[piggeryIndex].location_descr}}</view>
                             <view class="picker_view" style="color: #B1B1B1;" wx:else>请选择栋舍</view>
                         </picker>
@@ -48,7 +48,7 @@
                 <view class="P5 app_flex" style="margin: 0rpx 0rpx 0rpx 0rpx;">
                     <view class="P5_1 app_font">状态</view>
                     <view class="section" style="width: 80%;height:84rpx;padding-left:12rpx;font-size:30rpx;display: flex;position: relative;border-bottom: 1px solid #EEEEEE;">
-                        <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindStatusChange" range-key="text" value="{{statusList[statusIndex].value}}" range="{{statusList}}">
+                        <picker style="height:100%;margin-top:0rpx;width:100%;" bindchange="bindStatusChange" range-key="text" value="{{statusList[statusIndex].value}}" range="{{statusList}}">
                             <view class="picker_view" wx:if="{{isShowStatus == 2}}">{{statusList[statusIndex].text}}</view>
                             <view class="picker_view" style="color: #B1B1B1;" wx:else>请选择状态</view>
                         </picker>

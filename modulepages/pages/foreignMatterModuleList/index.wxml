@@ -15,8 +15,8 @@
                 <view class="P5 app_flex" style="margin: 0rpx 0rpx 20rpx 0rpx;">
                     <view class="P5_1 app_font">设备位置</view>
                     <view class="section" style="width: 80%;height:84rpx;padding-left:12rpx;font-size:30rpx;display: flex;position: relative;border-bottom: 1px solid #EEEEEE;">
-                        <picker style="height:100%;margin-top:0rpx;width:90%;" bindchange="bindPositionChange" range-key="location_descr" value="{{positionList[positionIndex].value}}" range="{{positionList}}">
-                            <view class="picker_view" wx:if="{{isShowPosition == 2}}">{{positionList[positionIndex].location_descr}}</view>
+                        <picker style="height:100%;margin-top:0rpx;width:100%;" bindchange="bindPositionChange" range-key="titleorsn" value="{{positionList[positionIndex].value}}" range="{{positionList}}">
+                            <view class="picker_view" wx:if="{{isShowPosition == 2}}">{{positionList[positionIndex].sn}}{{positionList[positionIndex].address}}</view>
                             <view class="picker_view" style="color: #B1B1B1;" wx:else>请选择设备位置</view>
                         </picker>
                         <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
@@ -68,7 +68,7 @@
 
         <view class="v2_1" wx:for="{{deviceinfoList}}" wx:key="index">
             <view class="v2_1_top">
-                <view class="v2_1_top_1"><image class='v2_1_top_1_img' src="/image/icon/icon_2023_03_10_2.png"></image>{{item.address}}</view>
+                <view class="v2_1_top_1"><image class='v2_1_top_1_img' src="/image/icon/icon_2023_03_10_2.png"></image>{{item.SN}}{{item.address}}</view>
                 <view class="v2_1_top_2" style="color: {{item.status == '2' ? '#FF2C2B' : '#666666'}};">{{item.status == '2' ? '离线' : '在线'}}</view>
             </view>
             <view class="v2_1_line"></view>
