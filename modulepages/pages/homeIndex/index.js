@@ -26,15 +26,7 @@ Page({
     },
 
     onLoad:function(){
-        // this.setData({
-        //     real_name: app.globalData.userInfo.real_name,
-        //     company: app.globalData.userInfo.company,
-        // });
-        // this.currentTime()
-    },
-    onShow:function(){
         this.setData({
-            page: 1,
             real_name: app.globalData.userInfo.real_name,
             company: app.globalData.userInfo.company,
         });
@@ -43,6 +35,18 @@ Page({
         this.getIwadomlistinfo();
 
         this.getdeviceinfo();
+    },
+    onShow:function(){
+        // this.setData({
+        //     page: 1,
+        //     real_name: app.globalData.userInfo.real_name,
+        //     company: app.globalData.userInfo.company,
+        // });
+        // this.currentTime();
+        // this.getdeviceRun();
+        // this.getIwadomlistinfo();
+
+        // this.getdeviceinfo();
     },
     /**
      * 当前日期
@@ -161,5 +165,15 @@ Page({
             url: `/modulepages/pages/homeEquipmentStatusList/index?eid=${id}`
           });
         }
-      }
+      },
+       //预览图片，放大预览
+  preview: function (e) {
+    let currentUrl = e.currentTarget.dataset.url
+    if(currentUrl){
+      wx.previewImage({
+        current: currentUrl, // 当前显示图片的http链接
+        urls: [currentUrl] // 需要预览的图片http链接列表
+      })
+    }
+  },
 })

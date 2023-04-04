@@ -10,16 +10,15 @@ Page({
         id: ""
 	},
     onLoad:function(options) {
+      var that = this;
         this.setData({
           id: options.eid
         });
+        
+        that.getdeviceinfo();
     },
     onShow:function(){
-        var that = this;
-        this.setData({
-          page: 1
-        });
-        that.getdeviceinfo();
+        
     },
     onReachBottom: function () {
         this.getdeviceinfo();
@@ -51,4 +50,14 @@ Page({
               }
         })
     },
+    //预览图片，放大预览
+  preview: function (e) {
+    let currentUrl = e.currentTarget.dataset.url
+    if(currentUrl){
+      wx.previewImage({
+        current: currentUrl, // 当前显示图片的http链接
+        urls: [currentUrl] // 需要预览的图片http链接列表
+      })
+    }
+  },
 });

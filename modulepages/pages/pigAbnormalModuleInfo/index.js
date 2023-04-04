@@ -198,6 +198,8 @@ Page({
 
                     let seriesTemp = [];
                     let seriesAct = [];
+                    let allSeriesTemp = [];
+                    
                     if(that.data.temp_date_type == 2){
                         for(let i = 0; i < series.length; i++){
                             let name = series[i].date;
@@ -209,6 +211,8 @@ Page({
                                 data: series[i].temp
                             }
                             seriesTemp.push(objTemp)
+
+                            allSeriesTemp = allSeriesTemp.concat(series[i].temp);
     
                             let objAct = {
                                 name: name+'月活动量',
@@ -230,7 +234,9 @@ Page({
                                 data: series[i].temp
                             }
                             seriesTemp.push(objTemp)
-    
+
+                            allSeriesTemp = allSeriesTemp.concat(series[i].temp);
+
                             let objAct = {
                                 name: moth+"/"+date+'活动量',
                                 smooth: true,
@@ -263,7 +269,7 @@ Page({
                     }
 
                     let canvasDpr = wx.getSystemInfoSync().pixelRatio;
-                    that.chartInitTemp(xdata, ydata, axisLabel, seriesTemp, canvasDpr);
+                    that.chartInitTemp(xdata, ydata, axisLabel, seriesTemp, canvasDpr,allSeriesTemp);
 
                     that.chartInitAct(xdata, ydata, axisLabel, seriesAct, canvasDpr)
 
@@ -274,7 +280,7 @@ Page({
         })
     },
     // 开始画图
-    chartInitTemp: function (xdata, ydata, axisLabel, series, canvasDpr) {
+    chartInitTemp: function (xdata, ydata, axisLabel, series, canvasDpr,allSeriesTemp) {
         var that = this;
         that.pig_temp_component.init((canvas, width, height) => {
             const chart = echarts.init(canvas, null, {
@@ -282,11 +288,13 @@ Page({
                 height: height,
                 devicePixelRatio: canvasDpr, // 像素
             });
-            that.setLineOptionTemp(chart, xdata, ydata, axisLabel, series);
+            that.setLineOptionTemp(chart, xdata, ydata, axisLabel, series,allSeriesTemp);
             return chart; // 注意这里一定要返回 chart 实例，否则会影响事件处理等
         });
     },
-    setLineOptionTemp: function (chart, xdata, ydata, axisLabel, series) {
+    setLineOptionTemp: function (chart, xdata, ydata, axisLabel, series, allSeriesTemp) {
+        let minSeriesTemp = Math.min(...allSeriesTemp);
+        let maxSeriesTemp = Math.max(...allSeriesTemp);
         var option = {
             // dataZoom: [{
             //     type: 'inside', //1平移 缩放
@@ -331,6 +339,8 @@ Page({
                 //     fontSize: 24
                 // },
                 minInterval: 1,
+                min: minSeriesTemp,
+                max: maxSeriesTemp
                 // show: true
             },
             series: series
