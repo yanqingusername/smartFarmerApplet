@@ -11,7 +11,6 @@ Page({
   data: {
     // title:"",
     name: "",
-    position: "",
     submitState: true,
     
 
@@ -29,7 +28,13 @@ Page({
     uid: '',
 
     isName: false,
-    isPosition: false
+    isPosition: false,
+
+    positionList: [],
+    positionIndex: 0,
+    isShowPosition: 1,
+    position_id: '',
+    position_name: '',
 
   },
   onShow: function () {
@@ -49,6 +54,8 @@ Page({
       this.getdeviceinfobyid();
     }
 
+    this.getPositionList();
+
   },
   getdeviceinfobyid(){
     let that = this
@@ -67,7 +74,8 @@ Page({
               isName: true,
               isPosition: true,
               name: deviceInfo.sn,
-              position: deviceInfo.address,
+              position_name: deviceInfo.address,
+              position_id: deviceInfo.layout_id,
               time: deviceInfo.duration,
               concentration: deviceInfo.concentration,
             });
@@ -118,7 +126,7 @@ Page({
   },
   //保存按钮禁用判断
   checkSubmitStatus: function (e) {
-    if (this.data.name != '' && this.data.position != '' && this.data.concentration != '' && this.data.time != '' && this.data.managePersion != '' && this.data.approvalPersion != '') {
+    if (this.data.name != '' && this.data.position_name != '' && this.data.concentration != '' && this.data.time != '' && this.data.managePersion != '' && this.data.approvalPersion != '') {
       this.setData({
         submitState: false
       })
@@ -158,7 +166,7 @@ Page({
   bindPosition: function (e) {
     var str = e.detail.value;
     this.setData({
-      position: str
+      position_name: str
     })
 
     this.checkSubmitStatus();
@@ -184,7 +192,8 @@ Page({
   submitBuffer() {
     let that = this;
     let name = this.data.name;
-    let position = this.data.position;
+    let position_name = this.data.position_name;
+    let position_id = this.data.position_id;
     let time = this.data.time;
     let concentration = this.data.concentration;
     let managePersion = this.data.managePersion;
@@ -198,7 +207,7 @@ Page({
       return;
     }
 
-    if (!position) {
+    if (!position_name) {
       box.showToast("请输入设备位置");
       return;
     }
@@ -231,10 +240,11 @@ Page({
         id: this.data.uid,
         sn: name, //设备编号
         controller: managePersionIds, //（管理者）
-        address: position, //位置描述
+        address: position_name, //位置描述
         reviewer: approvalPersionIds, //(审核者)
         duration: time, //（（时长）
         concentration: concentration, //（浓度）
+        layout_id: position_id //位置id
       }
 
       console.log('---->:',params1)
@@ -257,11 +267,12 @@ Page({
         pig_farm_id: app.globalData.userInfo.pig_farm_id,
         type: '2',
         sn: name, //设备编号
-        address: position, //位置描述
+        address: position_name, //位置描述
         controller: managePersionIds, //（管理者）
         reviewer: approvalPersionIds, //(审核者)
         duration: time, //（（时长）
         concentration: concentration, //（浓度）
+        layout_id: position_id //位置id
       }
   
       console.log('---->:',params)
@@ -319,5 +330,35 @@ Page({
     wx.navigateTo({
       url:`/modulepages/pages/ozoneModuleApprovalPersion/index?idlist=${this.data.approvalPersionIds}`
     });
+  },
+  getPositionList() {
+    let that = this;
+    let params = {
+      pig_farm_id: app.globalData.userInfo.pig_farm_id
+    }
+
+    request.request_get('/AccessManagement/getAccesslayout.hn', params, function (res) {
+      if (res) {
+        if (res.success) {
+          that.setData({
+            positionList: res.data
+          });
+        } else {
+          box.showToast(res.msg);
+        }
+      } else {
+        box.showToast("网络不稳定，请重试");
+      }
+    });
+  },
+  bindPositionChange: function (e) {
+    var positionIndex = e.detail.value;
+    this.setData({
+      positionIndex: positionIndex,
+      position_id: this.data.positionList[positionIndex].id,
+      position_name: this.data.positionList[positionIndex].location_descr,
+      isShowPosition: 2
+    });
+    this.checkSubmitStatus();
   },
 })
