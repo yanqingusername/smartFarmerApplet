@@ -199,26 +199,48 @@ Page({
                     let seriesTemp = [];
                     let seriesAct = [];
                     let allSeriesTemp = [];
+
+                    let dataSeriesTemp = [];
+
+                    let colorList = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272']
                     
                     if(that.data.temp_date_type == 2){
                         for(let i = 0; i < series.length; i++){
                             let name = series[i].date;
                             name = name.substring(5,7);
+
+                            let listItem = series[i].temp;
+                            // let str = listItem.toString().replaceAll("0",null);
+                            // str = str.split(",");
+
+                            let str = listItem;
+                            str = that.processing_breakpoint_data(str, 'temp')
+
+                            let color = colorList[series.length-1-i];
+
                             let objTemp = {
                                 name: name+'月温度',
                                 smooth: true,
                                 type: "line",
-                                data: series[i].temp
+                                data: str,
+                                color: color
                             }
                             seriesTemp.push(objTemp)
 
-                            allSeriesTemp = allSeriesTemp.concat(series[i].temp);
+                            allSeriesTemp = allSeriesTemp.concat(listItem);
+
+                            for(let i in allSeriesTemp){
+                                if(allSeriesTemp[i] > 0){
+                                    dataSeriesTemp.push(allSeriesTemp[i])
+                                }
+                            }
     
                             let objAct = {
                                 name: name+'月活动量',
                                 smooth: true,
                                 type: "line",
-                                data: series[i].act
+                                data: series[i].act,
+                                color: color
                             }
                             seriesAct.push(objAct)
                         }
@@ -227,21 +249,40 @@ Page({
                             let name = series[i].date;
                             let moth = name.substring(5,7);
                             let date = name.substring(8,10);
+
+                            let listItem = series[i].temp;
+                            // let str = listItem.toString().replaceAll("0",null);
+                            // str = str.split(",");
+                            
+                            let str = listItem;
+                            str = that.processing_breakpoint_data(str, 'temp')
+
+                            let color = colorList[series.length-1-i];
+                           
                             let objTemp = {
                                 name: moth+"/"+date+'温度',
                                 smooth: true,
                                 type: "line",
-                                data: series[i].temp
+                                data: str,
+                                color: color
                             }
                             seriesTemp.push(objTemp)
 
-                            allSeriesTemp = allSeriesTemp.concat(series[i].temp);
+                            allSeriesTemp = allSeriesTemp.concat(listItem);
+
+                            
+                            for(let i in allSeriesTemp){
+                                if(allSeriesTemp[i] > 0){
+                                    dataSeriesTemp.push(allSeriesTemp[i])
+                                }
+                            }
 
                             let objAct = {
                                 name: moth+"/"+date+'活动量',
                                 smooth: true,
                                 type: "line",
-                                data: series[i].act
+                                data: series[i].act,
+                                color: color
                             }
                             seriesAct.push(objAct)
                         }
@@ -269,7 +310,7 @@ Page({
                     }
 
                     let canvasDpr = wx.getSystemInfoSync().pixelRatio;
-                    that.chartInitTemp(xdata, ydata, axisLabel, seriesTemp, canvasDpr,allSeriesTemp);
+                    that.chartInitTemp(xdata, ydata, axisLabel, seriesTemp, canvasDpr,dataSeriesTemp);
 
                     that.chartInitAct(xdata, ydata, axisLabel, seriesAct, canvasDpr)
 
@@ -623,5 +664,41 @@ Page({
                 }
             }
         })
+    },
+    processing_breakpoint_data: function (ydata, lineType) {
+        let beforeVal = null; // 前一个值
+        let afterVal = null; // 后一个值
+        let needVal = []; //需要补充的值
+        console.log(ydata)
+
+        for (let i = 0; i < ydata.length; i++) {
+            let val = ydata[i];
+            if (val == 0 || val == "0") { // 点为空
+                needVal.push(i); // 将空点保存
+                console.log(needVal)
+            } else {
+                console.log("非空点" + val)
+                if (needVal.length == 0) { // 不存在空数据，记录最新点
+                    beforeVal = val;
+                } else { // 存在空数据
+                    afterVal = val;
+                    // 处理空点数据
+                    if (lineType == 'temp') {
+                        let average = afterVal;
+                        for (let a in needVal) {
+                            let index = needVal[a];
+                            ydata[index] = average;
+                        }
+                    } else if (lineType == 'act') {
+                        for (let a in needVal) {
+                            let index = needVal[a];
+                            ydata[index] = 0; // 无活跃度
+                        }
+                    }
+                    needVal = [];
+                }
+            }
+        }
+        return ydata
     },
 })

@@ -280,7 +280,9 @@ Page({
         var that = this;
         var label_id_list = that.data.label_id_list;
         var inputInfo = that.data.inputInfo;
-        if (inputInfo.length!=8){
+        if(!inputInfo) {
+            box.showToast('请输入耳环编号')
+        } else if (inputInfo.length!=8){
             box.showToast('耳环编号位数不对')
         } else if (utils.exist_arr(label_id_list, 'id', inputInfo)){
             box.showToast('请勿重复录入')
@@ -837,8 +839,10 @@ Page({
         let source_label_list = that.data.source_label_list;
         let snname = that.data.snname;
         let sourcelable = that.data.sourcelable;
-        if (sourcelable && sourcelable.length!=8){
-            box.showToast('耳环编号位数不对')
+        if (!snname && !sourcelable){
+            box.showToast('请输入耳号或电子耳标')
+        } else if (sourcelable && sourcelable.length!=8){
+            box.showToast('电子耳标编号位数不对')
         } else if (utils.exist_arr(source_label_list, 'source_label', snname)){
             box.showToast('请勿重复录入')
         }else if (utils.exist_arr(source_label_list, 'label_id', sourcelable)){

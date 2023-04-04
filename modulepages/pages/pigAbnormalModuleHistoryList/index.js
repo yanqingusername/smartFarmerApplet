@@ -75,9 +75,6 @@ Page({
   onLoad: function (options) {
 
     // this.currentTime();
-
-  },
-  onShow: function () {
     var that = this;
     that.getPigSitearea();
     that.getAllPiggery();
@@ -87,6 +84,18 @@ Page({
     });
 
     that.getHistoricRecords();
+
+  },
+  onShow: function () {
+    // var that = this;
+    // that.getPigSitearea();
+    // that.getAllPiggery();
+
+    // that.setData({
+    //   page: 1
+    // });
+
+    // that.getHistoricRecords();
   },
   // 选择场区***************
   getPigSitearea: function () {
