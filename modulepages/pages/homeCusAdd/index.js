@@ -347,9 +347,25 @@ Page({
           box.showToast(res.msg);
 
           setTimeout(()=>{
-            wx.navigateBack({
-              delta: 1,
-            });
+            if(that.data.isEditCus == 2){
+              let pages = getCurrentPages();
+              let prevPage = pages[pages.length - 2];
+              prevPage.setData({
+                isShowdata: false,
+              })
+              wx.navigateBack({
+                delta: 1,
+              });
+            } else {
+              let pages = getCurrentPages();
+              let prevPage = pages[pages.length - 2];
+              prevPage.setData({
+                isShowdata: true,
+              })
+              wx.navigateBack({
+                delta: 1,
+              });
+            }
           },1500);
 
           // if(that.data.isEditCus == 2){
@@ -394,9 +410,25 @@ Page({
                   if (res.success) {
                     box.showToast(res.msg);
                     setTimeout(()=>{
-                      wx.navigateBack({
-                        delta: 1,
-                      });
+                      if(that.data.isEditCus == 2){
+                        let pages = getCurrentPages();
+                        let prevPage = pages[pages.length - 2];
+                        prevPage.setData({
+                          isShowdata: false,
+                        })
+                        wx.navigateBack({
+                          delta: 1,
+                        });
+                      } else {
+                        let pages = getCurrentPages();
+                        let prevPage = pages[pages.length - 2];
+                        prevPage.setData({
+                          isShowdata: true,
+                        })
+                        wx.navigateBack({
+                          delta: 1,
+                        });
+                      }
                     },1500);
                   } else {
                     box.showToast(res.msg);

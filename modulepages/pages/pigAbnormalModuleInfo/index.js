@@ -216,7 +216,7 @@ Page({
                                 if(listItem[j] > 0){
 
                                 } else {
-                                    listItem[j] = 'null'
+                                    listItem[j] = null;
                                 }
                             }
 
@@ -266,7 +266,7 @@ Page({
                                 if(listItem[j] > 0){
                             
                                 } else {
-                                    listItem[j] = 'null';
+                                    listItem[j] = null;
                                 }
                             }
 

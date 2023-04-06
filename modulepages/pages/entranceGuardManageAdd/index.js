@@ -219,48 +219,48 @@ Page({
         wx.hideLoading();
         if (res) {
           if (res.success) {
-            // box.showToast(res.msg,'',1000);
-            // setTimeout(()=>{
-            //   wx.navigateBack({
-            //     delta: 1,
-            //   });
-            // },1500);
-            let fail_text = '';
+            box.showToast(res.msg,'',1000);
+            setTimeout(()=>{
+              wx.navigateBack({
+                delta: 1,
+              });
+            },1500);
+            // let fail_text = '';
 
-            if(res.inserterrormsg && res.inserterrormsg.length > 0){
-              fail_text += that.setMsg(res.inserterrormsg, '新增失败')
-            }
+            // if(res.inserterrormsg && res.inserterrormsg.length > 0){
+            //   fail_text += that.setMsg(res.inserterrormsg, '新增失败')
+            // }
 
-            if(res.insertsuccessmsg && res.insertsuccessmsg.length > 0){
-              fail_text += that.setMsg(res.insertsuccessmsg, '新增成功')
-            }
+            // if(res.insertsuccessmsg && res.insertsuccessmsg.length > 0){
+            //   fail_text += that.setMsg(res.insertsuccessmsg, '新增成功')
+            // }
 
-            if(res.deleteerrormsg && res.deleteerrormsg.length > 0){
-              fail_text += that.setMsg(res.deleteerrormsg, '删除失败')
-            }
+            // if(res.deleteerrormsg && res.deleteerrormsg.length > 0){
+            //   fail_text += that.setMsg(res.deleteerrormsg, '删除失败')
+            // }
 
-            if(res.deletesuccessmsg && res.deletesuccessmsg.length > 0){
-              fail_text += that.setMsg(res.deletesuccessmsg, '删除成功')
-            }
+            // if(res.deletesuccessmsg && res.deletesuccessmsg.length > 0){
+            //   fail_text += that.setMsg(res.deletesuccessmsg, '删除成功')
+            // }
 
-            wx.showModal({
-              title: '温馨提示',
-              content: fail_text,
-              confirmText: '确定',
-              cancelText: '返回',
-              // showCancel: false,
-              success: function (res) {
-                  if (res.confirm) {
-                    wx.navigateBack({
-                      delta: 1,
-                    });
-                  }else {
-                    wx.navigateBack({
-                      delta: 1,
-                    });
-                  }
-              }
-            })
+            // wx.showModal({
+            //   title: '温馨提示',
+            //   content: fail_text,
+            //   confirmText: '确定',
+            //   cancelText: '返回',
+            //   // showCancel: false,
+            //   success: function (res) {
+            //       if (res.confirm) {
+            //         wx.navigateBack({
+            //           delta: 1,
+            //         });
+            //       }else {
+            //         wx.navigateBack({
+            //           delta: 1,
+            //         });
+            //       }
+            //   }
+            // })
           } else {
             box.showToast(res.msg);
           }
@@ -284,42 +284,42 @@ Page({
         wx.hideLoading();
         if (res) {
           if (res.success) {
-            // box.showToast(res.msg,'',1000);
-            // setTimeout(()=>{
-            //   wx.navigateBack({
-            //     delta: 1,
-            //   });
-            // },1500);
+            box.showToast(res.msg,'',1000);
+            setTimeout(()=>{
+              wx.navigateBack({
+                delta: 1,
+              });
+            },1500);
 
-            let fail_text = '';
+            // let fail_text = '';
 
-            if(res.successmsg && res.successmsg.length > 0){
-              fail_text += that.setMsg(res.successmsg, '下发命令成功')
-            }
+            // if(res.successmsg && res.successmsg.length > 0){
+            //   fail_text += that.setMsg(res.successmsg, '下发命令成功')
+            // }
 
-            if(res.errormsg && res.errormsg.length > 0){
-              fail_text += that.setMsg(res.errormsg, '下发命令失败')
-            }
+            // if(res.errormsg && res.errormsg.length > 0){
+            //   fail_text += that.setMsg(res.errormsg, '下发命令失败')
+            // }
 
 
-            wx.showModal({
-              title: '温馨提示',
-              content: fail_text,
-              confirmText: '确定',
-              cancelText: '返回',
-              // showCancel: false,
-              success: function (res) {
-                  if (res.confirm) {
-                    wx.navigateBack({
-                      delta: 1,
-                    });
-                  }else {
-                    wx.navigateBack({
-                      delta: 1,
-                    });
-                  }
-              }
-            })
+            // wx.showModal({
+            //   title: '温馨提示',
+            //   content: fail_text,
+            //   confirmText: '确定',
+            //   cancelText: '返回',
+            //   // showCancel: false,
+            //   success: function (res) {
+            //       if (res.confirm) {
+            //         wx.navigateBack({
+            //           delta: 1,
+            //         });
+            //       }else {
+            //         wx.navigateBack({
+            //           delta: 1,
+            //         });
+            //       }
+            //   }
+            // })
           } else {
             // if(res.errormsg && res.errormsg.length > 0){
             //   let employeesList = that.data.employeesList;

@@ -9,6 +9,7 @@ Page({
     limit: 10,
     employeesList: [],
     title: "",
+    isShowdata: false
   },
   onLoad: function (options) {
     this.setData({
@@ -17,13 +18,17 @@ Page({
 
     wx.setNavigationBarTitle({
       title: options.title
-    })
-  },
-  onShow: function () {
-    this.setData({
-      page: 1
     });
     this.getEmployeesList();
+  },
+  onShow: function () {
+    if(this.data.isShowdata){
+      this.setData({
+        page: 1
+      });
+      this.getEmployeesList();
+    }
+    
   },
   onReachBottom: function () {
     this.getEmployeesList();
@@ -60,6 +65,9 @@ Page({
     })
   },
   bindAddCus(){
+    this.setData({
+      isShowdata: false
+    });
     wx.navigateTo({
       url:`/modulepages/pages/homeCusAdd/index`
     });
@@ -67,6 +75,9 @@ Page({
   bindEditCus(e){
     let uid = e.currentTarget.dataset.uid;
     if(uid){
+      this.setData({
+        isShowdata: false
+      });
       wx.navigateTo({
         url:`/modulepages/pages/homeCusAdd/index?isEditCus=2&uid=${uid}`
       });
