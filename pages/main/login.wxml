@@ -1,5 +1,6 @@
 <view class="page">
-    <image src="https://www.prohealth-wch.com:8443/data/pigProject/login.png" style="width:750rpx;height:450rpx"></image>
+    <!-- <image src="https://www.prohealth-wch.com:8443/data/pigProject/login.png" style="width:750rpx;height:450rpx"></image> -->
+    <image src="/image/icon/icon_2023_04_06_01.jpg" style="width:750rpx;height:450rpx"></image>
     <view>
         <form bindsubmit="login">
             <view class="P1">

@@ -431,3 +431,10 @@ page {
     align-items: center;
     flex-direction: column;
   }
+
+  .picker{
+    height: 84rpx;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }

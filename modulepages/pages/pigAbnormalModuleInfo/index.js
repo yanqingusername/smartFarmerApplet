@@ -212,9 +212,18 @@ Page({
                             let listItem = series[i].temp;
                             // let str = listItem.toString().replaceAll("0",null);
                             // str = str.split(",");
+                            for(let j = 0; j < listItem.length; j++){
+                                if(listItem[j] > 0){
+
+                                } else {
+                                    listItem[j] = 'null'
+                                }
+                            }
 
                             let str = listItem;
                             str = that.processing_breakpoint_data(str, 'temp')
+
+                            str = that.processing_breakpoint_data1(str, 'temp')
 
                             let color = colorList[series.length-1-i];
 
@@ -253,9 +262,18 @@ Page({
                             let listItem = series[i].temp;
                             // let str = listItem.toString().replaceAll("0",null);
                             // str = str.split(",");
+                            for(let j = 0; j < listItem.length; j++){
+                                if(listItem[j] > 0){
                             
+                                } else {
+                                    listItem[j] = 'null';
+                                }
+                            }
+
                             let str = listItem;
                             str = that.processing_breakpoint_data(str, 'temp')
+
+                            str = that.processing_breakpoint_data1(str, 'temp')
 
                             let color = colorList[series.length-1-i];
                            
@@ -673,7 +691,7 @@ Page({
 
         for (let i = 0; i < ydata.length; i++) {
             let val = ydata[i];
-            if (val == 0 || val == "0") { // 点为空
+            if (val == null || val == "null") { // 点为空
                 needVal.push(i); // 将空点保存
                 console.log(needVal)
             } else {
@@ -697,6 +715,16 @@ Page({
                     }
                     needVal = [];
                 }
+            }
+        }
+        return ydata
+    },
+    processing_breakpoint_data1: function (ydata, lineType) {
+        for (let i = 0; i < ydata.length; i++) {
+            let val = ydata[i];
+            if (val == null || val == "null") { 
+                val = ydata[i-1]
+                ydata[i] = val
             }
         }
         return ydata

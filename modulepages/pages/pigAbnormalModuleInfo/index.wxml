@@ -95,7 +95,7 @@
             <view class="new_app_flex" style="margin-top: 0rpx;">
             <view class="new_app_flex_1">离场选项</view>
             <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">
-                <picker style="height:100%;margin-top:20rpx;width:90%;" bindchange="bindApprovalChange" value="{{approvalIndex}}" range="{{approvalList}}">
+                <picker style="height:100%;margin-top:0rpx;width:100%;" bindchange="bindApprovalChange" value="{{approvalIndex}}" range="{{approvalList}}">
                 <view class="picker" wx:if="{{isShowApproval == 2}}">{{approvalList[approvalIndex]}}</view>
                 <view class="picker" style="color: #B1B1B1;" wx:else>请选择离场选项</view>
                 </picker>
