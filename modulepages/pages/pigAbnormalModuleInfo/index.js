@@ -221,7 +221,7 @@ Page({
                             }
 
                             let str = listItem;
-                            str = that.processing_breakpoint_data(str, 'temp')
+                            // str = that.processing_breakpoint_data(str, 'temp')
 
                             // str = that.processing_breakpoint_data1(str, 'temp')
 
@@ -271,7 +271,7 @@ Page({
                             }
 
                             let str = listItem;
-                            str = that.processing_breakpoint_data(str, 'temp')
+                            // str = that.processing_breakpoint_data(str, 'temp')
 
                             // str = that.processing_breakpoint_data1(str, 'temp')
 
