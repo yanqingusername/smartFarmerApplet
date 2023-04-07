@@ -202,7 +202,7 @@ Page({
 
                     let dataSeriesTemp = [];
 
-                    let colorList = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272']
+                    let colorList = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272','#fc8452']
                     
                     if(that.data.temp_date_type == 2){
                         for(let i = 0; i < series.length; i++){
