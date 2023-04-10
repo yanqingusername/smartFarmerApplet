@@ -82,7 +82,8 @@ Page({
                 'text': '未知'
             }
         ],
-        operation: 1 //  1是在场  其余离场
+        operation: 1, //  1是在场  其余离场
+        check_in_time: ""
     },
     /**
    * 获取审核失败的原因列表
@@ -125,7 +126,8 @@ Page({
                 label_type: jsonItem.label_type,
                 label_serial: jsonItem.serial,
                 farm_name: jsonItem.farm_name,
-                operation: jsonItem.operation
+                operation: jsonItem.operation,
+                check_in_time: jsonItem.check_in_time
             });
         }
 
@@ -207,7 +209,10 @@ Page({
                     if(that.data.temp_date_type == 2){
                         for(let i = 0; i < series.length; i++){
                             let name = series[i].date;
-                            name = name.substring(5,7);
+                            let moth = name.substring(5,7);
+
+                            let check_in_time_2 = that.data.check_in_time.substring(0,7);
+                            let check_time_2 = that.data.check_in_time.substring(8,10);
 
                             let listItem = series[i].temp;
                             // let str = listItem.toString().replaceAll("0",null);
@@ -216,19 +221,32 @@ Page({
                                 if(listItem[j] > 0){
 
                                 } else {
-                                    listItem[j] = null;
+                                    // listItem[j] = null;
+                                    let oDate1 = new Date(name); // 日期 
+                                    let oDate2 = new Date(check_in_time_2);  // 入栏日期
+                                    if (oDate1.getTime() > oDate2.getTime()){
+                                        listItem[j] = null;
+                                    } else if (oDate1.getTime() == oDate2.getTime()){
+                                        if (j < check_time_2){
+                                            listItem[j] = '-';
+                                        } else {
+                                            listItem[j] = null;
+                                        }
+                                    } else {
+                                        listItem[j] = '-';
+                                    }
                                 }
                             }
 
                             let str = listItem;
-                            // str = that.processing_breakpoint_data(str, 'temp')
+                            str = that.processing_breakpoint_data(str, 'temp')
 
                             // str = that.processing_breakpoint_data1(str, 'temp')
 
                             let color = colorList[series.length-1-i];
 
                             let objTemp = {
-                                name: name+'月温度',
+                                name: moth+'月温度',
                                 smooth: true,
                                 type: "line",
                                 data: str,
@@ -245,7 +263,7 @@ Page({
                             }
     
                             let objAct = {
-                                name: name+'月活动量',
+                                name: moth+'月活动量',
                                 smooth: true,
                                 type: "line",
                                 data: series[i].act,
@@ -259,6 +277,9 @@ Page({
                             let moth = name.substring(5,7);
                             let date = name.substring(8,10);
 
+                            let check_in_time = that.data.check_in_time.substring(0,10);
+                            let check_time = that.data.check_in_time.substring(11,13);
+
                             let listItem = series[i].temp;
                             // let str = listItem.toString().replaceAll("0",null);
                             // str = str.split(",");
@@ -266,12 +287,25 @@ Page({
                                 if(listItem[j] > 0){
                             
                                 } else {
-                                    listItem[j] = null;
+                                    // listItem[j] = null;
+                                    let oDate1 = new Date(name); // 日期 
+                                    let oDate2 = new Date(check_in_time);  // 入栏日期
+                                    if (oDate1.getTime() > oDate2.getTime()){
+                                        listItem[j] = null;
+                                    } else if (oDate1.getTime() == oDate2.getTime()){
+                                        if (j < check_time){
+                                            listItem[j] = '-';
+                                        } else {
+                                            listItem[j] = null;
+                                        }
+                                    } else {
+                                        listItem[j] = '-';
+                                    }
                                 }
                             }
 
                             let str = listItem;
-                            // str = that.processing_breakpoint_data(str, 'temp')
+                            str = that.processing_breakpoint_data(str, 'temp')
 
                             // str = that.processing_breakpoint_data1(str, 'temp')
 
@@ -702,6 +736,8 @@ Page({
                     afterVal = val;
                     // 处理空点数据
                     if (lineType == 'temp') {
+                        // let average = (afterVal + beforeVal) / 2;
+                        // average = average.toFixed(2);
                         let average = afterVal;
                         for (let a in needVal) {
                             let index = needVal[a];
