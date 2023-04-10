@@ -32,6 +32,9 @@ function toLogin(phone){
                 }
             }else{
                 box.showToast(res.msg);
+                wx.reLaunch({
+                    url: '/pages/main/login',
+                });
             }
         }
     })

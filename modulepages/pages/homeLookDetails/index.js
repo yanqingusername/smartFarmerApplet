@@ -405,9 +405,9 @@ Page({
     var that = this;
     var data = {
       pig_farm: app.globalData.userInfo.pig_farm_id,
-      source: "1"
+      // source: "1"
     }
-    request.request_get('/personnelManagement/getPersonnelList.hn', data, function (res) {
+    request.request_get('/personnelManagement/getOnTheJobPersonnelList.hn', data, function (res) {
       if (res) {
         if (res.success) {
           let list = res.msg;

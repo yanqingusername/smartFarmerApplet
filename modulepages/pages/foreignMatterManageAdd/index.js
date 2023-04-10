@@ -139,11 +139,11 @@ Page({
   getPersonnelList() {
     let that = this;
     let params = {
-      source: "1",
+      // source: "1",
       pig_farm: app.globalData.userInfo.pig_farm_id
     }
 
-    request.request_get('/personnelManagement/getPersonnelList.hn', params, function (res) {
+    request.request_get('/personnelManagement/getOnTheJobPersonnelList.hn', params, function (res) {
       if (res) {
         if (res.success) {
           that.setData({
