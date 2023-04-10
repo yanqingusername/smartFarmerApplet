@@ -351,7 +351,7 @@ Page({
               let pages = getCurrentPages();
               let prevPage = pages[pages.length - 2];
               prevPage.setData({
-                isShowdata: false,
+                isShowdata: true,
               })
               wx.navigateBack({
                 delta: 1,
