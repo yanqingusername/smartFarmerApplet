@@ -13,7 +13,7 @@
             <!-- <view class="v2_1_position"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_25.png'></image>场区名称：{{'测试区域'}}</view> -->
             <view class="v2_1_title" wx:if="{{item.Sitearea}}">{{item.Sitearea}}</view>
             <view class="v2_1_position"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_25.png'></image>栋舍栏位：{{item.door}}{{item.dorm}}</view>
-            <view class="v2_1_position"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_24.png'></image>报警时间：{{item.alarm_time}}</view>
+            <view class="v2_1_position"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_24.png'></image>报警时间：{{item.alarm_time || item.check_in_time}}</view>
 		</view>
 
         <block wx:if="{{deviceinfoList.length==0}}">
