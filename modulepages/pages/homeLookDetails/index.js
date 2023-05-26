@@ -47,7 +47,8 @@ Page({
     resultList: ['全部', '淋浴成功', '淋浴失败'],
     resultListId: ["", "1", "0"],
     resultIndex: 0,
-    isShowReason: 1,
+    isShowResult1: 1,
+    result_name: '',
 
     workList: ['全部', '上班', '下班'],
     workListId: ["", "0", "1"],
@@ -62,6 +63,13 @@ Page({
 
     colorList: [],
     sn_text: "",
+
+    reasonList: [],
+    reasonIndex: 0,
+    isShowReason: 1,
+    reason_id: '',
+    reason_name: '',
+
   },
   clickName(e) {
     this.setData({
@@ -173,7 +181,8 @@ Page({
     this.setData({
       resultIndex: e.detail.value,
       status: this.data.resultListId[e.detail.value],
-      isShowReason: 2,
+      isShowResult1: 2,
+      result_name: this.data.resultList[e.detail.value],
       page: 1
     });
 
@@ -199,14 +208,21 @@ Page({
     let that = this;
     if(options && options.st){
       this.setData({
-        status: options.st
+        status: options.st,
       });
+      if(options.st == '0'){
+        this.setData({
+          result_name: '淋浴失败',
+          isShowResult1: 2,
+        });
+      }
     }
 
     wx.setNavigationBarTitle({
       title: '淋浴信息记录'
     });
 
+    this.getIwadomAddress();
     this.currentTime();
 
     this.getIwadomlistinfo();
@@ -225,7 +241,8 @@ Page({
       workType: this.data.workType, //上下班 0是上班 1是下班  ""全部
       staffids: this.data.homePersonalIds.length > 0 ? this.data.homePersonalIds.join(',') : "", //员工id以','分割
       page: this.data.page,
-      limit: this.data.limit
+      limit: this.data.limit,
+      address: this.data.reason_id //新增参数
     }
 
     console.log('---->:', data)
@@ -511,4 +528,40 @@ Page({
      
       this.getIwadomlistinfo();
     },300),
+    bindReasonChange: function (e) {
+      var reasonIndex = e.detail.value;
+      this.setData({
+        reasonIndex: reasonIndex,
+        reason_id: this.data.reasonList[reasonIndex].id,
+        reason_name: this.data.reasonList[reasonIndex].address,
+        isShowReason: 2,
+        page: 1
+      });
+      this.getIwadomlistinfo();
+    },
+    // 选择***************
+  getIwadomAddress: function () {
+    var that = this;
+    var data = {
+      pig_farm_id: app.globalData.userInfo.pig_farm_id
+    }
+    request.request_get('/iwadom/getIwadomAddress.hn', data, function (res) {
+        console.info('回调', res)
+        if (res) {
+            if (res.success) {
+                var reasonList = res.data;
+                let reagentHead = {
+                  "id": "",
+                  "address": "全部",
+                }
+                reasonList.unshift(reagentHead)
+                that.setData({
+                  reasonList: reasonList
+                });
+            } else {
+                box.showToast(res.msg)
+            }
+        }
+    })
+  },
 })
