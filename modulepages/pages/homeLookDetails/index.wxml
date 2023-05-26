@@ -1,7 +1,26 @@
 <view class="page">
     <view class="hld_1">
+        <view class="v1_view_2">
+                <view class="P5 app_flex" style="margin: 0rpx 0rpx 0rpx 0rpx;">
+                    <view class="P5_1 app_font">设备位置</view>
+                    <input class="P5_2 app_font" placeholder="请输入设备位置" placeholder-class="place_style" bindinput="bindSn" style="height: 80rpx !important;display: flex;align-items: center;width: 76% !important;border-bottom: 1px solid #EEEEEE;padding-left:12rpx" value="{{sn_text}}"></input>
+                </view>
+
+                <view class="P5 app_flex" style="margin: 0rpx 0rpx 0rpx 0rpx;">
+                    <view class="P5_1 app_font">淋浴结果</view>
+                    <view class="section" style="width: 76%;height:84rpx;padding-left:12rpx;font-size:30rpx;display: flex;position: relative;border-bottom: 1px solid #EEEEEE;">
+                        <picker style="height:100%;margin-top:0rpx;width:100%;" bindchange="bindPickerChangeResult" value="{{resultIndex}}" range="{{resultList}}">
+                            <view class="picker_view" wx:if="{{isShowReason == 2}}">{{resultList[resultIndex]}}</view>
+                            <view class="picker_view" style="color: #B1B1B1;" wx:else>请选择淋浴结果</view>
+                        </picker>
+                        <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 0rpx;top: 30rpx;">
+                        <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+                        </view>
+                    </view>
+                </view>
+        </view>
         <view class="hld_1_1">
-            <view class="hld_1_1_l" style="padding-left: 20rpx;">
+            <view class="hld_1_1_l" style="padding-left: 0rpx;">
                 <view class="hld_1_1_l_1">开始日期</view>
                 <view class="hld_1_1_l_2">
                     <picker mode="date" value="{{start_time}}" start="2020-01-01" end="{{yearmouthday}}" bindchange="bindStartTimeChange">
@@ -106,7 +125,7 @@
                     <view class="new_v2_1_top">
                         <view class="new_v2_1_top_1"><view class="new_v2_1_top_1_img_view"><image class='new_v2_1_top_1_img' src="{{item.head_url}}" mode="aspectFill" bindtap="preview" data-url="{{item.head_url}}"></image></view>{{item.real_name || '未知'}}<view style="font-size: 28rpx;">({{item.job_num}})</view></view>
                         <!-- <view class="new_v2_1_top_1"><image class='new_v2_1_top_1_img' src='/image/icon/icon_2023_01_06_26.png'></image>{{item.real_name || '未知'}}</view> -->
-                        <view class="new_v2_1_top_2" style="color: {{item.status == 1 ? '#409DFF' : '#FF2C2B'}};">{{item.status == 1 ? '淋浴成功' : item.status == -1 ? '穿行' : '淋浴失败'}}</view>
+                        <view class="new_v2_1_top_2" style="color: {{item.status == '1' ? '#409DFF' : '#FF2C2B'}};">{{item.status == '1' ? '淋浴成功' : item.status == '-1' ? '穿行' : item.status == '0' ? '淋浴失败' : ''}}</view>
                     </view>
                     <view class="new_v2_1_line"></view>
                     <view class="new_v2_1_position"><image class='new_v2_1_position_img' src='/image/icon/icon_2023_01_06_25.png'></image>设备位置：{{item.address}}</view>

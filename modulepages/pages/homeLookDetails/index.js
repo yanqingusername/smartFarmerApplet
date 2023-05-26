@@ -45,8 +45,9 @@ Page({
     // resultList: ['全部', '淋浴中', '淋浴成功', '淋浴失败'],
     // resultListId: ["", "0", "1", "2"],
     resultList: ['全部', '淋浴成功', '淋浴失败'],
-    resultListId: ["", "1", "2"],
+    resultListId: ["", "1", "0"],
     resultIndex: 0,
+    isShowReason: 1,
 
     workList: ['全部', '上班', '下班'],
     workListId: ["", "0", "1"],
@@ -59,7 +60,8 @@ Page({
     homePersonalIds: [],
     homePersonalOldIds: [],
 
-    colorList: []
+    colorList: [],
+    sn_text: "",
   },
   clickName(e) {
     this.setData({
@@ -171,6 +173,7 @@ Page({
     this.setData({
       resultIndex: e.detail.value,
       status: this.data.resultListId[e.detail.value],
+      isShowReason: 2,
       page: 1
     });
 
@@ -194,6 +197,11 @@ Page({
   },
   onLoad: function (options) {
     let that = this;
+    if(options && options.st){
+      this.setData({
+        status: options.st
+      });
+    }
 
     wx.setNavigationBarTitle({
       title: '淋浴信息记录'
@@ -212,8 +220,8 @@ Page({
       id: app.globalData.userInfo.id, //登录人的id
       start_time: this.data.startDate, //开始时间，第二个接口用  默认当前
       end_time: this.data.endDate, //结束时间 同开始时间
-      // status: this.data.status, //洗消状态 1成功 2失败 0沐浴中
-      status: '0', // 旧版只有 0  // 2.0//洗消状态 1成功 2失败 0沐浴中
+      status: this.data.status, //洗消状态 1成功 2失败 0沐浴中
+      // status: '0', // 旧版只有 0  // 2.0//洗消状态 1成功 2失败 0沐浴中
       workType: this.data.workType, //上下班 0是上班 1是下班  ""全部
       staffids: this.data.homePersonalIds.length > 0 ? this.data.homePersonalIds.join(',') : "", //员工id以','分割
       page: this.data.page,
@@ -495,4 +503,12 @@ Page({
         })
       }
     },
+    bindSn: utils.debounce(function(e) {
+      this.setData({
+        sn_text: e.detail.value,
+        page: 1
+      });
+     
+      this.getIwadomlistinfo();
+    },300),
 })

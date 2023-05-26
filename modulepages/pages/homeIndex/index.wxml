@@ -93,7 +93,7 @@
 
     <view class="homeindex_4">
         <view class="homeindex_4_1">
-            <view class="homeindex_4_1_top" catch:tap="bindHandlerClick" data-urlstring="/modulepages/pages/homeLookDetails/index">
+            <view class="homeindex_4_1_top" catch:tap="bindHandlerClick" data-urlstring="/modulepages/pages/homeLookDetails/index?st=0">
                 <view class="homeindex_4_1_top_1">
                     <view class="homeindex_4_1_top_1_t">预警</view>
                     <view class="homeindex_4_1_top_1_l">{{count}}</view>
@@ -126,7 +126,7 @@
                 <view class="new_v2_1_top">
                     <!-- <view class="new_v2_1_top_1"><image class='new_v2_1_top_1_img' src='/image/icon/icon_2023_01_06_26.png'></image>{{item.real_name || '未知'}}</view> -->
                     <view class="new_v2_1_top_1"><view class="new_v2_1_top_1_img_view"><image class='new_v2_1_top_1_img' src="{{item.head_url}}" mode="aspectFill" bindtap="preview" data-url="{{item.head_url}}"></image></view>{{item.real_name || '未知'}}<view style="font-size: 28rpx;">({{item.job_num}})</view></view>
-                    <view class="new_v2_1_top_2" style="color: {{item.status == 1 ? '#409DFF' : '#FF2C2B'}};">{{item.status == 1 ? '淋浴成功' : item.status == -1 ? '穿行' : '淋浴失败'}}</view>
+                    <view class="new_v2_1_top_2" style="color: {{item.status == '1' ? '#409DFF' : '#FF2C2B'}};">{{item.status == '1' ? '淋浴成功' : item.status == '-1' ? '穿行' : item.status == '0' ? '淋浴失败' : ''}}</view>
                 </view>
                 <view class="new_v2_1_line"></view>
                 <view class="new_v2_1_position"><image class='new_v2_1_position_img' src='/image/icon/icon_2023_01_06_25.png'></image>设备位置：{{item.address}}</view>

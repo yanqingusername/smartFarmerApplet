@@ -5,7 +5,7 @@
                 <!-- <view class="v2_1_top_1"><image class='v2_1_top_1_img' src='/image/icon/icon_2023_01_06_26.png'></image>{{item.sn}}</view>
                 <view class="v2_1_top_2" style="color: {{item.status == 1 ? '#409DFF' : item.status == 2 ? '#FF2C2B' : '#00BD6A'}};">{{item.status == 1 ? '淋浴成功' : item.status == 2 ? '淋浴失败' : '淋浴中'}}</view> -->
                 <view class="v2_1_top_1"><view class="v2_1_top_1_img_view"><image class='v2_1_top_1_img' src="{{item.head_url}}" mode="aspectFill" bindtap="preview" data-url="{{item.head_url}}"></image></view>{{item.real_name || '未知'}}<view style="font-size: 28rpx;">({{item.job_num}})</view></view>
-                <view class="v2_1_top_2" style="color: {{item.status == 1 ? '#409DFF' : '#FF2C2B'}};">{{item.status == 1 ? '淋浴成功' : item.status == -1 ? '穿行' : '淋浴失败'}}</view>
+                <view class="v2_1_top_2" style="color: {{item.status == '1' ? '#409DFF' : '#FF2C2B'}};">{{item.status == '1' ? '淋浴成功' : item.status == '-1' ? '穿行' : item.status == '0' ? '淋浴失败' : ''}}</view>
             </view>
             <view class="v2_1_line"></view>
             <view class="v2_1_position"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_25.png'></image>设备位置：{{item.address}}</view>
