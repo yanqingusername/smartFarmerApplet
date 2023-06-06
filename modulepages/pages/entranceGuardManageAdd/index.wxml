@@ -1,21 +1,36 @@
 <view class="page">
       <view class="medWhite">
+        <!-- <view class="search_border">
+          <view class='search'>
+            <view class="view_1">
+              <view class="view_1_1" bind:tap="clickTab" data-typeid="0">
+                <view class="view_1_1_1 {{typeid == 0 ? 'view_1_1_1_active':''}}">人脸门禁</view>
+                <view class="view_1_1_2 {{typeid == 0 ? 'view_1_1_2_active':''}}"></view>
+              </view>
+              <view class="view_1_1" bind:tap="clickTab" data-typeid="1">
+                <view class="view_1_1_1 {{typeid == 1 ? 'view_1_1_1_active':''}}">控制器门禁</view>
+                <view class="view_1_1_2 {{typeid == 1 ? 'view_1_1_2_active':''}}"></view>
+              </view>
+            </view>
+          </view>
+        </view> -->
+
         <view style="height: 2rpx;"></view>
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">设备编号：</view>
-          <input class="P5_2 app_font" placeholder="请输入设备编号" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="24" value="{{name}}" bindtap="inputTap" id="name" focus="{{focusId=='name'?true:false}}"></input>
+          <input class="P5_2 app_font" placeholder="请输入设备编号" placeholder-class="place_style" bindinput="bindName" maxlength="24" value="{{name}}" bindtap="inputTap" id="name" focus="{{focusId=='name'?true:false}}"></input>
         </view>
-        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;width:670rpx;"></view>
 
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">设备IP：</view>
-          <input class="P5_2 app_font" placeholder="请输入设备IP" placeholder-class="place_style" bindinput="bindIp" style="position:relative;right:20rpx" value="{{ipstring}}" bindtap="inputTap" id="ipstring" focus="{{focusId=='ipstring'?true:false}}" type="digit"></input>
+          <input class="P5_2 app_font" placeholder="请输入设备IP" placeholder-class="place_style" bindinput="bindIp" value="{{ipstring}}" bindtap="inputTap" id="ipstring" focus="{{focusId=='ipstring'?true:false}}" type="digit"></input>
         </view>
-        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;width:670rpx;"></view>
 
         <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">设备位置：</view>
-          <view class="section" style="width: 65%;height:84rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;">
+          <view class="section" style="width: 70%;height:84rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;">
             <picker style="height:100%;margin-top:0rpx;width:100%;" bindchange="bindPositionChange" range-key="location_descr" value="{{positionList[positionIndex].value}}" range="{{positionList}}">
               <view class="picker" wx:if="{{isShowPosition == 2}}">{{position_name}}</view>
               <view class="picker" style="color: #B1B1B1;" wx:else>请选择设备位置</view>
@@ -41,16 +56,44 @@
           </view>
         </view> -->
 
-        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;width:670rpx;"></view>
         <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">设备人员：</view>
-          <view class="section" style="width: 68%;min-height:80rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;" bind:tap="clickOzoneModuleManagePersion">
+          <view class="section" style="width: 70%;min-height:80rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;" bind:tap="clickOzoneModuleManagePersion">
             <view class="ozone_1" style="color:{{managePersion?'#555555':'#B1B1B1'}};">{{managePersion ? managePersion : '请选择设备人员'}}</view>
             <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
               <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
             </view>
           </view>
         </view>
+
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;width:670rpx;"></view>
+
+        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;" wx:if="{{isEdit == 1}}">
+          <view class="P5_1 app_font">设备门禁：</view>
+          <view class="section" style="width: 70%;height:84rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;">
+            <picker style="height:100%;margin-top:0rpx;width:100%;" bindchange="bindServiceChange" range-key="title" value="{{serviceList[serviceIndex].value}}" range="{{serviceList}}">
+              <view class="picker" wx:if="{{isShowService == 2}}">{{service_name}}</view>
+              <view class="picker" style="color: #B1B1B1;" wx:else>请选择设备门禁类型</view>
+            </picker>
+            <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
+              <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+            </view>
+          </view>
+        </view>
+
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;" wx:if="{{isEdit == 2}}">
+          <view class="P5_1 app_font">设备门禁：</view>
+          <input class="P5_2 app_font" placeholder-class="place_style" value="{{service_name}}" disabled="{{true}}"></input>
+        </view>
+
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;width:670rpx;" wx:if="{{service_id == 1}}"></view>
+
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;" wx:if="{{service_id == 1}}">
+          <view class="P5_1 app_font">设备控制器：</view>
+          <input class="P5_2 app_font" placeholder="请输入设备控制器ID" placeholder-class="place_style" bindinput="bindNumber" value="{{number}}" bindtap="inputTap" id="number" focus="{{focusId=='number'?true:false}}" type="number" disabled="{{isEdit == 2 ? true : false}}"></input>
+        </view>
+        
 
         <view style="height: 10rpx;"></view>
       </view>

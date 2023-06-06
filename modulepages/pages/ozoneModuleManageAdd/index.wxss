@@ -25,7 +25,7 @@ page {
 }
 
 .P5_1 {
-  width: 32%;
+  width: 30%;
   /* padding: 20rpx 0 20rpx 20rpx; */
   height: 80rpx;
   color: #080808;
@@ -35,7 +35,7 @@ page {
 }
 
 .P5_2 {
-  width: 68%;
+  width: 70%;
   /* padding: 20rpx; */
   height: 80rpx;
   color: #555555;

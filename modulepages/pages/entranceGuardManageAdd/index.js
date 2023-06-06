@@ -30,7 +30,20 @@ Page({
     managePersionIds:"",
     managePersion: '',
     selectPersionList: [],
-    employeesList: []
+    employeesList: [],
+
+    number: '',
+    serviceList: [{
+      id: '0',
+      title: '人脸门禁'
+    },{
+      id: '1',
+      title: '控制器门禁'
+    }],
+    serviceIndex: 0,
+    isShowService: 2,
+    service_id: '0',
+    service_name: '人脸门禁',
   },
   onShow: function () {
     // this.getPersonnelList();
@@ -72,7 +85,12 @@ Page({
               ipstring: deviceInfo.access_control_ipaddress,
               position_id: deviceInfo.location_id,
               position_name: deviceInfo.location_descr,
-              isShowPosition: 2
+              isShowPosition: 2,
+
+              isShowService: 2,
+              service_id: deviceInfo.type,
+              service_name: deviceInfo.type == 0 ? '人脸门禁' : '控制器门禁',
+              number: deviceInfo.doorId
             });
           }
 
@@ -163,6 +181,21 @@ Page({
     });
     this.checkSubmitStatus();
   },
+  bindServiceChange: function (e) {
+    var serviceIndex = e.detail.value;
+    this.setData({
+      serviceIndex: serviceIndex,
+      service_id: this.data.serviceList[serviceIndex].id,
+      service_name: this.data.serviceList[serviceIndex].title,
+      isShowService: 2
+    });
+  },
+  bindNumber: function (e) {
+    var str = e.detail.value;
+    this.setData({
+      number: str
+    })
+  },
   submitBuffer() {
     let that = this;
     let name = this.data.name;
@@ -174,6 +207,10 @@ Page({
 
     let managePersion = this.data.managePersion;
     let managePersionIds = this.data.managePersionIds;
+
+    let service_id = this.data.service_id;
+    let service_name = this.data.service_name;
+    let number = this.data.number;
 
     if (!name) {
       box.showToast("请输入设备编号");
@@ -199,6 +236,19 @@ Page({
       box.showToast("请选择设备人员");
       return;
     }
+
+    if (!service_id && !service_name) {
+      box.showToast("请选择设备位置");
+      return;
+    }
+
+    if(service_id == 1){
+      if (!number) {
+        box.showToast("请输入设备控制器ID");
+        return;
+      }
+    }
+
     box.showLoading('加载中...');
     // if (!job_id && !job_name) {
     //   box.showToast("请选择设备管理员");
@@ -213,6 +263,8 @@ Page({
         // user_id:  job_id,//设备管理员id
         Person_authority: managePersionIds, //（管理者）
         id: this.data.uid,
+        type: service_id,
+        doorId: number
       }
 
       request.request_get('/AccessManagement/editEntranceGuard.hn', params, function (res) {
@@ -276,6 +328,8 @@ Page({
         address_id: position_id, //设备位置
         // user_id:  job_id,//设备管理员id
         Person_authority: managePersionIds, //（管理者）
+        type: service_id,
+        doorId: number
       }
 
       console.log('---->:',params)
