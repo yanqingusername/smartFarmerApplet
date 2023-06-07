@@ -20,7 +20,13 @@ Page({
     gender: '',
     isShowGender: 1,
     job_id: '',
-    job_name: ''
+    job_name: '',
+
+    positionList: [],
+    positionIndex: 0,
+    isShowPosition: 1,
+    position_id: '',
+    position_name: '',
   },
   onShow: function () {
     // this.getdevicelist();
@@ -29,11 +35,43 @@ Page({
     wx.setNavigationBarTitle({
       title: "新增设备信息"
     })
+
+    this.getPositionList();
+  },
+  getPositionList() {
+    let that = this;
+    let params = {
+      pig_farm_id: app.globalData.userInfo.pig_farm_id
+    }
+
+    request.request_get('/AccessManagement/getAccesslayout.hn', params, function (res) {
+      if (res) {
+        if (res.success) {
+          that.setData({
+            positionList: res.data
+          });
+        } else {
+          box.showToast(res.msg);
+        }
+      } else {
+        box.showToast("网络不稳定，请重试");
+      }
+    });
+  },
+  bindPositionChange: function (e) {
+    var positionIndex = e.detail.value;
+    this.setData({
+      positionIndex: positionIndex,
+      position_id: this.data.positionList[positionIndex].id,
+      position_name: this.data.positionList[positionIndex].location_descr,
+      isShowPosition: 2
+    });
+    this.checkSubmitStatus();
   },
   //保存按钮禁用判断
   checkSubmitStatus: function (e) {
     // && this.data.job_id != '' && this.data.job_name != ''
-    if (this.data.name != '' && this.data.position != '' && this.data.gender != '') {
+    if (this.data.name != '' && this.data.position_name != '' && this.data.gender != '') {
       this.setData({
         submitState: false
       })
@@ -93,7 +131,9 @@ Page({
   submitBuffer() {
     let that = this;
     let name = this.data.name;
-    let position = this.data.position;
+    // let position = this.data.position;
+    let position_name = this.data.position_name;
+    let position_id = this.data.position_id;
     // let job_id = this.data.job_id;
     // let job_name = this.data.job_name;
     let gender = this.data.gender;
@@ -103,8 +143,8 @@ Page({
       return;
     }
 
-    if (!position) {
-      box.showToast("请输入设备位置");
+    if (!position_name) {
+      box.showToast("请选择设备位置");
       return;
     }
 
@@ -122,12 +162,13 @@ Page({
       // company_serial: app.globalData.userInfo.company_serial,
       pig_farm_id: app.globalData.userInfo.pig_farm_id,
       sn: name, //设备编号
-      address: position, //位置描述
+      address: position_name, //位置描述
       type:  '1',//设备类型 job_id
-      gender: gender == '男' ? '0' : '1' //男女
+      gender: gender == '男' ? '0' : '1', //男女
+      layout_id: position_id //位置id
     }
 
-    request.request_get('/equipmentManagement/addDecontaminationdeviceinfo.hn', params, function (res) {
+    request.request_get('/equipmentManagement/NewaddDecontaminationdeviceinfo.hn', params, function (res) {
       console.info('回调', res)
       if (res) {
         if (res.success) {

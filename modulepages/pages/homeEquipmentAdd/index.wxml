@@ -3,16 +3,29 @@
         <view style="height: 2rpx;"></view>
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">设备编号：</view>
-          <input class="P5_2 app_font" placeholder="请输入设备编号" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="24" value="{{name}}" bindtap="inputTap" id="name" focus="{{focusId=='name'?true:false}}"></input>
+          <input class="P5_2 app_font" placeholder="请输入设备编号" placeholder-class="place_style" bindinput="bindName" maxlength="24" value="{{name}}" bindtap="inputTap" id="name" focus="{{focusId=='name'?true:false}}"></input>
         </view>
-        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;width:670rpx;"></view>
 
-        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+        <!-- <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">设备位置：</view>
           <input class="P5_2 app_font" placeholder="请输入设备位置" placeholder-class="place_style" bindinput="bindPosition" style="position:relative;right:20rpx" maxlength="15" value="{{position}}" bindtap="inputTap" id="position" focus="{{focusId=='position'?true:false}}"></input>
+        </view> -->
+
+        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">设备位置：</view>
+          <view class="section" style="width: 70%;height:84rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;">
+            <picker style="height:100%;margin-top:0rpx;width:100%;" bindchange="bindPositionChange" range-key="location_descr" value="{{positionList[positionIndex].value}}" range="{{positionList}}">
+              <view class="picker" wx:if="{{isShowPosition == 2}}">{{position_name}}</view>
+              <view class="picker" style="color: #B1B1B1;" wx:else>请选择设备位置</view>
+            </picker>
+            <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
+              <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+            </view>
+          </view>
         </view>
 
-        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;width:670rpx;"></view>
 
         <!-- <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">设备类型</view>
@@ -28,9 +41,9 @@
         </view>
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view> -->
 
-        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;width:670rpx;">
           <view class="P5_1 app_font">性别：</view>
-          <view class="section" style="width: 65%;height:84rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;">
+          <view class="section" style="width: 70%;height:84rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;">
             <picker style="height:100%;margin-top:0rpx;width:100%;" bindchange="bindPickerChangeGender" value="{{genderIndex}}" range="{{genderList}}">
               <view class="picker" wx:if="{{isShowGender == 2}}">{{genderList[genderIndex]}}</view>
               <view class="picker" style="color: #B1B1B1;" wx:else>请选择性别</view>
@@ -41,7 +54,7 @@
           </view>
         </view>
 
-        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;width:670rpx;"></view>
 
         <!-- <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">岗位</view>

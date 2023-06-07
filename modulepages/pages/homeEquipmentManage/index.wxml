@@ -15,12 +15,12 @@
                                     <image class='homeindex_4_1_item_l_h' src='/image/icon/icon_2023_02_06_5.png'></image>
                                 </view>
                                 <view class="homeindex_4_1_item_l_2">
-                                <view class="homeindex_4_1_item_r_title">{{item.address}}<view class="homeindex_4_1_item_l_2_time" style="margin-left:6rpx;color: {{item.status == 0 ? '#00BD6A' : item.status == 1 ? '#409DFF' : '#666666'}}">{{item.statusinfo}}</view></view>
+                                <text class="homeindex_4_1_item_r_title">{{item.address}}<text class="homeindex_4_1_item_l_2_time" style="margin-left:6rpx;color: {{item.status == 0 ? '#00BD6A' : item.status == 1 ? '#409DFF' : '#666666'}}">{{item.statusinfo}}</text></text>
                                 <!-- <view class="homeindex_4_1_item_l_2_time">{{item.statusinfo}}</view> -->
                                 <view class="homeindex_4_1_item_l_2_time">{{item.create_time}}</view>
                                 </view>
                             </view>
-                            <view class="homeindex_4_1_item_r">
+                            <view class="homeindex_4_1_item_r" style="width: 30px;">
                                 <view style="position:relative;display: flex;align-items: center;justify-content: center;flex-direction: column;" catch:tap="bindDeleteClick" data-id="{{item.id}}">
                                 <image style="width:40rpx;height:40rpx;" src="/image/icon/icon_2023_01_06_11.png"></image>
                                 <view style="font-size: 24rpx;color: #999999;margin-top: 6rpx;">删除</view>

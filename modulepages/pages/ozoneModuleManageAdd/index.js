@@ -208,7 +208,7 @@ Page({
     }
 
     if (!position_name) {
-      box.showToast("请输入设备位置");
+      box.showToast("请选择设备位置");
       return;
     }
 
