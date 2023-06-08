@@ -36,6 +36,27 @@ Page({
     position_id: '',
     position_name: '',
 
+    serviceList: [{
+      id: '1',
+      title: '单门门禁'
+    },{
+      id: '2',
+      title: '双门门禁'
+    }],
+    serviceIndex: 0,
+    isShowService: 2,
+    service_id: '1',
+    service_name: '单门门禁',
+
+    doorType1Index: 0,
+    isShowDoorType1: 1,
+    doorType1_id: '',
+    doorType1_name: '',
+    doorType2Index: 0,
+    isShowDoorType2: 1,
+    doorType2_id: '',
+    doorType2_name: '',
+
   },
   onShow: function () {
 
@@ -51,11 +72,10 @@ Page({
     })
 
     if(this.data.uid && this.data.isEditCus == 2){
-      this.getdeviceinfobyid();
+      this.getPositionList(2);
+    } else {
+      this.getPositionList(1);
     }
-
-    this.getPositionList();
-
   },
   getdeviceinfobyid(){
     let that = this
@@ -78,6 +98,50 @@ Page({
               position_id: deviceInfo.layout_id,
               time: deviceInfo.duration,
               concentration: deviceInfo.concentration,
+
+              isShowService: 2,
+              service_id: deviceInfo.doortype,
+              service_name: deviceInfo.doortype == 1 ? '单门门禁' : '双门门禁',
+
+            });
+          
+            let doorType1_id = "";
+            let doorType1_name = "";
+            let doorType2_id = "";
+            let doorType2_name = "";
+            let accesslayoutId = deviceInfo.Accesslayout_id || deviceInfo.layout_id;
+            if(accesslayoutId){
+              let accesslayoutIdList = accesslayoutId.split(',');
+              
+              if(accesslayoutIdList.length > 0){
+                if (that.data.positionList.length > 0) {
+                  doorType1_id = accesslayoutIdList[0];
+                  if(doorType1_id){
+                    for (let i = 0; i < that.data.positionList.length; i++) {
+                      if (doorType1_id == that.data.positionList[i].id) {
+                        doorType1_name = that.data.positionList[i].location_descr
+                        break;
+                      } else {}
+                    }
+                  }
+
+                  doorType2_id = accesslayoutIdList[1];
+                  if(doorType2_id){
+                    for (let i = 0; i < that.data.positionList.length; i++) {
+                      if (doorType2_id == that.data.positionList[i].id) {
+                        doorType2_name = that.data.positionList[i].location_descr
+                        break;
+                      } else {}
+                    }
+                  }
+                }
+              }
+            }
+            that.setData({
+              doorType1_id: doorType1_id,
+              doorType1_name: doorType1_name,
+              doorType2_id: doorType2_id,
+              doorType2_name: doorType2_name,
             });
           }
 
@@ -189,6 +253,37 @@ Page({
 
     this.checkSubmitStatus();
   },
+  bindServiceChange: function (e) {
+    var serviceIndex = e.detail.value;
+    this.setData({
+      serviceIndex: serviceIndex,
+      service_id: this.data.serviceList[serviceIndex].id,
+      service_name: this.data.serviceList[serviceIndex].title,
+      isShowService: 2,
+      doorType2Index: 0,
+      isShowDoorType2: 1,
+      doorType2_id: '',
+      doorType2_name: '',
+    });
+  },
+  bindDoorType1Change: function (e) {
+    var doorType1Index = e.detail.value;
+    this.setData({
+      doorType1Index: doorType1Index,
+      doorType1_id: this.data.positionList[doorType1Index].id,
+      doorType1_name: this.data.positionList[doorType1Index].location_descr,
+      isShowDoorType1: 2
+    });
+  },
+  bindDoorType2Change: function (e) {
+    var doorType2Index = e.detail.value;
+    this.setData({
+      doorType2Index: doorType2Index,
+      doorType2_id: this.data.positionList[doorType2Index].id,
+      doorType2_name: this.data.positionList[doorType2Index].location_descr,
+      isShowDoorType2: 2
+    });
+  },
   submitBuffer() {
     let that = this;
     let name = this.data.name;
@@ -202,6 +297,15 @@ Page({
     let managePersionIds = this.data.managePersionIds;
     let approvalPersionIds = this.data.approvalPersionIds;
 
+    let service_id = this.data.service_id;
+    let service_name = this.data.service_name;
+
+    let doorType1_id = this.data.doorType1_id;
+    let doorType1_name = this.data.doorType1_name;
+
+    let doorType2_id = this.data.doorType2_id;
+    let doorType2_name = this.data.doorType2_name;
+
     if (!name) {
       box.showToast("请输入设备编号");
       return;
@@ -210,6 +314,23 @@ Page({
     if (!position_name) {
       box.showToast("请选择设备位置");
       return;
+    }
+
+    if (!service_id && !service_name) {
+      box.showToast("请选择门禁类型");
+      return;
+    }
+
+    if (!doorType1_id && doorType1_name) {
+      box.showToast("请选择门禁位置");
+      return;
+    }
+
+    if(service_id == 2){
+      if (!doorType2_id && doorType2_name) {
+        box.showToast("请选择门禁位置");
+        return;
+      }
     }
 
     if (!time) {
@@ -263,6 +384,10 @@ Page({
         }
       })
     }else{
+      let Accesslayout_id = doorType1_id;
+      if(service_id == 2){
+        Accesslayout_id = Accesslayout_id + "," + doorType2_id;
+      }
       let params = {
         pig_farm_id: app.globalData.userInfo.pig_farm_id,
         type: '2',
@@ -272,7 +397,9 @@ Page({
         reviewer: approvalPersionIds, //(审核者)
         duration: time, //（（时长）
         concentration: concentration, //（浓度）
-        layout_id: position_id //位置id
+        layout_id: position_id, //位置id
+        doortype: service_id,
+        Accesslayout_id: Accesslayout_id
       }
   
       console.log('---->:',params)
@@ -331,7 +458,7 @@ Page({
       url:`/modulepages/pages/ozoneModuleApprovalPersion/index?idlist=${this.data.approvalPersionIds}`
     });
   },
-  getPositionList() {
+  getPositionList(number) {
     let that = this;
     let params = {
       pig_farm_id: app.globalData.userInfo.pig_farm_id
@@ -343,6 +470,9 @@ Page({
           that.setData({
             positionList: res.data
           });
+          if(number == 2){
+            that.getdeviceinfobyid();
+          }
         } else {
           box.showToast(res.msg);
         }

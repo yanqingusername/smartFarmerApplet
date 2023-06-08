@@ -238,7 +238,7 @@ Page({
     }
 
     if (!service_id && !service_name) {
-      box.showToast("请选择设备位置");
+      box.showToast("请选择门禁类型");
       return;
     }
 

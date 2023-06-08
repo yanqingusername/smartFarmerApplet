@@ -17,7 +17,7 @@ page {
 }
 
 .P5 {
-  width: 670rpx;
+  width: 690rpx;
   margin: 30rpx 30rpx 30rpx 6rpx;
   height: auto;
   /* border-bottom: 2rpx solid #F9F9F9; */
@@ -43,7 +43,7 @@ page {
   text-align: initial;
   font-family: "Microsoft YaHei";
   font-size: 30rpx;
-  padding-left: 20rpx;
+  /* padding-left: 20rpx; */
 }
 
 
@@ -62,15 +62,19 @@ page {
 
 .medWhite {
   background-color: #fff;
-  height: auto;
+  /* height: auto;
   z-index: 999;
   position: relative;
   top: -27%;
   width: 90%;
   left: 5%;
-  right: 5%;
+  right: 5%; */
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   border-radius: 20rpx;
-  margin: 30rpx 30rpx 30rpx 0;
+  margin: 30rpx 30rpx 30rpx 30rpx;
   /* box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.06); */
 }
 
@@ -349,4 +353,9 @@ page {
   display: flex;
   align-items: center;
   width: 100%;
+}
+
+.new_app_flex{
+  display: flex;
+  align-items: center;
 }

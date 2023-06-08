@@ -13,7 +13,7 @@
                             <view class="homeindex_4_1_item_l">
                                 
                                 <view class="homeindex_4_1_item_l_2" style="margin-left: 0rpx;">
-                                    <view class="v2_1_position">设备位置：{{item.address}}</view>
+                                    <view class="v2_1_position" style="width: 500rpx;">设备位置：{{item.address}}</view>
                                     <view class="v2_1_position" style="margin-top: 10rpx;">设备管理员：{{item.controller}}</view>
                                     <view class="v2_1_position" style="margin-top: 10rpx;">审批人：{{item.reviewer}}</view>
                                 </view>
