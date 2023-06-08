@@ -27,6 +27,21 @@
 
         <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;width:670rpx;"></view>
 
+        <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">门禁位置：</view>
+          <view class="section" style="width: 70%;height:84rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;">
+            <picker style="height:100%;margin-top:0rpx;width:100%;" bindchange="bindPositionChange1" range-key="location_descr" value="{{positionList[positionIndex1].value}}" range="{{positionList}}">
+              <view class="picker" wx:if="{{isShowPosition1 == 2}}">{{position_name1}}</view>
+              <view class="picker" style="color: #B1B1B1;" wx:else>请选择门禁位置</view>
+            </picker>
+            <view style="margin-right:0rpx;align-items: center;display: flex;position: absolute;right: 16rpx;top: 30rpx;">
+              <image class="right_arrow" src="/image/icon/icon_2023_01_06_09.png"></image>
+            </view>
+          </view>
+        </view>
+
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;width:670rpx;"></view>
+
         <!-- <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">设备类型</view>
           <view class="section" style="width: 80%;height:84rpx;margin-left:12rpx;font-size:30rpx;display: flex;position: relative;">

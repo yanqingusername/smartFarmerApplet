@@ -27,6 +27,11 @@ Page({
     isShowPosition: 1,
     position_id: '',
     position_name: '',
+
+    positionIndex1: 0,
+    isShowPosition1: 1,
+    position_id1: '',
+    position_name1: '',
   },
   onShow: function () {
     // this.getdevicelist();
@@ -68,10 +73,20 @@ Page({
     });
     this.checkSubmitStatus();
   },
+  bindPositionChange1: function (e) {
+    var positionIndex1 = e.detail.value;
+    this.setData({
+      positionIndex1: positionIndex1,
+      position_id1: this.data.positionList[positionIndex1].id,
+      position_name1: this.data.positionList[positionIndex1].location_descr,
+      isShowPosition1: 2
+    });
+    this.checkSubmitStatus();
+  },
   //保存按钮禁用判断
   checkSubmitStatus: function (e) {
     // && this.data.job_id != '' && this.data.job_name != ''
-    if (this.data.name != '' && this.data.position_name != '' && this.data.gender != '') {
+    if (this.data.name != '' && this.data.position_name != '' && this.data.gender != '' && this.data.position_name1 != '') {
       this.setData({
         submitState: false
       })
@@ -138,6 +153,9 @@ Page({
     // let job_name = this.data.job_name;
     let gender = this.data.gender;
 
+    let position_name1 = this.data.position_name1;
+    let position_id1 = this.data.position_id1;
+
     if (!name) {
       box.showToast("请输入设备编号");
       return;
@@ -145,6 +163,11 @@ Page({
 
     if (!position_name) {
       box.showToast("请选择设备位置");
+      return;
+    }
+
+    if (!position_name1) {
+      box.showToast("请选择门禁位置");
       return;
     }
 
@@ -165,7 +188,8 @@ Page({
       address: position_name, //位置描述
       type:  '1',//设备类型 job_id
       gender: gender == '男' ? '0' : '1', //男女
-      layout_id: position_id //位置id
+      layout_id: position_id, //位置id
+      Accesslayout_id: position_id1 // 门禁id
     }
 
     request.request_get('/equipmentManagement/NewaddDecontaminationdeviceinfo.hn', params, function (res) {
