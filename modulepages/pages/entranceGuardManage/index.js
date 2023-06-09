@@ -8,6 +8,11 @@ Page({
     limit: 10,
     deviceinfoList: [],
     title: "",
+    isShowdata: 1,
+
+    uid: "",
+    sn: "",
+    address: ""
   },
   onLoad: function (options) {
     this.setData({
@@ -17,12 +22,48 @@ Page({
     wx.setNavigationBarTitle({
       title: options.title
     });
+    this.getEntranceGuardManageList();
   },
   onShow: function () {
+    let that = this;
+    if(this.data.isShowdata == 2){
+      this.setData({
+        page: 1
+      });
+      this.getEntranceGuardManageList();
+    } else if(this.data.isShowdata == 3){
+      let deviceinfoList = this.data.deviceinfoList;
+      deviceinfoList.forEach(element => {
+        if(element.id == that.data.uid){
+          element.sn = that.data.sn;
+          element.address = that.data.address;
+        }
+      });
+      this.setData({
+        deviceinfoList: deviceinfoList,
+        uid: "",
+        sn: "",
+        address: ""
+      });
+    } else if(this.data.isShowdata == 4){
+      let deviceinfoList = this.data.deviceinfoList;
+      let deviceinfoListNew =  deviceinfoList.filter(item => {
+        return item.id != that.data.uid;
+      });
+      this.setData({
+        deviceinfoList: deviceinfoListNew,
+        uid: "",
+        sn: "",
+        address: ""
+      });
+    }
+  },
+  onPullDownRefresh: function () {
     this.setData({
       page: 1
     });
     this.getEntranceGuardManageList();
+    setTimeout(() => wx.stopPullDownRefresh(), 100);
   },
   onReachBottom: function () {
     this.getEntranceGuardManageList();
@@ -88,6 +129,9 @@ Page({
     }
   },
   bindAddEntranceGuardManage() {
+    this.setData({
+      isShowdata: 1
+    });
     wx.navigateTo({
       url: `/modulepages/pages/entranceGuardManageAdd/index`
     });
@@ -95,6 +139,9 @@ Page({
   bindEditClick(e){
     let uid = e.currentTarget.dataset.id;
     if(uid){
+      this.setData({
+        isShowdata: 1
+      });
       wx.navigateTo({
         url:`/modulepages/pages/entranceGuardManageAdd/index?isEdit=2&uid=${uid}`
       });

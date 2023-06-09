@@ -273,6 +273,14 @@ Page({
           if (res.success) {
             box.showToast(res.msg,'',1000);
             setTimeout(()=>{
+              let pages = getCurrentPages();
+              let prevPage = pages[pages.length - 2];
+              prevPage.setData({
+                isShowdata: 3,
+                uid: that.data.uid,
+                sn: name,
+                address: position_name
+              });
               wx.navigateBack({
                 delta: 1,
               });
@@ -340,6 +348,14 @@ Page({
           if (res.success) {
             box.showToast(res.msg,'',1000);
             setTimeout(()=>{
+              let pages = getCurrentPages();
+              let prevPage = pages[pages.length - 2];
+              prevPage.setData({
+                isShowdata: 2,
+                uid: "",
+                sn: "",
+                address: ""
+              });
               wx.navigateBack({
                 delta: 1,
               });
@@ -475,10 +491,18 @@ Page({
                 if (res.success) {
                   box.showToast(res.msg,'',1000);
                   setTimeout(()=>{
+                    let pages = getCurrentPages();
+                    let prevPage = pages[pages.length - 2];
+                    prevPage.setData({
+                      isShowdata: 4,
+                      uid: that.data.uid,
+                      sn: "",
+                      address: ""
+                    });
                     wx.navigateBack({
                       delta: 1,
                     });
-                  },1500)
+                  },1500);
                 } else {
                   box.showToast(res.msg);
                 }
