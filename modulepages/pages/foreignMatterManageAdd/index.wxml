@@ -3,14 +3,21 @@
         <view style="height: 2rpx;"></view>
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">设备编号：</view>
-          <input class="P5_2 app_font" placeholder="请输入设备编号" placeholder-class="place_style" bindinput="bindName" style="position:relative;right:20rpx" maxlength="24" value="{{name}}" bindtap="inputTap" id="name" focus="{{focusId=='name'?true:false}}"></input>
+          <input class="P5_2 app_font" placeholder="请输入设备编号" placeholder-class="place_style" bindinput="bindName" maxlength="24" value="{{name}}" bindtap="inputTap" id="name" focus="{{focusId=='name'?true:false}}"></input>
         </view>
-        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;"></view>
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;width:670rpx;"></view>
 
         <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">设备位置：</view>
-          <input class="P5_2 app_font" placeholder="请输入设备位置" placeholder-class="place_style" bindinput="bindPosition" style="position:relative;right:20rpx" value="{{position}}" bindtap="inputTap" id="position" focus="{{focusId=='position'?true:false}}"></input>
+          <input class="P5_2 app_font" placeholder="请输入设备位置" placeholder-class="place_style" bindinput="bindPosition" value="{{position}}" bindtap="inputTap" id="position" focus="{{focusId=='position'?true:false}}"></input>
         </view>
+        
+        <view style="height: 2rpx;background:#DDDDDD;margin: 0rpx 20rpx;width:670rpx;"></view>
+        <view class="P5 app_flex" style="margin: 14rpx 0rpx 10rpx 0rpx;">
+          <view class="P5_1 app_font">摄像头序列号：</view>
+          <input class="P5_2 app_font" placeholder="请输入摄像头序列号" placeholder-class="place_style" bindinput="bindCameraSerial" maxlength="24" value="{{camera_serial}}" bindtap="inputTap" id="camera_serial" focus="{{focusId=='camera_serial'?true:false}}"></input>
+        </view>
+
         <!-- <view class="P5 app_flex" style="margin: 16rpx 0rpx 10rpx 0rpx;">
           <view class="P5_1 app_font">设备位置：</view>
           <view class="section" style="width: 65%;height:84rpx;margin-left:0rpx;font-size:30rpx;display: flex;position: relative;">

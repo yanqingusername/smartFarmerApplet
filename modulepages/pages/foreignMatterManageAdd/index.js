@@ -22,7 +22,9 @@ Page({
     positionIndex: 0,
     isShowPosition: 1,
     position_id: '',
-    position_name: ''
+    position_name: '',
+
+    camera_serial: ''
   },
   onShow: function () {
     // this.getPersonnelList();
@@ -35,7 +37,7 @@ Page({
   },
   //保存按钮禁用判断
   checkSubmitStatus: function (e) {
-    if (this.data.name != '' && this.data.position != '') {
+    if (this.data.name != '' && this.data.position != '' && this.data.camera_serial != '') {
       this.setData({
         submitState: false
       })
@@ -92,6 +94,14 @@ Page({
     });
     this.checkSubmitStatus();
   },
+  bindCameraSerial: function (e) {
+    var str = e.detail.value;
+    this.setData({
+      camera_serial: str
+    })
+
+    this.checkSubmitStatus();
+  },
   submitBuffer() {
     let that = this;
     let name = this.data.name;
@@ -100,6 +110,8 @@ Page({
     // let job_id = this.data.job_id;
     // let job_name = this.data.job_name;
 
+    let camera_serial = this.data.camera_serial;
+
     if (!name) {
       box.showToast("请输入设备编号");
       return;
@@ -107,6 +119,11 @@ Page({
 
     if (!position) {
       box.showToast("请输入设备位置");
+      return;
+    }
+
+    if(!camera_serial){
+      box.showToast("请输入摄像头序列号");
       return;
     }
 
@@ -119,6 +136,7 @@ Page({
       pig_farm: app.globalData.userInfo.pig_farm_id ,
       sn: name, //设备编号
       address: position, //设备位置
+      Camera_Serial: camera_serial
     }
 
     request.request_get('/equipmentManagement/addForeignMatter.hn', params, function (res) {
