@@ -13,7 +13,7 @@
             <view class="v2_1_title" >{{item.name}}</view>
             <view class="v2_1_position">通行状态：{{item.type_desc}}</view>
             <view class="v2_1_position"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_25.png'></image>位置：{{item.location_descr}}</view>
-            <view class="v2_1_position"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_24.png'></image>刷脸时间：{{item.create_time}}</view>
+            <view class="v2_1_position"><image class='v2_1_position_img' src='/image/icon/icon_2023_01_06_24.png'></image>认证时间：{{item.create_time}}</view>
 		</view>
     </block>
         <block wx:if="{{deviceinfoList.length==0}}">
